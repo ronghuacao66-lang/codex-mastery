@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-08 20:40 CST
+2026-06-08 20:50 CST
 
 ## 当前目标
 
@@ -80,6 +80,7 @@
     - `fatal: could not read Username for 'https://github.com': terminal prompts disabled`
   - 已尝试 GitHub SSH 认证，但失败：
     - `git@github.com: Permission denied (publickey).`
+  - 已尝试直接下载 GitHub CLI release `v2.93.0`，但连接 GitHub 443 超时。
 - 本机 macOS 电源策略已调整，降低 Codex 长任务因合盖或空闲睡眠中断的风险：
   - Battery Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
   - AC Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
@@ -100,6 +101,7 @@
 - Homebrew 安装 `gh` 失败，当前需要用户手动完成 GitHub CLI 安装/登录，或提供 GitHub 空仓库 URL。
 - Git remote 已配置，但当前机器没有 GitHub 认证凭据，无法 push。
 - 当前机器也没有可用的 GitHub SSH key，无法通过 SSH push。
+- 当前环境访问 GitHub release 下载通道超时，无法由我自动补装 `gh`。
 - `localhost:3000` 依赖本机开发服务；服务停止后本地网址会打不开。
 - 公网稳定访问仍依赖 GitHub + Vercel 部署完成。
 - 外部视频链接可能随平台规则变化失效，需要后续定期巡检。

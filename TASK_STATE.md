@@ -26,6 +26,7 @@
 - 已配置远程地址：`https://github.com/ronghuacao66-lang/codex-mastery.git`。
 - 已尝试 push，但因当前机器没有 GitHub 认证凭据失败。
 - 已尝试 SSH 方式访问 GitHub，但因没有可用 public key 失败。
+- 已尝试直接下载 GitHub CLI release，但 GitHub 443 连接超时。
 - 已按用户要求设置本机 macOS 电源策略，降低 Codex 长任务因合盖或空闲睡眠中断的风险。
 
 ## 当前进度
@@ -44,6 +45,7 @@
 - `release/` 是本地交付物目录，已加入 `.gitignore`，不会提交进仓库。
 - 当前 remote 已配置，下一步只差 GitHub 认证和仓库可访问性。
 - SSH remote 路径也需要先配置 GitHub SSH key。
+- 当前环境无法稳定访问 GitHub CLI 下载资源。
 - 合盖长时间运行 Codex 会增加发热和耗电风险，建议连接电源并保持散热。
 
 ## 本轮环境维护

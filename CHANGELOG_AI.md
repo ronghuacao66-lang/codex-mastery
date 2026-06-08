@@ -235,3 +235,25 @@
 - 本地 Git 历史完整，项目本身可运行。
 - GitHub 远程 push 仍阻塞在认证层。
 - 继续远程发布需要用户完成 HTTPS token/credential 认证、配置 SSH key，或通过 GitHub 网页上传 zip。
+
+## 2026-06-08 20:50 直接下载 GitHub CLI 失败
+
+### 修改文件
+
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 记录尝试通过 GitHub release 直接下载 `gh` 预编译包。
+- 清理下载尝试产生的 `.local-tools` 临时目录。
+
+### 修改原因
+
+用户要求继续由我处理远程发布。我在 Homebrew 失败后尝试绕过 Homebrew，直接下载 GitHub CLI release。
+
+### 风险说明
+
+- 下载 `https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_macOS_arm64.zip` 时连接 GitHub 443 超时。
+- 当前环境无法自动安装 `gh`，远程发布仍需要用户完成认证或网页登录上传。
