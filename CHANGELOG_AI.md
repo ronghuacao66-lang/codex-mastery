@@ -1,5 +1,38 @@
 # CHANGELOG_AI
 
+## 2026-06-09 07:37 完成不可确认播放视频清理部署
+
+### 修改文件
+
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 记录“去除不可确认正常播放视频”更新已提交并推送到 GitHub。
+- 记录 GitHub 远程 `origin/main` 已指向提交 `9a2496e Remove unverified video links`。
+- 记录 Vercel 由 GitHub push 触发的 Production 自动部署已完成。
+- 更新下一步行动为定期巡检外部视频链接。
+
+### 修改原因
+
+项目规则要求每个阶段结束后维护状态文件，确保后续接管时知道本轮清理已经上线。
+
+### 验证结果
+
+- `git push`：成功。
+- `git ls-remote origin HEAD`：返回 `9a2496ed7866d47a2d9a09f1772c46e10764cff5`。
+- Vercel 最新 Production 部署：`https://ronghuacao66-lang-codex-mastery-cclt03ssh-crh-s-projects.vercel.app`。
+- Vercel inspect：状态为 `Ready`。
+- 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
+
+### 风险说明
+
+- 本次为状态收尾记录，不修改业务代码。
+- 后续新增视频仍需先验证可打开播放。
+
 ## 2026-06-09 07:30 去除不可确认正常播放的视频
 
 ### 修改文件

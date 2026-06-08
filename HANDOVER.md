@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 07:30 CST
+2026-06-09 07:37 CST
 
 ## 当前状态
 
@@ -42,6 +42,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 07:30 CST 按用户最新要求，所有当前无法确认正常打开播放的视频已从视频中心删除。已删除 3 条 `network_or_timeout` 的 YouTube 视频，旧 404 抖音精选链接也已替换为可访问的 Bilibili 中文教程。当前 `data/videos.json` 共 9 条，平台为 Bilibili 与 OpenAI Academy，所有 `linkStatus.status` 均为 `ok`。
 
+2026-06-09 07:37 CST “去除不可确认正常播放视频”更新已推送到 GitHub，提交为 `9a2496e Remove unverified video links`。Vercel Production 自动部署已变为 `Ready`，最新部署为 `https://ronghuacao66-lang-codex-mastery-cclt03ssh-crh-s-projects.vercel.app`，主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已作为 alias 绑定。
+
 ## 已完成内容
 
 - 项目状态文件已建立：
@@ -76,7 +78,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 - GitHub push 已完成。
 - 本轮视频链接巡检更新已提交和推送。
-- 本轮“去除不可确认正常播放视频”更新尚未提交和推送。
+- 本轮“去除不可确认正常播放视频”更新已提交、推送并部署完成。
 - GitHub CLI Web 授权仍因 OAuth token 交换超时失败。
 
 ## 当前推理结果
@@ -103,9 +105,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 ## 下一步计划
 
-1. 提交并推送本轮“去除不可确认正常播放视频”更新。
-2. 等待并确认 Vercel 自动部署 Ready。
-3. 后续定期巡检外部视频链接。
+1. 后续定期巡检外部视频链接。
+2. 如新增视频，必须先确认能正常打开播放。
 
 ## 最近验证
 
@@ -161,3 +162,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过。
+- 2026-06-09 07:37 CST：
+  - `git push`：成功，`origin/main` 指向 `9a2496e`。
+  - Vercel 自动 Production 部署：`Ready`。
+  - 主域名 alias：已绑定最新部署。

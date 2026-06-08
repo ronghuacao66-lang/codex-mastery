@@ -6,7 +6,7 @@
 
 ## 当前目标
 
-按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查、GitHub + Vercel 上线准备、视频精选链接巡检与交互状态标记；本地构建已通过，GitHub 推送已完成，Vercel Production 自动部署已 Ready。当前正在提交“去除不可确认正常播放视频”的内容更新。
+按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查、GitHub + Vercel 上线准备、视频精选链接巡检与交互状态标记、去除不可确认正常播放视频；本地构建已通过，GitHub 推送已完成，Vercel Production 自动部署已 Ready。
 
 ## 当前完成
 
@@ -59,11 +59,12 @@
 - 2026-06-09 07:19 CST 已推送视频链接巡检更新，GitHub 触发的 Vercel Production 自动部署已 Ready。
 - 2026-06-09 07:30 CST 已将两个 404 抖音精选链接替换为可访问的 Bilibili 中文教程资源，并重新导出 `content/videos.md`。
 - 2026-06-09 07:30 CST 按用户最新要求删除 3 条当前无法确认正常播放的 YouTube 视频；当前视频中心保留 9 条 `ok` 视频。
+- 2026-06-09 07:37 CST “去除不可确认正常播放视频”更新已推送，Vercel Production 自动部署已 Ready。
 
 ## 当前进度
 
 - 当前任务：去除不可确认正常播放的视频。
-- 任务状态：数据、页面文案、内容导出和本地验证已完成；当前等待提交、推送和 Vercel 自动部署验证。
+- 任务状态：数据、页面文案、内容导出、本地验证、GitHub 推送和 Vercel 自动部署验证均已完成。
 
 ## 当前风险
 
@@ -92,7 +93,7 @@
 
 ## 下一步动作
 
-当前需要提交并推送“去除不可确认正常播放视频”的更新。
+当前需要定期巡检外部视频链接，保证保留视频持续可打开播放。
 
 ## 最近验证
 
@@ -149,3 +150,7 @@
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过。
+- 2026-06-09 07:37 CST：
+  - `git push`：成功，`origin/main` 指向 `9a2496e`。
+  - Vercel 最新 Production 部署：`Ready`。
+  - 主域名：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。

@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 07:30 CST
+2026-06-09 07:37 CST
 
 ## 当前目标
 
@@ -104,6 +104,13 @@
   - 当前视频中心只保留 9 条 `linkStatus.status = ok` 的视频。
   - 当前视频平台为 Bilibili 与 OpenAI Academy。
   - `data/videos.json`、`content/videos.md` 和 `/videos` 页面说明已同步。
+- 已提交并推送“去除不可确认播放视频”更新：
+  - 本地提交：`9a2496e Remove unverified video links`
+  - GitHub `origin/main`：`9a2496ed7866d47a2d9a09f1772c46e10764cff5`
+- GitHub push 已触发 Vercel Production 自动部署：
+  - 最新部署：`https://ronghuacao66-lang-codex-mastery-cclt03ssh-crh-s-projects.vercel.app`
+  - 状态：`Ready`
+  - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app`
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -181,18 +188,17 @@
 
 ## 待办事项
 
-1. 提交并推送本轮“去除不可确认播放视频”的更新。
-2. 定期巡检外部视频链接，确保保留视频仍可打开播放。
-3. 可选增强：设计完整学习进度中心。
+1. 定期巡检外部视频链接，确保保留视频仍可打开播放。
+2. 可选增强：设计完整学习进度中心。
 
 ## 下一步行动
 
-当前下一步为“提交并推送去除不可确认播放视频更新”：
+当前下一步为“定期巡检外部视频链接”：
 
-- 目标：将所有不可确认播放视频移除结果、内容导出和状态记录同步到 GitHub。
-- 输入：`data/videos.json`、`content/videos.md`、`app/videos/page.tsx` 和项目状态文件。
-- 输出：GitHub 远程仓库不再包含 YouTube、抖音精选、`network_or_timeout` 或 `likely_broken` 视频条目。
-- 验收标准：`git push` 成功，`origin/main` 指向最新状态提交，Vercel 主域名仍为 `Ready`。
+- 目标：确保当前保留的 9 条视频资源持续可访问。
+- 输入：`data/videos.json`。
+- 输出：如发现不可访问视频，则删除或替换为可访问资源。
+- 验收标准：`data/videos.json` 与 `content/videos.md` 均不包含不可确认播放的视频。
 
 ## 最近验证
 
@@ -269,3 +275,7 @@
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过，生成 14 个 App Router 页面。
+- 2026-06-09 07:37 CST：
+  - `git push`：成功，`origin/main` 指向 `9a2496e`。
+  - Vercel 自动 Production 部署：`Ready`。
+  - 主域名 alias：已绑定最新部署。
