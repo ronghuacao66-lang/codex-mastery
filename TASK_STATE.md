@@ -47,6 +47,7 @@
 - 已安装 GitHub CLI `gh 2.93.0`。
 - 已尝试 GitHub CLI Web 授权，但 OAuth token 交换超时。
 - 已生成项目专用 SSH key，公钥已复制到剪贴板，等待用户登录 GitHub 并添加。
+- 2026-06-09 06:23 CST 已再次测试 SSH，结果仍为 `Permission denied (publickey)`；已重新复制公钥到剪贴板并打开 GitHub SSH key 添加页面。
 
 ## 当前进度
 
@@ -103,6 +104,12 @@ GitHub 侧仍需要用户在网页中添加本机生成的 SSH 公钥，或完�
   - 项目专用 SSH key：已生成并配置。
   - SSH GitHub 认证：失败，公钥尚未添加到 GitHub。
 - 2026-06-09 02:01 CST：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+- 2026-06-09 06:23 CST：
+  - SSH GitHub 认证：仍失败，公钥尚未添加或尚未生效。
+  - 项目专用 SSH 公钥：已重新复制到剪贴板。
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过。

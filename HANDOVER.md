@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 01:58 CST
+2026-06-09 06:23 CST
 
 ## 当前状态
 
@@ -31,6 +31,8 @@ https://github.com/ronghuacao66-lang/codex-mastery.git
 GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史。已用 `ours` 策略把远程上传历史合并进本地 `main`，保留本地正确项目根目录结构。后续只要 GitHub 凭据可用，普通 `git push -u origin main` 即可推进，不需要强推。
 
 已安装 GitHub CLI，但 `gh auth login --web --clipboard --scopes repo` 两次在 OAuth token 交换阶段超时。已改走 SSH key 方案：本机已生成项目专用 SSH key，公钥已复制到剪贴板，并打开 GitHub SSH key 添加页。当前 Chrome 需要用户登录 GitHub 后添加该公钥。
+
+2026-06-09 06:23 CST 再次测试 `ssh -o BatchMode=yes -T git@github.com`，仍返回 `Permission denied (publickey)`。已重新复制公钥到剪贴板，并再次打开 GitHub SSH key 添加页面。
 
 ## 已完成内容
 
@@ -114,6 +116,12 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - 项目专用 SSH key：已生成并配置。
   - SSH GitHub 认证：失败，公钥尚未添加到 GitHub。
 - 2026-06-09 02:01 CST：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+- 2026-06-09 06:23 CST：
+  - SSH GitHub 认证：仍失败，公钥尚未添加或尚未生效。
+  - 项目专用 SSH 公钥：已重新复制到剪贴板。
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过。

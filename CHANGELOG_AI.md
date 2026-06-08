@@ -1,5 +1,38 @@
 # CHANGELOG_AI
 
+## 2026-06-09 06:23 复测 GitHub SSH 认证并重开公钥添加页
+
+### 修改文件
+
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 再次测试 `ssh -o BatchMode=yes -T git@github.com`，仍返回 `Permission denied (publickey)`。
+- 将项目专用 SSH 公钥重新复制到剪贴板。
+- 再次打开 GitHub SSH key 添加页面。
+- 修正 `PROJECT_STATE.md` 待办事项编号。
+
+### 修改原因
+
+用户要求继续推进。当前 GitHub push 的唯一阻塞点仍是 GitHub 账号尚未接受本机生成的 SSH 公钥，因此需要保持状态清晰并准备好下一次验证。
+
+### 验证结果
+
+- `ssh-keygen -lf ~/.ssh/codex_maturity_github_ed25519.pub`：返回指纹 `SHA256:8iEptsOWnqTxPfbT2S3HiNjOEpGvdpRZ+WpYVMFqejY`。
+- `ssh -o BatchMode=yes -T git@github.com`：失败，`Permission denied (publickey)`。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过。
+
+### 风险说明
+
+- GitHub push 仍等待用户在 GitHub 账号中添加公钥。
+- 本轮未修改业务代码。
+
 ## 2026-06-09 01:58 安装 GitHub CLI 并准备 SSH 推送路径
 
 ### 修改文件

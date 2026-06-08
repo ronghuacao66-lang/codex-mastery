@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 01:58 CST
+2026-06-09 06:23 CST
 
 ## 当前目标
 
@@ -69,6 +69,8 @@
   - 指纹：`SHA256:8iEptsOWnqTxPfbT2S3HiNjOEpGvdpRZ+WpYVMFqejY`
 - 已将公钥复制到剪贴板，并打开 GitHub SSH key 添加页面；当前 Chrome 需要用户登录 GitHub 后添加该公钥。
 - 已配置 `~/.ssh/config`，让 `github.com` 使用该项目专用 SSH key。
+- 2026-06-09 06:23 CST 已再次测试 SSH，结果仍为 `Permission denied (publickey)`，说明公钥尚未添加到 GitHub 或尚未生效。
+- 2026-06-09 06:23 CST 已重新将项目专用 SSH 公钥复制到剪贴板，并再次打开 GitHub SSH key 添加页面。
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -153,8 +155,8 @@
 2. 添加完成后执行 `ssh -T git@github.com` 验证 SSH 认证。
 3. 验证通过后将 remote 改为 SSH 并执行 `git push -u origin main`。
 4. 若暂时无法使用 Git CLI 推送，可用 `release/codex-mastery-github-ready.zip` 通过 GitHub 网页手动上传最新项目文件。
-3. 定期巡检外部视频链接。
-4. 可选增强：设计完整学习进度中心。
+5. 定期巡检外部视频链接。
+6. 可选增强：设计完整学习进度中心。
 
 ## 下一步行动
 
@@ -203,6 +205,12 @@
   - `ssh-keygen -t ed25519`：已生成项目专用 SSH key。
   - `ssh -o BatchMode=yes -T git@github.com`：当前失败，原因是公钥尚未添加到 GitHub。
 - 2026-06-09 02:01 CST SSH 方案记录后验证：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 14 个 App Router 页面。
+- 2026-06-09 06:23 CST：
+  - `ssh -o BatchMode=yes -T git@github.com`：失败，`Permission denied (publickey)`。
+  - `pbcopy < ~/.ssh/codex_maturity_github_ed25519.pub`：已重新复制公钥到剪贴板。
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过，生成 14 个 App Router 页面。
