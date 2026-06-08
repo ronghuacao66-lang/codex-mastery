@@ -231,3 +231,32 @@ git merge --allow-unrelated-histories -s ours origin/main -m "Merge remote uploa
 
 - 后续 GitHub 凭据可用后，`git push -u origin main` 应可作为 fast-forward push 执行。
 - push 成功后，远程仓库根目录会变为当前正确项目结构，并包含 `vercel.json`。
+
+## 2026-06-09 准备项目专用 GitHub SSH key
+
+### 决策内容
+
+在 GitHub CLI Web 授权两次因 OAuth token 交换超时失败后，改用 SSH key 作为 GitHub push 的备用认证路径。已生成项目专用 Ed25519 key：
+
+```text
+~/.ssh/codex_maturity_github_ed25519
+~/.ssh/codex_maturity_github_ed25519.pub
+```
+
+并在 `~/.ssh/config` 中配置 `github.com` 使用该 key。
+
+### 决策原因
+
+当前 HTTPS push 缺少 GitHub credential，GitHub CLI 虽已安装但无法完成 OAuth token 交换。SSH key 方式不依赖 GitHub CLI OAuth token，只需要用户在 GitHub 账号安全设置中添加公钥。
+
+### 被否决方案
+
+- 在聊天中索要 GitHub token：不安全，不采用。
+- 继续反复重试 OAuth：当前已经两次超时，继续重试收益低。
+- 强推远程：与认证问题无关，且风险更高。
+
+### 后续影响
+
+- 用户需要在 GitHub 页面添加剪贴板中的公钥。
+- 公钥添加后，应先运行 `ssh -T git@github.com` 验证，再切换 remote 为 SSH 并 push。
+- 私钥保存在本机，不提交到项目仓库。

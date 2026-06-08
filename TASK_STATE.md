@@ -6,7 +6,7 @@
 
 ## 当前目标
 
-按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查，正在执行 GitHub + Vercel 上线准备；本地构建已通过，Vercel 直接公网部署已完成，本轮部署修复已提交到本地 Git，远程上传历史已合并入本地提交图，GitHub 推送仍等待认证。
+按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查，正在执行 GitHub + Vercel 上线准备；本地构建已通过，Vercel 直接公网部署已完成，本轮部署修复已提交到本地 Git，远程上传历史已合并入本地提交图，GitHub 推送仍等待用户添加 SSH key 或完成认证。
 
 ## 当前完成
 
@@ -44,11 +44,14 @@
 - 已确认 GitHub 远程可读，但远程 `main` 当前是旧的网页上传历史。
 - 已用 `ours` 策略合并远程上传历史，保留本地正确项目结构，后续认证完成后可普通 push。
 - 已重新生成 `release/codex-mastery-github-ready.zip`，确认包含 `vercel.json`。
+- 已安装 GitHub CLI `gh 2.93.0`。
+- 已尝试 GitHub CLI Web 授权，但 OAuth token 交换超时。
+- 已生成项目专用 SSH key，公钥已复制到剪贴板，等待用户登录 GitHub 并添加。
 
 ## 当前进度
 
 - 当前任务：GitHub + Vercel 上线准备。
-- 任务状态：本地构建通过；Vercel 直接部署完成；本轮部署修复已提交到本地 Git；远程历史已合并；GitHub push 阻塞于认证。
+- 任务状态：本地构建通过；Vercel 直接部署完成；本轮部署修复已提交到本地 Git；远程历史已合并；GitHub push 阻塞于用户添加 SSH key 或完成认证。
 
 ## 当前风险
 
@@ -57,8 +60,8 @@
 - 本地访问依赖 `next dev -p 3000` 持续运行。
 - 后续公网访问需要完成 GitHub + Vercel 部署。
 - 不建议在 dev server 运行时直接混用 `npm run build` 产物。
-- 本机缺少 GitHub CLI，无法自动创建远程仓库。
-- Homebrew 安装 `gh` 失败，需要手动安装/登录 GitHub CLI，或提供 GitHub 空仓库地址。
+- GitHub CLI 已安装，但当前本机 OAuth token 交换超时，CLI 仍未登录。
+- 项目专用 SSH key 已生成并配置，但公钥尚未添加到 GitHub。
 - `release/` 是本地交付物目录，已加入 `.gitignore`，不会提交进仓库。
 - 当前 remote 已配置，下一步只差 GitHub 认证和仓库可访问性。
 - SSH remote 路径也需要先配置 GitHub SSH key。
@@ -77,7 +80,7 @@
 
 ## 下一步动作
 
-GitHub 侧仍需要完成 HTTPS token/credential 认证，或配置 GitHub SSH key，才能继续远程 push。
+GitHub 侧仍需要用户在网页中添加本机生成的 SSH 公钥，或完成 HTTPS token/credential 认证，才能继续远程 push。
 如果暂时无法使用 Git CLI 推送，可以通过 GitHub 网页上传 `release/codex-mastery-github-ready.zip` 中的最新项目文件。
 
 ## 最近验证
@@ -91,6 +94,15 @@ GitHub 侧仍需要完成 HTTPS token/credential 认证，或配置 GitHub SSH k
 - 2026-06-09 01:36 CST：已重新生成 `release/codex-mastery-github-ready.zip`，确认包含 `vercel.json`。
 - 2026-06-09 01:38 CST：已合并远程网页上传历史，后续 push 不需要强推。
 - 2026-06-09 01:40 CST：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+- 2026-06-09 01:58 CST：
+  - `gh 2.93.0`：已安装。
+  - GitHub CLI Web 授权：失败，OAuth token 交换超时。
+  - 项目专用 SSH key：已生成并配置。
+  - SSH GitHub 认证：失败，公钥尚未添加到 GitHub。
+- 2026-06-09 02:01 CST：
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过。

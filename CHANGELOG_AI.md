@@ -1,5 +1,48 @@
 # CHANGELOG_AI
 
+## 2026-06-09 01:58 安装 GitHub CLI 并准备 SSH 推送路径
+
+### 修改文件
+
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `~/.ssh/config`
+- `~/.ssh/codex_maturity_github_ed25519`
+- `~/.ssh/codex_maturity_github_ed25519.pub`
+
+### 修改内容
+
+- 通过 Homebrew 安装 GitHub CLI `gh 2.93.0`。
+- 清理 GitHub CLI 半成品无效登录状态。
+- 两次尝试 `gh auth login --web --clipboard --scopes repo`，均在 GitHub OAuth token 交换阶段超时。
+- 生成项目专用 Ed25519 SSH key，并将公钥复制到剪贴板。
+- 新增 `~/.ssh/config`，配置 `github.com` 使用该项目专用 key。
+- 打开 GitHub SSH key 添加页面，等待用户登录 GitHub 并添加公钥。
+- 更新项目状态、任务状态、交接文件和决策记录。
+
+### 修改原因
+
+GitHub HTTPS push 仍缺少写入凭据；GitHub CLI 已安装但 OAuth 网络超时。为了继续推进 GitHub push，准备不依赖 CLI OAuth token 的 SSH 认证路径。
+
+### 验证结果
+
+- `gh --version`：返回 `2.93.0`。
+- `gh auth status`：当前仍未登录。
+- `ssh-keygen -lf ~/.ssh/codex_maturity_github_ed25519.pub`：返回指纹 `SHA256:8iEptsOWnqTxPfbT2S3HiNjOEpGvdpRZ+WpYVMFqejY`。
+- `ssh -o BatchMode=yes -T git@github.com`：当前失败，原因是公钥尚未添加到 GitHub。
+- 2026-06-09 02:01 CST：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+
+### 风险说明
+
+- 私钥只保存在本机 `~/.ssh/`，不会提交到项目仓库。
+- GitHub push 仍需要用户在 GitHub 账号中添加公钥或完成 HTTPS token/credential 认证。
+
 ## 2026-06-09 01:38 整理 GitHub 远程历史并更新备用上传包
 
 ### 修改文件

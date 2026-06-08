@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 01:38 CST
+2026-06-09 01:58 CST
 
 ## 当前目标
 
@@ -60,6 +60,15 @@
 - 已确认 GitHub 远程仓库可读取，远程 `main` 当前来自网页上传历史，包含旧的 `codex-mastery-github-ready/` 嵌套目录结构。
 - 已将远程上传历史以 `ours` 策略合并进本地 `main`，保留本地正确项目根目录结构，后续 GitHub 凭据可用后可普通 fast-forward push，无需强推。
 - 已重新生成最新 GitHub 手动上传备用包：`release/codex-mastery-github-ready.zip`，包内包含 `vercel.json`。
+- 已安装 GitHub CLI：`gh 2.93.0`。
+- 已尝试 GitHub CLI Web 授权，设备码流程可打开，但两次均在本机与 GitHub OAuth token 交换阶段超时。
+- 已清理 GitHub CLI 半成品无效登录状态。
+- 已生成本项目专用 SSH key：
+  - 私钥：`~/.ssh/codex_maturity_github_ed25519`
+  - 公钥：`~/.ssh/codex_maturity_github_ed25519.pub`
+  - 指纹：`SHA256:8iEptsOWnqTxPfbT2S3HiNjOEpGvdpRZ+WpYVMFqejY`
+- 已将公钥复制到剪贴板，并打开 GitHub SSH key 添加页面；当前 Chrome 需要用户登录 GitHub 后添加该公钥。
+- 已配置 `~/.ssh/config`，让 `github.com` 使用该项目专用 SSH key。
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -90,7 +99,7 @@
   - 当前分支：`main`。
   - 已配置仓库本地提交身份：`Codex Mastery <codex-mastery@local>`。
   - 已完成首次提交：`Initial Codex Mastery deployment`。
-  - 本机未安装 `gh` GitHub CLI，暂不能自动创建 GitHub 远程仓库或推送。
+  - 已安装 `gh` GitHub CLI `2.93.0`。
   - 已尝试通过 Homebrew 安装 `gh`，但网络访问 Homebrew/GitHub 资源失败：
     - `formula.jws.json` 下载连接被重置。
     - `homebrew-core` 克隆出现 `early EOF`。
@@ -103,7 +112,8 @@
   - 已尝试 GitHub SSH 认证，但失败：
     - `git@github.com: Permission denied (publickey).`
   - 已尝试直接下载 GitHub CLI release `v2.93.0`，但连接 GitHub 443 超时。
-  - 已确认 `gh` GitHub CLI 仍未安装。
+  - 已确认 `gh auth status` 当前仍未登录，原因是 OAuth token 交换超时。
+  - 已生成并配置项目专用 SSH key，但公钥尚未添加到 GitHub，`ssh -T git@github.com` 当前仍返回 `Permission denied (publickey)`。
 - 本机 macOS 电源策略已调整，降低 Codex 长任务因合盖或空闲睡眠中断的风险：
   - Battery Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
   - AC Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
@@ -121,8 +131,8 @@
 
 - 当前目录已初始化 Git，但尚未成功推送到 GitHub 远程仓库。
 - GitHub 远程 `main` 当前不是最终结构，仍是网页上传产生的旧结构；本地 `main` 已整理为可普通 push 的正确结构。
-- GitHub CLI `gh` 未安装，远程仓库创建和自动推送暂时阻塞。
-- Homebrew 安装 `gh` 失败，当前需要用户手动完成 GitHub CLI 安装/登录，或提供 GitHub 空仓库 URL。
+- GitHub CLI `gh` 已安装，但 GitHub OAuth token 交换在本机网络下超时，CLI 仍未登录。
+- GitHub SSH key 已在本机生成并配置，但用户尚未将公钥添加到 GitHub 账号。
 - Git remote 已配置，但当前机器没有 GitHub 认证凭据，无法 push。
 - 当前机器也没有可用的 GitHub SSH key，无法通过 SSH push。
 - 当前环境访问 GitHub release 下载通道超时，无法由我自动补装 `gh`。
@@ -139,19 +149,21 @@
 
 ## 待办事项
 
-1. 用户完成 GitHub HTTPS token/credential 认证，或配置 GitHub SSH key 后，继续执行 `git push -u origin main`。
-2. 若暂时无法使用 Git CLI 推送，可用 `release/codex-mastery-github-ready.zip` 通过 GitHub 网页手动上传最新项目文件。
+1. 用户在 Chrome 打开的 GitHub 页面登录账号，并将剪贴板中的公钥添加为 SSH key。
+2. 添加完成后执行 `ssh -T git@github.com` 验证 SSH 认证。
+3. 验证通过后将 remote 改为 SSH 并执行 `git push -u origin main`。
+4. 若暂时无法使用 Git CLI 推送，可用 `release/codex-mastery-github-ready.zip` 通过 GitHub 网页手动上传最新项目文件。
 3. 定期巡检外部视频链接。
 4. 可选增强：设计完整学习进度中心。
 
 ## 下一步行动
 
-当前下一步为“继续处理 GitHub 推送认证”：
+当前下一步为“等待用户添加 GitHub SSH key 后完成 push”：
 
-- 目标：将本地 `main` 分支推送到 `https://github.com/ronghuacao66-lang/codex-mastery.git`。
-- 输入：GitHub HTTPS credential/token 或可用 SSH key。
+- 目标：将本地 `main` 分支推送到 `git@github.com:ronghuacao66-lang/codex-mastery.git`。
+- 输入：用户在 GitHub 账号中添加本机生成的公钥。
 - 输出：GitHub 远程仓库包含最新项目文件和 `vercel.json`。
-- 验收标准：`git push -u origin main` 成功，GitHub 仓库可访问。
+- 验收标准：`ssh -T git@github.com` 认证通过，`git push -u origin main` 成功，GitHub 仓库可访问。
 
 ## 最近验证
 
@@ -182,6 +194,15 @@
 - 2026-06-09 01:36 CST：已重新生成 `release/codex-mastery-github-ready.zip`，确认包内包含 `vercel.json`。
 - 2026-06-09 01:38 CST：已合并远程网页上传历史，保留本地正确文件树，后续 push 不需要强推。
 - 2026-06-09 01:40 CST 远程历史合并后验证：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 14 个 App Router 页面。
+- 2026-06-09 01:58 CST：
+  - `HOMEBREW_NO_AUTO_UPDATE=1 brew install gh`：成功，安装 `gh 2.93.0`。
+  - `gh auth login --web --clipboard --scopes repo`：两次失败，原因是 `https://github.com/login/oauth/access_token` token 交换超时。
+  - `ssh-keygen -t ed25519`：已生成项目专用 SSH key。
+  - `ssh -o BatchMode=yes -T git@github.com`：当前失败，原因是公钥尚未添加到 GitHub。
+- 2026-06-09 02:01 CST SSH 方案记录后验证：
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过，生成 14 个 App Router 页面。
