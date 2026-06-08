@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 07:13 CST
+2026-06-09 07:19 CST
 
 ## 当前状态
 
@@ -38,6 +38,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 07:13 CST 已完成视频精选链接巡检与交互状态标记。Bilibili 链接标记为可访问；YouTube 链接因本机命令行网络超时标记为网络不可判定；抖音精选链接因 HTTP 404 标记为疑似失效；OpenAI Academy 旧链接已替换为当前可访问的官方链接。视频卡片已显示链接状态徽标，`content/videos.md` 已由数据重新导出。
 
+2026-06-09 07:19 CST 视频链接巡检更新已提交并推送到 GitHub，提交为 `4ef9b62 Add video link health status`。GitHub push 触发的 Vercel Production 自动部署已变为 `Ready`，最新部署为 `https://ronghuacao66-lang-codex-mastery-g1qrmaj9m-crh-s-projects.vercel.app`，主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已作为 alias 绑定。
+
 ## 已完成内容
 
 - 项目状态文件已建立：
@@ -70,7 +72,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 ## 未完成内容
 
 - GitHub push 已完成。
-- 本轮视频链接巡检更新尚未提交和推送。
+- 本轮视频链接巡检更新已提交和推送。
+- 最终状态收尾更新尚未提交和推送。
 - GitHub CLI Web 授权仍因 OAuth token 交换超时失败。
 
 ## 当前推理结果
@@ -97,9 +100,9 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 ## 下一步计划
 
-1. 提交并推送本轮视频链接巡检更新。
-2. 检查 Vercel 是否因 GitHub push 触发新部署。
-3. 后续优先处理抖音精选疑似失效链接。
+1. 提交并推送最终状态收尾更新。
+2. 后续优先处理抖音精选疑似失效链接。
+3. 后续定期巡检外部视频链接。
 
 ## 最近验证
 
@@ -143,3 +146,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - `npm run lint`：通过。
   - `npm run build`：通过。
   - 本地 `/videos` 页面验证：返回 200。
+- 2026-06-09 07:19 CST：
+  - `git push`：成功，`origin/main` 指向 `4ef9b62`。
+  - Vercel 自动 Production 部署：`Ready`。
+  - 主域名 alias：已绑定最新部署。

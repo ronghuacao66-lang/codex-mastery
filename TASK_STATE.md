@@ -6,7 +6,7 @@
 
 ## 当前目标
 
-按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查、GitHub + Vercel 上线准备；本地构建已通过，Vercel 直接公网部署已完成，GitHub 推送已完成。当前正在收尾视频精选链接巡检与交互状态标记。
+按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查、GitHub + Vercel 上线准备、视频精选链接巡检与交互状态标记；本地构建已通过，GitHub 推送已完成，Vercel Production 自动部署已 Ready。
 
 ## 当前完成
 
@@ -56,11 +56,12 @@
   - OpenAI Academy 旧链接返回 404，已替换为当前可访问的官方链接。
   - 视频卡片已显示链接状态徽标。
   - `content/videos.md` 已通过 `npm run export:content` 更新。
+- 2026-06-09 07:19 CST 已推送视频链接巡检更新，GitHub 触发的 Vercel Production 自动部署已 Ready。
 
 ## 当前进度
 
 - 当前任务：视频精选链接巡检与交互状态标记。
-- 任务状态：代码和数据已完成；类型检查、lint、构建已通过；当前正在提交并推送更新。
+- 任务状态：代码、数据、验证、GitHub 推送和 Vercel 自动部署均已完成；当前仅剩最终状态收尾提交。
 
 ## 当前风险
 
@@ -90,7 +91,7 @@
 
 ## 下一步动作
 
-当前需要提交并推送本轮视频链接巡检、页面状态徽标和状态文件更新。
+当前需要提交并推送最终状态收尾更新。
 
 ## 最近验证
 
@@ -135,3 +136,7 @@
   - `npm run lint`：通过。
   - `npm run build`：通过。
   - 本地 `/videos` 页面：返回 200。
+- 2026-06-09 07:19 CST：
+  - `git push`：成功，`origin/main` 指向 `4ef9b62`。
+  - Vercel 最新 Production 部署：`Ready`。
+  - 主域名：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。

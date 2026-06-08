@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 07:13 CST
+2026-06-09 07:19 CST
 
 ## 当前目标
 
@@ -86,6 +86,13 @@
   - OpenAI Academy 旧链接返回 404，已替换为当前可访问的官方链接 `https://academy.openai.com/en/public/videos/introduction-to-codex-2026-03-02`。
   - 视频卡片已新增链接状态徽标，用户可以在页面上直接识别外部链接健康状态。
   - `content/videos.md` 已重新由数据导出，保留链接状态备份。
+- 已提交并推送视频链接巡检更新：
+  - 本地提交：`4ef9b62 Add video link health status`
+  - GitHub `origin/main`：`4ef9b62679f31c243fcea25819c0db8833a5dc1e`
+- GitHub push 已触发 Vercel Production 自动部署：
+  - 最新部署：`https://ronghuacao66-lang-codex-mastery-g1qrmaj9m-crh-s-projects.vercel.app`
+  - 状态：`Ready`
+  - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app`
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -164,19 +171,18 @@
 
 ## 待办事项
 
-1. 提交并推送本轮“视频链接巡检与状态标记”的代码、数据和状态文件更新。
-2. 确认 Vercel 是否因 GitHub push 触发新部署；如未触发，当前 Vercel CLI 直传部署仍为 `Ready`。
-3. 定期巡检外部视频链接，优先处理当前标记为“疑似失效”的抖音链接。
-4. 可选增强：设计完整学习进度中心。
+1. 推送本轮最终状态收尾提交。
+2. 定期巡检外部视频链接，优先处理当前标记为“疑似失效”的抖音链接。
+3. 可选增强：设计完整学习进度中心。
 
 ## 下一步行动
 
-当前下一步为“提交并推送视频链接巡检更新”：
+当前下一步为“提交并推送最终状态收尾更新”：
 
-- 目标：将视频链接状态、页面状态徽标、Markdown 内容备份和项目状态记录提交并同步到 GitHub。
-- 输入：`data/videos.json`、`content/videos.md`、`components/VideoCenterClient.tsx`、`types/content.ts` 和项目状态文件。
-- 输出：GitHub 远程仓库包含最新视频链接健康状态，Vercel 可自动构建。
-- 验收标准：`git push` 成功，`origin/main` 指向最新提交，Vercel 主域名仍为 `Ready`。
+- 目标：将最终 Vercel Ready 和 GitHub push 结果写入远程仓库。
+- 输入：当前项目状态文件。
+- 输出：GitHub 远程仓库包含最新可交付状态。
+- 验收标准：`git push` 成功，`origin/main` 指向最新状态提交，Vercel 主域名仍为 `Ready`。
 
 ## 最近验证
 
@@ -240,3 +246,7 @@
   - `npm run build`：通过，生成 14 个 App Router 页面。
   - `curl -I http://localhost:3000/videos`：本地视频页返回 200。
   - 本地 `next dev -p 3000` 验证完成后已停止。
+- 2026-06-09 07:19 CST：
+  - `git push`：成功，`origin/main` 指向 `4ef9b62`。
+  - Vercel 自动 Production 部署：`Ready`。
+  - 主域名 alias：已绑定最新部署。
