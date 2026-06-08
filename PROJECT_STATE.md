@@ -2,11 +2,11 @@
 
 ## 更新时间
 
-2026-06-09 00:58 CST
+2026-06-09 01:31 CST
 
 ## 当前目标
 
-以项目执行负责人方式推进 `Codex Mastery`：先建立可追溯的项目状态与决策记录，再按单任务节奏继续完成稳定交付、内容质量、交互体验和公网部署。
+以项目执行负责人方式推进 `Codex Mastery`：保持项目状态可追溯，完成稳定交付、内容质量、交互体验、公网部署和后续 GitHub 推送。
 
 ## 当前完成
 
@@ -38,7 +38,7 @@
 - 已生成 `content/*.md` 作为可读备份。
 - 第二项任务“项目健康检查”：已完成。
 - 第三项任务“移动端与交互体验检查”：已完成。
-- 第四项任务“GitHub + Vercel 上线准备”：进行中，本地 Git 已初始化并完成首次提交；当前正在处理 Vercel 公网部署。
+- 第四项任务“GitHub + Vercel 上线准备”：进行中，本地 Git 已初始化并完成历史提交；Vercel 直接公网部署已完成，GitHub 远程推送仍等待认证。
 - 已创建 `HANDOVER.md`，用于应对上下文压缩、会话中断或账号切换后的项目接管。
 - 已修复 ESLint 误扫描 `release/**` 的问题，避免本地备用压缩包解压目录影响 `npm run lint`。
 - 2026-06-09 部署前质量门禁已通过：
@@ -46,13 +46,17 @@
   - `npm run lint`：通过
   - `npm run build`：通过
 - 已确认 Vercel CLI 可通过 `npx --yes vercel@latest` 启动，版本为 `54.9.1`。
-- 已尝试 Vercel CLI 登录，CLI 返回 `No existing credentials found` 并进入设备授权流程。
-- 已打开 Vercel 设备授权页，但 CLI 未收到授权完成信号，当前无法继续远程部署。
+- 已完成 Vercel CLI 登录，当前账号为 `ronghuacao66-lang`，当前团队为 `crh-s-projects`。
 - 已根据用户截图修正目标 Vercel 项目为 `crh-s-projects/ronghuacao66-lang-codex-mastery`。
-- 已确认公网地址 `https://ronghuacao66-lang-codex-mastery.vercel.app` 当前显示 `404: NOT_FOUND`，需要完成有效 Production Deployment。
-- 已重新发起 Vercel CLI 设备授权，授权页已打开，验证码为 `TJVP-JCLJ`。
-- 已截屏确认授权页存在 Vercel `Allow` 按钮，但被 macOS 权限弹窗阻挡。
-- 当前 macOS 弹窗要求用户允许 `Codex.app` 控制 `Google Chrome.app`；自动点击蓝色“允许”未生效，需要用户手动点击。
+- 已通过 Vercel CLI 关联正确项目：`crh-s-projects/ronghuacao66-lang-codex-mastery`。
+- 已新增 `vercel.json`，显式声明 Next.js 部署、`npm run build`、`npm install` 和自动输出目录，避免项目远端 `Framework Preset: Other` 导致产物路由异常。
+- 已完成 Vercel Production 强制部署：
+  - 主域名：`https://ronghuacao66-lang-codex-mastery.vercel.app`
+  - 最新部署域名：`https://ronghuacao66-lang-codex-mastery-ly0ja227e-crh-s-projects.vercel.app`
+  - Vercel inspect：`Ready`
+  - 生产别名：已绑定主域名和 `crh-s-projects` 团队域名。
+- 已在 Chrome 中打开主域名，当前标签标题为 `Codex Mastery`，不再是 Vercel `404: NOT_FOUND`。
+- 已创建本轮本地 Git 提交：`Fix Vercel Next.js deployment`。
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -105,7 +109,7 @@
 - 第一项任务“建立项目状态与决策记录”：已完成。
 - 第二项任务“项目健康检查”：已完成。
 - 第三项任务“移动端与交互体验检查”：已完成。
-- 第四项任务“GitHub + Vercel 上线准备”：本地构建验证已通过；GitHub 推送阻塞于认证；Vercel 直接部署当前阻塞于 macOS 允许 Codex 控制 Chrome 的系统权限确认。
+- 第四项任务“GitHub + Vercel 上线准备”：本地构建验证已通过；Vercel 直接部署已完成；本轮部署修复已提交到本地 Git；GitHub 推送仍阻塞于认证。
 - 尚未开始新的业务功能开发或大规模重构。
 
 ## 当前风险
@@ -116,8 +120,8 @@
 - Git remote 已配置，但当前机器没有 GitHub 认证凭据，无法 push。
 - 当前机器也没有可用的 GitHub SSH key，无法通过 SSH push。
 - 当前环境访问 GitHub release 下载通道超时，无法由我自动补装 `gh`。
-- Vercel CLI 当前没有本机登录凭据，设备授权页未完成确认，无法继续执行 `vercel deploy --prod`。
-- macOS 当前弹出“Codex.app 想要控制 Google Chrome.app”的权限提示。该提示需要用户手动点击蓝色“允许”，自动点击未生效。
+- Vercel 项目远端设置仍显示 `Framework Preset: Other`，但仓库内 `vercel.json` 已显式覆盖 Next.js 部署配置；后续 GitHub 自动部署应保留该文件。
+- 本机 `curl` 访问 Vercel 域名仍出现超时，疑似本机网络到 Vercel 边缘节点不稳定；Vercel CLI inspect 与 Chrome 标签标题已验证部署可用。
 - 不应在聊天中索要或保存 Vercel 密码、验证码或长期 token；认证应由用户在 Vercel 官方页面完成。
 - 系统级上下文压缩不可由模型关闭，当前已通过 `HANDOVER.md` 和状态文件保护关键上下文。
 - `localhost:3000` 依赖本机开发服务；服务停止后本地网址会打不开。
@@ -129,22 +133,19 @@
 
 ## 待办事项
 
-1. 等待用户确认下一项任务。
-2. 用户完成 GitHub HTTPS token/credential 认证，或配置 GitHub SSH key 后，继续执行 `git push -u origin main`。
-3. 若暂时无法使用 Git CLI 推送，可用 `release/codex-mastery-github-ready.zip` 通过 GitHub 网页手动上传。
-4. 推送或上传 GitHub 后导入 Vercel。
-5. 完成 Vercel CLI 设备授权，或提供用户本人创建的临时 `VERCEL_TOKEN` 后继续部署。
-6. 定期巡检外部视频链接。
-7. 可选增强：设计完整学习进度中心。
+1. 用户完成 GitHub HTTPS token/credential 认证，或配置 GitHub SSH key 后，继续执行 `git push -u origin main`。
+2. 若暂时无法使用 Git CLI 推送，可用 GitHub 网页手动上传项目文件，但需要重新生成包含 `vercel.json` 的最新备用包。
+3. 定期巡检外部视频链接。
+4. 可选增强：设计完整学习进度中心。
 
 ## 下一步行动
 
-当前下一步仍为“完成 Vercel 认证并部署”：
+当前下一步为“继续处理 GitHub 推送认证”：
 
-- 目标：将本地已验证通过的项目部署到 Vercel 项目 `crh-s-projects/ronghuacao66-lang-codex-mastery`。
-- 输入：当前项目文件、Vercel 账号登录状态或用户本人提供的部署 token。
-- 输出：可公开访问的 `*.vercel.app` 地址。
-- 验收标准：`npm run build` 通过，`vercel deploy --prod` 成功，公网 URL 返回 200。
+- 目标：将本地 `main` 分支推送到 `https://github.com/ronghuacao66-lang/codex-mastery.git`。
+- 输入：GitHub HTTPS credential/token 或可用 SSH key。
+- 输出：GitHub 远程仓库包含最新项目文件和 `vercel.json`。
+- 验收标准：`git push -u origin main` 成功，GitHub 仓库可访问。
 
 ## 最近验证
 
@@ -160,5 +161,14 @@
   - `npm run lint`：通过。
   - `npm run build`：通过。
   - `npx --yes vercel@latest --version`：返回 `54.9.1`。
-  - `npx --yes vercel@latest whoami`：未登录，进入设备授权流程，授权未完成。
-  - 2026-06-09 00:54 CST：Vercel 授权页已打开，但 macOS 权限弹窗阻止 Codex 操作 Chrome。
+  - `npx --yes vercel@latest whoami`：返回 `ronghuacao66-lang`。
+  - `npx --yes vercel@latest project inspect ronghuacao66-lang-codex-mastery --scope crh-s-projects`：确认项目存在，远端 Framework Preset 仍显示 `Other`。
+  - `npx --yes vercel@latest inspect ronghuacao66-lang-codex-mastery.vercel.app --scope crh-s-projects`：最新 Production Deployment 为 `Ready`，主域名已作为 alias 绑定。
+  - `npx --yes vercel@latest inspect ronghuacao66-lang-codex-mastery-ly0ja227e-crh-s-projects.vercel.app --logs --scope crh-s-projects`：Vercel 远端 Next.js 构建通过，生成 14 个静态页面。
+  - Chrome 打开 `https://ronghuacao66-lang-codex-mastery.vercel.app/?verify=20260609`：标签标题为 `Codex Mastery`。
+  - `curl -I -L --max-time 30 https://ronghuacao66-lang-codex-mastery.vercel.app/`：本机网络超时，未作为失败判据。
+- 2026-06-09 01:29 CST 提交前验证：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 14 个 App Router 页面。
+- 2026-06-09 01:31 CST：本轮部署修复已创建本地 Git 提交。

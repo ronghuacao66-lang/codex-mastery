@@ -1,5 +1,51 @@
 # CHANGELOG_AI
 
+## 2026-06-09 01:26 修复 Vercel 公网 404 并完成生产部署
+
+### 修改文件
+
+- `.gitignore`
+- `vercel.json`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 将 `.env*` 加入 `.gitignore`，避免 Vercel 本地环境文件被提交。
+- 新增 `vercel.json`，显式声明 Next.js 部署配置、构建命令、安装命令和自动输出目录。
+- 完成 Vercel CLI 登录，账号为 `ronghuacao66-lang`。
+- 关联 Vercel 项目 `crh-s-projects/ronghuacao66-lang-codex-mastery`。
+- 执行 Vercel Production 强制部署，最新部署为 `Ready`：
+  - 主域名：`https://ronghuacao66-lang-codex-mastery.vercel.app`
+  - 最新部署域名：`https://ronghuacao66-lang-codex-mastery-ly0ja227e-crh-s-projects.vercel.app`
+- 更新项目状态、任务状态、交接文件和决策记录。
+- 创建本轮本地 Git 提交：`Fix Vercel Next.js deployment`。
+
+### 修改原因
+
+用户反馈公网地址仍显示 Vercel `404: NOT_FOUND`。排查发现 Vercel 项目远端设置仍为 `Framework Preset: Other`，存在 Next.js 产物识别错误风险，因此通过仓库内 `vercel.json` 固化 Next.js 部署配置并重新部署。
+
+### 验证结果
+
+- `npx --yes vercel@latest whoami`：返回 `ronghuacao66-lang`。
+- `npx --yes vercel@latest inspect ronghuacao66-lang-codex-mastery.vercel.app --scope crh-s-projects`：最新 Production Deployment 为 `Ready`，主域名已作为 alias 绑定。
+- `npx --yes vercel@latest inspect ronghuacao66-lang-codex-mastery-ly0ja227e-crh-s-projects.vercel.app --logs --scope crh-s-projects`：Next.js 构建成功，生成 14 个页面。
+- Chrome 打开主域名后标签标题为 `Codex Mastery`。
+- 本机 `curl` 到 Vercel 域名仍超时，疑似本机网络问题，未作为失败判据。
+- 2026-06-09 01:29 CST 提交前验证：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+- 2026-06-09 01:31 CST：本轮部署修复已创建本地 Git 提交。
+
+### 风险说明
+
+- GitHub push 仍等待用户完成 GitHub HTTPS credential 或 SSH key 配置。
+- Vercel Dashboard 项目级设置仍显示 `Framework Preset: Other`，后续必须提交并保留 `vercel.json`。
+
 ## 2026-06-09 00:58 定位 Vercel 404 与 macOS 权限阻塞
 
 ### 修改文件

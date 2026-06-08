@@ -175,3 +175,32 @@ pmset -a sleep 0 displaysleep 0 disksleep 0 disablesleep 1
 - 部署前继续以本地质量门禁为准：`npm run typecheck`、`npm run lint`、`npm run build`。
 - 如果 Vercel CLI 未登录，需要用户在 Vercel 官方授权页面完成确认，或由用户本人创建临时 `VERCEL_TOKEN`。
 - 部署成功后需要验证公网 URL 返回 200，并更新 `PROJECT_STATE.md`、`TASK_STATE.md`、`CHANGELOG_AI.md`。
+
+## 2026-06-09 使用 vercel.json 固定 Next.js 部署配置
+
+### 决策内容
+
+在项目根目录新增 `vercel.json`，显式声明：
+
+- `framework`: `nextjs`
+- `buildCommand`: `npm run build`
+- `installCommand`: `npm install`
+- `outputDirectory`: `null`
+
+并通过 `vercel deploy --prod --yes --force --scope crh-s-projects` 重新部署到 `crh-s-projects/ronghuacao66-lang-codex-mastery`。
+
+### 决策原因
+
+Vercel 项目远端设置显示 `Framework Preset: Other`，输出目录为“存在 `public` 则使用 `public`，否则使用 `.`”。这会让 Next.js App Router 项目有被当成普通静态项目处理的风险，表现为主域名显示 `404: NOT_FOUND`。仓库内 `vercel.json` 可以把部署配置固化到代码中，避免 GitHub 导入或后续部署时丢失 Next.js 框架识别。
+
+### 被否决方案
+
+- 只依赖 Vercel Dashboard 手动设置：不可追溯，且后续换账号或重新导入时容易丢失。
+- 只重新部署不改配置：可能再次生成错误产物或错误路由。
+- 将项目改为静态导出：当前应用使用 Next.js App Router，无需为了部署绕开框架能力。
+
+### 后续影响
+
+- `vercel.json` 必须提交到 GitHub。
+- 后续 Vercel 自动部署应读取该文件并按 Next.js 构建。
+- Vercel Dashboard 仍可能显示项目级 `Framework Preset: Other`，但仓库配置优先保障部署产物正确。
