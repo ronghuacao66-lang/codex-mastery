@@ -1,5 +1,41 @@
 # CHANGELOG_AI
 
+## 2026-06-09 07:50 全站当前文案一致性清理
+
+### 修改文件
+
+- `components/DashboardClient.tsx`
+- `components/VideoCenterClient.tsx`
+- `types/content.ts`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 首页“精选视频”统计提示从旧平台集合改为当前真实平台：Bilibili、OpenAI Academy。
+- 视频中心默认推荐 id 从已删除的 YouTube 视频改为当前存在的 Bilibili 入门视频。
+- `VideoItem.platform` 类型收窄为当前实际平台：Bilibili、OpenAI Academy。
+- `VideoItem.linkStatus.status` 类型收窄为当前对外保留的 `ok`。
+- 清理当前状态文件中的过期阻塞描述。
+
+### 修改原因
+
+视频中心已经按用户要求只保留当前可访问视频，代码提示、默认推荐和类型定义必须与真实数据一致，避免后续误加不可访问平台或显示过期文案。
+
+### 验证结果
+
+- `rg YouTube|youtube|抖音精选|douyin|network_or_timeout|likely_broken|manual_review app components data types content README.md scripts package.json`：无残留。
+- `npm run audit:videos`：通过，9 条视频均返回 HTTP 200。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过。
+
+### 风险说明
+
+- 如后续恢复 YouTube、抖音精选或其他平台，需要先验证可正常打开播放，再扩展类型和平台样式。
+
 ## 2026-06-09 07:45 新增视频巡检命令
 
 ### 修改文件

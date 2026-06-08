@@ -6,7 +6,7 @@
 
 ## 当前目标
 
-按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查、GitHub + Vercel 上线准备、视频精选链接巡检与交互状态标记、去除不可确认正常播放视频；本地构建已通过，GitHub 推送已完成，Vercel Production 自动部署已 Ready。
+按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查、GitHub + Vercel 上线准备、视频精选链接巡检与交互状态标记、去除不可确认正常播放视频；当前正在做全站当前文案一致性清理。
 
 ## 当前完成
 
@@ -61,25 +61,20 @@
 - 2026-06-09 07:30 CST 按用户最新要求删除 3 条当前无法确认正常播放的 YouTube 视频；当前视频中心保留 9 条 `ok` 视频。
 - 2026-06-09 07:37 CST “去除不可确认正常播放视频”更新已推送，Vercel Production 自动部署已 Ready。
 - 2026-06-09 07:45 CST 已新增 `npm run audit:videos`，当前 9 条视频巡检全部通过。
+- 2026-06-09 07:50 CST 已修复首页精选视频提示、视频中心默认推荐 id、视频平台和链接状态类型定义不一致。
 
 ## 当前进度
 
-- 当前任务：去除不可确认正常播放的视频。
-- 任务状态：数据、页面文案、内容导出、本地验证、GitHub 推送和 Vercel 自动部署验证均已完成。
+- 当前任务：全站当前文案一致性清理。
+- 任务状态：代码、状态文件和本地验证已完成，等待提交、推送。
 
 ## 当前风险
 
-- GitHub 远程已经推送成功，当前仅剩本轮最终状态更新需要再次提交和推送。
-- 本地访问依赖 `next dev -p 3000` 持续运行。
-- 后续公网访问需要完成 GitHub + Vercel 部署。
+- GitHub 远程已经推送成功，当前通过 SSH remote 同步。
+- 本地访问依赖 `next dev -p 3000`；服务停止后 `localhost:3000` 不可用。
 - 不建议在 dev server 运行时直接混用 `npm run build` 产物。
-- GitHub CLI 已安装，但当前本机 OAuth token 交换超时，CLI 仍未登录。
-- 项目专用 SSH key 已生成并配置，SSH 认证已通过。
 - 当前已不展示 YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频；如后续需要恢复这些平台，必须先确认对应 URL 能正常打开播放。
 - `release/` 是本地交付物目录，已加入 `.gitignore`，不会提交进仓库。
-- 当前 remote 已配置，下一步只差 GitHub 认证和仓库可访问性。
-- SSH remote 路径也需要先配置 GitHub SSH key。
-- 当前环境无法稳定访问 GitHub CLI 下载资源。
 - 合盖长时间运行 Codex 会增加发热和耗电风险，建议连接电源并保持散热。
 - Vercel 远端项目设置仍显示 `Framework Preset: Other`，后续必须保留仓库内 `vercel.json`。
 - 本机 `curl` 到 Vercel 域名仍超时，疑似本机网络问题；Vercel CLI inspect 和 Chrome 标题已验证生产部署可用。
@@ -94,7 +89,7 @@
 
 ## 下一步动作
 
-当前需要定期巡检外部视频链接，保证保留视频持续可打开播放。
+当前需要提交并推送全站当前文案一致性清理。
 
 ## 最近验证
 
@@ -156,6 +151,14 @@
   - Vercel 最新 Production 部署：`Ready`。
   - 主域名：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
 - 2026-06-09 07:45 CST：
+  - `npm run audit:videos`：通过。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+- 2026-06-09 07:50 CST：
+  - 首页精选视频提示：已同步为 Bilibili、OpenAI Academy。
+  - 视频中心默认推荐 id：已改为当前存在的 Bilibili 入门视频。
+  - 视频类型定义：已同步当前平台和 `ok` 状态策略。
   - `npm run audit:videos`：通过。
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。

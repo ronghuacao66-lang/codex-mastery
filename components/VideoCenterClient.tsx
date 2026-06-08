@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertTriangle, ArrowUpRight, CheckCircle2, Clock3, Copy, PlayCircle, Search, Sparkles, Video } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Clock3, Copy, PlayCircle, Search, Sparkles, Video } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { CopyButton } from "@/components/CopyButton";
 import { EmptyState } from "@/components/EmptyState";
@@ -14,23 +14,15 @@ const WATCHED_KEY = "codex-mastery:watched-videos";
 
 const platformStyles: Record<VideoItem["platform"], string> = {
   Bilibili: "from-sky-500/18 to-cyan-400/10",
-  YouTube: "from-red-500/18 to-zinc-500/10",
-  "抖音精选": "from-violet/18 to-accent/10",
   "OpenAI Academy": "from-emerald-500/16 to-accent/10"
 };
 
 const linkStatusStyles: Record<NonNullable<VideoItem["linkStatus"]>["status"], string> = {
-  ok: "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
-  network_or_timeout: "border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300",
-  manual_review: "border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300",
-  likely_broken: "border-rose-500/30 bg-rose-500/10 text-rose-700 dark:text-rose-300"
+  ok: "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
 };
 
 const linkStatusLabels: Record<NonNullable<VideoItem["linkStatus"]>["status"], string> = {
-  ok: "链接可访问",
-  network_or_timeout: "网络不可判定",
-  manual_review: "需人工复核",
-  likely_broken: "疑似失效"
+  ok: "链接可访问"
 };
 
 export function VideoCenterClient({ items }: { items: VideoItem[] }) {
@@ -78,7 +70,7 @@ export function VideoCenterClient({ items }: { items: VideoItem[] }) {
     );
   });
 
-  const featured = items.find((item) => item.id === "video-youtube-openai-getting-started") ?? items[0];
+  const featured = items.find((item) => item.id === "video-bili-official-codex-starter") ?? items[0];
   const progress = Math.round((watched.length / items.length) * 100);
 
   function toggleWatched(id: string) {
@@ -176,7 +168,7 @@ export function VideoCenterClient({ items }: { items: VideoItem[] }) {
                             )}
                             title={`${linkStatus.note}（${linkStatus.checkedAt}${linkStatus.httpCode ? ` · HTTP ${linkStatus.httpCode}` : ""}）`}
                           >
-                            {linkStatus.status === "ok" ? <CheckCircle2 className="h-3.5 w-3.5" /> : <AlertTriangle className="h-3.5 w-3.5" />}
+                            <CheckCircle2 className="h-3.5 w-3.5" />
                             {linkStatusLabels[linkStatus.status]}
                           </span>
                         ) : null}

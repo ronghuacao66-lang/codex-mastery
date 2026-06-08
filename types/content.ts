@@ -116,7 +116,7 @@ export type ToolItem = {
 export type VideoItem = {
   id: string;
   title: string;
-  platform: "Bilibili" | "YouTube" | "抖音精选" | "OpenAI Academy";
+  platform: "Bilibili" | "OpenAI Academy";
   creator: string;
   url: string;
   duration: string;
@@ -127,7 +127,7 @@ export type VideoItem = {
   learningOutcomes: string[];
   noteTemplate: string;
   linkStatus?: {
-    status: "ok" | "network_or_timeout" | "manual_review" | "likely_broken";
+    status: "ok";
     checkedAt: string;
     httpCode?: string;
     note: string;

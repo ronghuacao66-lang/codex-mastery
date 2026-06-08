@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 07:45 CST
+2026-06-09 07:50 CST
 
 ## 当前状态
 
@@ -46,6 +46,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 07:45 CST 已新增 `npm run audit:videos`，用于巡检 `data/videos.json` 中保留视频的 HTTP 可访问性。当前 9 条视频全部返回 HTTP 200，README 已同步当前视频平台范围。
 
+2026-06-09 07:50 CST 已执行全站当前文案一致性清理：修复首页精选视频平台提示、视频中心默认推荐 id、`VideoItem` 平台类型和链接状态类型，使其与当前只保留 Bilibili、OpenAI Academy、`ok` 视频的策略一致。
+
 ## 已完成内容
 
 - 项目状态文件已建立：
@@ -79,10 +81,9 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 ## 未完成内容
 
-- GitHub push 已完成。
-- 本轮视频链接巡检更新已提交和推送。
-- 本轮“去除不可确认正常播放视频”更新已提交、推送并部署完成。
-- GitHub CLI Web 授权仍因 OAuth token 交换超时失败。
+- GitHub push 已完成，当前通过 SSH remote 同步。
+- 视频链接巡检、去除不可确认播放视频、视频巡检命令均已完成。
+- 本轮全站当前文案一致性清理尚未提交和推送。
 
 ## 当前推理结果
 
@@ -99,8 +100,6 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 - 系统级上下文压缩不可由模型关闭；项目状态必须以文件为准。
 - Vercel 远端项目设置仍显示 `Framework Preset: Other`，后续部署必须保留 `vercel.json`。
-- GitHub 远程推送仍依赖 GitHub 认证。
-- 远程 GitHub 页面在 push 成功前仍显示旧的网页上传结构。
 - GitHub CLI OAuth 仍不可用，但 SSH remote 已可用。
 - 本地 `localhost:3000` 依赖 dev server；执行生产构建前可能需要停止 dev server 并清理 `.next`。
 - 当前已不展示 YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频。
@@ -108,8 +107,9 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 ## 下一步计划
 
-1. 后续定期巡检外部视频链接。
-2. 如新增视频，必须先确认能正常打开播放。
+1. 提交并推送本轮全站当前文案一致性清理。
+2. 后续定期巡检外部视频链接。
+3. 如新增视频，必须先确认能正常打开播放。
 
 ## 最近验证
 
@@ -170,6 +170,14 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - Vercel 自动 Production 部署：`Ready`。
   - 主域名 alias：已绑定最新部署。
 - 2026-06-09 07:45 CST：
+  - `npm run audit:videos`：通过。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+- 2026-06-09 07:50 CST：
+  - 首页精选视频平台提示：已修复。
+  - 视频中心默认推荐 id：已修复。
+  - 视频类型定义：已同步当前平台和链接状态策略。
   - `npm run audit:videos`：通过。
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。

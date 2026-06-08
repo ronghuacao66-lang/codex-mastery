@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 07:45 CST
+2026-06-09 07:50 CST
 
 ## 当前目标
 
@@ -38,7 +38,7 @@
 - 已生成 `content/*.md` 作为可读备份。
 - 第二项任务“项目健康检查”：已完成。
 - 第三项任务“移动端与交互体验检查”：已完成。
-- 第四项任务“GitHub + Vercel 上线准备”：进行中，本地 Git 已初始化并完成历史提交；Vercel 直接公网部署已完成，GitHub 远程推送仍等待认证。
+- 第四项任务“GitHub + Vercel 上线准备”：已完成；本地 Git、GitHub 推送、Vercel 自动部署均已打通。
 - 已创建 `HANDOVER.md`，用于应对上下文压缩、会话中断或账号切换后的项目接管。
 - 已修复 ESLint 误扫描 `release/**` 的问题，避免本地备用压缩包解压目录影响 `npm run lint`。
 - 2026-06-09 部署前质量门禁已通过：
@@ -115,6 +115,11 @@
   - `npm run audit:videos`
   - 当前 9 条视频全部返回 HTTP 200。
   - README 已更新为当前实际视频平台：Bilibili 与 OpenAI Academy。
+- 已完成全站当前文案一致性清理：
+  - 首页“精选视频”统计提示改为 Bilibili、OpenAI Academy。
+  - 视频中心默认推荐从已删除的 YouTube id 改为当前存在的 Bilibili 入门视频。
+  - `VideoItem` 平台类型收窄为当前实际平台：Bilibili、OpenAI Academy。
+  - 视频链接状态类型收窄为当前对外保留的 `ok`。
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -170,21 +175,19 @@
 - 第一项任务“建立项目状态与决策记录”：已完成。
 - 第二项任务“项目健康检查”：已完成。
 - 第三项任务“移动端与交互体验检查”：已完成。
-- 第四项任务“GitHub + Vercel 上线准备”：本地构建验证已通过；Vercel 直接部署已完成；本轮部署修复已提交到本地 Git；远程上传历史已合并入本地提交图；GitHub 推送已完成。
-- 尚未开始新的业务功能开发或大规模重构。
+- 第四项任务“GitHub + Vercel 上线准备”：已完成。
+- 第五项任务“视频资源可用性治理”：已完成，当前保留 9 条可访问视频并提供 `npm run audit:videos`。
+- 当前任务“全站当前文案一致性清理”：代码、状态文件和本地验证已完成，等待提交与推送。
 
 ## 当前风险
 
-- GitHub 远程 `main` 已更新为本地整理后的正确项目结构。
-- GitHub CLI `gh` 已安装，但 GitHub OAuth token 交换在本机网络下超时，CLI 仍未登录；当前已改用 SSH remote 完成 push。
-- 当前环境访问 GitHub release 下载通道超时，无法由我自动补装 `gh`。
+- GitHub 远程 `main` 已更新为本地整理后的正确项目结构，当前通过 SSH remote 推送。
 - 当前已不展示 YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频；如后续需要恢复这些平台，必须先确认对应 URL 能正常打开播放。
 - Vercel 项目远端设置仍显示 `Framework Preset: Other`，但仓库内 `vercel.json` 已显式覆盖 Next.js 部署配置；后续 GitHub 自动部署应保留该文件。
 - 本机 `curl` 访问 Vercel 域名仍出现超时，疑似本机网络到 Vercel 边缘节点不稳定；Vercel CLI inspect 与 Chrome 标签标题已验证部署可用。
 - 不应在聊天中索要或保存 Vercel 密码、验证码或长期 token；认证应由用户在 Vercel 官方页面完成。
 - 系统级上下文压缩不可由模型关闭，当前已通过 `HANDOVER.md` 和状态文件保护关键上下文。
 - `localhost:3000` 依赖本机开发服务；服务停止后本地网址会打不开。
-- 公网稳定访问仍依赖 GitHub + Vercel 部署完成。
 - 外部视频链接可能随平台规则变化失效，需要后续定期巡检。
 - 旧状态文件曾记录过与当前项目无关的目标，已通过本轮状态更新纠偏。
 - 本地执行 `npm run build` 时不应与 `npm run dev` 混用同一个 `.next`；若首页 500，需要停止 dev server、删除 `.next` 并重启。
@@ -192,17 +195,18 @@
 
 ## 待办事项
 
-1. 定期巡检外部视频链接，确保保留视频仍可打开播放。
-2. 可选增强：设计完整学习进度中心。
+1. 提交并推送本轮全站当前文案一致性清理。
+2. 定期巡检外部视频链接，确保保留视频仍可打开播放。
+3. 可选增强：设计完整学习进度中心。
 
 ## 下一步行动
 
-当前下一步为“定期巡检外部视频链接”：
+当前下一步为“提交并推送全站当前文案一致性清理”：
 
-- 目标：确保当前保留的 9 条视频资源持续可访问。
-- 输入：`data/videos.json`。
-- 输出：如发现不可访问视频，则删除或替换为可访问资源。
-- 验收标准：`data/videos.json` 与 `content/videos.md` 均不包含不可确认播放的视频。
+- 目标：让首页、视频中心、类型定义、README 和当前状态文件与真实数据一致。
+- 输入：当前代码、数据与状态文件。
+- 输出：GitHub 远程仓库包含最新一致性修正。
+- 验收标准：`npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build` 均通过。
 
 ## 最近验证
 
@@ -285,6 +289,13 @@
   - 主域名 alias：已绑定最新部署。
 - 2026-06-09 07:45 CST：
   - `npm run audit:videos`：通过，9 条视频均返回 HTTP 200。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+- 2026-06-09 07:50 CST：
+  - 当前文案一致性扫描：发现并修复首页视频平台提示、视频默认推荐 id、视频平台类型定义不一致。
+  - `rg YouTube|youtube|抖音精选|douyin|network_or_timeout|likely_broken|manual_review app components data types content README.md scripts package.json`：无残留。
+  - `npm run audit:videos`：通过。
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过。
