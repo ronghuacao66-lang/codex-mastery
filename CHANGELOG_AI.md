@@ -1,5 +1,40 @@
 # CHANGELOG_AI
 
+## 2026-06-09 07:45 新增视频巡检命令
+
+### 修改文件
+
+- `scripts/audit-videos.mjs`
+- `package.json`
+- `README.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 新增 `npm run audit:videos`，逐条检查 `data/videos.json` 中视频 URL 的 HTTP 可访问性。
+- 巡检命令要求视频 `linkStatus.status` 为 `ok`，且 URL 返回 2xx 或 3xx。
+- README 同步当前视频中心平台范围：Bilibili 与 OpenAI Academy。
+- README 增加视频新增/替换后的巡检命令说明。
+
+### 修改原因
+
+用户要求无法正常打开播放的视频全部去除。将巡检固化为 npm 命令，可以减少后续靠人工记忆维护视频可用性的风险。
+
+### 验证结果
+
+- `npm run audit:videos`：通过，9 条视频均返回 HTTP 200。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过。
+
+### 风险说明
+
+- `audit:videos` 验证的是 HTTP 可访问性，不能替代人工完整播放体验。
+- 脚本依赖本机或部署环境可调用 `curl`。
+
 ## 2026-06-09 07:37 完成不可确认播放视频清理部署
 
 ### 修改文件

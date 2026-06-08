@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 07:37 CST
+2026-06-09 07:45 CST
 
 ## 当前目标
 
@@ -111,6 +111,10 @@
   - 最新部署：`https://ronghuacao66-lang-codex-mastery-cclt03ssh-crh-s-projects.vercel.app`
   - 状态：`Ready`
   - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app`
+- 已新增视频资源巡检命令：
+  - `npm run audit:videos`
+  - 当前 9 条视频全部返回 HTTP 200。
+  - README 已更新为当前实际视频平台：Bilibili 与 OpenAI Academy。
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -279,3 +283,8 @@
   - `git push`：成功，`origin/main` 指向 `9a2496e`。
   - Vercel 自动 Production 部署：`Ready`。
   - 主域名 alias：已绑定最新部署。
+- 2026-06-09 07:45 CST：
+  - `npm run audit:videos`：通过，9 条视频均返回 HTTP 200。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。

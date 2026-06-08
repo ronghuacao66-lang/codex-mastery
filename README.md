@@ -10,7 +10,7 @@
 - Codex Academy：10 篇中文知识文章，覆盖 Codex 基础、工具对比、GCCD、任务拆解、AGENTS.md、项目管理、Debug、Agent 和效率提升。
 - Codex 任务生成器：把模糊需求整理成 Goal、Context、Constraint、Definition of Done 和 Verification。
 - Prompt Center：30 条 Codex Prompt 和 22 条通用 AI Prompt，支持搜索、筛选、收藏和复制。
-- 视频精选：Bilibili、抖音精选、YouTube、OpenAI Academy 教学视频清单。
+- 视频精选：Bilibili、OpenAI Academy 中当前确认可访问的教学视频清单。
 - 30 天训练营：Day 1-Day 30，每天包含学习目标、理论、实操任务、Prompt、成果物和复盘问题。
 - 项目实战中心：8 个高价值项目，包括 AI 学习助手、AI 知识库、AI 售前助手、客户画像助手、竞品分析助手、会议纪要助手、方案生成助手、Agent 助手。
 - 安全售前专区：面向零信任、SASE、数据安全、XDR、MSS 的售前 Prompt 和模板。
@@ -44,6 +44,7 @@ http://localhost:3000
 ```bash
 npm run typecheck
 npm run lint
+npm run audit:videos
 npm run build
 ```
 
@@ -77,6 +78,14 @@ npm run export:content
 ```
 
 该命令会从 `data/*.json` 重新生成 `content/*.md`，便于 GitHub diff、人工审阅和内容备份。
+
+视频资源要求当前可访问。新增或替换视频后运行：
+
+```bash
+npm run audit:videos
+```
+
+如果巡检失败，需要删除或替换不可访问视频，再部署。
 
 ## Vercel 部署
 

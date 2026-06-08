@@ -60,6 +60,7 @@
 - 2026-06-09 07:30 CST 已将两个 404 抖音精选链接替换为可访问的 Bilibili 中文教程资源，并重新导出 `content/videos.md`。
 - 2026-06-09 07:30 CST 按用户最新要求删除 3 条当前无法确认正常播放的 YouTube 视频；当前视频中心保留 9 条 `ok` 视频。
 - 2026-06-09 07:37 CST “去除不可确认正常播放视频”更新已推送，Vercel Production 自动部署已 Ready。
+- 2026-06-09 07:45 CST 已新增 `npm run audit:videos`，当前 9 条视频巡检全部通过。
 
 ## 当前进度
 
@@ -154,3 +155,8 @@
   - `git push`：成功，`origin/main` 指向 `9a2496e`。
   - Vercel 最新 Production 部署：`Ready`。
   - 主域名：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
+- 2026-06-09 07:45 CST：
+  - `npm run audit:videos`：通过。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
