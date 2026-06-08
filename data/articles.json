@@ -1,0 +1,213 @@
+[
+  {
+    "id": "article-what-is-codex",
+    "chapter": 1,
+    "title": "Codex 是什么：把软件任务交给 Coding Agent",
+    "summary": "Codex 不是聊天机器人，也不是简单补全工具。它更像一个能读仓库、改代码、运行验证并解释结果的软件工程代理。",
+    "readingMinutes": 9,
+    "level": "入门",
+    "coreKnowledge": [
+      "Codex 的核心价值是把自然语言目标转化为仓库内可验证的工程改动。",
+      "它适合处理有明确代码上下文、边界和验收标准的任务，例如修 Bug、补测试、实现页面、生成工具。",
+      "使用 Codex 时，用户的角色不是写每一行代码，而是提供目标、上下文、约束和验收标准。"
+    ],
+    "wrongExample": "帮我做一个很高级的网站，越酷越好。",
+    "rightExample": "请在现有 Next.js 项目中实现一个中文学习控制台，包含今日任务、进度、Prompt 推荐和项目卡片。保持 TailwindCSS，不引入 UI 框架。完成后运行 typecheck，并说明修改文件。",
+    "bestPractices": [
+      "把 Codex 当成工程同事，而不是万能搜索框。",
+      "任务描述里必须包含目标、现有上下文、限制条件和完成标准。",
+      "让 Codex 先读代码和项目约定，再决定实现方式。"
+    ],
+    "tags": ["Codex", "入门", "Coding Agent", "工程实践"]
+  },
+  {
+    "id": "article-codex-vs-tools",
+    "chapter": 2,
+    "title": "Codex 与 ChatGPT、Cursor、Claude Code 的区别",
+    "summary": "不同 AI 工具的优势不同。掌握差异后，才能把任务交给最适合的工具，而不是所有问题都用同一种方式处理。",
+    "readingMinutes": 11,
+    "level": "入门",
+    "coreKnowledge": [
+      "ChatGPT 更适合开放式思考、解释、写作、方案讨论和跨领域知识整理。",
+      "Cursor 更适合编辑器内的即时补全、局部改动和代码阅读辅助。",
+      "Codex 更适合端到端工程任务：理解仓库、修改文件、执行命令、验证结果、交付说明。"
+    ],
+    "wrongExample": "把所有工具都当成 Prompt 生成器，只要求它们直接给答案。",
+    "rightExample": "先用 ChatGPT 澄清产品方案，再把明确的工程任务交给 Codex 实现；局部代码理解时用 Cursor 辅助编辑。",
+    "bestPractices": [
+      "方案阶段用对话工具，工程落地阶段用 Codex。",
+      "仓库级任务优先交给能读写文件和运行验证的工具。",
+      "不要混淆思考输出和工程交付，后者需要构建、测试和可回滚改动。"
+    ],
+    "tags": ["工具对比", "ChatGPT", "Cursor", "Claude Code"]
+  },
+  {
+    "id": "article-tasking-codex",
+    "chapter": 3,
+    "title": "如何正确给 Codex 下任务",
+    "summary": "高质量 Codex 任务不是长 Prompt，而是结构清晰、边界明确、可验证的工程委托。",
+    "readingMinutes": 12,
+    "level": "入门",
+    "coreKnowledge": [
+      "一个好任务包含：目标、背景、范围、技术栈、限制、验收标准、优先级。",
+      "不要让 Codex 猜你的业务意图；不确定的信息要明确让它先检查或追问。",
+      "复杂任务要拆阶段：先调研，再计划，再实施，再验证。"
+    ],
+    "wrongExample": "优化一下这个项目，顺便把不好看的地方都改了。",
+    "rightExample": "请只优化首页加载和首屏布局。先检查 app/page.tsx、components 目录和图片资源，列出性能问题后优先修复不必要的客户端组件和图片尺寸。不要改文案结构。完成后运行 build。",
+    "bestPractices": [
+      "用“请先阅读...”让 Codex 建立上下文。",
+      "用“不要...”明确边界，减少无关重构。",
+      "用 Definition of Done 把主观满意变成可检查结果。"
+    ],
+    "tags": ["Prompt", "任务委托", "上下文", "验收"]
+  },
+  {
+    "id": "article-gccd-dod",
+    "chapter": 4,
+    "title": "Goal、Context、Constraint、Definition of Done",
+    "summary": "GCCD 是给 Codex 下任务的核心结构：目标、上下文、约束和完成定义。",
+    "readingMinutes": 10,
+    "level": "进阶",
+    "coreKnowledge": [
+      "Goal 说明最终要达成什么业务或工程结果。",
+      "Context 说明仓库、用户、业务背景、已有实现和关键文件。",
+      "Constraint 说明不能做什么、必须保持什么、技术和时间边界是什么。",
+      "Definition of Done 说明如何判断任务完成，例如测试通过、页面无溢出、输出文件存在。"
+    ],
+    "wrongExample": "做一个客户画像助手。",
+    "rightExample": "Goal：做一个安全售前客户画像助手。Context：Next.js 项目，数据在 data/security.json，面向中国企业客户。Constraint：中文主体，不接入后端，不引入 UI 框架。DoD：支持搜索、复制 Prompt、收藏场景，移动端可用，typecheck 通过。",
+    "bestPractices": [
+      "一个任务只写一个主要 Goal。",
+      "Context 不必很长，但必须包含关键事实。",
+      "DoD 要能被命令、截图或人工流程验证。"
+    ],
+    "tags": ["Goal", "Context", "Constraint", "DoD"]
+  },
+  {
+    "id": "article-decomposition",
+    "chapter": 5,
+    "title": "任务拆解能力：从一句需求到可交付计划",
+    "summary": "Codex 擅长执行，但优秀用户会先把大需求拆成可验证的小任务，让每一步都有清晰成果。",
+    "readingMinutes": 13,
+    "level": "进阶",
+    "coreKnowledge": [
+      "拆解不是把任务切碎，而是按风险、依赖和验证路径排序。",
+      "前端项目常见拆解：数据模型、组件、页面、交互、样式、验证、文档。",
+      "高风险任务先做最小闭环，例如先做一条数据和一个页面，再扩展内容规模。"
+    ],
+    "wrongExample": "一次性让 Codex 完成产品、设计、前端、后端、部署、运营文案，并且不要出错。",
+    "rightExample": "第一步请创建数据模型和 3 条真实样例；第二步创建列表页和搜索；第三步扩展完整内容；第四步做移动端和深色模式；第五步运行验证并写 README。",
+    "bestPractices": [
+      "按依赖排序，不按页面数量机械排序。",
+      "每个子任务都要有可检查成果物。",
+      "遇到不确定技术点，先让 Codex 做小实验或阅读现有实现。"
+    ],
+    "tags": ["任务拆解", "项目管理", "验证", "执行"]
+  },
+  {
+    "id": "article-agents-md",
+    "chapter": 6,
+    "title": "AGENTS.md 最佳实践：把团队规则写给 Codex",
+    "summary": "AGENTS.md 是让 Codex 理解项目规则、命令、风格和验证流程的重要入口。",
+    "readingMinutes": 12,
+    "level": "进阶",
+    "coreKnowledge": [
+      "AGENTS.md 应该写稳定规则：项目结构、运行命令、测试命令、代码风格、注意事项。",
+      "不要把临时需求或长篇背景塞进 AGENTS.md，临时需求应放在当前任务 Prompt。",
+      "大型仓库可以按目录放置多个 AGENTS.md，让不同模块有自己的规则。"
+    ],
+    "wrongExample": "AGENTS.md 里写满产品愿景、历史会议记录和过期命令。",
+    "rightExample": "写清：本项目使用 Next.js App Router；数据在 data/*.json；新增页面必须支持移动端；提交前运行 npm run typecheck；不要引入未批准 UI 框架。",
+    "bestPractices": [
+      "保持短、准、稳定。",
+      "命令必须真实可运行。",
+      "把安全、测试和提交习惯写成明确规则。"
+    ],
+    "tags": ["AGENTS.md", "项目规则", "上下文", "团队协作"]
+  },
+  {
+    "id": "article-project-management",
+    "chapter": 7,
+    "title": "项目管理最佳实践：让 Codex 服务真实交付",
+    "summary": "Codex 能加速执行，但项目负责人仍要控制范围、风险、里程碑和验收。",
+    "readingMinutes": 11,
+    "level": "进阶",
+    "coreKnowledge": [
+      "把项目目标拆成里程碑，每个里程碑对应一个可运行成果。",
+      "保持需求、约束和验收标准同步更新，避免 Codex 基于过期上下文工作。",
+      "对用户可见流程、数据契约和共享组件改动，要扩大验证范围。"
+    ],
+    "wrongExample": "需求变化后继续沿用旧 Prompt，让 Codex 自己猜哪些规则还有效。",
+    "rightExample": "在新任务里明确：上次已完成数据模型和列表页，本次只做详情页和复制功能；不要改现有字段；完成后运行 typecheck。",
+    "bestPractices": [
+      "每轮任务开头说明当前状态。",
+      "把未完成事项和残留风险记录到 README 或 issue。",
+      "共享模块改动后必须做回归检查。"
+    ],
+    "tags": ["项目管理", "里程碑", "协作", "验收"]
+  },
+  {
+    "id": "article-debug",
+    "chapter": 8,
+    "title": "Debug 最佳实践：让 Codex 先复现再修复",
+    "summary": "好的 Debug Prompt 会要求 Codex 找到可复现场景、验证根因，再进行最小修复。",
+    "readingMinutes": 10,
+    "level": "进阶",
+    "coreKnowledge": [
+      "Bug 修复应按复现、定位、修复、验证、说明影响范围推进。",
+      "不要让 Codex 直接猜测式修改，尤其是状态、接口和并发问题。",
+      "能写测试时优先写失败测试；不能写测试时保留明确手动验证步骤。"
+    ],
+    "wrongExample": "这个按钮有时候不行，修一下。",
+    "rightExample": "点击筛选后分页没有回到第一页。请先复现这个交互，检查列表状态和 URL 参数同步逻辑，补充测试或手动验证步骤。不要改接口层。",
+    "bestPractices": [
+      "给出实际行为和预期行为。",
+      "提供复现步骤、环境和最近变更。",
+      "修复后要求说明为什么不会影响其他路径。"
+    ],
+    "tags": ["Debug", "Bug修复", "测试", "回归"]
+  },
+  {
+    "id": "article-building-agents",
+    "chapter": 9,
+    "title": "用 Codex 构建 Agent：先设计工作流，再写代码",
+    "summary": "Agent 不是把大模型接到按钮上，而是明确任务、工具、状态、边界和评估方式的系统。",
+    "readingMinutes": 14,
+    "level": "高阶",
+    "coreKnowledge": [
+      "并不是所有自动化都需要 Agent；稳定流程优先用普通工作流和脚本。",
+      "Agent 设计必须包含输入输出 schema、工具调用边界、失败模式和评估样例。",
+      "先实现可测试的核心逻辑，再接 UI、存储和外部工具。"
+    ],
+    "wrongExample": "做一个万能 Agent，能帮我完成所有销售和研发任务。",
+    "rightExample": "做一个会议纪要 Agent：输入会议记录，输出决策、行动项、风险和待确认问题；不访问邮件；不明确的负责人标记待确认；提供 5 个评估样例。",
+    "bestPractices": [
+      "先判断是否需要 Agent。",
+      "能力边界比能力描述更重要。",
+      "用固定样例评估输出稳定性。"
+    ],
+    "tags": ["Agent", "工作流", "评估", "边界"]
+  },
+  {
+    "id": "article-productivity",
+    "chapter": 10,
+    "title": "用 Codex 提升工作效率：把重复劳动产品化",
+    "summary": "Codex 的高级用法不是写更多 Prompt，而是把高频工作沉淀成工具、模板和流程。",
+    "readingMinutes": 12,
+    "level": "高阶",
+    "coreKnowledge": [
+      "优先选择高频、规则清晰、输入输出稳定的任务，例如周报、会议纪要、项目复盘和客户分析。",
+      "一次性 Prompt 只能省一次时间，工具化和模板化才能持续节省时间。",
+      "效率提升要有指标：节省时间、减少返工、提高质量或缩短交付周期。"
+    ],
+    "wrongExample": "每天临时问 AI 怎么写周报，每次格式都不一样。",
+    "rightExample": "用 Codex 做一个周报生成工具：输入工作日志 JSON，输出固定 Markdown；包含风险、下周计划和需要支持；团队统一使用。",
+    "bestPractices": [
+      "从重复三次以上的工作开始自动化。",
+      "把输出模板固定下来。",
+      "每月复盘哪些 Prompt 应升级成工具或 Agent。"
+    ],
+    "tags": ["效率", "自动化", "工具化", "模板"]
+  }
+]

@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface: 247 247 248;
+  --panel: 255 255 255;
+  --line: 224 224 228;
+  --muted: 94 94 105;
+  --ink: 17 17 20;
+  --accent: 0 113 227;
+  --violet: 107 81 255;
+}
+
+.dark {
+  --surface: 8 8 10;
+  --panel: 18 18 22;
+  --line: 45 45 53;
+  --muted: 168 168 178;
+  --ink: 245 245 247;
+  --accent: 68 148 255;
+  --violet: 158 136 255;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(0, 113, 227, 0.08), transparent 28%),
+    linear-gradient(210deg, rgba(107, 81, 255, 0.08), transparent 30%),
+    rgb(var(--surface));
+  color: rgb(var(--ink));
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Segoe UI", sans-serif;
+  letter-spacing: 0;
+  text-rendering: geometricPrecision;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(0, 113, 227, 0.22);
+}
+
+.fine-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140, 140, 150, 0.5) transparent;
+}
+
+.fine-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.fine-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(140, 140, 150, 0.45);
+  border-radius: 999px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
