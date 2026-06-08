@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 07:19 CST
+2026-06-09 07:30 CST
 
 ## 当前状态
 
@@ -40,6 +40,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 07:19 CST 视频链接巡检更新已提交并推送到 GitHub，提交为 `4ef9b62 Add video link health status`。GitHub push 触发的 Vercel Production 自动部署已变为 `Ready`，最新部署为 `https://ronghuacao66-lang-codex-mastery-g1qrmaj9m-crh-s-projects.vercel.app`，主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已作为 alias 绑定。
 
+2026-06-09 07:30 CST 按用户最新要求，所有当前无法确认正常打开播放的视频已从视频中心删除。已删除 3 条 `network_or_timeout` 的 YouTube 视频，旧 404 抖音精选链接也已替换为可访问的 Bilibili 中文教程。当前 `data/videos.json` 共 9 条，平台为 Bilibili 与 OpenAI Academy，所有 `linkStatus.status` 均为 `ok`。
+
 ## 已完成内容
 
 - 项目状态文件已建立：
@@ -68,12 +70,13 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 已生成项目专用 SSH key 并配置 `~/.ssh/config`。
 - 已为视频精选内容新增链接健康状态数据和页面徽标。
 - 已重新导出 `content/videos.md`。
+- 已去除当前无法确认正常播放的视频，当前视频中心只保留 9 条 `ok` 视频。
 
 ## 未完成内容
 
 - GitHub push 已完成。
 - 本轮视频链接巡检更新已提交和推送。
-- 最终状态收尾更新尚未提交和推送。
+- 本轮“去除不可确认正常播放视频”更新尚未提交和推送。
 - GitHub CLI Web 授权仍因 OAuth token 交换超时失败。
 
 ## 当前推理结果
@@ -85,7 +88,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 3. 主域名 alias 已绑定最新 Production Deployment。
 4. 本机 `curl` 到 Vercel 域名仍超时，疑似本机网络到 Vercel 边缘节点不稳定；未作为失败判据。
 5. 不在聊天中索要密码、验证码或长期 token。
-6. 外部视频链接不可完全依赖一次命令行检查，页面应显示链接健康状态并保留复核路径。
+6. 用户最新要求是：无法打开或无法正常播放的视频全部去除，不再面向用户保留。
 
 ## 当前风险
 
@@ -95,13 +98,13 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 远程 GitHub 页面在 push 成功前仍显示旧的网页上传结构。
 - GitHub CLI OAuth 仍不可用，但 SSH remote 已可用。
 - 本地 `localhost:3000` 依赖 dev server；执行生产构建前可能需要停止 dev server 并清理 `.next`。
-- YouTube 链接当前在本机命令行网络下超时，需后续浏览器复核。
-- 抖音精选链接当前返回 404，需后续替换或删除。
+- 当前已不展示 YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频。
+- 后续新增视频必须先确认能正常打开播放。
 
 ## 下一步计划
 
-1. 提交并推送最终状态收尾更新。
-2. 后续优先处理抖音精选疑似失效链接。
+1. 提交并推送本轮“去除不可确认正常播放视频”更新。
+2. 等待并确认 Vercel 自动部署 Ready。
 3. 后续定期巡检外部视频链接。
 
 ## 最近验证
@@ -150,3 +153,11 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - `git push`：成功，`origin/main` 指向 `4ef9b62`。
   - Vercel 自动 Production 部署：`Ready`。
   - 主域名 alias：已绑定最新部署。
+- 2026-06-09 07:30 CST：
+  - 当前视频数据：9 条。
+  - 当前视频平台：Bilibili、OpenAI Academy。
+  - 所有保留视频链接状态：`ok`。
+  - `npm run export:content`：通过。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。

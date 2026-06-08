@@ -2,7 +2,7 @@
 
 > 本文件由 `npm run export:content` 从 `data/videos.json` 生成。JSON 是页面渲染的数据源，Markdown 是可读备份。
 
-共 12 条内容。
+共 9 条内容。
 
 ## OpenAI官方：Codex新手教程
 
@@ -310,186 +310,33 @@
 - Slack
 - Code Review
 
-## Getting Started with Codex
+## Codex 零基础实战：办公、编程与自动化一次讲透
 
-**平台:** YouTube
+**平台:** Bilibili
 
-**创作者:** OpenAI
+**创作者:** B站创作者
 
-**链接:** https://www.youtube.com/watch?v=px7XlbYgk7I
+**链接:** https://www.bilibili.com/video/BV17e9DB6E6f/
 
-**时长:** 约 10 分钟
-
-**阶段:** 入门
-
-**主题:** 官方入门
-
-**摘要:** OpenAI 官方 Codex 入门视频，适合配合 Academy 第 1 章学习。
-
-**推荐理由:** 官方视角能帮助用户确认 Codex 的产品定位和基础使用路径。
-
-**学习收获:**
-
-- 建立官方概念框架
-- 理解 Codex 基本任务模式
-- 知道如何开始第一次使用
-
-**笔记模板:**
-
-官方视频中的关键概念：
-
-我会立刻尝试的任务：
-
-我需要补充的上下文：
-
-
-**linkStatus:**
-
-**status:** network_or_timeout
-
-**checkedAt:** 2026-06-09
-
-**httpCode:** 000
-
-**note:** 当前本机命令行到 YouTube 超时，需用浏览器或可访问 YouTube 的网络复核。
-
-
-**标签:**
-
-- OpenAI
-- 官方
-- YouTube
-- 入门
-
-## OpenAI Codex Essentials - AI Coding Agent Course
-
-**平台:** YouTube
-
-**创作者:** freeCodeCamp / ExamPro
-
-**链接:** https://www.youtube.com/watch?v=u-Jl7bzab8A
-
-**时长:** 约 6 小时 36 分钟
-
-**阶段:** 高阶
-
-**主题:** 系统课程
-
-**摘要:** 系统化 Codex 长课，适合周末集中学习或作为训练营补充材料。
-
-**推荐理由:** 内容完整，适合希望系统掌握 Codex、coding agent 和真实工程流的用户。
-
-**学习收获:**
-
-- 系统学习 Codex 工作方式
-- 建立 coding agent 认知
-- 补齐大型任务执行方法
-
-**笔记模板:**
-
-我准备分几次看完：
-
-每次学习后的实操任务：
-
-最终要完成的项目：
-
-
-**linkStatus:**
-
-**status:** network_or_timeout
-
-**checkedAt:** 2026-06-09
-
-**httpCode:** 000
-
-**note:** 当前本机命令行到 YouTube 超时，需用浏览器或可访问 YouTube 的网络复核。
-
-
-**标签:**
-
-- freeCodeCamp
-- 长课
-- AI Coding Agent
-- 系统学习
-
-## Codex 3.0: New Upgrades to OpenAI's AI Coding Agent
-
-**平台:** YouTube
-
-**创作者:** AICodeKing
-
-**链接:** https://www.youtube.com/watch?v=hQkmShTSdN8
-
-**时长:** 约 17 分钟
-
-**阶段:** 高阶
-
-**主题:** 新能力与工作流
-
-**摘要:** 围绕 Codex 3.0 新能力讲解，包括浏览器扩展、协作和代码审查相关工作流。
-
-**推荐理由:** 适合已经会用 Codex 的用户，了解如何把 Codex 接入更完整的研发协作。
-
-**学习收获:**
-
-- 了解 Codex 新能力
-- 形成代码审查任务思路
-- 评估团队协作场景
-
-**笔记模板:**
-
-新能力清单：
-
-适合我团队的能力：
-
-不适合立即使用的原因：
-
-
-**linkStatus:**
-
-**status:** network_or_timeout
-
-**checkedAt:** 2026-06-09
-
-**httpCode:** 000
-
-**note:** 当前本机命令行到 YouTube 超时，需用浏览器或可访问 YouTube 的网络复核。
-
-
-**标签:**
-
-- Codex 3.0
-- YouTube
-- 协作
-- 代码审查
-
-## AI 也能帮你剪视频了：Codex + HyperFrames 实测
-
-**平台:** 抖音精选
-
-**创作者:** 抖音创作者
-
-**链接:** https://www.douyin.com/jingxuan/m/video/7640106137891454244
-
-**时长:** 短视频
+**时长:** 中文教程
 
 **阶段:** 进阶
 
-**主题:** Codex 工具化场景
+**主题:** Codex 自动化场景
 
-**摘要:** 短视频形式展示 Codex 与视频工具结合的可能性，适合启发自动化工具开发思路。
+**摘要:** 围绕 Codex 在办公、编程和自动化中的实际用法展开，适合从单点写代码过渡到真实工作流设计。
 
-**推荐理由:** 帮助用户跳出纯代码视角，理解 Codex 可以参与多媒体和工具链自动化。
+**推荐理由:** 帮助用户跳出纯代码视角，理解 Codex 可以参与资料整理、脚本开发、工具搭建和流程自动化。
 
 **学习收获:**
 
-- 理解 Codex 的工具化想象空间
-- 思考跨工具工作流
-- 找到一个自动化办公练习方向
+- 理解 Codex 的工具化场景
+- 拆解一个办公自动化任务
+- 找到一个可落地的效率工具练习方向
 
 **笔记模板:**
 
-这个短视频启发我的自动化场景：
+这个视频启发我的自动化场景：
 
 输入是什么：
 输出是什么：
@@ -498,44 +345,44 @@
 
 **linkStatus:**
 
-**status:** likely_broken
+**status:** ok
 
 **checkedAt:** 2026-06-09
 
-**httpCode:** 404
+**httpCode:** 200
 
-**note:** 命令行 HTTP 检查返回 404，未找到可信替代链接，保留供人工复核。
+**note:** 替换原 404 抖音链接；命令行 HTTP 检查可访问。
 
 
 **标签:**
 
-- 抖音精选
+- Bilibili
 - Codex
-- 视频工具
+- 工具开发
 - 自动化
 
-## ChatGPT 公式：Prompt 基础短视频
+## Prompt Engineering 入门：结构化提示词基础
 
-**平台:** 抖音精选
+**平台:** Bilibili
 
-**创作者:** 抖音创作者
+**创作者:** B站创作者
 
-**链接:** https://www.douyin.com/jingxuan/m/video/7354683030972140839
+**链接:** https://www.bilibili.com/video/BV1EEZ4YZExs/
 
-**时长:** 短视频
+**时长:** 中文教程
 
 **阶段:** 入门
 
 **主题:** Prompt 基础
 
-**摘要:** 适合零基础用户快速理解 Prompt 不是一句话提问，而是包含角色、任务、上下文和输出要求。
+**摘要:** 适合零基础用户理解 Prompt 不是一句话提问，而是包含角色、任务、上下文、约束和输出要求的结构化表达。
 
-**推荐理由:** 虽然不是 Codex 专属，但能帮助中国用户建立 Prompt 结构意识，再迁移到 Codex 任务委托。
+**推荐理由:** 帮助中国用户先建立提示词结构意识，再迁移到 Codex 的 Goal、Context、Constraint、Definition of Done 任务委托。
 
 **学习收获:**
 
 - 理解 Prompt 基本结构
-- 知道上下文的重要性
+- 知道上下文和约束的重要性
 - 能迁移到 GCCD 写法
 
 **笔记模板:**
@@ -549,18 +396,18 @@
 
 **linkStatus:**
 
-**status:** likely_broken
+**status:** ok
 
 **checkedAt:** 2026-06-09
 
-**httpCode:** 404
+**httpCode:** 200
 
-**note:** 命令行 HTTP 检查返回 404，未找到可信替代链接，保留供人工复核。
+**note:** 替换原 404 抖音链接；命令行 HTTP 检查可访问。
 
 
 **标签:**
 
-- 抖音精选
+- Bilibili
 - Prompt
 - 入门
 - 结构化

@@ -1,5 +1,47 @@
 # CHANGELOG_AI
 
+## 2026-06-09 07:30 去除不可确认正常播放的视频
+
+### 修改文件
+
+- `data/videos.json`
+- `content/videos.md`
+- `app/videos/page.tsx`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 删除 3 条当前无法确认正常打开播放的 YouTube 视频。
+- 删除旧的 404 抖音精选 URL 引用。
+- 用 2 条命令行 HTTP 检查返回 200 的 Bilibili 中文教程替换原抖音精选条目。
+- 将 `/videos` 页面说明改为当前实际平台：Bilibili 与 OpenAI Academy。
+- 重新导出 `content/videos.md`。
+- 新增决策记录：视频中心只保留当前确认可访问资源。
+
+### 修改原因
+
+用户明确要求：如果无法打开、无法正常播放的视频全部去除。为保证中国用户打开网站后可直接学习，本轮不再保留 `network_or_timeout` 或 `likely_broken` 的视频条目。
+
+### 验证结果
+
+- 当前 `data/videos.json`：9 条视频。
+- 当前平台：Bilibili、OpenAI Academy。
+- 所有保留视频：`linkStatus.status = ok`。
+- `rg network_or_timeout|manual_review|likely_broken|YouTube|youtube.com|抖音精选|douyin data/videos.json content/videos.md app/videos/page.tsx`：无残留。
+- `npm run export:content`：通过。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过。
+
+### 风险说明
+
+- 视频数量减少，但可用性更高。
+- 后续若要恢复 YouTube、抖音精选或其他平台，必须先确认目标用户环境能正常打开播放。
+
 ## 2026-06-09 07:19 推送视频链接巡检更新并完成 Vercel 自动部署
 
 ### 修改文件

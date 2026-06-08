@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 07:19 CST
+2026-06-09 07:30 CST
 
 ## 当前目标
 
@@ -33,7 +33,7 @@
   - `task-presets.json`：4 条
   - `templates.json`：5 条
   - `tools.json`：7 条
-  - `videos.json`：12 条
+  - `videos.json`：9 条，均为当前检查可访问资源
   - `workflows.json`：5 条
 - 已生成 `content/*.md` 作为可读备份。
 - 第二项任务“项目健康检查”：已完成。
@@ -93,6 +93,17 @@
   - 最新部署：`https://ronghuacao66-lang-codex-mastery-g1qrmaj9m-crh-s-projects.vercel.app`
   - 状态：`Ready`
   - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app`
+- 已处理视频精选中两个疑似失效的抖音链接：
+  - 删除旧的 404 抖音精选 URL 引用。
+  - 替换为两个命令行 HTTP 检查返回 200 的 Bilibili 中文教程资源。
+  - 更新 `/videos` 页面说明，不再声称当前包含抖音精选资源。
+  - 重新导出 `content/videos.md`。
+  - 当前 `data/videos.json` 和 `content/videos.md` 中已无 `likely_broken` 状态。
+- 按用户最新要求，已移除当前无法确认正常打开播放的视频：
+  - 删除 3 条 `network_or_timeout` 的 YouTube 视频。
+  - 当前视频中心只保留 9 条 `linkStatus.status = ok` 的视频。
+  - 当前视频平台为 Bilibili 与 OpenAI Academy。
+  - `data/videos.json`、`content/videos.md` 和 `/videos` 页面说明已同步。
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -156,8 +167,7 @@
 - GitHub 远程 `main` 已更新为本地整理后的正确项目结构。
 - GitHub CLI `gh` 已安装，但 GitHub OAuth token 交换在本机网络下超时，CLI 仍未登录；当前已改用 SSH remote 完成 push。
 - 当前环境访问 GitHub release 下载通道超时，无法由我自动补装 `gh`。
-- YouTube 视频链接在当前命令行网络下不能可靠判定，需后续用浏览器或可访问 YouTube 的网络复核。
-- 抖音精选视频链接当前返回 404，后续应替换为可信来源或删除对应推荐。
+- 当前已不展示 YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频；如后续需要恢复这些平台，必须先确认对应 URL 能正常打开播放。
 - Vercel 项目远端设置仍显示 `Framework Preset: Other`，但仓库内 `vercel.json` 已显式覆盖 Next.js 部署配置；后续 GitHub 自动部署应保留该文件。
 - 本机 `curl` 访问 Vercel 域名仍出现超时，疑似本机网络到 Vercel 边缘节点不稳定；Vercel CLI inspect 与 Chrome 标签标题已验证部署可用。
 - 不应在聊天中索要或保存 Vercel 密码、验证码或长期 token；认证应由用户在 Vercel 官方页面完成。
@@ -171,17 +181,17 @@
 
 ## 待办事项
 
-1. 推送本轮最终状态收尾提交。
-2. 定期巡检外部视频链接，优先处理当前标记为“疑似失效”的抖音链接。
+1. 提交并推送本轮“去除不可确认播放视频”的更新。
+2. 定期巡检外部视频链接，确保保留视频仍可打开播放。
 3. 可选增强：设计完整学习进度中心。
 
 ## 下一步行动
 
-当前下一步为“提交并推送最终状态收尾更新”：
+当前下一步为“提交并推送去除不可确认播放视频更新”：
 
-- 目标：将最终 Vercel Ready 和 GitHub push 结果写入远程仓库。
-- 输入：当前项目状态文件。
-- 输出：GitHub 远程仓库包含最新可交付状态。
+- 目标：将所有不可确认播放视频移除结果、内容导出和状态记录同步到 GitHub。
+- 输入：`data/videos.json`、`content/videos.md`、`app/videos/page.tsx` 和项目状态文件。
+- 输出：GitHub 远程仓库不再包含 YouTube、抖音精选、`network_or_timeout` 或 `likely_broken` 视频条目。
 - 验收标准：`git push` 成功，`origin/main` 指向最新状态提交，Vercel 主域名仍为 `Ready`。
 
 ## 最近验证
@@ -250,3 +260,12 @@
   - `git push`：成功，`origin/main` 指向 `4ef9b62`。
   - Vercel 自动 Production 部署：`Ready`。
   - 主域名 alias：已绑定最新部署。
+- 2026-06-09 07:30 CST：
+  - 替换两个 404 抖音精选链接：完成。
+  - 删除 3 条当前无法确认正常播放的 YouTube 视频：完成。
+  - 当前视频数据：9 条，平台为 Bilibili 与 OpenAI Academy，所有 `linkStatus.status` 均为 `ok`。
+  - `rg network_or_timeout|manual_review|likely_broken|YouTube|youtube.com|抖音精选|douyin`：未发现残留于视频数据、导出内容和视频页说明。
+  - `npm run export:content`：通过。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 14 个 App Router 页面。

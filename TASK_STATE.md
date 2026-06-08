@@ -6,7 +6,7 @@
 
 ## 当前目标
 
-按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查、GitHub + Vercel 上线准备、视频精选链接巡检与交互状态标记；本地构建已通过，GitHub 推送已完成，Vercel Production 自动部署已 Ready。
+按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查、GitHub + Vercel 上线准备、视频精选链接巡检与交互状态标记；本地构建已通过，GitHub 推送已完成，Vercel Production 自动部署已 Ready。当前正在提交“去除不可确认正常播放视频”的内容更新。
 
 ## 当前完成
 
@@ -57,11 +57,13 @@
   - 视频卡片已显示链接状态徽标。
   - `content/videos.md` 已通过 `npm run export:content` 更新。
 - 2026-06-09 07:19 CST 已推送视频链接巡检更新，GitHub 触发的 Vercel Production 自动部署已 Ready。
+- 2026-06-09 07:30 CST 已将两个 404 抖音精选链接替换为可访问的 Bilibili 中文教程资源，并重新导出 `content/videos.md`。
+- 2026-06-09 07:30 CST 按用户最新要求删除 3 条当前无法确认正常播放的 YouTube 视频；当前视频中心保留 9 条 `ok` 视频。
 
 ## 当前进度
 
-- 当前任务：视频精选链接巡检与交互状态标记。
-- 任务状态：代码、数据、验证、GitHub 推送和 Vercel 自动部署均已完成；当前仅剩最终状态收尾提交。
+- 当前任务：去除不可确认正常播放的视频。
+- 任务状态：数据、页面文案、内容导出和本地验证已完成；当前等待提交、推送和 Vercel 自动部署验证。
 
 ## 当前风险
 
@@ -71,8 +73,7 @@
 - 不建议在 dev server 运行时直接混用 `npm run build` 产物。
 - GitHub CLI 已安装，但当前本机 OAuth token 交换超时，CLI 仍未登录。
 - 项目专用 SSH key 已生成并配置，SSH 认证已通过。
-- YouTube 链接当前只是本机命令行网络超时，不能判定为失效，需要后续在可访问 YouTube 的浏览器或网络环境复核。
-- 抖音精选链接当前返回 404，后续应寻找可信替代链接或删除对应推荐。
+- 当前已不展示 YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频；如后续需要恢复这些平台，必须先确认对应 URL 能正常打开播放。
 - `release/` 是本地交付物目录，已加入 `.gitignore`，不会提交进仓库。
 - 当前 remote 已配置，下一步只差 GitHub 认证和仓库可访问性。
 - SSH remote 路径也需要先配置 GitHub SSH key。
@@ -91,7 +92,7 @@
 
 ## 下一步动作
 
-当前需要提交并推送最终状态收尾更新。
+当前需要提交并推送“去除不可确认正常播放视频”的更新。
 
 ## 最近验证
 
@@ -140,3 +141,11 @@
   - `git push`：成功，`origin/main` 指向 `4ef9b62`。
   - Vercel 最新 Production 部署：`Ready`。
   - 主域名：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
+- 2026-06-09 07:30 CST：
+  - 两个 404 抖音精选链接：已替换为 Bilibili 中文教程。
+  - 三个无法确认正常播放的 YouTube 视频：已删除。
+  - 当前视频数据：9 条，平台为 Bilibili 与 OpenAI Academy，所有链接状态均为 `ok`。
+  - `npm run export:content`：通过。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。

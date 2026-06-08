@@ -8,7 +8,7 @@ export default function VideosPage() {
       <SectionHeader
         eyebrow="Learning Media"
         title="视频精选"
-        description="精选 Bilibili、抖音精选、YouTube 和 OpenAI Academy 的 Codex / Prompt / Agent 教学视频，按平台和学习阶段组织，配套笔记模板和学习产出。"
+        description="精选 Bilibili 和 OpenAI Academy 中当前可访问的 Codex / Prompt / Agent 教学视频，按平台和学习阶段组织，配套笔记模板、学习产出和链接健康状态。"
       />
       <VideoCenterClient items={videos} />
     </div>
