@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 01:31 CST
+2026-06-09 01:38 CST
 
 ## 当前目标
 
@@ -57,6 +57,9 @@
   - 生产别名：已绑定主域名和 `crh-s-projects` 团队域名。
 - 已在 Chrome 中打开主域名，当前标签标题为 `Codex Mastery`，不再是 Vercel `404: NOT_FOUND`。
 - 已创建本轮本地 Git 提交：`Fix Vercel Next.js deployment`。
+- 已确认 GitHub 远程仓库可读取，远程 `main` 当前来自网页上传历史，包含旧的 `codex-mastery-github-ready/` 嵌套目录结构。
+- 已将远程上传历史以 `ours` 策略合并进本地 `main`，保留本地正确项目根目录结构，后续 GitHub 凭据可用后可普通 fast-forward push，无需强推。
+- 已重新生成最新 GitHub 手动上传备用包：`release/codex-mastery-github-ready.zip`，包内包含 `vercel.json`。
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -91,14 +94,16 @@
   - 已尝试通过 Homebrew 安装 `gh`，但网络访问 Homebrew/GitHub 资源失败：
     - `formula.jws.json` 下载连接被重置。
     - `homebrew-core` 克隆出现 `early EOF`。
-  - 已生成 GitHub 手动上传备用包：`release/codex-mastery-github-ready.zip`。
+  - 已生成 GitHub 手动上传备用包：`release/codex-mastery-github-ready.zip`；2026-06-09 01:36 CST 已重新生成，包含 `vercel.json`。
   - 已根据用户提供的 GitHub 用户名配置远程地址：
     - `origin`: `https://github.com/ronghuacao66-lang/codex-mastery.git`
   - 已尝试 `git push -u origin main`，但失败：
     - `fatal: could not read Username for 'https://github.com': terminal prompts disabled`
+    - 2026-06-09 01:35 CST 再次尝试失败：`fatal: could not read Username for 'https://github.com': Device not configured`
   - 已尝试 GitHub SSH 认证，但失败：
     - `git@github.com: Permission denied (publickey).`
   - 已尝试直接下载 GitHub CLI release `v2.93.0`，但连接 GitHub 443 超时。
+  - 已确认 `gh` GitHub CLI 仍未安装。
 - 本机 macOS 电源策略已调整，降低 Codex 长任务因合盖或空闲睡眠中断的风险：
   - Battery Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
   - AC Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
@@ -109,12 +114,13 @@
 - 第一项任务“建立项目状态与决策记录”：已完成。
 - 第二项任务“项目健康检查”：已完成。
 - 第三项任务“移动端与交互体验检查”：已完成。
-- 第四项任务“GitHub + Vercel 上线准备”：本地构建验证已通过；Vercel 直接部署已完成；本轮部署修复已提交到本地 Git；GitHub 推送仍阻塞于认证。
+- 第四项任务“GitHub + Vercel 上线准备”：本地构建验证已通过；Vercel 直接部署已完成；本轮部署修复已提交到本地 Git；远程上传历史已合并入本地提交图；GitHub 推送仍阻塞于认证。
 - 尚未开始新的业务功能开发或大规模重构。
 
 ## 当前风险
 
-- 当前目录已初始化 Git，但尚未推送到 GitHub 远程仓库。
+- 当前目录已初始化 Git，但尚未成功推送到 GitHub 远程仓库。
+- GitHub 远程 `main` 当前不是最终结构，仍是网页上传产生的旧结构；本地 `main` 已整理为可普通 push 的正确结构。
 - GitHub CLI `gh` 未安装，远程仓库创建和自动推送暂时阻塞。
 - Homebrew 安装 `gh` 失败，当前需要用户手动完成 GitHub CLI 安装/登录，或提供 GitHub 空仓库 URL。
 - Git remote 已配置，但当前机器没有 GitHub 认证凭据，无法 push。
@@ -134,7 +140,7 @@
 ## 待办事项
 
 1. 用户完成 GitHub HTTPS token/credential 认证，或配置 GitHub SSH key 后，继续执行 `git push -u origin main`。
-2. 若暂时无法使用 Git CLI 推送，可用 GitHub 网页手动上传项目文件，但需要重新生成包含 `vercel.json` 的最新备用包。
+2. 若暂时无法使用 Git CLI 推送，可用 `release/codex-mastery-github-ready.zip` 通过 GitHub 网页手动上传最新项目文件。
 3. 定期巡检外部视频链接。
 4. 可选增强：设计完整学习进度中心。
 
@@ -172,3 +178,10 @@
   - `npm run lint`：通过。
   - `npm run build`：通过，生成 14 个 App Router 页面。
 - 2026-06-09 01:31 CST：本轮部署修复已创建本地 Git 提交。
+- 2026-06-09 01:35 CST：`git push -u origin main` 仍因本机 GitHub HTTPS 凭据不可用失败。
+- 2026-06-09 01:36 CST：已重新生成 `release/codex-mastery-github-ready.zip`，确认包内包含 `vercel.json`。
+- 2026-06-09 01:38 CST：已合并远程网页上传历史，保留本地正确文件树，后续 push 不需要强推。
+- 2026-06-09 01:40 CST 远程历史合并后验证：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 14 个 App Router 页面。

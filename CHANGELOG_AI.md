@@ -1,5 +1,45 @@
 # CHANGELOG_AI
 
+## 2026-06-09 01:38 整理 GitHub 远程历史并更新备用上传包
+
+### 修改文件
+
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `release/codex-mastery-github-ready.zip`
+
+### 修改内容
+
+- 再次执行 `git push -u origin main`，确认仍因本机 GitHub HTTPS 凭据不可用失败。
+- 确认远程 GitHub 仓库可读取，远程 `main` 来自网页上传历史，当前仍是旧的嵌套目录结构。
+- 使用 `ours` 策略合并远程网页上传历史，保留本地正确项目根目录结构，使后续认证完成后可以普通 push。
+- 重新生成 `release/codex-mastery-github-ready.zip`，确认包内包含 `vercel.json`。
+- 更新项目状态、任务状态、交接文件和决策记录。
+
+### 修改原因
+
+用户要求继续推进 GitHub + Vercel 交付。Vercel 已恢复公网访问，剩余问题是 GitHub 远程同步。由于远程仓库已有网页上传历史，直接等待认证后 push 会遇到非 fast-forward 风险；先合并远程历史可以降低后续推送风险。
+
+### 验证结果
+
+- `git ls-remote --heads origin`：远程 `main` 可读取。
+- `git fetch origin --prune`：成功。
+- `git push -u origin main`：失败，原因是本机无 GitHub HTTPS 写入凭据。
+- `git merge --allow-unrelated-histories -s ours origin/main`：成功，当前文件树保持本地正确结构。
+- `release/codex-mastery-github-ready.zip`：已重新生成，检查确认包含 `vercel.json`。
+- 2026-06-09 01:40 CST：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+
+### 风险说明
+
+- GitHub push 仍需用户完成 GitHub HTTPS credential/token 或 SSH key 配置。
+- 在 push 成功前，GitHub 网页仓库仍显示旧的上传结构。
+
 ## 2026-06-09 01:26 修复 Vercel 公网 404 并完成生产部署
 
 ### 修改文件

@@ -204,3 +204,30 @@ Vercel 项目远端设置显示 `Framework Preset: Other`，输出目录为“�
 - `vercel.json` 必须提交到 GitHub。
 - 后续 Vercel 自动部署应读取该文件并按 Next.js 构建。
 - Vercel Dashboard 仍可能显示项目级 `Framework Preset: Other`，但仓库配置优先保障部署产物正确。
+
+## 2026-06-09 合并 GitHub 网页上传历史但保留本地正确结构
+
+### 决策内容
+
+远程 GitHub 仓库 `origin/main` 可读取，但其历史来自网页上传，当前文件位于旧的 `codex-mastery-github-ready/` 嵌套目录，并包含旧 zip。为了后续可以普通 push，本地执行：
+
+```bash
+git merge --allow-unrelated-histories -s ours origin/main -m "Merge remote upload history"
+```
+
+该合并记录远程历史为第二父提交，但保留本地正确项目根目录结构。
+
+### 决策原因
+
+本地历史和远程网页上传历史无共同祖先。若不处理，后续即使 GitHub 凭据可用，普通 push 也会因非 fast-forward 被拒绝；若直接强推，会覆盖远程历史。`ours` 合并可以保留远程历史，同时让本地 `main` 成为远程 `main` 的后代。
+
+### 被否决方案
+
+- 强推覆盖远程：风险更高，不符合默认安全策略。
+- 合并远程文件树：会把旧的嵌套目录和 zip 带回项目，破坏根目录结构。
+- 继续只提供手动上传包：无法形成可追溯 GitHub 提交历史。
+
+### 后续影响
+
+- 后续 GitHub 凭据可用后，`git push -u origin main` 应可作为 fast-forward push 执行。
+- push 成功后，远程仓库根目录会变为当前正确项目结构，并包含 `vercel.json`。

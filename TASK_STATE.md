@@ -6,7 +6,7 @@
 
 ## 当前目标
 
-按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查，正在执行 GitHub + Vercel 上线准备；本地构建已通过，Vercel 直接公网部署已完成，本轮部署修复已提交到本地 Git，GitHub 推送仍等待认证。
+按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查，正在执行 GitHub + Vercel 上线准备；本地构建已通过，Vercel 直接公网部署已完成，本轮部署修复已提交到本地 Git，远程上传历史已合并入本地提交图，GitHub 推送仍等待认证。
 
 ## 当前完成
 
@@ -41,15 +41,19 @@
   - 最新部署域名：`https://ronghuacao66-lang-codex-mastery-ly0ja227e-crh-s-projects.vercel.app`
   - 状态：`Ready`
 - Chrome 打开主域名后标题为 `Codex Mastery`，不再是 Vercel `404: NOT_FOUND` 页面。
+- 已确认 GitHub 远程可读，但远程 `main` 当前是旧的网页上传历史。
+- 已用 `ours` 策略合并远程上传历史，保留本地正确项目结构，后续认证完成后可普通 push。
+- 已重新生成 `release/codex-mastery-github-ready.zip`，确认包含 `vercel.json`。
 
 ## 当前进度
 
 - 当前任务：GitHub + Vercel 上线准备。
-- 任务状态：本地构建通过；Vercel 直接部署完成；本轮部署修复已提交到本地 Git；GitHub push 阻塞于认证。
+- 任务状态：本地构建通过；Vercel 直接部署完成；本轮部署修复已提交到本地 Git；远程历史已合并；GitHub push 阻塞于认证。
 
 ## 当前风险
 
 - 当前目录已初始化 Git，但尚未推送到 GitHub 远程。
+- GitHub 远程当前仍是旧网页上传结构，本地 `main` 已准备好以普通 fast-forward push 覆盖为正确结构。
 - 本地访问依赖 `next dev -p 3000` 持续运行。
 - 后续公网访问需要完成 GitHub + Vercel 部署。
 - 不建议在 dev server 运行时直接混用 `npm run build` 产物。
@@ -74,7 +78,7 @@
 ## 下一步动作
 
 GitHub 侧仍需要完成 HTTPS token/credential 认证，或配置 GitHub SSH key，才能继续远程 push。
-如果暂时无法使用 Git CLI 推送，可以通过 GitHub 网页上传项目文件，但需要重新生成包含 `vercel.json` 的最新备用包。
+如果暂时无法使用 Git CLI 推送，可以通过 GitHub 网页上传 `release/codex-mastery-github-ready.zip` 中的最新项目文件。
 
 ## 最近验证
 
@@ -83,3 +87,10 @@ GitHub 侧仍需要完成 HTTPS token/credential 认证，或配置 GitHub SSH k
   - `npm run lint`：通过。
   - `npm run build`：通过。
 - 2026-06-09 01:31 CST：本轮部署修复已创建本地 Git 提交。
+- 2026-06-09 01:35 CST：`git push -u origin main` 再次失败，原因是本机没有可用 GitHub HTTPS 凭据。
+- 2026-06-09 01:36 CST：已重新生成 `release/codex-mastery-github-ready.zip`，确认包含 `vercel.json`。
+- 2026-06-09 01:38 CST：已合并远程网页上传历史，后续 push 不需要强推。
+- 2026-06-09 01:40 CST：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。

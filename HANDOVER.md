@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 01:31 CST
+2026-06-09 01:38 CST
 
 ## 当前状态
 
@@ -28,7 +28,7 @@ Vercel CLI inspect 显示最新部署为 `Ready`，主域名已作为 alias 绑�
 https://github.com/ronghuacao66-lang/codex-mastery.git
 ```
 
-GitHub 远程 push 此前阻塞于本机缺少 GitHub 认证凭据；当前部署策略优先尝试通过 Vercel CLI 直接部署本地项目到已有 Vercel 项目。
+GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史。已用 `ours` 策略把远程上传历史合并进本地 `main`，保留本地正确项目根目录结构。后续只要 GitHub 凭据可用，普通 `git push -u origin main` 即可推进，不需要强推。
 
 ## 已完成内容
 
@@ -52,10 +52,13 @@ GitHub 远程 push 此前阻塞于本机缺少 GitHub 认证凭据；当前部�
 - 已新增 `vercel.json`，显式声明 Next.js 部署配置。
 - 已执行 Vercel Production 强制部署并获得 `Ready` 状态。
 - 已创建本轮本地 Git 提交：`Fix Vercel Next.js deployment`。
+- 已重新生成 `release/codex-mastery-github-ready.zip`，确认包含 `vercel.json`。
+- 已合并远程网页上传历史，避免后续需要强推。
 
 ## 未完成内容
 
 - 尚未完成 GitHub push。
+- GitHub HTTPS push 仍因本机没有可用凭据失败。
 
 ## 当前推理结果
 
@@ -72,12 +75,13 @@ GitHub 远程 push 此前阻塞于本机缺少 GitHub 认证凭据；当前部�
 - 系统级上下文压缩不可由模型关闭；项目状态必须以文件为准。
 - Vercel 远端项目设置仍显示 `Framework Preset: Other`，后续部署必须保留 `vercel.json`。
 - GitHub 远程推送仍依赖 GitHub 认证。
+- 远程 GitHub 页面在 push 成功前仍显示旧的网页上传结构。
 - 本地 `localhost:3000` 依赖 dev server；执行生产构建前可能需要停止 dev server 并清理 `.next`。
 
 ## 下一步计划
 
 1. 用户完成 GitHub 认证后继续 `git push -u origin main`。
-2. 如无法通过 Git CLI 推送，重新生成包含 `vercel.json` 的最新 GitHub 网页上传包。
+2. 如无法通过 Git CLI 推送，可通过 GitHub 网页上传 `release/codex-mastery-github-ready.zip` 中的最新项目文件。
 
 ## 最近验证
 
@@ -86,3 +90,10 @@ GitHub 远程 push 此前阻塞于本机缺少 GitHub 认证凭据；当前部�
   - `npm run lint`：通过。
   - `npm run build`：通过。
 - 2026-06-09 01:31 CST：本轮部署修复已创建本地 Git 提交。
+- 2026-06-09 01:35 CST：`git push -u origin main` 仍因本机 GitHub HTTPS 凭据不可用失败。
+- 2026-06-09 01:36 CST：已重新生成 `release/codex-mastery-github-ready.zip`，确认包含 `vercel.json`。
+- 2026-06-09 01:38 CST：已合并远程网页上传历史，后续 push 不需要强推。
+- 2026-06-09 01:40 CST：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
