@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-08 20:50 CST
+2026-06-09 00:58 CST
 
 ## 当前目标
 
@@ -38,7 +38,21 @@
 - 已生成 `content/*.md` 作为可读备份。
 - 第二项任务“项目健康检查”：已完成。
 - 第三项任务“移动端与交互体验检查”：已完成。
-- 第四项任务“GitHub + Vercel 上线准备”：进行中，本地 Git 已初始化并完成首次提交。
+- 第四项任务“GitHub + Vercel 上线准备”：进行中，本地 Git 已初始化并完成首次提交；当前正在处理 Vercel 公网部署。
+- 已创建 `HANDOVER.md`，用于应对上下文压缩、会话中断或账号切换后的项目接管。
+- 已修复 ESLint 误扫描 `release/**` 的问题，避免本地备用压缩包解压目录影响 `npm run lint`。
+- 2026-06-09 部署前质量门禁已通过：
+  - `npm run typecheck`：通过
+  - `npm run lint`：通过
+  - `npm run build`：通过
+- 已确认 Vercel CLI 可通过 `npx --yes vercel@latest` 启动，版本为 `54.9.1`。
+- 已尝试 Vercel CLI 登录，CLI 返回 `No existing credentials found` 并进入设备授权流程。
+- 已打开 Vercel 设备授权页，但 CLI 未收到授权完成信号，当前无法继续远程部署。
+- 已根据用户截图修正目标 Vercel 项目为 `crh-s-projects/ronghuacao66-lang-codex-mastery`。
+- 已确认公网地址 `https://ronghuacao66-lang-codex-mastery.vercel.app` 当前显示 `404: NOT_FOUND`，需要完成有效 Production Deployment。
+- 已重新发起 Vercel CLI 设备授权，授权页已打开，验证码为 `TJVP-JCLJ`。
+- 已截屏确认授权页存在 Vercel `Allow` 按钮，但被 macOS 权限弹窗阻挡。
+- 当前 macOS 弹窗要求用户允许 `Codex.app` 控制 `Google Chrome.app`；自动点击蓝色“允许”未生效，需要用户手动点击。
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -91,7 +105,7 @@
 - 第一项任务“建立项目状态与决策记录”：已完成。
 - 第二项任务“项目健康检查”：已完成。
 - 第三项任务“移动端与交互体验检查”：已完成。
-- 第四项任务“GitHub + Vercel 上线准备”：本地 Git 提交已完成，远程推送阻塞于 GitHub CLI 安装/登录或 GitHub 仓库地址。
+- 第四项任务“GitHub + Vercel 上线准备”：本地构建验证已通过；GitHub 推送阻塞于认证；Vercel 直接部署当前阻塞于 macOS 允许 Codex 控制 Chrome 的系统权限确认。
 - 尚未开始新的业务功能开发或大规模重构。
 
 ## 当前风险
@@ -102,6 +116,10 @@
 - Git remote 已配置，但当前机器没有 GitHub 认证凭据，无法 push。
 - 当前机器也没有可用的 GitHub SSH key，无法通过 SSH push。
 - 当前环境访问 GitHub release 下载通道超时，无法由我自动补装 `gh`。
+- Vercel CLI 当前没有本机登录凭据，设备授权页未完成确认，无法继续执行 `vercel deploy --prod`。
+- macOS 当前弹出“Codex.app 想要控制 Google Chrome.app”的权限提示。该提示需要用户手动点击蓝色“允许”，自动点击未生效。
+- 不应在聊天中索要或保存 Vercel 密码、验证码或长期 token；认证应由用户在 Vercel 官方页面完成。
+- 系统级上下文压缩不可由模型关闭，当前已通过 `HANDOVER.md` 和状态文件保护关键上下文。
 - `localhost:3000` 依赖本机开发服务；服务停止后本地网址会打不开。
 - 公网稳定访问仍依赖 GitHub + Vercel 部署完成。
 - 外部视频链接可能随平台规则变化失效，需要后续定期巡检。
@@ -115,18 +133,18 @@
 2. 用户完成 GitHub HTTPS token/credential 认证，或配置 GitHub SSH key 后，继续执行 `git push -u origin main`。
 3. 若暂时无法使用 Git CLI 推送，可用 `release/codex-mastery-github-ready.zip` 通过 GitHub 网页手动上传。
 4. 推送或上传 GitHub 后导入 Vercel。
-5. 定期巡检外部视频链接。
-6. 可选增强：设计完整学习进度中心。
-7. 任务变长时创建 `HANDOVER.md`。
+5. 完成 Vercel CLI 设备授权，或提供用户本人创建的临时 `VERCEL_TOKEN` 后继续部署。
+6. 定期巡检外部视频链接。
+7. 可选增强：设计完整学习进度中心。
 
 ## 下一步行动
 
-建议下一项任务为“GitHub + Vercel 上线准备”：
+当前下一步仍为“完成 Vercel 认证并部署”：
 
-- 目标：把当前项目纳入 Git 版本管理，并准备推送 GitHub 导入 Vercel。
-- 输入：当前项目文件、README、DEPLOY、构建结果。
-- 输出：Git 初始化/提交准备、部署前检查清单。
-- 验收标准：本地构建通过，仓库文件干净，部署步骤明确。
+- 目标：将本地已验证通过的项目部署到 Vercel 项目 `crh-s-projects/ronghuacao66-lang-codex-mastery`。
+- 输入：当前项目文件、Vercel 账号登录状态或用户本人提供的部署 token。
+- 输出：可公开访问的 `*.vercel.app` 地址。
+- 验收标准：`npm run build` 通过，`vercel deploy --prod` 成功，公网 URL 返回 200。
 
 ## 最近验证
 
@@ -137,3 +155,10 @@
 - 本轮项目健康检查：通过，已修复本地 dev server 运行态污染问题。
 - 本轮移动端与交互体验检查：通过，已修复首页进度撤销和统计动态化问题。
 - 本轮本机电源策略检查：`pmset -g custom` 确认 Battery Power 与 AC Power 下 `sleep`、`displaysleep`、`disksleep` 均为 `0`。
+- 2026-06-09 部署前验证：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+  - `npx --yes vercel@latest --version`：返回 `54.9.1`。
+  - `npx --yes vercel@latest whoami`：未登录，进入设备授权流程，授权未完成。
+  - 2026-06-09 00:54 CST：Vercel 授权页已打开，但 macOS 权限弹窗阻止 Codex 操作 Chrome。

@@ -1,5 +1,60 @@
 # CHANGELOG_AI
 
+## 2026-06-09 00:58 定位 Vercel 404 与 macOS 权限阻塞
+
+### 修改文件
+
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 根据用户截图修正目标 Vercel 项目为 `crh-s-projects/ronghuacao66-lang-codex-mastery`。
+- 记录公网地址 `https://ronghuacao66-lang-codex-mastery.vercel.app` 当前显示 `404: NOT_FOUND`。
+- 记录 Vercel CLI 设备授权页已打开，验证码 `TJVP-JCLJ` 正确，页面存在 `Allow` 授权按钮。
+- 记录当前 macOS 弹窗要求用户允许 `Codex.app` 控制 `Google Chrome.app`，否则无法继续点击 Vercel 授权按钮。
+- 记录自动点击 macOS 权限弹窗未生效，需要用户手动点击蓝色“允许”。
+
+### 修改原因
+
+用户反馈公网地址无法打开并要求直接修复。排查确认本地构建已通过，公网不可用的直接原因是 Vercel 尚未完成有效部署；当前推进部署时被本机 macOS 权限确认阻塞。
+
+### 风险说明
+
+- 不点击 macOS “允许”就无法使用浏览器登录态完成 Vercel CLI 授权。
+- 即使允许 Chrome 控制，后续 Vercel 页面仍可能需要用户本人完成密码、验证码或安全确认。
+
+## 2026-06-09 00:48 Vercel 部署前验证与上下文交接保护
+
+### 修改文件
+
+- `eslint.config.mjs`
+- `HANDOVER.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 新增 `HANDOVER.md`，记录当前部署状态、已完成内容、未完成内容、风险和下一步计划。
+- 将 ESLint 忽略范围补充为包含 `release/**`，避免备用交付目录影响 `npm run lint`。
+- 记录 2026-06-09 部署前验证结果：`npm run typecheck`、`npm run lint`、`npm run build` 均通过。
+- 记录 Vercel CLI `54.9.1` 可通过 `npx --yes vercel@latest` 启动。
+- 记录 Vercel CLI 当前无本机凭据，设备授权流程未完成，公网部署暂时阻塞于账号认证。
+- 在决策记录中补充 Vercel 直接部署策略。
+
+### 修改原因
+
+用户要求接管 Vercel 项目并完成部署，同时要求不要丢失上下文。当前系统级上下文压缩不可由模型关闭，因此用项目文件固化部署状态和下一步动作。
+
+### 风险说明
+
+- Vercel 账号认证需要用户在官方页面完成，不能在聊天中索要或保存密码、验证码或长期 token。
+- 当前尚未完成 `vercel deploy --prod`，不能视为已获得公网访问地址。
+
 ## 2026-06-08 19:35 设置本机电源策略支持 Codex 长任务
 
 ### 修改文件

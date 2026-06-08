@@ -153,3 +153,25 @@ pmset -a sleep 0 displaysleep 0 disksleep 0 disablesleep 1
 - 合盖长时间运行会增加发热和耗电风险，建议连接电源并保持散热。
 - 如需恢复默认电源策略，可运行 `sudo pmset restoredefaults`。
 - 后续长任务前可用 `pmset -g custom` 和 `pmset -g assertions` 检查当前状态。
+
+## 2026-06-09 Vercel 直接部署策略
+
+### 决策内容
+
+在 GitHub push 仍受认证阻塞时，优先尝试通过 Vercel CLI 直接从本地项目部署到已有 Vercel 项目 `crh-s-projects/codex-mastery`。CLI 通过 `npx --yes vercel@latest` 启动，不要求全局安装。
+
+### 决策原因
+
+用户要求接管 Vercel 项目并完成公网部署。当前本地项目已经通过 `npm run typecheck`、`npm run lint` 和 `npm run build`，代码本身具备部署条件；GitHub 自动推送暂时卡在认证层，因此 Vercel CLI 直传是最短可行路径。
+
+### 被否决方案
+
+- 在聊天中索要 Vercel 密码、验证码或长期 token：风险过高，不符合账号安全原则。
+- 绕过 Vercel 官方授权流程：不可接受。
+- 在未完成本地构建验证前直接部署：会把可在本地发现的问题推到公网环境。
+
+### 后续影响
+
+- 部署前继续以本地质量门禁为准：`npm run typecheck`、`npm run lint`、`npm run build`。
+- 如果 Vercel CLI 未登录，需要用户在 Vercel 官方授权页面完成确认，或由用户本人创建临时 `VERCEL_TOKEN`。
+- 部署成功后需要验证公网 URL 返回 200，并更新 `PROJECT_STATE.md`、`TASK_STATE.md`、`CHANGELOG_AI.md`。
