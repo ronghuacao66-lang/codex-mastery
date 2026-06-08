@@ -1,5 +1,56 @@
 # CHANGELOG_AI
 
+## 2026-06-09 07:13 视频精选链接巡检与状态标记
+
+### 修改文件
+
+- `types/content.ts`
+- `components/VideoCenterClient.tsx`
+- `data/videos.json`
+- `content/videos.md`
+- `PROJECT_STATE.md`
+- `PROJECT_CONTEXT.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 为 `VideoItem` 增加可选 `linkStatus` 字段，支持记录链接状态、检查时间、HTTP 状态码和说明。
+- 在视频中心卡片中新增链接状态徽标：
+  - 链接可访问
+  - 网络不可判定
+  - 需人工复核
+  - 疑似失效
+- 为 `data/videos.json` 中 12 条视频补充链接健康状态。
+- 将 OpenAI Academy 旧链接替换为当前可访问的官方课程链接。
+- 通过 `npm run export:content` 重新生成 `content/videos.md`。
+- 更新项目状态、任务状态、交接文件和决策记录。
+- 修正 `PROJECT_CONTEXT.md` 中早期“当前目录不是 Git 仓库”的过期描述，补充当前 GitHub remote 和 Vercel 公网地址。
+
+### 修改原因
+
+用户要求继续提升网站内容与交互质量。视频精选模块依赖外部平台链接，存在地区网络、平台规则、URL 迁移和内容下架风险。通过页面内状态标记，可以让用户在点击前理解链接健康情况，也为后续替换失效资源留下可追溯证据。
+
+### 验证结果
+
+- Bilibili 链接命令行 HTTP 检查返回 200，标记为“链接可访问”。
+- YouTube 链接在当前本机命令行网络下超时，标记为“网络不可判定”。
+- 抖音精选链接命令行 HTTP 检查返回 404，标记为“疑似失效”。
+- OpenAI Academy 新链接命令行 HTTP 检查返回 200。
+- `npm run export:content`：通过。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过。
+- 本地 `/videos` 页面返回 200。
+
+### 风险说明
+
+- YouTube 链接不能仅凭当前本机命令行超时判定失效，后续需要在可访问 YouTube 的浏览器或网络环境复核。
+- 抖音精选链接当前返回 404，后续应优先替换为可信来源或删除对应推荐。
+- 外部视频链接会随平台变化失效，需要定期巡检。
+
 ## 2026-06-09 06:50 完成 GitHub SSH 推送
 
 ### 修改文件

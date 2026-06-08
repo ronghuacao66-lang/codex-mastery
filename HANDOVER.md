@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 06:50 CST
+2026-06-09 07:13 CST
 
 ## 当前状态
 
@@ -36,6 +36,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 06:50 CST 用户添加 SSH key 后，`ssh -T git@github.com` 已认证通过。已将 `origin` 切换为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，并成功执行 `git push -u origin main`。远程 `origin/main` 当前指向 `55cceb3`。
 
+2026-06-09 07:13 CST 已完成视频精选链接巡检与交互状态标记。Bilibili 链接标记为可访问；YouTube 链接因本机命令行网络超时标记为网络不可判定；抖音精选链接因 HTTP 404 标记为疑似失效；OpenAI Academy 旧链接已替换为当前可访问的官方链接。视频卡片已显示链接状态徽标，`content/videos.md` 已由数据重新导出。
+
 ## 已完成内容
 
 - 项目状态文件已建立：
@@ -62,13 +64,14 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 已合并远程网页上传历史，避免后续需要强推。
 - 已安装 GitHub CLI `gh 2.93.0`。
 - 已生成项目专用 SSH key 并配置 `~/.ssh/config`。
+- 已为视频精选内容新增链接健康状态数据和页面徽标。
+- 已重新导出 `content/videos.md`。
 
 ## 未完成内容
 
 - GitHub push 已完成。
-- 本轮最终状态更新尚未提交和推送。
+- 本轮视频链接巡检更新尚未提交和推送。
 - GitHub CLI Web 授权仍因 OAuth token 交换超时失败。
-- 项目专用 SSH 公钥尚未添加到 GitHub 账号。
 
 ## 当前推理结果
 
@@ -79,6 +82,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 3. 主域名 alias 已绑定最新 Production Deployment。
 4. 本机 `curl` 到 Vercel 域名仍超时，疑似本机网络到 Vercel 边缘节点不稳定；未作为失败判据。
 5. 不在聊天中索要密码、验证码或长期 token。
+6. 外部视频链接不可完全依赖一次命令行检查，页面应显示链接健康状态并保留复核路径。
 
 ## 当前风险
 
@@ -88,12 +92,14 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 远程 GitHub 页面在 push 成功前仍显示旧的网页上传结构。
 - GitHub CLI OAuth 仍不可用，但 SSH remote 已可用。
 - 本地 `localhost:3000` 依赖 dev server；执行生产构建前可能需要停止 dev server 并清理 `.next`。
+- YouTube 链接当前在本机命令行网络下超时，需后续浏览器复核。
+- 抖音精选链接当前返回 404，需后续替换或删除。
 
 ## 下一步计划
 
-1. 提交并推送本轮最终状态更新。
-2. 可选：检查 Vercel 是否因 GitHub push 触发新部署。
-3. 可选：定期巡检外部视频链接。
+1. 提交并推送本轮视频链接巡检更新。
+2. 检查 Vercel 是否因 GitHub push 触发新部署。
+3. 后续优先处理抖音精选疑似失效链接。
 
 ## 最近验证
 
@@ -131,3 +137,9 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过。
+- 2026-06-09 07:13 CST：
+  - `npm run export:content`：通过。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+  - 本地 `/videos` 页面验证：返回 200。

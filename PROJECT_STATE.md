@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 06:50 CST
+2026-06-09 07:13 CST
 
 ## 当前目标
 
@@ -11,7 +11,7 @@
 ## 当前完成
 
 - 本地站点已恢复访问：`http://localhost:3000`。
-- 当前开发服务正在运行：`next dev -p 3000`。
+- 本地开发服务已按需停止；如需本地预览，可运行 `npm run dev -- -p 3000`。
 - 关键页面 HTTP 检查通过：
   - `/`
   - `/bootcamp`
@@ -78,6 +78,14 @@
 - 已完成 GitHub push：
   - `git push -u origin main`
   - 远程 `origin/main` 当前指向 `55cceb3`
+- 已完成视频精选链接巡检与交互标记：
+  - `data/videos.json` 为每条视频新增 `linkStatus`。
+  - Bilibili 链接命令行 HTTP 检查返回 200，标记为“链接可访问”。
+  - YouTube 链接在当前本机命令行网络下超时，标记为“网络不可判定”，等待可访问 YouTube 的网络或浏览器复核。
+  - 抖音精选链接命令行 HTTP 检查返回 404，标记为“疑似失效”，保留供人工复核。
+  - OpenAI Academy 旧链接返回 404，已替换为当前可访问的官方链接 `https://academy.openai.com/en/public/videos/introduction-to-codex-2026-03-02`。
+  - 视频卡片已新增链接状态徽标，用户可以在页面上直接识别外部链接健康状态。
+  - `content/videos.md` 已重新由数据导出，保留链接状态备份。
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -141,6 +149,8 @@
 - GitHub 远程 `main` 已更新为本地整理后的正确项目结构。
 - GitHub CLI `gh` 已安装，但 GitHub OAuth token 交换在本机网络下超时，CLI 仍未登录；当前已改用 SSH remote 完成 push。
 - 当前环境访问 GitHub release 下载通道超时，无法由我自动补装 `gh`。
+- YouTube 视频链接在当前命令行网络下不能可靠判定，需后续用浏览器或可访问 YouTube 的网络复核。
+- 抖音精选视频链接当前返回 404，后续应替换为可信来源或删除对应推荐。
 - Vercel 项目远端设置仍显示 `Framework Preset: Other`，但仓库内 `vercel.json` 已显式覆盖 Next.js 部署配置；后续 GitHub 自动部署应保留该文件。
 - 本机 `curl` 访问 Vercel 域名仍出现超时，疑似本机网络到 Vercel 边缘节点不稳定；Vercel CLI inspect 与 Chrome 标签标题已验证部署可用。
 - 不应在聊天中索要或保存 Vercel 密码、验证码或长期 token；认证应由用户在 Vercel 官方页面完成。
@@ -154,18 +164,18 @@
 
 ## 待办事项
 
-1. 提交并推送本轮“GitHub push 已完成”的状态更新。
-2. 确认 Vercel 是否已因 GitHub push 触发新部署；如未触发，当前 Vercel CLI 直传部署仍为 `Ready`。
-3. 定期巡检外部视频链接。
+1. 提交并推送本轮“视频链接巡检与状态标记”的代码、数据和状态文件更新。
+2. 确认 Vercel 是否因 GitHub push 触发新部署；如未触发，当前 Vercel CLI 直传部署仍为 `Ready`。
+3. 定期巡检外部视频链接，优先处理当前标记为“疑似失效”的抖音链接。
 4. 可选增强：设计完整学习进度中心。
 
 ## 下一步行动
 
-当前下一步为“提交并推送最终状态更新”：
+当前下一步为“提交并推送视频链接巡检更新”：
 
-- 目标：将状态文件中 GitHub push 完成记录提交并同步到 GitHub。
-- 输入：当前项目状态文件。
-- 输出：GitHub 远程仓库包含最新状态记录。
+- 目标：将视频链接状态、页面状态徽标、Markdown 内容备份和项目状态记录提交并同步到 GitHub。
+- 输入：`data/videos.json`、`content/videos.md`、`components/VideoCenterClient.tsx`、`types/content.ts` 和项目状态文件。
+- 输出：GitHub 远程仓库包含最新视频链接健康状态，Vercel 可自动构建。
 - 验收标准：`git push` 成功，`origin/main` 指向最新提交，Vercel 主域名仍为 `Ready`。
 
 ## 最近验证
@@ -223,3 +233,10 @@
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过，生成 14 个 App Router 页面。
+- 2026-06-09 07:13 CST：
+  - `npm run export:content`：通过，已更新 `content/videos.md`。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 14 个 App Router 页面。
+  - `curl -I http://localhost:3000/videos`：本地视频页返回 200。
+  - 本地 `next dev -p 3000` 验证完成后已停止。

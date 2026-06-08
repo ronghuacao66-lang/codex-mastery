@@ -37,6 +37,17 @@
 我准备交给 Codex 的第一个小任务：
 
 
+**linkStatus:**
+
+**status:** ok
+
+**checkedAt:** 2026-06-09
+
+**httpCode:** 200
+
+**note:** 命令行 HTTP 检查可访问。
+
+
 **标签:**
 
 - Codex
@@ -75,6 +86,17 @@
 我还没理解的地方：
 
 我会用 Codex 复刻的练习：
+
+
+**linkStatus:**
+
+**status:** ok
+
+**checkedAt:** 2026-06-09
+
+**httpCode:** 200
+
+**note:** 命令行 HTTP 检查可访问。
 
 
 **标签:**
@@ -117,6 +139,17 @@
 我会写进 AGENTS.md 的规则：
 
 
+**linkStatus:**
+
+**status:** ok
+
+**checkedAt:** 2026-06-09
+
+**httpCode:** 200
+
+**note:** 命令行 HTTP 检查可访问。
+
+
 **标签:**
 
 - Codex CLI
@@ -155,6 +188,17 @@
 应该限制的修改范围：
 
 交付前要检查的内容：
+
+
+**linkStatus:**
+
+**status:** ok
+
+**checkedAt:** 2026-06-09
+
+**httpCode:** 200
+
+**note:** 命令行 HTTP 检查可访问。
 
 
 **标签:**
@@ -197,6 +241,17 @@
 - 禁止事项：
 
 
+**linkStatus:**
+
+**status:** ok
+
+**checkedAt:** 2026-06-09
+
+**httpCode:** 200
+
+**note:** 命令行 HTTP 检查可访问。
+
+
 **标签:**
 
 - AGENTS.md
@@ -235,6 +290,17 @@
 适合团队使用的场景：
 
 需要注意的边界：
+
+
+**linkStatus:**
+
+**status:** ok
+
+**checkedAt:** 2026-06-09
+
+**httpCode:** 200
+
+**note:** 命令行 HTTP 检查可访问。
 
 
 **标签:**
@@ -277,6 +343,17 @@
 我需要补充的上下文：
 
 
+**linkStatus:**
+
+**status:** network_or_timeout
+
+**checkedAt:** 2026-06-09
+
+**httpCode:** 000
+
+**note:** 当前本机命令行到 YouTube 超时，需用浏览器或可访问 YouTube 的网络复核。
+
+
 **标签:**
 
 - OpenAI
@@ -315,6 +392,17 @@
 每次学习后的实操任务：
 
 最终要完成的项目：
+
+
+**linkStatus:**
+
+**status:** network_or_timeout
+
+**checkedAt:** 2026-06-09
+
+**httpCode:** 000
+
+**note:** 当前本机命令行到 YouTube 超时，需用浏览器或可访问 YouTube 的网络复核。
 
 
 **标签:**
@@ -357,6 +445,17 @@
 不适合立即使用的原因：
 
 
+**linkStatus:**
+
+**status:** network_or_timeout
+
+**checkedAt:** 2026-06-09
+
+**httpCode:** 000
+
+**note:** 当前本机命令行到 YouTube 超时，需用浏览器或可访问 YouTube 的网络复核。
+
+
 **标签:**
 
 - Codex 3.0
@@ -395,6 +494,17 @@
 输入是什么：
 输出是什么：
 可以让 Codex 开发的工具：
+
+
+**linkStatus:**
+
+**status:** likely_broken
+
+**checkedAt:** 2026-06-09
+
+**httpCode:** 404
+
+**note:** 命令行 HTTP 检查返回 404，未找到可信替代链接，保留供人工复核。
 
 
 **标签:**
@@ -437,6 +547,17 @@
 输出：
 
 
+**linkStatus:**
+
+**status:** likely_broken
+
+**checkedAt:** 2026-06-09
+
+**httpCode:** 404
+
+**note:** 命令行 HTTP 检查返回 404，未找到可信替代链接，保留供人工复核。
+
+
 **标签:**
 
 - 抖音精选
@@ -450,7 +571,7 @@
 
 **创作者:** OpenAI Academy
 
-**链接:** https://academy.openai.com/public/videos/introduction-to-codex-2025-05-21
+**链接:** https://academy.openai.com/en/public/videos/introduction-to-codex-2026-03-02
 
 **时长:** 官方课程视频
 
@@ -475,6 +596,17 @@
 2. 
 3. 
 我下一步要完成的实操：
+
+
+**linkStatus:**
+
+**status:** ok
+
+**checkedAt:** 2026-06-09
+
+**httpCode:** 200
+
+**note:** 旧链接返回 404，已替换为当前可访问的 OpenAI Academy 官方链接。
 
 
 **标签:**

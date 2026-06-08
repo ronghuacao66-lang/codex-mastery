@@ -12,6 +12,12 @@
     "whyWatch": "作为第一支视频，帮助中国用户用中文环境建立 Codex 的正确第一印象。",
     "learningOutcomes": ["理解 Codex 能做什么", "知道如何开始一个任务", "形成第一次任务委托思路"],
     "noteTemplate": "我看到的 3 个 Codex 使用要点：\n1. \n2. \n3. \n我准备交给 Codex 的第一个小任务：",
+    "linkStatus": {
+      "status": "ok",
+      "checkedAt": "2026-06-09",
+      "httpCode": "200",
+      "note": "命令行 HTTP 检查可访问。"
+    },
     "tags": ["Codex", "新手", "官方", "入门"]
   },
   {
@@ -27,6 +33,12 @@
     "whyWatch": "时长适中，适合一次性建立 Codex 使用全局观，不只是看零散功能。",
     "learningOutcomes": ["理解 Codex 任务流程", "知道如何描述需求", "能跟做一个基础工程任务"],
     "noteTemplate": "这支视频中我最想复用的任务写法：\n\n我还没理解的地方：\n\n我会用 Codex 复刻的练习：",
+    "linkStatus": {
+      "status": "ok",
+      "checkedAt": "2026-06-09",
+      "httpCode": "200",
+      "note": "命令行 HTTP 检查可访问。"
+    },
     "tags": ["Codex", "实操", "长课", "中文"]
   },
   {
@@ -42,6 +54,12 @@
     "whyWatch": "掌握 CLI 思维后，用户更容易理解仓库、命令、验证和自动化的关系。",
     "learningOutcomes": ["理解 CLI 与网页对话的差异", "知道如何把任务交给本地工程环境", "认识命令行验证的重要性"],
     "noteTemplate": "视频中的 CLI 工作流：\n\n我当前项目可以运行的命令：\n\n我会写进 AGENTS.md 的规则：",
+    "linkStatus": {
+      "status": "ok",
+      "checkedAt": "2026-06-09",
+      "httpCode": "200",
+      "note": "命令行 HTTP 检查可访问。"
+    },
     "tags": ["Codex CLI", "命令行", "本地开发", "进阶"]
   },
   {
@@ -57,6 +75,12 @@
     "whyWatch": "能帮助用户从“让 AI 写代码”升级到“让 Codex 在项目里完成工程任务”。",
     "learningOutcomes": ["写出更具体的代码修改任务", "理解修改范围控制", "学习如何审查 Codex 输出"],
     "noteTemplate": "我学到的代码修改 Prompt：\n\n应该限制的修改范围：\n\n交付前要检查的内容：",
+    "linkStatus": {
+      "status": "ok",
+      "checkedAt": "2026-06-09",
+      "httpCode": "200",
+      "note": "命令行 HTTP 检查可访问。"
+    },
     "tags": ["代码生成", "代码修改", "CLI", "工程实践"]
   },
   {
@@ -72,6 +96,12 @@
     "whyWatch": "AGENTS.md 是把一次性经验沉淀成长期工程规则的关键能力。",
     "learningOutcomes": ["理解 AGENTS.md 的作用", "知道哪些规则适合长期保存", "能为项目写第一版 AGENTS.md"],
     "noteTemplate": "我项目里的稳定规则：\n- 技术栈：\n- 数据目录：\n- 验证命令：\n- 禁止事项：",
+    "linkStatus": {
+      "status": "ok",
+      "checkedAt": "2026-06-09",
+      "httpCode": "200",
+      "note": "命令行 HTTP 检查可访问。"
+    },
     "tags": ["AGENTS.md", "项目规则", "上下文", "团队协作"]
   },
   {
@@ -87,6 +117,12 @@
     "whyWatch": "帮助用户理解 Codex 不只是写代码，还能进入代码审查、协作和浏览器工作流。",
     "learningOutcomes": ["了解 Codex 新交互入口", "理解代码审查型任务", "思考团队协作工作流"],
     "noteTemplate": "我会尝试的新工作流：\n\n适合团队使用的场景：\n\n需要注意的边界：",
+    "linkStatus": {
+      "status": "ok",
+      "checkedAt": "2026-06-09",
+      "httpCode": "200",
+      "note": "命令行 HTTP 检查可访问。"
+    },
     "tags": ["Codex 3.0", "Chrome", "Slack", "Code Review"]
   },
   {
@@ -102,6 +138,12 @@
     "whyWatch": "官方视角能帮助用户确认 Codex 的产品定位和基础使用路径。",
     "learningOutcomes": ["建立官方概念框架", "理解 Codex 基本任务模式", "知道如何开始第一次使用"],
     "noteTemplate": "官方视频中的关键概念：\n\n我会立刻尝试的任务：\n\n我需要补充的上下文：",
+    "linkStatus": {
+      "status": "network_or_timeout",
+      "checkedAt": "2026-06-09",
+      "httpCode": "000",
+      "note": "当前本机命令行到 YouTube 超时，需用浏览器或可访问 YouTube 的网络复核。"
+    },
     "tags": ["OpenAI", "官方", "YouTube", "入门"]
   },
   {
@@ -117,6 +159,12 @@
     "whyWatch": "内容完整，适合希望系统掌握 Codex、coding agent 和真实工程流的用户。",
     "learningOutcomes": ["系统学习 Codex 工作方式", "建立 coding agent 认知", "补齐大型任务执行方法"],
     "noteTemplate": "我准备分几次看完：\n\n每次学习后的实操任务：\n\n最终要完成的项目：",
+    "linkStatus": {
+      "status": "network_or_timeout",
+      "checkedAt": "2026-06-09",
+      "httpCode": "000",
+      "note": "当前本机命令行到 YouTube 超时，需用浏览器或可访问 YouTube 的网络复核。"
+    },
     "tags": ["freeCodeCamp", "长课", "AI Coding Agent", "系统学习"]
   },
   {
@@ -132,6 +180,12 @@
     "whyWatch": "适合已经会用 Codex 的用户，了解如何把 Codex 接入更完整的研发协作。",
     "learningOutcomes": ["了解 Codex 新能力", "形成代码审查任务思路", "评估团队协作场景"],
     "noteTemplate": "新能力清单：\n\n适合我团队的能力：\n\n不适合立即使用的原因：",
+    "linkStatus": {
+      "status": "network_or_timeout",
+      "checkedAt": "2026-06-09",
+      "httpCode": "000",
+      "note": "当前本机命令行到 YouTube 超时，需用浏览器或可访问 YouTube 的网络复核。"
+    },
     "tags": ["Codex 3.0", "YouTube", "协作", "代码审查"]
   },
   {
@@ -147,6 +201,12 @@
     "whyWatch": "帮助用户跳出纯代码视角，理解 Codex 可以参与多媒体和工具链自动化。",
     "learningOutcomes": ["理解 Codex 的工具化想象空间", "思考跨工具工作流", "找到一个自动化办公练习方向"],
     "noteTemplate": "这个短视频启发我的自动化场景：\n\n输入是什么：\n输出是什么：\n可以让 Codex 开发的工具：",
+    "linkStatus": {
+      "status": "likely_broken",
+      "checkedAt": "2026-06-09",
+      "httpCode": "404",
+      "note": "命令行 HTTP 检查返回 404，未找到可信替代链接，保留供人工复核。"
+    },
     "tags": ["抖音精选", "Codex", "视频工具", "自动化"]
   },
   {
@@ -162,6 +222,12 @@
     "whyWatch": "虽然不是 Codex 专属，但能帮助中国用户建立 Prompt 结构意识，再迁移到 Codex 任务委托。",
     "learningOutcomes": ["理解 Prompt 基本结构", "知道上下文的重要性", "能迁移到 GCCD 写法"],
     "noteTemplate": "我会迁移到 Codex 的 Prompt 结构：\n角色：\n任务：\n上下文：\n输出：",
+    "linkStatus": {
+      "status": "likely_broken",
+      "checkedAt": "2026-06-09",
+      "httpCode": "404",
+      "note": "命令行 HTTP 检查返回 404，未找到可信替代链接，保留供人工复核。"
+    },
     "tags": ["抖音精选", "Prompt", "入门", "结构化"]
   },
   {
@@ -169,7 +235,7 @@
     "title": "Introduction to Codex",
     "platform": "OpenAI Academy",
     "creator": "OpenAI Academy",
-    "url": "https://academy.openai.com/public/videos/introduction-to-codex-2025-05-21",
+    "url": "https://academy.openai.com/en/public/videos/introduction-to-codex-2026-03-02",
     "duration": "官方课程视频",
     "stage": "入门",
     "topic": "官方课程",
@@ -177,6 +243,12 @@
     "whyWatch": "比碎片视频更适合作为学习路径起点，能帮助用户理解 Codex 在 OpenAI 体系中的定位。",
     "learningOutcomes": ["理解官方课程脉络", "建立 Codex 基础概念", "准备后续实操任务"],
     "noteTemplate": "官方课程里的 3 个关键词：\n1. \n2. \n3. \n我下一步要完成的实操：",
+    "linkStatus": {
+      "status": "ok",
+      "checkedAt": "2026-06-09",
+      "httpCode": "200",
+      "note": "旧链接返回 404，已替换为当前可访问的 OpenAI Academy 官方链接。"
+    },
     "tags": ["OpenAI Academy", "官方", "课程", "入门"]
   }
 ]

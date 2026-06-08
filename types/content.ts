@@ -126,6 +126,12 @@ export type VideoItem = {
   whyWatch: string;
   learningOutcomes: string[];
   noteTemplate: string;
+  linkStatus?: {
+    status: "ok" | "network_or_timeout" | "manual_review" | "likely_broken";
+    checkedAt: string;
+    httpCode?: string;
+    note: string;
+  };
   tags: string[];
 };
 

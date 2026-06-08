@@ -36,4 +36,5 @@ Codex Mastery
 ## 当前可信来源
 
 - 本文件及 `TASK_STATE.md`、`DECISIONS.md`、`CHANGELOG_AI.md` 为项目状态可信来源。
-- 当前目录不是 Git 仓库；无法通过 Git 历史恢复变更来源。
+- 当前目录已初始化为 Git 仓库，主分支为 `main`，远程为 `git@github.com:ronghuacao66-lang/codex-mastery.git`。
+- 当前公网部署地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。

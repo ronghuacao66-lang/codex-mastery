@@ -6,7 +6,7 @@
 
 ## 当前目标
 
-按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查，正在执行 GitHub + Vercel 上线准备；本地构建已通过，Vercel 直接公网部署已完成，本轮部署修复已提交到本地 Git，远程上传历史已合并入本地提交图，GitHub 推送已完成。
+按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查、GitHub + Vercel 上线准备；本地构建已通过，Vercel 直接公网部署已完成，GitHub 推送已完成。当前正在收尾视频精选链接巡检与交互状态标记。
 
 ## 当前完成
 
@@ -49,11 +49,18 @@
 - 已生成项目专用 SSH key，公钥已复制到剪贴板，等待用户登录 GitHub 并添加。
 - 2026-06-09 06:23 CST 已再次测试 SSH，结果仍为 `Permission denied (publickey)`；已重新复制公钥到剪贴板并打开 GitHub SSH key 添加页面。
 - 2026-06-09 06:50 CST SSH 认证已通过，已切换 remote 到 SSH，并成功执行 `git push -u origin main`。
+- 2026-06-09 07:13 CST 已完成视频精选链接巡检：
+  - Bilibili 链接标记为“链接可访问”。
+  - YouTube 链接在当前本机命令行网络下超时，标记为“网络不可判定”。
+  - 抖音精选链接返回 404，标记为“疑似失效”。
+  - OpenAI Academy 旧链接返回 404，已替换为当前可访问的官方链接。
+  - 视频卡片已显示链接状态徽标。
+  - `content/videos.md` 已通过 `npm run export:content` 更新。
 
 ## 当前进度
 
-- 当前任务：GitHub + Vercel 上线准备。
-- 任务状态：本地构建通过；Vercel 直接部署完成；本轮部署修复已提交到本地 Git；远程历史已合并；GitHub push 已完成；当前正在提交最终状态更新。
+- 当前任务：视频精选链接巡检与交互状态标记。
+- 任务状态：代码和数据已完成；类型检查、lint、构建已通过；当前正在提交并推送更新。
 
 ## 当前风险
 
@@ -63,6 +70,8 @@
 - 不建议在 dev server 运行时直接混用 `npm run build` 产物。
 - GitHub CLI 已安装，但当前本机 OAuth token 交换超时，CLI 仍未登录。
 - 项目专用 SSH key 已生成并配置，SSH 认证已通过。
+- YouTube 链接当前只是本机命令行网络超时，不能判定为失效，需要后续在可访问 YouTube 的浏览器或网络环境复核。
+- 抖音精选链接当前返回 404，后续应寻找可信替代链接或删除对应推荐。
 - `release/` 是本地交付物目录，已加入 `.gitignore`，不会提交进仓库。
 - 当前 remote 已配置，下一步只差 GitHub 认证和仓库可访问性。
 - SSH remote 路径也需要先配置 GitHub SSH key。
@@ -81,7 +90,7 @@
 
 ## 下一步动作
 
-当前需要提交并推送本轮最终状态更新。
+当前需要提交并推送本轮视频链接巡检、页面状态徽标和状态文件更新。
 
 ## 最近验证
 
@@ -119,3 +128,10 @@
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过。
+- 2026-06-09 07:13 CST：
+  - 视频链接巡检：完成。
+  - `npm run export:content`：通过。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+  - 本地 `/videos` 页面：返回 200。

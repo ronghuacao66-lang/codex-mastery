@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, CheckCircle2, Clock3, Copy, PlayCircle, Search, Sparkles, Video } from "lucide-react";
+import { AlertTriangle, ArrowUpRight, CheckCircle2, Clock3, Copy, PlayCircle, Search, Sparkles, Video } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { CopyButton } from "@/components/CopyButton";
 import { EmptyState } from "@/components/EmptyState";
@@ -17,6 +17,20 @@ const platformStyles: Record<VideoItem["platform"], string> = {
   YouTube: "from-red-500/18 to-zinc-500/10",
   "抖音精选": "from-violet/18 to-accent/10",
   "OpenAI Academy": "from-emerald-500/16 to-accent/10"
+};
+
+const linkStatusStyles: Record<NonNullable<VideoItem["linkStatus"]>["status"], string> = {
+  ok: "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+  network_or_timeout: "border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300",
+  manual_review: "border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300",
+  likely_broken: "border-rose-500/30 bg-rose-500/10 text-rose-700 dark:text-rose-300"
+};
+
+const linkStatusLabels: Record<NonNullable<VideoItem["linkStatus"]>["status"], string> = {
+  ok: "链接可访问",
+  network_or_timeout: "网络不可判定",
+  manual_review: "需人工复核",
+  likely_broken: "疑似失效"
 };
 
 export function VideoCenterClient({ items }: { items: VideoItem[] }) {
@@ -141,6 +155,7 @@ export function VideoCenterClient({ items }: { items: VideoItem[] }) {
         <div className="grid gap-4 xl:grid-cols-2">
           {filtered.map((item) => {
             const done = watchedSet.has(item.id);
+            const linkStatus = item.linkStatus;
             return (
               <article
                 key={item.id}
@@ -153,6 +168,18 @@ export function VideoCenterClient({ items }: { items: VideoItem[] }) {
                       <div className="flex flex-wrap items-center gap-2">
                         <Tag>{item.platform}</Tag>
                         <Tag>{item.stage}</Tag>
+                        {linkStatus ? (
+                          <span
+                            className={cn(
+                              "inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-semibold",
+                              linkStatusStyles[linkStatus.status]
+                            )}
+                            title={`${linkStatus.note}（${linkStatus.checkedAt}${linkStatus.httpCode ? ` · HTTP ${linkStatus.httpCode}` : ""}）`}
+                          >
+                            {linkStatus.status === "ok" ? <CheckCircle2 className="h-3.5 w-3.5" /> : <AlertTriangle className="h-3.5 w-3.5" />}
+                            {linkStatusLabels[linkStatus.status]}
+                          </span>
+                        ) : null}
                         <span className="inline-flex items-center gap-1 text-xs text-muted">
                           <Clock3 className="h-3.5 w-3.5" />
                           {item.duration}
