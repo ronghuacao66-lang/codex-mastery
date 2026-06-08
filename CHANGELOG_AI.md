@@ -161,3 +161,28 @@
 - 本机没有 GitHub CLI，远程仓库创建和 push 暂时阻塞。
 - GitHub 账号注册需要用户本人完成，不能由自动化代办。
 - 当前 Git 提交身份为仓库本地配置，不影响全局 Git 配置。
+
+## 2026-06-08 19:58 GitHub CLI 安装受网络阻塞
+
+### 修改文件
+
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 记录继续远程发布时的阻塞点。
+- 记录两次 `gh` 安装尝试失败：
+  - `brew install gh` 卡在 Homebrew 自动更新，随后 API 请求连接被重置。
+  - `HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install gh` 卡在克隆 `homebrew-core`，最终出现 `early EOF`。
+- 清理半截 `homebrew-core` tap 目录，避免 Homebrew 留下不完整状态。
+
+### 修改原因
+
+用户要求继续 GitHub + Vercel 上线准备。远程仓库创建需要 GitHub CLI 或明确的 GitHub 仓库地址，但当前机器没有 `gh`，安装又受网络阻塞。
+
+### 风险说明
+
+- 本地 Git 仓库和首次提交已完成，不受影响。
+- 远程 GitHub 仓库创建和 Vercel 导入仍需用户完成 GitHub CLI 登录，或提供 GitHub 空仓库地址。

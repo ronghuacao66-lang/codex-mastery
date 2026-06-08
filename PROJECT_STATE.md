@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-08 19:50 CST
+2026-06-08 19:58 CST
 
 ## 当前目标
 
@@ -70,6 +70,9 @@
   - 已配置仓库本地提交身份：`Codex Mastery <codex-mastery@local>`。
   - 已完成首次提交：`Initial Codex Mastery deployment`。
   - 本机未安装 `gh` GitHub CLI，暂不能自动创建 GitHub 远程仓库或推送。
+  - 已尝试通过 Homebrew 安装 `gh`，但网络访问 Homebrew/GitHub 资源失败：
+    - `formula.jws.json` 下载连接被重置。
+    - `homebrew-core` 克隆出现 `early EOF`。
 - 本机 macOS 电源策略已调整，降低 Codex 长任务因合盖或空闲睡眠中断的风险：
   - Battery Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
   - AC Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
@@ -80,13 +83,14 @@
 - 第一项任务“建立项目状态与决策记录”：已完成。
 - 第二项任务“项目健康检查”：已完成。
 - 第三项任务“移动端与交互体验检查”：已完成。
-- 第四项任务“GitHub + Vercel 上线准备”：本地 Git 提交已完成，远程推送阻塞于 GitHub CLI/仓库地址。
+- 第四项任务“GitHub + Vercel 上线准备”：本地 Git 提交已完成，远程推送阻塞于 GitHub CLI 安装/登录或 GitHub 仓库地址。
 - 尚未开始新的业务功能开发或大规模重构。
 
 ## 当前风险
 
 - 当前目录已初始化 Git，但尚未推送到 GitHub 远程仓库。
 - GitHub CLI `gh` 未安装，远程仓库创建和自动推送暂时阻塞。
+- Homebrew 安装 `gh` 失败，当前需要用户手动完成 GitHub CLI 安装/登录，或提供 GitHub 空仓库 URL。
 - `localhost:3000` 依赖本机开发服务；服务停止后本地网址会打不开。
 - 公网稳定访问仍依赖 GitHub + Vercel 部署完成。
 - 外部视频链接可能随平台规则变化失效，需要后续定期巡检。

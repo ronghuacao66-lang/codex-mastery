@@ -21,12 +21,13 @@
 - 已初始化本地 Git 仓库，分支为 `main`。
 - 已完成本地首次提交：`Initial Codex Mastery deployment`。
 - 本机未安装 `gh` GitHub CLI，远程仓库创建和自动推送暂时阻塞。
+- 已尝试通过 Homebrew 安装 `gh`，但因 Homebrew/GitHub 网络失败未完成。
 - 已按用户要求设置本机 macOS 电源策略，降低 Codex 长任务因合盖或空闲睡眠中断的风险。
 
 ## 当前进度
 
 - 当前任务：GitHub + Vercel 上线准备。
-- 任务状态：进行中，本地 Git 初始化和首次提交已完成，远程推送暂时阻塞。
+- 任务状态：远程推送暂时阻塞；本地 Git 初始化和首次提交已完成。
 
 ## 当前风险
 
@@ -35,6 +36,7 @@
 - 后续公网访问需要完成 GitHub + Vercel 部署。
 - 不建议在 dev server 运行时直接混用 `npm run build` 产物。
 - 本机缺少 GitHub CLI，无法自动创建远程仓库。
+- Homebrew 安装 `gh` 失败，需要手动安装/登录 GitHub CLI，或提供 GitHub 空仓库地址。
 - 合盖长时间运行 Codex 会增加发热和耗电风险，建议连接电源并保持散热。
 
 ## 本轮环境维护
