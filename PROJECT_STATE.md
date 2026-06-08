@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-08 20:30 CST
+2026-06-08 20:40 CST
 
 ## 当前目标
 
@@ -78,6 +78,8 @@
     - `origin`: `https://github.com/ronghuacao66-lang/codex-mastery.git`
   - 已尝试 `git push -u origin main`，但失败：
     - `fatal: could not read Username for 'https://github.com': terminal prompts disabled`
+  - 已尝试 GitHub SSH 认证，但失败：
+    - `git@github.com: Permission denied (publickey).`
 - 本机 macOS 电源策略已调整，降低 Codex 长任务因合盖或空闲睡眠中断的风险：
   - Battery Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
   - AC Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
@@ -97,6 +99,7 @@
 - GitHub CLI `gh` 未安装，远程仓库创建和自动推送暂时阻塞。
 - Homebrew 安装 `gh` 失败，当前需要用户手动完成 GitHub CLI 安装/登录，或提供 GitHub 空仓库 URL。
 - Git remote 已配置，但当前机器没有 GitHub 认证凭据，无法 push。
+- 当前机器也没有可用的 GitHub SSH key，无法通过 SSH push。
 - `localhost:3000` 依赖本机开发服务；服务停止后本地网址会打不开。
 - 公网稳定访问仍依赖 GitHub + Vercel 部署完成。
 - 外部视频链接可能随平台规则变化失效，需要后续定期巡检。
@@ -107,9 +110,9 @@
 ## 待办事项
 
 1. 等待用户确认下一项任务。
-2. 用户完成 GitHub 登录认证后，继续执行 `git push -u origin main`。
+2. 用户完成 GitHub HTTPS token/credential 认证，或配置 GitHub SSH key 后，继续执行 `git push -u origin main`。
 3. 若暂时无法使用 Git CLI 推送，可用 `release/codex-mastery-github-ready.zip` 通过 GitHub 网页手动上传。
-4. 推送 GitHub 后导入 Vercel。
+4. 推送或上传 GitHub 后导入 Vercel。
 5. 定期巡检外部视频链接。
 6. 可选增强：设计完整学习进度中心。
 7. 任务变长时创建 `HANDOVER.md`。

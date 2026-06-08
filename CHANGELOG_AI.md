@@ -211,3 +211,27 @@
 
 - zip 包是本地交付物，不在 Git 历史中。
 - 手动上传 GitHub 不保留本地 Git 提交历史；如果需要保留提交历史，仍建议安装/登录 `gh` 或提供远程仓库 URL 后用 `git push`。
+
+## 2026-06-08 20:40 GitHub HTTPS 与 SSH 认证均不可用
+
+### 修改文件
+
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 记录已配置 GitHub remote：`https://github.com/ronghuacao66-lang/codex-mastery.git`。
+- 记录 HTTPS push 失败原因：当前机器没有可用 GitHub 凭据。
+- 记录 SSH 认证失败原因：`git@github.com: Permission denied (publickey).`
+
+### 修改原因
+
+用户提供 GitHub 用户名并要求继续。已尝试 HTTPS 和 SSH 两条不依赖 `gh` 的远程发布路径，但当前机器缺少 GitHub 认证能力。
+
+### 风险说明
+
+- 本地 Git 历史完整，项目本身可运行。
+- GitHub 远程 push 仍阻塞在认证层。
+- 继续远程发布需要用户完成 HTTPS token/credential 认证、配置 SSH key，或通过 GitHub 网页上传 zip。

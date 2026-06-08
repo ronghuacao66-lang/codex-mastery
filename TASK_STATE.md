@@ -25,6 +25,7 @@
 - 已生成 GitHub 手动上传备用包：`release/codex-mastery-github-ready.zip`。
 - 已配置远程地址：`https://github.com/ronghuacao66-lang/codex-mastery.git`。
 - 已尝试 push，但因当前机器没有 GitHub 认证凭据失败。
+- 已尝试 SSH 方式访问 GitHub，但因没有可用 public key 失败。
 - 已按用户要求设置本机 macOS 电源策略，降低 Codex 长任务因合盖或空闲睡眠中断的风险。
 
 ## 当前进度
@@ -42,6 +43,7 @@
 - Homebrew 安装 `gh` 失败，需要手动安装/登录 GitHub CLI，或提供 GitHub 空仓库地址。
 - `release/` 是本地交付物目录，已加入 `.gitignore`，不会提交进仓库。
 - 当前 remote 已配置，下一步只差 GitHub 认证和仓库可访问性。
+- SSH remote 路径也需要先配置 GitHub SSH key。
 - 合盖长时间运行 Codex 会增加发热和耗电风险，建议连接电源并保持散热。
 
 ## 本轮环境维护
@@ -52,5 +54,5 @@
 
 ## 下一步动作
 
-需要完成 GitHub 认证，才能继续远程 push 和 Vercel 导入。
+需要完成 GitHub HTTPS token/credential 认证，或配置 GitHub SSH key，才能继续远程 push 和 Vercel 导入。
 如果暂时无法使用 Git CLI 推送，可以通过 GitHub 网页上传 `release/codex-mastery-github-ready.zip` 中的项目文件。
