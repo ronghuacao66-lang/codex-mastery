@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 06:23 CST
+2026-06-09 06:50 CST
 
 ## 当前状态
 
@@ -34,6 +34,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 06:23 CST 再次测试 `ssh -o BatchMode=yes -T git@github.com`，仍返回 `Permission denied (publickey)`。已重新复制公钥到剪贴板，并再次打开 GitHub SSH key 添加页面。
 
+2026-06-09 06:50 CST 用户添加 SSH key 后，`ssh -T git@github.com` 已认证通过。已将 `origin` 切换为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，并成功执行 `git push -u origin main`。远程 `origin/main` 当前指向 `55cceb3`。
+
 ## 已完成内容
 
 - 项目状态文件已建立：
@@ -63,8 +65,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 ## 未完成内容
 
-- 尚未完成 GitHub push。
-- GitHub HTTPS push 仍因本机没有可用凭据失败。
+- GitHub push 已完成。
+- 本轮最终状态更新尚未提交和推送。
 - GitHub CLI Web 授权仍因 OAuth token 交换超时失败。
 - 项目专用 SSH 公钥尚未添加到 GitHub 账号。
 
@@ -84,17 +86,14 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - Vercel 远端项目设置仍显示 `Framework Preset: Other`，后续部署必须保留 `vercel.json`。
 - GitHub 远程推送仍依赖 GitHub 认证。
 - 远程 GitHub 页面在 push 成功前仍显示旧的网页上传结构。
-- SSH 方案需要用户在 GitHub 账号中添加本机生成的公钥。
+- GitHub CLI OAuth 仍不可用，但 SSH remote 已可用。
 - 本地 `localhost:3000` 依赖 dev server；执行生产构建前可能需要停止 dev server 并清理 `.next`。
 
 ## 下一步计划
 
-1. 用户在 Chrome 打开的 GitHub 页面登录账号。
-2. 在 GitHub SSH key 添加页粘贴剪贴板中的公钥并保存。
-3. 执行 `ssh -T git@github.com` 验证认证。
-4. 将 remote 改为 SSH：`git remote set-url origin git@github.com:ronghuacao66-lang/codex-mastery.git`。
-5. 执行 `git push -u origin main`。
-6. 如无法通过 Git CLI 推送，可通过 GitHub 网页上传 `release/codex-mastery-github-ready.zip` 中的最新项目文件。
+1. 提交并推送本轮最终状态更新。
+2. 可选：检查 Vercel 是否因 GitHub push 触发新部署。
+3. 可选：定期巡检外部视频链接。
 
 ## 最近验证
 
@@ -122,6 +121,13 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 2026-06-09 06:23 CST：
   - SSH GitHub 认证：仍失败，公钥尚未添加或尚未生效。
   - 项目专用 SSH 公钥：已重新复制到剪贴板。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+- 2026-06-09 06:50 CST：
+  - SSH GitHub 认证：通过。
+  - `git push -u origin main`：成功。
+  - Vercel 主域名 inspect：`Ready`。
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过。

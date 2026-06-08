@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 06:23 CST
+2026-06-09 06:50 CST
 
 ## 当前目标
 
@@ -71,6 +71,13 @@
 - 已配置 `~/.ssh/config`，让 `github.com` 使用该项目专用 SSH key。
 - 2026-06-09 06:23 CST 已再次测试 SSH，结果仍为 `Permission denied (publickey)`，说明公钥尚未添加到 GitHub 或尚未生效。
 - 2026-06-09 06:23 CST 已重新将项目专用 SSH 公钥复制到剪贴板，并再次打开 GitHub SSH key 添加页面。
+- 2026-06-09 06:50 CST 已确认 GitHub SSH 认证通过：
+  - `ssh -T git@github.com` 返回 `Hi ronghuacao66-lang! You've successfully authenticated, but GitHub does not provide shell access.`
+- 已将 `origin` 切换为 SSH remote：
+  - `git@github.com:ronghuacao66-lang/codex-mastery.git`
+- 已完成 GitHub push：
+  - `git push -u origin main`
+  - 远程 `origin/main` 当前指向 `55cceb3`
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -106,8 +113,8 @@
     - `formula.jws.json` 下载连接被重置。
     - `homebrew-core` 克隆出现 `early EOF`。
   - 已生成 GitHub 手动上传备用包：`release/codex-mastery-github-ready.zip`；2026-06-09 01:36 CST 已重新生成，包含 `vercel.json`。
-  - 已根据用户提供的 GitHub 用户名配置远程地址：
-    - `origin`: `https://github.com/ronghuacao66-lang/codex-mastery.git`
+  - 已根据用户提供的 GitHub 用户名配置并最终切换远程地址：
+    - `origin`: `git@github.com:ronghuacao66-lang/codex-mastery.git`
   - 已尝试 `git push -u origin main`，但失败：
     - `fatal: could not read Username for 'https://github.com': terminal prompts disabled`
     - 2026-06-09 01:35 CST 再次尝试失败：`fatal: could not read Username for 'https://github.com': Device not configured`
@@ -115,7 +122,7 @@
     - `git@github.com: Permission denied (publickey).`
   - 已尝试直接下载 GitHub CLI release `v2.93.0`，但连接 GitHub 443 超时。
   - 已确认 `gh auth status` 当前仍未登录，原因是 OAuth token 交换超时。
-  - 已生成并配置项目专用 SSH key，但公钥尚未添加到 GitHub，`ssh -T git@github.com` 当前仍返回 `Permission denied (publickey)`。
+  - 已生成并配置项目专用 SSH key，公钥已添加到 GitHub，SSH 认证通过。
 - 本机 macOS 电源策略已调整，降低 Codex 长任务因合盖或空闲睡眠中断的风险：
   - Battery Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
   - AC Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
@@ -126,17 +133,13 @@
 - 第一项任务“建立项目状态与决策记录”：已完成。
 - 第二项任务“项目健康检查”：已完成。
 - 第三项任务“移动端与交互体验检查”：已完成。
-- 第四项任务“GitHub + Vercel 上线准备”：本地构建验证已通过；Vercel 直接部署已完成；本轮部署修复已提交到本地 Git；远程上传历史已合并入本地提交图；GitHub 推送仍阻塞于认证。
+- 第四项任务“GitHub + Vercel 上线准备”：本地构建验证已通过；Vercel 直接部署已完成；本轮部署修复已提交到本地 Git；远程上传历史已合并入本地提交图；GitHub 推送已完成。
 - 尚未开始新的业务功能开发或大规模重构。
 
 ## 当前风险
 
-- 当前目录已初始化 Git，但尚未成功推送到 GitHub 远程仓库。
-- GitHub 远程 `main` 当前不是最终结构，仍是网页上传产生的旧结构；本地 `main` 已整理为可普通 push 的正确结构。
-- GitHub CLI `gh` 已安装，但 GitHub OAuth token 交换在本机网络下超时，CLI 仍未登录。
-- GitHub SSH key 已在本机生成并配置，但用户尚未将公钥添加到 GitHub 账号。
-- Git remote 已配置，但当前机器没有 GitHub 认证凭据，无法 push。
-- 当前机器也没有可用的 GitHub SSH key，无法通过 SSH push。
+- GitHub 远程 `main` 已更新为本地整理后的正确项目结构。
+- GitHub CLI `gh` 已安装，但 GitHub OAuth token 交换在本机网络下超时，CLI 仍未登录；当前已改用 SSH remote 完成 push。
 - 当前环境访问 GitHub release 下载通道超时，无法由我自动补装 `gh`。
 - Vercel 项目远端设置仍显示 `Framework Preset: Other`，但仓库内 `vercel.json` 已显式覆盖 Next.js 部署配置；后续 GitHub 自动部署应保留该文件。
 - 本机 `curl` 访问 Vercel 域名仍出现超时，疑似本机网络到 Vercel 边缘节点不稳定；Vercel CLI inspect 与 Chrome 标签标题已验证部署可用。
@@ -151,21 +154,19 @@
 
 ## 待办事项
 
-1. 用户在 Chrome 打开的 GitHub 页面登录账号，并将剪贴板中的公钥添加为 SSH key。
-2. 添加完成后执行 `ssh -T git@github.com` 验证 SSH 认证。
-3. 验证通过后将 remote 改为 SSH 并执行 `git push -u origin main`。
-4. 若暂时无法使用 Git CLI 推送，可用 `release/codex-mastery-github-ready.zip` 通过 GitHub 网页手动上传最新项目文件。
-5. 定期巡检外部视频链接。
-6. 可选增强：设计完整学习进度中心。
+1. 提交并推送本轮“GitHub push 已完成”的状态更新。
+2. 确认 Vercel 是否已因 GitHub push 触发新部署；如未触发，当前 Vercel CLI 直传部署仍为 `Ready`。
+3. 定期巡检外部视频链接。
+4. 可选增强：设计完整学习进度中心。
 
 ## 下一步行动
 
-当前下一步为“等待用户添加 GitHub SSH key 后完成 push”：
+当前下一步为“提交并推送最终状态更新”：
 
-- 目标：将本地 `main` 分支推送到 `git@github.com:ronghuacao66-lang/codex-mastery.git`。
-- 输入：用户在 GitHub 账号中添加本机生成的公钥。
-- 输出：GitHub 远程仓库包含最新项目文件和 `vercel.json`。
-- 验收标准：`ssh -T git@github.com` 认证通过，`git push -u origin main` 成功，GitHub 仓库可访问。
+- 目标：将状态文件中 GitHub push 完成记录提交并同步到 GitHub。
+- 输入：当前项目状态文件。
+- 输出：GitHub 远程仓库包含最新状态记录。
+- 验收标准：`git push` 成功，`origin/main` 指向最新提交，Vercel 主域名仍为 `Ready`。
 
 ## 最近验证
 
@@ -211,6 +212,14 @@
 - 2026-06-09 06:23 CST：
   - `ssh -o BatchMode=yes -T git@github.com`：失败，`Permission denied (publickey)`。
   - `pbcopy < ~/.ssh/codex_maturity_github_ed25519.pub`：已重新复制公钥到剪贴板。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 14 个 App Router 页面。
+- 2026-06-09 06:50 CST：
+  - `ssh -T git@github.com`：认证通过。
+  - `git remote set-url origin git@github.com:ronghuacao66-lang/codex-mastery.git`：已完成。
+  - `git push -u origin main`：成功，`origin/main` 指向 `55cceb3`。
+  - `npx --yes vercel@54.9.1 inspect ronghuacao66-lang-codex-mastery.vercel.app --scope crh-s-projects`：主域名 Production Deployment 状态为 `Ready`。
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过，生成 14 个 App Router 页面。

@@ -6,7 +6,7 @@
 
 ## 当前目标
 
-按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查，正在执行 GitHub + Vercel 上线准备；本地构建已通过，Vercel 直接公网部署已完成，本轮部署修复已提交到本地 Git，远程上传历史已合并入本地提交图，GitHub 推送仍等待用户添加 SSH key 或完成认证。
+按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查，正在执行 GitHub + Vercel 上线准备；本地构建已通过，Vercel 直接公网部署已完成，本轮部署修复已提交到本地 Git，远程上传历史已合并入本地提交图，GitHub 推送已完成。
 
 ## 当前完成
 
@@ -48,21 +48,21 @@
 - 已尝试 GitHub CLI Web 授权，但 OAuth token 交换超时。
 - 已生成项目专用 SSH key，公钥已复制到剪贴板，等待用户登录 GitHub 并添加。
 - 2026-06-09 06:23 CST 已再次测试 SSH，结果仍为 `Permission denied (publickey)`；已重新复制公钥到剪贴板并打开 GitHub SSH key 添加页面。
+- 2026-06-09 06:50 CST SSH 认证已通过，已切换 remote 到 SSH，并成功执行 `git push -u origin main`。
 
 ## 当前进度
 
 - 当前任务：GitHub + Vercel 上线准备。
-- 任务状态：本地构建通过；Vercel 直接部署完成；本轮部署修复已提交到本地 Git；远程历史已合并；GitHub push 阻塞于用户添加 SSH key 或完成认证。
+- 任务状态：本地构建通过；Vercel 直接部署完成；本轮部署修复已提交到本地 Git；远程历史已合并；GitHub push 已完成；当前正在提交最终状态更新。
 
 ## 当前风险
 
-- 当前目录已初始化 Git，但尚未推送到 GitHub 远程。
-- GitHub 远程当前仍是旧网页上传结构，本地 `main` 已准备好以普通 fast-forward push 覆盖为正确结构。
+- GitHub 远程已经推送成功，当前仅剩本轮最终状态更新需要再次提交和推送。
 - 本地访问依赖 `next dev -p 3000` 持续运行。
 - 后续公网访问需要完成 GitHub + Vercel 部署。
 - 不建议在 dev server 运行时直接混用 `npm run build` 产物。
 - GitHub CLI 已安装，但当前本机 OAuth token 交换超时，CLI 仍未登录。
-- 项目专用 SSH key 已生成并配置，但公钥尚未添加到 GitHub。
+- 项目专用 SSH key 已生成并配置，SSH 认证已通过。
 - `release/` 是本地交付物目录，已加入 `.gitignore`，不会提交进仓库。
 - 当前 remote 已配置，下一步只差 GitHub 认证和仓库可访问性。
 - SSH remote 路径也需要先配置 GitHub SSH key。
@@ -81,8 +81,7 @@
 
 ## 下一步动作
 
-GitHub 侧仍需要用户在网页中添加本机生成的 SSH 公钥，或完成 HTTPS token/credential 认证，才能继续远程 push。
-如果暂时无法使用 Git CLI 推送，可以通过 GitHub 网页上传 `release/codex-mastery-github-ready.zip` 中的最新项目文件。
+当前需要提交并推送本轮最终状态更新。
 
 ## 最近验证
 
@@ -110,6 +109,13 @@ GitHub 侧仍需要用户在网页中添加本机生成的 SSH 公钥，或完�
 - 2026-06-09 06:23 CST：
   - SSH GitHub 认证：仍失败，公钥尚未添加或尚未生效。
   - 项目专用 SSH 公钥：已重新复制到剪贴板。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过。
+- 2026-06-09 06:50 CST：
+  - SSH GitHub 认证：通过。
+  - `git push -u origin main`：成功。
+  - Vercel 主域名 inspect：`Ready`。
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过。

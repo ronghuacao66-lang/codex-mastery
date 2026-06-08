@@ -1,5 +1,41 @@
 # CHANGELOG_AI
 
+## 2026-06-09 06:50 完成 GitHub SSH 推送
+
+### 修改文件
+
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 验证 GitHub SSH 认证通过。
+- 将 Git remote `origin` 切换为 SSH 地址：`git@github.com:ronghuacao66-lang/codex-mastery.git`。
+- 成功执行 `git push -u origin main`。
+- 确认远程 `origin/main` 指向本地提交 `55cceb3`。
+- 确认 Vercel 主域名 Production Deployment 仍为 `Ready`。
+
+### 修改原因
+
+用户已在 GitHub 添加 SSH key，GitHub 远程同步阻塞解除。本轮完成 GitHub push，使远程仓库从旧的网页上传结构更新为当前正确项目结构。
+
+### 验证结果
+
+- `ssh -T git@github.com`：认证通过。
+- `git push -u origin main`：成功。
+- `git ls-remote origin HEAD`：返回 `55cceb3a51a719c23af374828618ae7935338026`。
+- `npx --yes vercel@54.9.1 inspect ronghuacao66-lang-codex-mastery.vercel.app --scope crh-s-projects`：主域名状态为 `Ready`。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过。
+
+### 风险说明
+
+- GitHub CLI OAuth 仍不可用，但当前 SSH remote 已可用于后续 push。
+- 本轮状态文件更新后仍需再提交并推送一次。
+
 ## 2026-06-09 06:23 复测 GitHub SSH 认证并重开公钥添加页
 
 ### 修改文件
