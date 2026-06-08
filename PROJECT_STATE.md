@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-08 19:58 CST
+2026-06-08 20:20 CST
 
 ## 当前目标
 
@@ -73,6 +73,7 @@
   - 已尝试通过 Homebrew 安装 `gh`，但网络访问 Homebrew/GitHub 资源失败：
     - `formula.jws.json` 下载连接被重置。
     - `homebrew-core` 克隆出现 `early EOF`。
+  - 已生成 GitHub 手动上传备用包：`release/codex-mastery-github-ready.zip`。
 - 本机 macOS 电源策略已调整，降低 Codex 长任务因合盖或空闲睡眠中断的风险：
   - Battery Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
   - AC Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
@@ -102,10 +103,11 @@
 
 1. 等待用户确认下一项任务。
 2. 安装并登录 GitHub CLI，或由用户在 GitHub 创建空仓库后提供远程地址。
-3. 推送 GitHub 后导入 Vercel。
-4. 定期巡检外部视频链接。
-5. 可选增强：设计完整学习进度中心。
-6. 任务变长时创建 `HANDOVER.md`。
+3. 若暂时无法使用 Git CLI 推送，可用 `release/codex-mastery-github-ready.zip` 通过 GitHub 网页手动上传。
+4. 推送 GitHub 后导入 Vercel。
+5. 定期巡检外部视频链接。
+6. 可选增强：设计完整学习进度中心。
+7. 任务变长时创建 `HANDOVER.md`。
 
 ## 下一步行动
 

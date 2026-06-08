@@ -186,3 +186,28 @@
 
 - 本地 Git 仓库和首次提交已完成，不受影响。
 - 远程 GitHub 仓库创建和 Vercel 导入仍需用户完成 GitHub CLI 登录，或提供 GitHub 空仓库地址。
+
+## 2026-06-08 20:20 生成 GitHub 手动上传备用包
+
+### 修改文件
+
+- `.gitignore`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `CHANGELOG_AI.md`
+- `release/codex-mastery-github-ready.zip`
+
+### 修改内容
+
+- 使用 `git archive` 生成 GitHub 手动上传备用包：`release/codex-mastery-github-ready.zip`。
+- 将 `release/` 加入 `.gitignore`，避免把本地交付压缩包提交到仓库。
+- 更新项目状态和任务状态，记录远程发布阻塞时的备用交付路径。
+
+### 修改原因
+
+当前机器无法安装 `gh`，也没有 GitHub 仓库 URL。生成 zip 可以让用户通过 GitHub 网页手动上传项目文件，作为无法使用 CLI 推送时的备用方案。
+
+### 风险说明
+
+- zip 包是本地交付物，不在 Git 历史中。
+- 手动上传 GitHub 不保留本地 Git 提交历史；如果需要保留提交历史，仍建议安装/登录 `gh` 或提供远程仓库 URL 后用 `git push`。

@@ -5,6 +5,7 @@ node_modules
 out
 dist
 output
+release
 coverage
 tsconfig.tsbuildinfo
 .env
