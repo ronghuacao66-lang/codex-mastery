@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-08 20:20 CST
+2026-06-08 20:30 CST
 
 ## 当前目标
 
@@ -74,6 +74,10 @@
     - `formula.jws.json` 下载连接被重置。
     - `homebrew-core` 克隆出现 `early EOF`。
   - 已生成 GitHub 手动上传备用包：`release/codex-mastery-github-ready.zip`。
+  - 已根据用户提供的 GitHub 用户名配置远程地址：
+    - `origin`: `https://github.com/ronghuacao66-lang/codex-mastery.git`
+  - 已尝试 `git push -u origin main`，但失败：
+    - `fatal: could not read Username for 'https://github.com': terminal prompts disabled`
 - 本机 macOS 电源策略已调整，降低 Codex 长任务因合盖或空闲睡眠中断的风险：
   - Battery Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
   - AC Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
@@ -92,6 +96,7 @@
 - 当前目录已初始化 Git，但尚未推送到 GitHub 远程仓库。
 - GitHub CLI `gh` 未安装，远程仓库创建和自动推送暂时阻塞。
 - Homebrew 安装 `gh` 失败，当前需要用户手动完成 GitHub CLI 安装/登录，或提供 GitHub 空仓库 URL。
+- Git remote 已配置，但当前机器没有 GitHub 认证凭据，无法 push。
 - `localhost:3000` 依赖本机开发服务；服务停止后本地网址会打不开。
 - 公网稳定访问仍依赖 GitHub + Vercel 部署完成。
 - 外部视频链接可能随平台规则变化失效，需要后续定期巡检。
@@ -102,7 +107,7 @@
 ## 待办事项
 
 1. 等待用户确认下一项任务。
-2. 安装并登录 GitHub CLI，或由用户在 GitHub 创建空仓库后提供远程地址。
+2. 用户完成 GitHub 登录认证后，继续执行 `git push -u origin main`。
 3. 若暂时无法使用 Git CLI 推送，可用 `release/codex-mastery-github-ready.zip` 通过 GitHub 网页手动上传。
 4. 推送 GitHub 后导入 Vercel。
 5. 定期巡检外部视频链接。
