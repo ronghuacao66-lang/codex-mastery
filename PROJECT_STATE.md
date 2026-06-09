@@ -219,7 +219,7 @@
 - 第九项任务“复盘中心导出 Markdown”：已完成、提交、推送并由 Vercel 部署为 Ready。
 - 第十项任务“移动端全部模块抽屉优化”：已完成、提交、推送并由 Vercel 部署为 Ready。
 - 第十一项任务“复盘中心历史列表”：已完成、提交、推送并由 Vercel 部署为 Ready。
-- 第十二项任务“项目实战中心交付检查清单”：已完成本地开发和验证，等待提交、推送和 Vercel 部署。
+- 第十二项任务“项目实战中心交付检查清单”：已完成、提交、推送并由 Vercel 部署为 Ready。
 
 ## 当前风险
 
@@ -244,17 +244,17 @@
 
 ## 待办事项
 
-1. 当前：提交、推送并等待 Vercel 部署“项目实战中心交付检查清单”。
-2. 可选：为复盘中心增加导入 Markdown 能力。
+1. 可选：为复盘中心增加导入 Markdown 能力。
+2. 可选：为项目实战中心增加详情页或项目执行记录导出。
 3. 后续新增视频前必须运行 `npm run audit:videos`。
 
 ## 下一步行动
 
-当前下一步为“提交、推送并部署项目实战中心交付检查清单”：
+当前下一步可选为“为复盘中心增加导入 Markdown 能力，或为项目实战中心增加详情页/执行记录导出”：
 
-- 目标：将本地验证通过的项目交付检查清单同步到 GitHub 和 Vercel 公网。
+- 目标：继续提升平台真实使用体验。
 - 输入：当前代码、数据与状态文件。
-- 输出：GitHub commit、Vercel Ready 部署和可追溯状态记录。
+- 输出：后续小步改进和可追溯状态记录。
 - 验收标准：相关变更继续通过 `npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build`。
 
 ## 最近验证
@@ -429,3 +429,6 @@
   - Playwright 桌面验证：`/projects` 显示 8 个“交付检查清单”，包含验收与证据字段。
   - Playwright 交互验证：勾选状态写入 `codex-mastery:project-checklist`，刷新后保持。
   - Playwright 375×812 验证：`/projects` 无页面级横向溢出，`scrollWidth = clientWidth = 375`。
+  - `git push`：成功，`origin/main` 指向 `9eb363d`。
+  - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-3s1npllh4-crh-s-projects.vercel.app`，状态 `Ready`。
+  - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。

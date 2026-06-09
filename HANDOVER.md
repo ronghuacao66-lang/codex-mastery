@@ -74,7 +74,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 22:23 CST 复盘中心历史列表已推送到 GitHub，提交 `b676d68 Add review history list`。Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-qz87ourlb-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
 
-2026-06-09 22:36 CST 已完成项目实战中心交付检查清单开发和本地验证。8 个项目均已新增 `deliveryChecklist`，每个项目 5 条检查项，包含验收标准和证据要求。`/projects` 页面支持勾选、显示进度和复制交付清单，状态保存在 `codex-mastery:project-checklist`。当前等待提交、推送和 Vercel 部署。
+2026-06-09 22:36 CST 项目实战中心交付检查清单已完成、提交、推送并由 Vercel 部署为 Ready。8 个项目均已新增 `deliveryChecklist`，每个项目 5 条检查项，包含验收标准和证据要求。`/projects` 页面支持勾选、显示进度和复制交付清单，状态保存在 `codex-mastery:project-checklist`。最新部署为 `https://ronghuacao66-lang-codex-mastery-3s1npllh4-crh-s-projects.vercel.app`，主域名已绑定最新部署。
 
 ## 已完成内容
 
@@ -113,7 +113,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 已为复盘中心新增导出 Markdown 文件能力，并已由 Vercel 部署为 Ready。
 - 已完成移动端全部模块抽屉优化，并已由 Vercel 部署为 Ready。
 - 已完成复盘中心历史列表，并已由 Vercel 部署为 Ready。
-- 已完成项目实战中心交付检查清单本地开发和验证，等待提交、推送和 Vercel 部署。
+- 已完成项目实战中心交付检查清单，并已由 Vercel 部署为 Ready。
 
 ## 未完成内容
 
@@ -125,7 +125,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 本轮复盘中心导出 Markdown 能力已提交、推送并由 Vercel 部署为 Ready。
 - 本轮移动端全部模块抽屉优化已提交、推送并由 Vercel 部署为 Ready。
 - 本轮复盘中心历史列表已提交、推送并由 Vercel 部署为 Ready。
-- 本轮项目实战中心交付检查清单已完成本地验证，尚未提交和部署。
+- 本轮项目实战中心交付检查清单已提交、推送并由 Vercel 部署为 Ready。
 
 ## 当前推理结果
 
@@ -156,8 +156,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 ## 下一步计划
 
-1. 当前：提交、推送并等待 Vercel 部署项目实战中心交付检查清单。
-2. 可选：为复盘中心增加导入 Markdown 能力。
+1. 可选：为复盘中心增加导入 Markdown 能力。
+2. 可选：为项目实战中心增加详情页或项目执行记录导出。
 3. 后续新增视频必须先运行 `npm run audit:videos`。
 
 ## 最近验证
@@ -310,3 +310,6 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - Playwright 桌面验证：`/projects` 显示 8 个“交付检查清单”，包含验收与证据字段。
   - Playwright 交互验证：勾选状态写入 `codex-mastery:project-checklist`，刷新后保持。
   - Playwright 375×812 验证：`/projects` 无页面级横向溢出。
+  - `git push`：成功，`origin/main` 指向 `9eb363d`。
+  - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-3s1npllh4-crh-s-projects.vercel.app`，状态 `Ready`。
+  - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。

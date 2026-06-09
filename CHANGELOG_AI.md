@@ -38,6 +38,9 @@
 - Playwright 桌面验证：`/projects` 显示 8 个“交付检查清单”，包含验收与证据字段。
 - Playwright 交互验证：勾选“学习数据模型可扩展”后写入 `codex-mastery:project-checklist`，刷新后仍保持勾选。
 - Playwright 375×812 验证：`/projects` 无页面级横向溢出，`scrollWidth = clientWidth = 375`。
+- `git push`：成功，业务提交 `9eb363d` 已推送到 GitHub。
+- Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-3s1npllh4-crh-s-projects.vercel.app`，状态 `Ready`。
+- 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
 
 ### 风险说明
 
