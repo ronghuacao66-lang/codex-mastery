@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 23:03 CST
+2026-06-09 23:14 CST
 
 ## 当前状态
 
@@ -78,6 +78,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 22:57 CST 复盘中心导入 Markdown 已完成、提交、推送并由 Vercel 部署为 Ready。`/reviews` 现在支持选择本地 Markdown 文件，按复盘标题和 `## 输入摘要` 恢复输入草稿，也兼容 Codex Prompt 中的 `### 字段名` 块。错误文件会显示提示且不会覆盖已有草稿。最新部署为 `https://ronghuacao66-lang-codex-mastery-eojwwd59f-crh-s-projects.vercel.app`，主域名已绑定最新部署。
 
+2026-06-09 23:14 CST 已完成项目实战详情页与执行记录导出开发和本地验证。`/projects` 列表新增“查看详情”入口；新增 `/projects/[id]` 静态详情页；详情页支持填写执行记录、共用交付检查清单、复制记录和导出 Markdown。当前等待提交、推送和 Vercel 部署。
+
 ## 已完成内容
 
 - 项目状态文件已建立：
@@ -117,6 +119,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 已完成复盘中心历史列表，并已由 Vercel 部署为 Ready。
 - 已完成项目实战中心交付检查清单，并已由 Vercel 部署为 Ready。
 - 已完成复盘中心导入 Markdown，并已由 Vercel 部署为 Ready。
+- 已完成项目实战详情页与执行记录导出本地开发和验证，等待提交、推送和 Vercel 部署。
 
 ## 未完成内容
 
@@ -130,6 +133,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 本轮复盘中心历史列表已提交、推送并由 Vercel 部署为 Ready。
 - 本轮项目实战中心交付检查清单已提交、推送并由 Vercel 部署为 Ready。
 - 本轮复盘中心导入 Markdown 已提交、推送并由 Vercel 部署为 Ready。
+- 本轮项目实战详情页与执行记录导出已完成本地验证，尚未提交和部署。
 
 ## 当前推理结果
 
@@ -157,11 +161,12 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 复盘历史可能包含用户填写内容，当前设计不上传服务器。
 - 复盘 Markdown 导入优先兼容本站导出的报告和 Codex Prompt 字段块，用户大幅改写结构后可能无法识别。
 - 项目交付检查进度只保存在当前浏览器 localStorage，清理浏览器数据会丢失。
+- 项目执行记录只保存在当前浏览器 localStorage，清理浏览器数据会丢失。
 - 项目卡片信息密度提升，后续继续增加项目字段时应考虑详情页或分层展示。
 
 ## 下一步计划
 
-1. 可选：为项目实战中心增加详情页或项目执行记录导出。
+1. 当前：提交、推送并等待 Vercel 部署项目实战详情页与执行记录导出。
 2. 可选：为复盘中心增加导入后的“另存为历史”自动提示。
 3. 后续新增视频必须先运行 `npm run audit:videos`。
 
@@ -329,3 +334,12 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - `git push`：成功，`origin/main` 指向 `dd2ce98`。
   - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-eojwwd59f-crh-s-projects.vercel.app`，状态 `Ready`。
   - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
+- 2026-06-09 23:14 CST：
+  - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 24 个 App Router 页面，其中 8 个 `/projects/[id]` 静态详情页。
+  - Playwright 桌面验证：`/projects` 显示 8 个“查看详情”入口，详情页显示执行记录、交付检查进度和导出预览。
+  - Playwright 交互验证：填写执行记录、勾选检查项后写入 localStorage，刷新后仍保留。
+  - Playwright 下载验证：导出文件名为 `AI学习助手-执行记录-20260609.md`。
+  - Playwright 375×812 验证：项目详情页无页面级横向溢出。

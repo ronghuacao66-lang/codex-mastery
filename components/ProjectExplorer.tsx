@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { CopyButton } from "@/components/CopyButton";
 import { ContentCard } from "@/components/ContentCard";
@@ -99,6 +101,15 @@ export function ProjectExplorer({ items }: { items: ProjectItem[] }) {
                 </div>
                 <div className="mt-3">
                   <ListBlock title="成果物" items={item.deliverables} />
+                </div>
+                <div className="mt-4">
+                  <Link
+                    href={`/projects/${item.id}`}
+                    className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-panel px-3 text-sm font-medium text-ink transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent"
+                  >
+                    查看详情
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
                 <ProjectChecklist
                   item={item}

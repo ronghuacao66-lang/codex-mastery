@@ -1,5 +1,50 @@
 # CHANGELOG_AI
 
+## 2026-06-09 23:14 项目实战详情页与执行记录导出
+
+### 修改文件
+
+- `app/projects/[id]/page.tsx`
+- `components/ProjectExecutionClient.tsx`
+- `components/ProjectExplorer.tsx`
+- `README.md`
+- `DECISIONS.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 新增 `/projects/[id]` 项目详情页，并通过 `generateStaticParams` 为 8 个项目生成静态路由。
+- 项目列表卡片新增“查看详情”入口。
+- 详情页展示项目目标、业务价值、实现步骤、成果物、优化建议和 Codex 实现 Prompt。
+- 新增执行记录表单，支持记录当前阶段、已完成内容、验证证据、风险、下一步和补充说明。
+- 执行记录保存到浏览器 localStorage 的 `codex-mastery:project-execution-records`。
+- 详情页交付检查清单与列表页共用 `codex-mastery:project-checklist`。
+- 支持复制执行记录和导出 Markdown 文件。
+- README 已同步项目实战中心支持详情页和执行记录导出。
+
+### 修改原因
+
+项目实战中心已经具备交付检查清单，但用户执行项目时仍需要独立详情页和阶段记录。本轮把项目从“可执行卡片”升级为“可持续交付页面”，让用户能记录证据、导出项目日志并沉淀项目过程。
+
+### 验证结果
+
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 24 个 App Router 页面，其中 8 个 `/projects/[id]` 静态详情页。
+- Playwright 桌面验证：`/projects` 显示 8 个“查看详情”入口，详情页显示执行记录、交付检查进度和导出预览。
+- Playwright 交互验证：填写执行记录、勾选检查项后写入 localStorage，刷新后仍保留。
+- Playwright 下载验证：导出文件名为 `AI学习助手-执行记录-20260609.md`。
+- Playwright 375×812 验证：项目详情页无页面级横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 风险说明
+
+- 执行记录只保存在当前浏览器 localStorage，清理浏览器数据会丢失。
+- 详情页新增 8 个静态路由，新增项目时需要保证路由参数同步生成。
+
 ## 2026-06-09 22:57 复盘中心导入 Markdown
 
 ### 修改文件

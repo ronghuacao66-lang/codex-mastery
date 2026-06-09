@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 23:03 CST
+2026-06-09 23:14 CST
 
 ## 当前目标
 
@@ -148,7 +148,9 @@
   - 8 个项目均已新增结构化 `deliveryChecklist`。
   - 每个项目包含 5 条交付检查项，覆盖验收标准和证据要求。
   - `/projects` 页面支持勾选交付检查项、显示完成进度和复制项目交付清单。
+  - `/projects/[id]` 页面支持查看项目详情、填写执行记录、复制记录和导出 Markdown。
   - 项目交付进度保存在本地浏览器 `codex-mastery:project-checklist`。
+  - 项目执行记录保存在本地浏览器 `codex-mastery:project-execution-records`。
   - `content/projects.md` 已由 `data/projects.json` 重新导出。
 - 已完成移动端导航优化：
   - 移动端常用入口固定为控制台、任务、30天、进度、复盘。
@@ -222,6 +224,7 @@
 - 第十一项任务“复盘中心历史列表”：已完成、提交、推送并由 Vercel 部署为 Ready。
 - 第十二项任务“项目实战中心交付检查清单”：已完成、提交、推送并由 Vercel 部署为 Ready。
 - 第十三项任务“复盘中心导入 Markdown”：已完成、提交、推送并由 Vercel 部署为 Ready。
+- 第十四项任务“项目实战详情页与执行记录导出”：已完成本地开发和验证，等待提交、推送和 Vercel 部署。
 
 ## 当前风险
 
@@ -240,6 +243,7 @@
 - 复盘历史可能包含用户填写内容，当前设计不上传服务器。
 - 复盘 Markdown 导入优先兼容本站导出的报告和 Codex Prompt 字段块，用户大幅改写结构后可能无法识别。
 - 项目交付检查进度只保存在当前浏览器 localStorage，清理浏览器数据会丢失。
+- 项目执行记录只保存在当前浏览器 localStorage，清理浏览器数据会丢失。
 - 项目卡片信息密度提升，后续继续增加项目字段时应考虑详情页或分层展示。
 - 旧状态文件曾记录过与当前项目无关的目标，已通过本轮状态更新纠偏。
 - 本地执行 `npm run build` 时不应与 `npm run dev` 混用同一个 `.next`；若首页 500，需要停止 dev server、删除 `.next` 并重启。
@@ -247,17 +251,17 @@
 
 ## 待办事项
 
-1. 可选：为项目实战中心增加详情页或项目执行记录导出。
+1. 当前：提交、推送并等待 Vercel 部署“项目实战详情页与执行记录导出”。
 2. 可选：为复盘中心增加导入后的“另存为历史”自动提示。
 3. 后续新增视频前必须运行 `npm run audit:videos`。
 
 ## 下一步行动
 
-当前下一步可选为“为项目实战中心增加详情页/执行记录导出，或为复盘中心增加导入后的另存提示”：
+当前下一步为“提交、推送并部署项目实战详情页与执行记录导出”：
 
-- 目标：继续提升平台真实使用体验。
+- 目标：将本地验证通过的项目详情页和执行记录导出同步到 GitHub 和 Vercel 公网。
 - 输入：当前代码、数据与状态文件。
-- 输出：后续小步改进和可追溯状态记录。
+- 输出：GitHub commit、Vercel Ready 部署和可追溯状态记录。
 - 验收标准：相关变更继续通过 `npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build`。
 
 ## 最近验证
@@ -446,3 +450,12 @@
   - `git push`：成功，`origin/main` 指向 `dd2ce98`。
   - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-eojwwd59f-crh-s-projects.vercel.app`，状态 `Ready`。
   - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
+- 2026-06-09 23:14 CST：
+  - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 24 个 App Router 页面，其中 8 个 `/projects/[id]` 静态详情页。
+  - Playwright 桌面验证：`/projects` 显示 8 个“查看详情”入口，详情页显示执行记录、交付检查进度和导出预览。
+  - Playwright 交互验证：填写执行记录、勾选检查项后写入 localStorage，刷新后仍保留。
+  - Playwright 下载验证：导出文件名为 `AI学习助手-执行记录-20260609.md`。
+  - Playwright 375×812 验证：项目详情页无页面级横向溢出，`scrollWidth = clientWidth = 375`。
