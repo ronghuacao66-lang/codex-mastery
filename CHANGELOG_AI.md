@@ -31,6 +31,9 @@
 - Playwright 桌面验证：`/reviews` 显示“导出 Markdown”和“下载”两个入口。
 - Playwright 下载验证：生成文件名 `每日-Codex-训练复盘-20260609.md`，内容为当前复盘报告 Markdown。
 - Playwright 375×812 验证：`/reviews` 无页面级横向溢出，下载入口数量为 2。
+- `git push`：成功，业务提交 `b8378dd` 已推送到 GitHub。
+- Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-6fk72u5oz-crh-s-projects.vercel.app`，状态 `Ready`。
+- 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
 
 ### 风险说明
 
