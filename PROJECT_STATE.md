@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 23:14 CST
+2026-06-09 23:22 CST
 
 ## 当前目标
 
@@ -224,7 +224,7 @@
 - 第十一项任务“复盘中心历史列表”：已完成、提交、推送并由 Vercel 部署为 Ready。
 - 第十二项任务“项目实战中心交付检查清单”：已完成、提交、推送并由 Vercel 部署为 Ready。
 - 第十三项任务“复盘中心导入 Markdown”：已完成、提交、推送并由 Vercel 部署为 Ready。
-- 第十四项任务“项目实战详情页与执行记录导出”：已完成本地开发和验证，等待提交、推送和 Vercel 部署。
+- 第十四项任务“项目实战详情页与执行记录导出”：已完成、提交、推送并由 Vercel 部署为 Ready。
 
 ## 当前风险
 
@@ -251,17 +251,17 @@
 
 ## 待办事项
 
-1. 当前：提交、推送并等待 Vercel 部署“项目实战详情页与执行记录导出”。
-2. 可选：为复盘中心增加导入后的“另存为历史”自动提示。
+1. 可选：为复盘中心增加导入后的“另存为历史”自动提示。
+2. 可选：为项目执行记录增加导入能力。
 3. 后续新增视频前必须运行 `npm run audit:videos`。
 
 ## 下一步行动
 
-当前下一步为“提交、推送并部署项目实战详情页与执行记录导出”：
+当前下一步可选为“为复盘中心增加导入后的另存提示，或为项目执行记录增加导入能力”：
 
-- 目标：将本地验证通过的项目详情页和执行记录导出同步到 GitHub 和 Vercel 公网。
+- 目标：继续提升平台真实使用体验。
 - 输入：当前代码、数据与状态文件。
-- 输出：GitHub commit、Vercel Ready 部署和可追溯状态记录。
+- 输出：后续小步改进和可追溯状态记录。
 - 验收标准：相关变更继续通过 `npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build`。
 
 ## 最近验证
@@ -459,3 +459,6 @@
   - Playwright 交互验证：填写执行记录、勾选检查项后写入 localStorage，刷新后仍保留。
   - Playwright 下载验证：导出文件名为 `AI学习助手-执行记录-20260609.md`。
   - Playwright 375×812 验证：项目详情页无页面级横向溢出，`scrollWidth = clientWidth = 375`。
+  - `git push`：成功，`origin/main` 指向 `4ab2c77`。
+  - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-l3k85zw8m-crh-s-projects.vercel.app`，状态 `Ready`。
+  - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。

@@ -39,6 +39,9 @@
 - Playwright 交互验证：填写执行记录、勾选检查项后写入 localStorage，刷新后仍保留。
 - Playwright 下载验证：导出文件名为 `AI学习助手-执行记录-20260609.md`。
 - Playwright 375×812 验证：项目详情页无页面级横向溢出，`scrollWidth = clientWidth = 375`。
+- `git push`：成功，业务提交 `4ab2c77` 已推送到 GitHub。
+- Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-l3k85zw8m-crh-s-projects.vercel.app`，状态 `Ready`。
+- 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
 
 ### 风险说明
 
