@@ -28,6 +28,12 @@ export type ProjectItem = {
   prompt: string;
   optimizationTips: string[];
   deliverables: string[];
+  deliveryChecklist: {
+    id: string;
+    title: string;
+    acceptance: string;
+    evidence: string;
+  }[];
   tags: string[];
 };
 

@@ -1,5 +1,49 @@
 # CHANGELOG_AI
 
+## 2026-06-09 22:36 项目实战中心交付检查清单
+
+### 修改文件
+
+- `data/projects.json`
+- `content/projects.md`
+- `types/content.ts`
+- `components/ProjectExplorer.tsx`
+- `scripts/export-content.mjs`
+- `DECISIONS.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 为 8 个项目新增 `deliveryChecklist` 结构化交付检查项。
+- 每个项目包含 5 条真实检查项，覆盖验收标准和证据要求。
+- 项目页新增可勾选交付清单、进度条和本地状态保存。
+- 项目页新增“复制清单”，可复制成果物、检查项和 Codex 实现 Prompt。
+- 搜索索引纳入交付检查项内容。
+- `content/projects.md` 已由 `data/projects.json` 重新导出。
+
+### 修改原因
+
+项目实战中心原有内容能说明“做什么”，但用户真正执行时还需要判断“做到什么程度算交付”。本轮把项目卡片升级为可执行的项目交付工具，增强 Learn Codex By Building 的实战闭环。
+
+### 验证结果
+
+- `npm run export:content`：通过，已更新 `content/projects.md`。
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 16 个 App Router 页面。
+- Playwright 桌面验证：`/projects` 显示 8 个“交付检查清单”，包含验收与证据字段。
+- Playwright 交互验证：勾选“学习数据模型可扩展”后写入 `codex-mastery:project-checklist`，刷新后仍保持勾选。
+- Playwright 375×812 验证：`/projects` 无页面级横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 风险说明
+
+- 项目交付进度只保存在当前浏览器 localStorage，清理浏览器数据会丢失。
+- 项目卡片信息密度提升，后续如继续增加字段，应考虑分层或详情页。
+
 ## 2026-06-09 22:15 复盘中心历史列表
 
 ### 修改文件

@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 22:23 CST
+2026-06-09 22:36 CST
 
 ## 当前目标
 
@@ -143,6 +143,12 @@
   - 复盘草稿保存在本地浏览器 `codex-mastery:review-drafts`。
   - 复盘历史保存在本地浏览器 `codex-mastery:review-history`，最多保留 20 条。
   - 已从桌面/移动导航和首页接入。
+- 已增强项目实战中心：
+  - 8 个项目均已新增结构化 `deliveryChecklist`。
+  - 每个项目包含 5 条交付检查项，覆盖验收标准和证据要求。
+  - `/projects` 页面支持勾选交付检查项、显示完成进度和复制项目交付清单。
+  - 项目交付进度保存在本地浏览器 `codex-mastery:project-checklist`。
+  - `content/projects.md` 已由 `data/projects.json` 重新导出。
 - 已完成移动端导航优化：
   - 移动端常用入口固定为控制台、任务、30天、进度、复盘。
   - 新增顶部“模块”按钮。
@@ -213,6 +219,7 @@
 - 第九项任务“复盘中心导出 Markdown”：已完成、提交、推送并由 Vercel 部署为 Ready。
 - 第十项任务“移动端全部模块抽屉优化”：已完成、提交、推送并由 Vercel 部署为 Ready。
 - 第十一项任务“复盘中心历史列表”：已完成、提交、推送并由 Vercel 部署为 Ready。
+- 第十二项任务“项目实战中心交付检查清单”：已完成本地开发和验证，等待提交、推送和 Vercel 部署。
 
 ## 当前风险
 
@@ -229,23 +236,25 @@
 - 复盘报告导出依赖浏览器下载能力；移动端保存位置由系统决定。
 - 复盘历史只保存在当前浏览器 localStorage，清理浏览器数据会丢失。
 - 复盘历史可能包含用户填写内容，当前设计不上传服务器。
+- 项目交付检查进度只保存在当前浏览器 localStorage，清理浏览器数据会丢失。
+- 项目卡片信息密度提升，后续继续增加项目字段时应考虑详情页或分层展示。
 - 旧状态文件曾记录过与当前项目无关的目标，已通过本轮状态更新纠偏。
 - 本地执行 `npm run build` 时不应与 `npm run dev` 混用同一个 `.next`；若首页 500，需要停止 dev server、删除 `.next` 并重启。
 - 合盖长时间运行 Codex 会增加发热和耗电风险，建议连接电源并保持散热。
 
 ## 待办事项
 
-1. 可选：继续补充项目实战中心的交付检查清单。
+1. 当前：提交、推送并等待 Vercel 部署“项目实战中心交付检查清单”。
 2. 可选：为复盘中心增加导入 Markdown 能力。
 3. 后续新增视频前必须运行 `npm run audit:videos`。
 
 ## 下一步行动
 
-当前下一步为“继续补充项目实战中心交付检查清单，或为复盘中心增加导入 Markdown 能力”：
+当前下一步为“提交、推送并部署项目实战中心交付检查清单”：
 
-- 目标：继续提升平台真实使用体验。
+- 目标：将本地验证通过的项目交付检查清单同步到 GitHub 和 Vercel 公网。
 - 输入：当前代码、数据与状态文件。
-- 输出：后续小步改进和可追溯状态记录。
+- 输出：GitHub commit、Vercel Ready 部署和可追溯状态记录。
 - 验收标准：相关变更继续通过 `npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build`。
 
 ## 最近验证
@@ -411,3 +420,12 @@
   - `git push`：成功，`origin/main` 指向 `b676d68`。
   - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-qz87ourlb-crh-s-projects.vercel.app`，状态 `Ready`。
   - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
+- 2026-06-09 22:36 CST：
+  - `npm run export:content`：通过，已更新 `content/projects.md`。
+  - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 16 个 App Router 页面。
+  - Playwright 桌面验证：`/projects` 显示 8 个“交付检查清单”，包含验收与证据字段。
+  - Playwright 交互验证：勾选状态写入 `codex-mastery:project-checklist`，刷新后保持。
+  - Playwright 375×812 验证：`/projects` 无页面级横向溢出，`scrollWidth = clientWidth = 375`。

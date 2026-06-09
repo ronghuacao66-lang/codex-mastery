@@ -38,6 +38,7 @@ const labels = {
   day: "天数",
   deliverable: "成果物",
   deliverables: "成果物",
+  deliveryChecklist: "交付检查清单",
   difficulty: "难度",
   dod: "完成标准",
   domain: "领域",
