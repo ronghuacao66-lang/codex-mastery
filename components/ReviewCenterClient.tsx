@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Circle, ClipboardList, Download, FileText, RotateCcw, Sparkles } from "lucide-react";
+import { CheckCircle2, Circle, ClipboardList, Download, FileText, History, RotateCcw, Save, Sparkles, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { CopyButton } from "@/components/CopyButton";
 import { Tag } from "@/components/Tag";
@@ -8,13 +8,27 @@ import { cn } from "@/lib/utils";
 import type { ReviewKit } from "@/types/content";
 
 const REVIEW_DRAFTS_KEY = "codex-mastery:review-drafts";
+const REVIEW_HISTORY_KEY = "codex-mastery:review-history";
+const MAX_HISTORY_ITEMS = 20;
 
 type Drafts = Record<string, Record<string, string>>;
+type ReviewHistoryItem = {
+  id: string;
+  kitId: string;
+  kitTitle: string;
+  createdAt: string;
+  summary: string;
+  report: string;
+  codexPrompt: string;
+  draft: Record<string, string>;
+};
 
 export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
   const [activeId, setActiveId] = useState(kits[0]?.id ?? "");
   const [drafts, setDrafts] = useState<Drafts>({});
+  const [history, setHistory] = useState<ReviewHistoryItem[]>([]);
   const [downloaded, setDownloaded] = useState(false);
+  const [savedHistory, setSavedHistory] = useState(false);
 
   const activeKit = kits.find((kit) => kit.id === activeId) ?? kits[0];
   const activeDraft = useMemo(() => drafts[activeKit.id] ?? {}, [activeKit.id, drafts]);
@@ -30,13 +44,29 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
   }, []);
 
   useEffect(() => {
+    const stored = window.localStorage.getItem(REVIEW_HISTORY_KEY);
+    if (!stored) return;
+    try {
+      const parsed = JSON.parse(stored) as ReviewHistoryItem[];
+      setHistory(Array.isArray(parsed) ? parsed.slice(0, MAX_HISTORY_ITEMS) : []);
+    } catch {
+      setHistory([]);
+    }
+  }, []);
+
+  useEffect(() => {
     window.localStorage.setItem(REVIEW_DRAFTS_KEY, JSON.stringify(drafts));
   }, [drafts]);
+
+  useEffect(() => {
+    window.localStorage.setItem(REVIEW_HISTORY_KEY, JSON.stringify(history));
+  }, [history]);
 
   const completedFields = activeKit.inputFields.filter((field) => (activeDraft[field.key] ?? "").trim().length >= 8).length;
   const fieldProgress = Math.round((completedFields / activeKit.inputFields.length) * 100);
   const report = useMemo(() => buildReviewReport(activeKit, activeDraft), [activeKit, activeDraft]);
   const codexPrompt = useMemo(() => buildCodexPrompt(activeKit, activeDraft), [activeKit, activeDraft]);
+  const canSaveHistory = activeKit.inputFields.some((field) => (activeDraft[field.key] ?? "").trim().length > 0);
 
   function updateField(key: string, value: string) {
     setDrafts((current) => ({
@@ -54,6 +84,36 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
       delete next[activeKit.id];
       return next;
     });
+  }
+
+  function saveCurrentReview() {
+    if (!canSaveHistory) return;
+    const item: ReviewHistoryItem = {
+      id: `review-${Date.now()}`,
+      kitId: activeKit.id,
+      kitTitle: activeKit.title,
+      createdAt: new Date().toISOString(),
+      summary: buildHistorySummary(activeKit, activeDraft),
+      report,
+      codexPrompt,
+      draft: activeDraft
+    };
+    setHistory((current) => [item, ...current].slice(0, MAX_HISTORY_ITEMS));
+    setSavedHistory(true);
+    window.setTimeout(() => setSavedHistory(false), 1400);
+  }
+
+  function restoreHistory(item: ReviewHistoryItem) {
+    const nextKit = kits.some((kit) => kit.id === item.kitId) ? item.kitId : activeKit.id;
+    setActiveId(nextKit);
+    setDrafts((current) => ({
+      ...current,
+      [nextKit]: item.draft
+    }));
+  }
+
+  function deleteHistory(id: string) {
+    setHistory((current) => current.filter((item) => item.id !== id));
   }
 
   function downloadMarkdown() {
@@ -165,6 +225,16 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
               <CopyButton value={codexPrompt} label="复制给 Codex" />
               <button
                 type="button"
+                onClick={saveCurrentReview}
+                disabled={!canSaveHistory}
+                className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-panel px-3 text-sm font-medium text-ink transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent disabled:cursor-not-allowed disabled:opacity-45"
+                title={canSaveHistory ? "保存到历史复盘" : "至少填写一项输入后再保存"}
+              >
+                <Save className="h-4 w-4" />
+                <span>{savedHistory ? "已保存" : "保存历史"}</span>
+              </button>
+              <button
+                type="button"
                 onClick={downloadMarkdown}
                 className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-panel px-3 text-sm font-medium text-ink transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent"
                 title={downloaded ? "已导出" : "导出 Markdown"}
@@ -206,6 +276,16 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
           <div className="mb-4 flex items-center justify-between gap-4">
             <h2 className="text-lg font-semibold text-ink">复盘报告草稿</h2>
             <div className="flex flex-wrap justify-end gap-2">
+              <button
+                type="button"
+                onClick={saveCurrentReview}
+                disabled={!canSaveHistory}
+                className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-panel px-3 text-sm font-medium text-ink transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent disabled:cursor-not-allowed disabled:opacity-45"
+                title={canSaveHistory ? "保存到历史复盘" : "至少填写一项输入后再保存"}
+              >
+                <Save className="h-4 w-4" />
+                <span>{savedHistory ? "已保存" : "保存"}</span>
+              </button>
               <CopyButton value={report} label="复制" />
               <button
                 type="button"
@@ -221,6 +301,63 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
           <pre className="fine-scrollbar max-h-[520px] overflow-auto whitespace-pre-wrap rounded-md border border-line bg-surface p-4 text-sm leading-6 text-ink">
             {report}
           </pre>
+        </div>
+
+        <div className="rounded-lg border border-line bg-panel p-5 shadow-soft dark:shadow-darksoft">
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+            <div>
+              <p className="flex items-center gap-2 text-sm font-semibold text-ink">
+                <History className="h-4 w-4 text-accent" />
+                历史复盘
+              </p>
+              <p className="mt-1 text-sm leading-6 text-muted">本地保存最近 {MAX_HISTORY_ITEMS} 条复盘，可继续编辑、复制或删除。</p>
+            </div>
+            <div className="rounded-md border border-line bg-surface px-3 py-2 text-right">
+              <p className="text-lg font-semibold text-ink">{history.length}</p>
+              <p className="text-xs text-muted">已保存</p>
+            </div>
+          </div>
+
+          <div className="mt-4 space-y-3">
+            {history.length ? (
+              history.map((item) => (
+                <article key={item.id} className="rounded-md border border-line bg-surface p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-semibold text-ink">{item.kitTitle}</p>
+                      <p className="mt-1 text-xs text-muted">{formatDateTime(item.createdAt)}</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => deleteHistory(item.id)}
+                      className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-line bg-panel text-muted transition hover:border-accent/40 hover:text-accent"
+                      aria-label={`删除 ${item.kitTitle}`}
+                      title="删除"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                  <p className="mt-3 line-clamp-2 text-sm leading-6 text-muted">{item.summary}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={() => restoreHistory(item)}
+                      className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-panel px-3 text-sm font-medium text-ink transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent"
+                    >
+                      <RotateCcw className="h-4 w-4" />
+                      继续编辑
+                    </button>
+                    <CopyButton value={item.report} label="复制报告" />
+                    <CopyButton value={item.codexPrompt} label="复制 Prompt" />
+                  </div>
+                </article>
+              ))
+            ) : (
+              <div className="rounded-md border border-dashed border-line bg-surface p-5 text-sm leading-6 text-muted">
+                还没有历史复盘。填写任意复盘输入后，点击“保存历史”即可把当前报告保存到本地浏览器。
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="rounded-lg border border-line bg-panel p-5 shadow-soft dark:shadow-darksoft">
@@ -276,6 +413,13 @@ function buildCodexPrompt(kit: ReviewKit, draft: Record<string, string>) {
   ].join("\n");
 }
 
+function buildHistorySummary(kit: ReviewKit, draft: Record<string, string>) {
+  const filled = kit.inputFields
+    .map((field) => draft[field.key]?.trim())
+    .find((value) => value && value.length > 0);
+  return filled ? filled.slice(0, 120) : kit.scenario;
+}
+
 function toFileName(value: string) {
   return value
     .trim()
@@ -290,4 +434,14 @@ function todayKey() {
   const month = `${now.getMonth() + 1}`.padStart(2, "0");
   const day = `${now.getDate()}`.padStart(2, "0");
   return `${year}${month}${day}`;
+}
+
+function formatDateTime(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "时间未知";
+  const month = `${date.getMonth() + 1}`.padStart(2, "0");
+  const day = `${date.getDate()}`.padStart(2, "0");
+  const hour = `${date.getHours()}`.padStart(2, "0");
+  const minute = `${date.getMinutes()}`.padStart(2, "0");
+  return `${date.getFullYear()}-${month}-${day} ${hour}:${minute}`;
 }

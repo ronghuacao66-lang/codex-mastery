@@ -1,5 +1,45 @@
 # CHANGELOG_AI
 
+## 2026-06-09 22:15 复盘中心历史列表
+
+### 修改文件
+
+- `components/ReviewCenterClient.tsx`
+- `DECISIONS.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 新增 `codex-mastery:review-history` 本地历史记录。
+- 支持保存当前复盘报告到历史列表。
+- 历史列表展示模板标题、保存时间、摘要和已保存数量。
+- 支持从历史记录继续编辑。
+- 支持复制历史报告和复制历史 Codex Prompt。
+- 支持删除历史记录。
+- 历史记录最多保留最近 20 条。
+
+### 修改原因
+
+复盘中心已经支持复制和导出 Markdown，但用户完成多次训练或项目复盘后，需要在站内找回最近记录并继续编辑。本轮补齐“保存、回看、继续编辑”的闭环。
+
+### 验证结果
+
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 16 个 App Router 页面。
+- Playwright 375×812 验证：保存 1 条历史复盘成功，localStorage 写入 `codex-mastery:review-history`。
+- Playwright 375×812 验证：历史记录包含复盘报告和 Codex Prompt，可从历史记录继续编辑并恢复输入。
+- Playwright 375×812 验证：删除历史记录后历史数量为 0，页面无横向溢出。
+
+### 风险说明
+
+- 历史复盘只保存在当前浏览器 localStorage，清理浏览器数据会丢失。
+- 历史记录包含用户填写内容，不上传服务器。
+
 ## 2026-06-09 21:45 移动端全部模块抽屉优化
 
 ### 修改文件
