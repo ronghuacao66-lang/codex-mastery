@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 13:38 CST
+2026-06-09 14:15 CST
 
 ## 当前目标
 
@@ -29,11 +29,12 @@
   - `daily-plan.json`：30 条
   - `projects.json`：8 条
   - `prompts.json`：52 条，其中 Codex Prompt 30 条、AI Prompt 22 条
+  - `reviews.json`：5 条
   - `security.json`：6 条
   - `task-presets.json`：4 条
   - `templates.json`：5 条
   - `tools.json`：7 条
-  - `videos.json`：9 条，均为当前检查可访问资源
+  - `videos.json`：10 条，均为当前 Bilibili 接口检查可存在资源
   - `workflows.json`：5 条
 - 已生成 `content/*.md` 作为可读备份。
 - 第二项任务“项目健康检查”：已完成。
@@ -132,6 +133,13 @@
   - 支持总进度、下一步任务、最近完成、周进度、30 天完成网格。
   - 支持标记完成、取消完成、重置进度、复制学习进度报告和复制单日摘要。
   - 已从桌面/移动导航和首页接入。
+- 已新增复盘中心：
+  - 新增 `/reviews` 页面。
+  - 新增 `data/reviews.json`，包含 5 套复盘模板。
+  - 支持每日训练、Prompt 迭代、项目交付、Bug 修复、安全售前拜访复盘。
+  - 支持动态输入、自动生成复盘报告、复制报告、复制给 Codex 的深度复盘 Prompt。
+  - 复盘草稿保存在本地浏览器 `codex-mastery:review-drafts`。
+  - 已从桌面/移动导航和首页接入。
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -191,6 +199,7 @@
 - 第五项任务“视频资源可用性治理”：已完成，当前只保留 10 条 Bilibili 视频并提供 `npm run audit:videos`。
 - 第六项任务“学习进度中心”：已完成、提交、推送并上线。
 - 当前任务“视频中心纯 Bilibili 与失效链接修复”：已完成、提交、推送并上线。
+- 第七项任务“复盘中心”：本地开发、内容导出和验证已完成，等待提交、推送和 Vercel 部署。
 
 ## 当前风险
 
@@ -209,17 +218,17 @@
 
 ## 待办事项
 
-1. 定期巡检外部视频链接，确保保留视频仍可打开播放。
-2. 后续新增视频前必须运行 `npm run audit:videos`。
-3. 可选：继续做移动端交互细节复测。
+1. 提交并推送本轮复盘中心。
+2. 等待 Vercel 自动部署为 `Ready`，确认主域名 `/reviews` 可访问。
+3. 后续新增视频前必须运行 `npm run audit:videos`。
 
 ## 下一步行动
 
-当前下一步为“定期巡检 Bilibili 视频链接并继续做移动端交互细节复测”：
+当前下一步为“提交并推送本轮复盘中心”：
 
-- 目标：保持视频中心链接可用，并继续提升移动端交互体验。
+- 目标：上线可用于学习闭环的复盘中心。
 - 输入：当前代码、数据与状态文件。
-- 输出：后续小步改进和可追溯状态记录。
+- 输出：GitHub 和 Vercel 均包含 `/reviews` 页面、复盘模板和状态记录。
 - 验收标准：相关变更继续通过 `npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build`。
 
 ## 最近验证
@@ -328,3 +337,10 @@
   - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-j3h0tbrmi-crh-s-projects.vercel.app`，状态 `Ready`。
   - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
   - 公网 Browser 验证：`/videos` 显示 10 个 Bilibili 链接，无 OpenAI Academy 和旧失效 BV；`/progress` 显示学习进度中心和复制进度报告按钮。
+- 2026-06-09 14:15 CST：
+  - `npm run export:content`：通过，已生成 `content/reviews.md`。
+  - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 16 个 App Router 页面。
+  - Browser 验证：`/reviews` 显示复盘中心、核心复盘模板、动态输入框、复制报告和复制给 Codex 按钮。

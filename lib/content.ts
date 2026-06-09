@@ -2,6 +2,7 @@ import articlesRaw from "@/data/articles.json";
 import dailyPlanRaw from "@/data/daily-plan.json";
 import projectsRaw from "@/data/projects.json";
 import promptsRaw from "@/data/prompts.json";
+import reviewsRaw from "@/data/reviews.json";
 import securityRaw from "@/data/security.json";
 import taskPresetsRaw from "@/data/task-presets.json";
 import templatesRaw from "@/data/templates.json";
@@ -13,6 +14,7 @@ import type {
   DailyPlanItem,
   ProjectItem,
   PromptItem,
+  ReviewKit,
   SecurityScenario,
   TaskBuilderPreset,
   TemplateItem,
@@ -25,6 +27,7 @@ export const articles = articlesRaw as ArticleItem[];
 export const dailyPlan = dailyPlanRaw as DailyPlanItem[];
 export const projects = projectsRaw as ProjectItem[];
 export const prompts = promptsRaw as PromptItem[];
+export const reviewKits = reviewsRaw as ReviewKit[];
 export const securityScenarios = securityRaw as SecurityScenario[];
 export const taskPresets = taskPresetsRaw as TaskBuilderPreset[];
 export const templates = templatesRaw as TemplateItem[];

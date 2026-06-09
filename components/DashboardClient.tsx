@@ -101,6 +101,13 @@ export function DashboardClient({ dailyPlan, prompts, projects, videos, workflow
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
+                href="/reviews"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-line bg-surface px-4 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:border-accent/50"
+              >
+                做复盘
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
                 href="/videos"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-line bg-surface px-4 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:border-accent/50"
               >

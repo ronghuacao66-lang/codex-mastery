@@ -135,6 +135,25 @@ export type VideoItem = {
   tags: string[];
 };
 
+export type ReviewKit = {
+  id: string;
+  title: string;
+  scenario: string;
+  owner: string;
+  cadence: string;
+  goal: string;
+  inputFields: {
+    key: string;
+    label: string;
+    placeholder: string;
+  }[];
+  reviewQuestions: string[];
+  outputSections: string[];
+  codexPrompt: string;
+  bestPractices: string[];
+  tags: string[];
+};
+
 export type TaskBuilderState = {
   role: string;
   goal: string;

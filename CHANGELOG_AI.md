@@ -1,5 +1,53 @@
 # CHANGELOG_AI
 
+## 2026-06-09 14:15 新增复盘中心
+
+### 修改文件
+
+- `data/reviews.json`
+- `content/reviews.md`
+- `content/README.md`
+- `types/content.ts`
+- `lib/content.ts`
+- `scripts/export-content.mjs`
+- `components/ReviewCenterClient.tsx`
+- `components/AppShell.tsx`
+- `components/DashboardClient.tsx`
+- `app/reviews/page.tsx`
+- `README.md`
+- `DECISIONS.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- 新增 5 套复盘模板：每日 Codex 训练复盘、Prompt 迭代复盘、项目实战交付复盘、Bug 修复复盘、安全售前拜访复盘。
+- 新增 `/reviews` 复盘中心页面。
+- 支持选择复盘场景、填写动态输入字段、自动生成复盘报告草稿。
+- 支持复制复盘报告和复制给 Codex 的深度复盘 Prompt。
+- 使用 `codex-mastery:review-drafts` 在本地浏览器保存复盘草稿。
+- 桌面/移动导航和首页新增复盘入口。
+- `content/reviews.md` 已由 `data/reviews.json` 导出。
+
+### 修改原因
+
+当前平台已经具备学习、Prompt、项目、视频和进度能力，但缺少“做完以后如何沉淀”的闭环。复盘中心把学习结果转化为可复制报告和下一步 Codex 任务，能提高 30 天训练营和项目实战的真实转化率。
+
+### 验证结果
+
+- `npm run export:content`：通过。
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 16 个 App Router 页面。
+- Browser 验证：`/reviews` 显示复盘中心、核心复盘模板、动态输入框、复制报告和复制给 Codex 按钮。
+
+### 风险说明
+
+- 复盘草稿只保存在当前浏览器 localStorage，清理浏览器数据会丢失。
+- 后续如需团队复盘档案，需要单独设计后端存储。
+
 ## 2026-06-09 13:38 视频中心改为纯 Bilibili 并修复失效链接
 
 ### 修改文件

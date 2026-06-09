@@ -14,6 +14,7 @@ npm run export:content
 - [30 天训练营](./daily-plan.md)：来自 `data/daily-plan.json`
 - [Prompt Center](./prompts.md)：来自 `data/prompts.json`
 - [项目实战中心](./projects.md)：来自 `data/projects.json`
+- [复盘中心](./reviews.md)：来自 `data/reviews.json`
 - [安全售前专区](./security.md)：来自 `data/security.json`
 - [Codex 任务生成器预设](./task-presets.md)：来自 `data/task-presets.json`
 - [模板中心](./templates.md)：来自 `data/templates.json`

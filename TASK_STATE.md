@@ -6,7 +6,7 @@
 
 ## 当前目标
 
-按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查、GitHub + Vercel 上线准备、视频精选链接巡检与交互状态标记、去除不可确认正常播放视频；当前正在做视频中心纯 Bilibili 与失效链接修复，并同步学习进度中心。
+按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查、GitHub + Vercel 上线准备、视频中心纯 Bilibili 修复、学习进度中心；当前正在做复盘中心。
 
 ## 当前完成
 
@@ -65,11 +65,12 @@
 - 2026-06-09 13:38 CST 已按用户最新要求将视频中心改为只保留 Bilibili，删除 OpenAI Academy 和 6 条 Bilibili 接口返回 `-404` 的旧 BV 链接，当前保留 10 条 Bilibili `code=0` 视频。
 - 2026-06-09 13:38 CST 已将 `npm run audit:videos` 升级为 Bilibili 视频信息接口校验。
 - 2026-06-09 13:38 CST 已新增 `/progress` 学习进度中心，复用本地进度状态并支持复制进度报告。
+- 2026-06-09 14:15 CST 已新增 `/reviews` 复盘中心，包含 5 套复盘模板，支持动态输入、复制复盘报告和复制给 Codex 的深度复盘 Prompt。
 
 ## 当前进度
 
-- 当前任务：视频中心纯 Bilibili 与失效链接修复。
-- 任务状态：数据、代码、内容导出、巡检、完整验证、提交、推送和公网部署均已完成。
+- 当前任务：复盘中心。
+- 任务状态：本地开发、内容导出和验证已完成，等待提交、推送和公网部署。
 
 ## 当前风险
 
@@ -93,7 +94,7 @@
 
 ## 下一步动作
 
-当前任务已完成。下一步为定期巡检 Bilibili 视频链接并继续做移动端交互细节复测。
+当前需要提交并推送复盘中心，然后等待 Vercel 自动部署并验证公网 `/reviews`。
 
 ## 最近验证
 
@@ -181,3 +182,10 @@
   - `git push`：成功，`origin/main` 指向 `5f14618`。
   - Vercel Production 部署：`Ready`。
   - 主域名公网验证：`/videos` 显示 10 个 Bilibili 链接，无 OpenAI Academy 和旧失效 BV；`/progress` 显示学习进度中心和复制进度报告按钮。
+- 2026-06-09 14:15 CST：
+  - `npm run export:content`：通过，已生成 `content/reviews.md`。
+  - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 16 个 App Router 页面。
+  - Browser 验证：`/reviews` 显示复盘中心、核心复盘模板、动态输入框、复制报告和复制给 Codex 按钮。
