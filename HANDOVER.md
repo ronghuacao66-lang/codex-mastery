@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 22:36 CST
+2026-06-09 22:57 CST
 
 ## 当前状态
 
@@ -76,6 +76,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 22:36 CST 项目实战中心交付检查清单已完成、提交、推送并由 Vercel 部署为 Ready。8 个项目均已新增 `deliveryChecklist`，每个项目 5 条检查项，包含验收标准和证据要求。`/projects` 页面支持勾选、显示进度和复制交付清单，状态保存在 `codex-mastery:project-checklist`。最新部署为 `https://ronghuacao66-lang-codex-mastery-3s1npllh4-crh-s-projects.vercel.app`，主域名已绑定最新部署。
 
+2026-06-09 22:57 CST 已完成复盘中心导入 Markdown 开发和本地验证。`/reviews` 现在支持选择本地 Markdown 文件，按复盘标题和 `## 输入摘要` 恢复输入草稿，也兼容 Codex Prompt 中的 `### 字段名` 块。错误文件会显示提示且不会覆盖已有草稿。当前等待提交、推送和 Vercel 部署。
+
 ## 已完成内容
 
 - 项目状态文件已建立：
@@ -114,6 +116,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 已完成移动端全部模块抽屉优化，并已由 Vercel 部署为 Ready。
 - 已完成复盘中心历史列表，并已由 Vercel 部署为 Ready。
 - 已完成项目实战中心交付检查清单，并已由 Vercel 部署为 Ready。
+- 已完成复盘中心导入 Markdown 本地开发和验证，等待提交、推送和 Vercel 部署。
 
 ## 未完成内容
 
@@ -126,6 +129,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 本轮移动端全部模块抽屉优化已提交、推送并由 Vercel 部署为 Ready。
 - 本轮复盘中心历史列表已提交、推送并由 Vercel 部署为 Ready。
 - 本轮项目实战中心交付检查清单已提交、推送并由 Vercel 部署为 Ready。
+- 本轮复盘中心导入 Markdown 已完成本地验证，尚未提交和部署。
 
 ## 当前推理结果
 
@@ -151,12 +155,13 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 移动端全部模块抽屉文字更多，需要验证 375×812 视口无横向溢出和滚动可用。
 - 复盘历史只保存在当前浏览器 localStorage，清理浏览器数据会丢失。
 - 复盘历史可能包含用户填写内容，当前设计不上传服务器。
+- 复盘 Markdown 导入优先兼容本站导出的报告和 Codex Prompt 字段块，用户大幅改写结构后可能无法识别。
 - 项目交付检查进度只保存在当前浏览器 localStorage，清理浏览器数据会丢失。
 - 项目卡片信息密度提升，后续继续增加项目字段时应考虑详情页或分层展示。
 
 ## 下一步计划
 
-1. 可选：为复盘中心增加导入 Markdown 能力。
+1. 当前：提交、推送并等待 Vercel 部署复盘中心导入 Markdown。
 2. 可选：为项目实战中心增加详情页或项目执行记录导出。
 3. 后续新增视频必须先运行 `npm run audit:videos`。
 
@@ -313,3 +318,11 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - `git push`：成功，`origin/main` 指向 `9eb363d`。
   - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-3s1npllh4-crh-s-projects.vercel.app`，状态 `Ready`。
   - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
+- 2026-06-09 22:57 CST：
+  - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 16 个 App Router 页面。
+  - Playwright 桌面验证：上传本站导出格式 Markdown 后，恢复 4 个输入字段并写入 `codex-mastery:review-drafts`。
+  - Playwright 错误文件验证：上传非本站格式 Markdown 时显示错误提示，且不会覆盖已有草稿。
+  - Playwright 375×812 验证：`/reviews` 无页面级横向溢出。

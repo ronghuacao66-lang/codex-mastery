@@ -1,5 +1,47 @@
 # CHANGELOG_AI
 
+## 2026-06-09 22:57 复盘中心导入 Markdown
+
+### 修改文件
+
+- `components/ReviewCenterClient.tsx`
+- `README.md`
+- `DECISIONS.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 复盘中心新增“导入 Markdown”按钮。
+- 支持选择本地 `.md`、`.markdown` 或纯文本文件。
+- 根据 Markdown 一级标题匹配复盘模板。
+- 从 `## 输入摘要` 中解析字段内容并恢复到当前草稿。
+- 兼容“给 Codex 的深度复盘 Prompt”中的 `### 字段名` 内容块。
+- 导入成功或失败会显示明确反馈。
+- 错误格式文件不会覆盖当前草稿。
+- README 已同步复盘中心支持保存历史、导出和导入。
+
+### 修改原因
+
+复盘中心已经支持导出 Markdown 和保存历史，但用户把复盘文件保存到本地后，无法再回到站内继续编辑。本轮补齐“导出后重新导入”的回流能力，让复盘资产可以在站内持续修改和沉淀。
+
+### 验证结果
+
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 16 个 App Router 页面。
+- Playwright 桌面验证：上传本站导出格式 Markdown 后，恢复 4 个输入字段并写入 `codex-mastery:review-drafts`。
+- Playwright 错误文件验证：上传非本站格式 Markdown 时显示错误提示，且不会覆盖已有草稿。
+- Playwright 375×812 验证：`/reviews` 无页面级横向溢出，导入入口可见。
+
+### 风险说明
+
+- 导入能力优先兼容本站导出的复盘 Markdown；用户大幅改写结构后可能无法识别。
+- 文件只在浏览器本地读取，不上传服务器。
+
 ## 2026-06-09 22:36 项目实战中心交付检查清单
 
 ### 修改文件

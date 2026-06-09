@@ -1,7 +1,7 @@
 "use client";
 
-import { CheckCircle2, Circle, ClipboardList, Download, FileText, History, RotateCcw, Save, Sparkles, Trash2 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { CheckCircle2, Circle, ClipboardList, Download, FileText, History, RotateCcw, Save, Sparkles, Trash2, Upload } from "lucide-react";
+import { type ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import { CopyButton } from "@/components/CopyButton";
 import { Tag } from "@/components/Tag";
 import { cn } from "@/lib/utils";
@@ -22,6 +22,15 @@ type ReviewHistoryItem = {
   codexPrompt: string;
   draft: Record<string, string>;
 };
+type ImportStatus = {
+  tone: "success" | "error";
+  message: string;
+};
+type ParsedReviewImport = {
+  kit: ReviewKit;
+  draft: Record<string, string>;
+  filledCount: number;
+};
 
 export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
   const [activeId, setActiveId] = useState(kits[0]?.id ?? "");
@@ -29,6 +38,8 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
   const [history, setHistory] = useState<ReviewHistoryItem[]>([]);
   const [downloaded, setDownloaded] = useState(false);
   const [savedHistory, setSavedHistory] = useState(false);
+  const [importStatus, setImportStatus] = useState<ImportStatus | null>(null);
+  const importInputRef = useRef<HTMLInputElement>(null);
 
   const activeKit = kits.find((kit) => kit.id === activeId) ?? kits[0];
   const activeDraft = useMemo(() => drafts[activeKit.id] ?? {}, [activeKit.id, drafts]);
@@ -130,6 +141,39 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
     window.setTimeout(() => setDownloaded(false), 1400);
   }
 
+  async function importMarkdown(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+
+    const isMarkdown = file.name.toLowerCase().endsWith(".md") || file.type.includes("markdown") || file.type.includes("text");
+    if (!isMarkdown) {
+      setImportStatus({ tone: "error", message: "仅支持导入 Markdown 或纯文本复盘文件。" });
+      return;
+    }
+
+    try {
+      const content = await file.text();
+      const parsed = parseReviewMarkdown(content, kits);
+      if (!parsed) {
+        setImportStatus({ tone: "error", message: "未识别到本站复盘格式，请确认文件包含标题和“输入摘要”。" });
+        return;
+      }
+
+      setActiveId(parsed.kit.id);
+      setDrafts((current) => ({
+        ...current,
+        [parsed.kit.id]: parsed.draft
+      }));
+      setImportStatus({
+        tone: "success",
+        message: `已导入「${parsed.kit.title}」，恢复 ${parsed.filledCount} 个输入字段。`
+      });
+    } catch {
+      setImportStatus({ tone: "error", message: "读取文件失败，请重新选择 Markdown 文件。" });
+    }
+  }
+
   return (
     <div className="grid gap-5 xl:grid-cols-[0.88fr_1.12fr]">
       <section className="space-y-5">
@@ -221,6 +265,22 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
               <p className="mt-2 text-sm leading-6 text-muted">{activeKit.scenario}</p>
             </div>
             <div className="flex flex-wrap gap-2">
+              <input
+                ref={importInputRef}
+                type="file"
+                accept=".md,.markdown,text/markdown,text/plain"
+                onChange={importMarkdown}
+                className="hidden"
+              />
+              <button
+                type="button"
+                onClick={() => importInputRef.current?.click()}
+                className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-panel px-3 text-sm font-medium text-ink transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent"
+                title="导入已导出的复盘 Markdown"
+              >
+                <Upload className="h-4 w-4" />
+                <span>导入 Markdown</span>
+              </button>
               <CopyButton value={report} label="复制报告" />
               <CopyButton value={codexPrompt} label="复制给 Codex" />
               <button
@@ -244,6 +304,18 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
               </button>
             </div>
           </div>
+          {importStatus ? (
+            <div
+              className={cn(
+                "mt-4 rounded-md border px-3 py-2 text-sm leading-6",
+                importStatus.tone === "success"
+                  ? "border-accent/35 bg-accent/10 text-ink"
+                  : "border-red-400/35 bg-red-500/10 text-ink"
+              )}
+            >
+              {importStatus.message}
+            </div>
+          ) : null}
 
           <div className="mt-5 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
             <div className="rounded-md border border-line bg-surface p-4">
@@ -285,6 +357,15 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
               >
                 <Save className="h-4 w-4" />
                 <span>{savedHistory ? "已保存" : "保存"}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => importInputRef.current?.click()}
+                className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-panel px-3 text-sm font-medium text-ink transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent"
+                title="导入已导出的复盘 Markdown"
+              >
+                <Upload className="h-4 w-4" />
+                <span>导入</span>
               </button>
               <CopyButton value={report} label="复制" />
               <button
@@ -444,4 +525,95 @@ function formatDateTime(value: string) {
   const hour = `${date.getHours()}`.padStart(2, "0");
   const minute = `${date.getMinutes()}`.padStart(2, "0");
   return `${date.getFullYear()}-${month}-${day} ${hour}:${minute}`;
+}
+
+function parseReviewMarkdown(content: string, kits: ReviewKit[]): ParsedReviewImport | null {
+  const normalized = content.replace(/\r\n/g, "\n").trim();
+  if (normalized.length < 20) return null;
+
+  const title = normalized.match(/^#\s+(.+?)\s*$/m)?.[1]?.trim();
+  const exactKit = title ? kits.find((kit) => kit.title === title) : undefined;
+  const candidates = exactKit ? [exactKit, ...kits.filter((kit) => kit.id !== exactKit.id)] : kits;
+  const inputSummary = extractMarkdownSection(normalized, "输入摘要");
+
+  const ranked = candidates
+    .map((kit) => {
+      const draft = {
+        ...parseInputSummarySection(inputSummary, kit),
+        ...parseHeadingFieldBlocks(normalized, kit)
+      };
+      const filledCount = kit.inputFields.filter((field) => (draft[field.key] ?? "").trim().length > 0).length;
+      const titleScore = exactKit?.id === kit.id ? 10 : 0;
+      return { kit, draft, filledCount, score: titleScore + filledCount };
+    })
+    .sort((a, b) => b.score - a.score);
+
+  const best = ranked[0];
+  if (!best || best.filledCount === 0) return null;
+  if (!exactKit && best.filledCount < 2) return null;
+  return {
+    kit: best.kit,
+    draft: best.draft,
+    filledCount: best.filledCount
+  };
+}
+
+function extractMarkdownSection(content: string, title: string) {
+  const escapedTitle = escapeRegExp(title);
+  const match = content.match(new RegExp(`^##\\s+${escapedTitle}\\s*$`, "m"));
+  if (!match || match.index === undefined) return "";
+
+  const start = match.index + match[0].length;
+  const rest = content.slice(start);
+  const nextHeading = rest.search(/^##\s+/m);
+  return (nextHeading >= 0 ? rest.slice(0, nextHeading) : rest).trim();
+}
+
+function parseInputSummarySection(section: string, kit: ReviewKit) {
+  const draft: Record<string, string> = {};
+  if (!section) return draft;
+
+  const lines = section.split("\n");
+  let activeKey: string | null = null;
+  for (const rawLine of lines) {
+    const line = rawLine.trimEnd();
+    const matchedField = kit.inputFields.find((field) => line.startsWith(`- ${field.label}：`) || line.startsWith(`- ${field.label}:`));
+    if (matchedField) {
+      activeKey = matchedField.key;
+      const value = line.replace(new RegExp(`^-\\s+${escapeRegExp(matchedField.label)}[：:]\\s*`), "").trim();
+      draft[activeKey] = normalizeImportedValue(value);
+      continue;
+    }
+
+    if (!activeKey || line.startsWith("- ") || line.startsWith("#")) continue;
+    const continuation = line.trim();
+    if (!continuation) continue;
+    draft[activeKey] = [draft[activeKey], continuation].filter(Boolean).join("\n");
+  }
+
+  return draft;
+}
+
+function parseHeadingFieldBlocks(content: string, kit: ReviewKit) {
+  const draft: Record<string, string> = {};
+  for (const field of kit.inputFields) {
+    const heading = content.match(new RegExp(`^###\\s+${escapeRegExp(field.label)}\\s*$`, "m"));
+    if (!heading || heading.index === undefined) continue;
+    const start = heading.index + heading[0].length;
+    const rest = content.slice(start);
+    const nextHeading = rest.search(/^###?\s+/m);
+    const value = (nextHeading >= 0 ? rest.slice(0, nextHeading) : rest).trim();
+    const normalized = normalizeImportedValue(value);
+    if (normalized) draft[field.key] = normalized;
+  }
+  return draft;
+}
+
+function normalizeImportedValue(value: string) {
+  const trimmed = value.trim();
+  return trimmed === "待补充" ? "" : trimmed;
+}
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
