@@ -58,6 +58,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 14:24 CST 复盘中心已推送到 GitHub，提交 `700c239 Add review center`。Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-axx00df6p-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。公网 Browser 与 `curl` 从本机网络访问 `/reviews` 超时，和此前本机到 Vercel 边缘节点超时现象一致。
 
+2026-06-09 15:46 CST 已完成移动端导航优化。本地 375×812 验证显示：首页无页面级横向溢出，常用入口为控制台、任务、30天、进度、复盘，全部模块抽屉可打开；`/reviews` 无页面级横向溢出并正常显示输入框。当前等待提交、推送和 Vercel 部署。
+
 ## 已完成内容
 
 - 项目状态文件已建立：
@@ -91,6 +93,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 已将视频中心改为只保留 Bilibili，当前 10 条视频均通过 Bilibili API `code=0` 校验。
 - 已新增学习进度中心 `/progress`。
 - 已新增复盘中心 `/reviews`。
+- 已完成移动端导航优化：常用入口加全部模块抽屉。
 
 ## 未完成内容
 
@@ -98,6 +101,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 视频链接巡检、去除不可确认播放视频、视频巡检命令均已完成。
 - 本轮视频中心纯 Bilibili 修复和学习进度中心已提交、推送并上线。
 - 本轮复盘中心已提交、推送并由 Vercel 部署为 Ready。
+- 本轮移动端导航优化尚未提交和推送。
 
 ## 当前推理结果
 
@@ -122,8 +126,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 ## 下一步计划
 
-1. 后续新增视频必须先运行 `npm run audit:videos`。
-2. 可选：继续做移动端交互细节复测。
+1. 提交并推送本轮移动端导航优化。
+2. 等待 Vercel 自动部署为 `Ready`。
 3. 可选：为复盘中心增加导出 Markdown 文件能力。
 
 ## 最近验证
@@ -223,3 +227,10 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - Vercel Production 部署：`Ready`。
   - 主域名 alias：已绑定最新部署。
   - 公网 Browser 与 `curl` 从本机网络访问 `/reviews` 超时；未作为构建失败判据。
+- 2026-06-09 15:46 CST：
+  - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 16 个 App Router 页面。
+  - Browser 375×812 验证：首页无页面级横向溢出，常用入口显示为控制台、任务、30天、进度、复盘，全部模块抽屉可打开。
+  - Browser 375×812 验证：`/reviews` 无页面级横向溢出，复盘中心正常显示输入框。
