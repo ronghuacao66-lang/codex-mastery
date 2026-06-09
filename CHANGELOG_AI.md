@@ -30,6 +30,9 @@
 - `npm run build`：通过，生成 16 个 App Router 页面。
 - Browser 375×812 验证：首页无页面级横向溢出，常用入口显示为控制台、任务、30天、进度、复盘，全部模块抽屉可打开。
 - Browser 375×812 验证：`/reviews` 无页面级横向溢出，复盘中心正常显示输入框。
+- `git push`：成功，业务提交 `31f0558` 已推送到 GitHub。
+- Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-lqwybjxvv-crh-s-projects.vercel.app`，状态 `Ready`。
+- 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
 
 ### 风险说明
 

@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 15:46 CST
+2026-06-09 15:57 CST
 
 ## 当前目标
 
@@ -205,7 +205,7 @@
 - 第六项任务“学习进度中心”：已完成、提交、推送并上线。
 - 当前任务“视频中心纯 Bilibili 与失效链接修复”：已完成、提交、推送并上线。
 - 第七项任务“复盘中心”：已完成、提交、推送并由 Vercel 部署为 Ready。
-- 第八项任务“移动端导航优化”：本地开发与验证已完成，等待提交、推送和 Vercel 部署。
+- 第八项任务“移动端导航优化”：已完成、提交、推送并由 Vercel 部署为 Ready。
 
 ## 当前风险
 
@@ -224,17 +224,17 @@
 
 ## 待办事项
 
-1. 提交并推送本轮移动端导航优化。
-2. 等待 Vercel 自动部署为 `Ready`。
-3. 可选：为复盘中心增加导出 Markdown 文件能力。
+1. 可选：为复盘中心增加导出 Markdown 文件能力。
+2. 可选：继续做移动端模块抽屉视觉细节优化。
+3. 后续新增视频前必须运行 `npm run audit:videos`。
 
 ## 下一步行动
 
-当前下一步为“提交并推送本轮移动端导航优化”：
+当前下一步为“为复盘中心增加导出 Markdown 文件能力或继续优化移动端模块抽屉”：
 
-- 目标：让移动端用户更快进入高频模块，并保留全部模块访问能力。
+- 目标：继续提升平台真实使用体验。
 - 输入：当前代码、数据与状态文件。
-- 输出：GitHub 和 Vercel 均包含新的移动端导航结构和状态记录。
+- 输出：后续小步改进和可追溯状态记录。
 - 验收标准：相关变更继续通过 `npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build`。
 
 ## 最近验证
@@ -362,3 +362,7 @@
   - `npm run build`：通过，生成 16 个 App Router 页面。
   - Browser 375×812 验证：首页无页面级横向溢出，常用入口显示为控制台、任务、30天、进度、复盘，全部模块抽屉可打开。
   - Browser 375×812 验证：`/reviews` 无页面级横向溢出，复盘中心正常显示输入框。
+- 2026-06-09 15:55 CST：
+  - `git push`：成功，`origin/main` 指向 `31f0558`。
+  - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-lqwybjxvv-crh-s-projects.vercel.app`，状态 `Ready`。
+  - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。

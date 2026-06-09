@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 13:38 CST
+2026-06-09 15:57 CST
 
 ## 当前状态
 
@@ -58,7 +58,9 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 14:24 CST 复盘中心已推送到 GitHub，提交 `700c239 Add review center`。Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-axx00df6p-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。公网 Browser 与 `curl` 从本机网络访问 `/reviews` 超时，和此前本机到 Vercel 边缘节点超时现象一致。
 
-2026-06-09 15:46 CST 已完成移动端导航优化。本地 375×812 验证显示：首页无页面级横向溢出，常用入口为控制台、任务、30天、进度、复盘，全部模块抽屉可打开；`/reviews` 无页面级横向溢出并正常显示输入框。当前等待提交、推送和 Vercel 部署。
+2026-06-09 15:46 CST 已完成移动端导航优化。本地 375×812 验证显示：首页无页面级横向溢出，常用入口为控制台、任务、30天、进度、复盘，全部模块抽屉可打开；`/reviews` 无页面级横向溢出并正常显示输入框。
+
+2026-06-09 15:55 CST 移动端导航优化已推送到 GitHub，提交 `31f0558 Improve mobile navigation`。Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-lqwybjxvv-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
 
 ## 已完成内容
 
@@ -101,7 +103,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 视频链接巡检、去除不可确认播放视频、视频巡检命令均已完成。
 - 本轮视频中心纯 Bilibili 修复和学习进度中心已提交、推送并上线。
 - 本轮复盘中心已提交、推送并由 Vercel 部署为 Ready。
-- 本轮移动端导航优化尚未提交和推送。
+- 本轮移动端导航优化已提交、推送并由 Vercel 部署为 Ready。
 
 ## 当前推理结果
 
@@ -126,9 +128,9 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 ## 下一步计划
 
-1. 提交并推送本轮移动端导航优化。
-2. 等待 Vercel 自动部署为 `Ready`。
-3. 可选：为复盘中心增加导出 Markdown 文件能力。
+1. 可选：为复盘中心增加导出 Markdown 文件能力。
+2. 可选：继续做移动端模块抽屉视觉细节优化。
+3. 后续新增视频必须先运行 `npm run audit:videos`。
 
 ## 最近验证
 
@@ -234,3 +236,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - `npm run build`：通过，生成 16 个 App Router 页面。
   - Browser 375×812 验证：首页无页面级横向溢出，常用入口显示为控制台、任务、30天、进度、复盘，全部模块抽屉可打开。
   - Browser 375×812 验证：`/reviews` 无页面级横向溢出，复盘中心正常显示输入框。
+- 2026-06-09 15:55 CST：
+  - `git push`：成功，`origin/main` 指向 `31f0558`。
+  - Vercel Production 部署：`Ready`。
+  - 主域名 alias：已绑定最新部署。
