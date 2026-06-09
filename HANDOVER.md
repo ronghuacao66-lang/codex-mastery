@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 22:15 CST
+2026-06-09 22:23 CST
 
 ## 当前状态
 
@@ -72,6 +72,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 22:15 CST 已完成复盘中心历史列表开发和本地验证。`/reviews` 现在支持把当前复盘保存到 `codex-mastery:review-history`，最多保留最近 20 条；历史记录可继续编辑、复制报告、复制 Codex Prompt 和删除。当前等待提交、推送和 Vercel 部署。
 
+2026-06-09 22:23 CST 复盘中心历史列表已推送到 GitHub，提交 `b676d68 Add review history list`。Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-qz87ourlb-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
+
 ## 已完成内容
 
 - 项目状态文件已建立：
@@ -108,7 +110,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 已完成移动端导航优化：常用入口加全部模块抽屉。
 - 已为复盘中心新增导出 Markdown 文件能力，并已由 Vercel 部署为 Ready。
 - 已完成移动端全部模块抽屉优化，并已由 Vercel 部署为 Ready。
-- 已完成复盘中心历史列表开发和本地验证，当前等待提交和上线。
+- 已完成复盘中心历史列表，并已由 Vercel 部署为 Ready。
 
 ## 未完成内容
 
@@ -119,7 +121,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 本轮移动端导航优化已提交、推送并由 Vercel 部署为 Ready。
 - 本轮复盘中心导出 Markdown 能力已提交、推送并由 Vercel 部署为 Ready。
 - 本轮移动端全部模块抽屉优化已提交、推送并由 Vercel 部署为 Ready。
-- 本轮复盘中心历史列表尚未提交和推送。
+- 本轮复盘中心历史列表已提交、推送并由 Vercel 部署为 Ready。
 
 ## 当前推理结果
 
@@ -148,8 +150,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 ## 下一步计划
 
-1. 提交并推送复盘中心历史列表。
-2. 等待 Vercel 自动部署为 `Ready`。
+1. 可选：继续补充项目实战中心的交付检查清单。
+2. 可选：为复盘中心增加导入 Markdown 能力。
 3. 后续新增视频必须先运行 `npm run audit:videos`。
 
 ## 最近验证
@@ -289,3 +291,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - `npm run build`：通过，生成 16 个 App Router 页面。
   - Playwright 375×812 验证：保存 1 条历史复盘成功，历史记录包含复盘报告和 Codex Prompt。
   - Playwright 375×812 验证：继续编辑可恢复输入，删除后历史数量为 0，页面无横向溢出。
+- 2026-06-09 22:23 CST：
+  - `git push`：成功，`origin/main` 指向 `b676d68`。
+  - Vercel Production 部署：`Ready`。
+  - 主域名 alias：已绑定最新部署。

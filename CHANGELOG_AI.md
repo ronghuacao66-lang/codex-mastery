@@ -34,6 +34,9 @@
 - Playwright 375×812 验证：保存 1 条历史复盘成功，localStorage 写入 `codex-mastery:review-history`。
 - Playwright 375×812 验证：历史记录包含复盘报告和 Codex Prompt，可从历史记录继续编辑并恢复输入。
 - Playwright 375×812 验证：删除历史记录后历史数量为 0，页面无横向溢出。
+- `git push`：成功，业务提交 `b676d68` 已推送到 GitHub。
+- Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-qz87ourlb-crh-s-projects.vercel.app`，状态 `Ready`。
+- 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
 
 ### 风险说明
 
