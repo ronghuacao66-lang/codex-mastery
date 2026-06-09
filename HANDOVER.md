@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 15:57 CST
+2026-06-09 17:43 CST
 
 ## 当前状态
 
@@ -62,6 +62,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 15:55 CST 移动端导航优化已推送到 GitHub，提交 `31f0558 Improve mobile navigation`。Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-lqwybjxvv-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
 
+2026-06-09 17:43 CST 已为复盘中心新增导出 Markdown 文件能力。当前复盘报告顶部操作区和报告草稿区均可下载当前报告，文件名基于复盘模板标题和当天日期生成。本地 `audit:videos`、`typecheck`、`lint`、`build` 与 Playwright 验证均已通过，当前等待提交、推送和 Vercel 部署。
+
 ## 已完成内容
 
 - 项目状态文件已建立：
@@ -96,6 +98,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 已新增学习进度中心 `/progress`。
 - 已新增复盘中心 `/reviews`。
 - 已完成移动端导航优化：常用入口加全部模块抽屉。
+- 已为复盘中心新增导出 Markdown 文件能力，本地验证已通过，当前等待提交和上线。
 
 ## 未完成内容
 
@@ -104,6 +107,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 本轮视频中心纯 Bilibili 修复和学习进度中心已提交、推送并上线。
 - 本轮复盘中心已提交、推送并由 Vercel 部署为 Ready。
 - 本轮移动端导航优化已提交、推送并由 Vercel 部署为 Ready。
+- 本轮复盘中心导出 Markdown 能力尚未提交和推送。
 
 ## 当前推理结果
 
@@ -125,11 +129,12 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 当前视频中心只展示 Bilibili；不展示 OpenAI Academy、YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频。
 - Bilibili 普通页面 HTTP 200 不能证明视频存在，后续必须以 `npm run audit:videos` 的接口校验结果为准。
 - 后续新增视频必须先确认能正常打开播放。
+- 复盘报告导出依赖浏览器下载能力；移动端保存位置由系统决定。
 
 ## 下一步计划
 
-1. 可选：为复盘中心增加导出 Markdown 文件能力。
-2. 可选：继续做移动端模块抽屉视觉细节优化。
+1. 提交并推送复盘中心导出 Markdown 文件能力。
+2. 等待 Vercel 自动部署为 `Ready`。
 3. 后续新增视频必须先运行 `npm run audit:videos`。
 
 ## 最近验证
@@ -238,5 +243,14 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - Browser 375×812 验证：`/reviews` 无页面级横向溢出，复盘中心正常显示输入框。
 - 2026-06-09 15:55 CST：
   - `git push`：成功，`origin/main` 指向 `31f0558`。
+  - Vercel Production 部署：`Ready`。
+  - 主域名 alias：已绑定最新部署。
+- 2026-06-09 17:43 CST：
+  - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 16 个 App Router 页面。
+  - Playwright 下载验证：生成文件名 `每日-Codex-训练复盘-20260609.md`，内容为当前复盘报告 Markdown。
+  - Playwright 375×812 验证：无页面级横向溢出，下载入口数量为 2。
   - Vercel Production 部署：`Ready`。
   - 主域名 alias：已绑定最新部署。

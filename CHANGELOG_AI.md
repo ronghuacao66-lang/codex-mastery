@@ -1,5 +1,42 @@
 # CHANGELOG_AI
 
+## 2026-06-09 17:43 复盘中心导出 Markdown
+
+### 修改文件
+
+- `components/ReviewCenterClient.tsx`
+- `DECISIONS.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 复盘中心新增“导出 Markdown”按钮。
+- 报告顶部操作区和报告草稿区均可下载当前复盘报告。
+- 导出文件名基于复盘模板标题和当天日期生成。
+- 下载完成后按钮短暂显示“已导出”反馈。
+
+### 修改原因
+
+复盘中心已有复制报告能力，但用户要长期保存复盘资产时仍需要手动创建文件。本轮补齐本地 Markdown 导出，让训练和项目交付复盘可以直接沉淀到知识库或项目目录。
+
+### 验证结果
+
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 16 个 App Router 页面。
+- Playwright 桌面验证：`/reviews` 显示“导出 Markdown”和“下载”两个入口。
+- Playwright 下载验证：生成文件名 `每日-Codex-训练复盘-20260609.md`，内容为当前复盘报告 Markdown。
+- Playwright 375×812 验证：`/reviews` 无页面级横向溢出，下载入口数量为 2。
+
+### 风险说明
+
+- 导出依赖浏览器端 Blob 和下载能力，不上传服务器。
+- 移动端浏览器的下载位置由系统决定，站点不控制保存目录。
+
 ## 2026-06-09 15:46 移动端导航优化
 
 ### 修改文件

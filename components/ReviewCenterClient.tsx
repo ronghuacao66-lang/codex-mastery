@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Circle, ClipboardList, FileText, RotateCcw, Sparkles } from "lucide-react";
+import { CheckCircle2, Circle, ClipboardList, Download, FileText, RotateCcw, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { CopyButton } from "@/components/CopyButton";
 import { Tag } from "@/components/Tag";
@@ -14,6 +14,7 @@ type Drafts = Record<string, Record<string, string>>;
 export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
   const [activeId, setActiveId] = useState(kits[0]?.id ?? "");
   const [drafts, setDrafts] = useState<Drafts>({});
+  const [downloaded, setDownloaded] = useState(false);
 
   const activeKit = kits.find((kit) => kit.id === activeId) ?? kits[0];
   const activeDraft = useMemo(() => drafts[activeKit.id] ?? {}, [activeKit.id, drafts]);
@@ -53,6 +54,20 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
       delete next[activeKit.id];
       return next;
     });
+  }
+
+  function downloadMarkdown() {
+    const blob = new Blob([report], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${toFileName(activeKit.title)}-${todayKey()}.md`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    setDownloaded(true);
+    window.setTimeout(() => setDownloaded(false), 1400);
   }
 
   return (
@@ -148,6 +163,15 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
             <div className="flex flex-wrap gap-2">
               <CopyButton value={report} label="复制报告" />
               <CopyButton value={codexPrompt} label="复制给 Codex" />
+              <button
+                type="button"
+                onClick={downloadMarkdown}
+                className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-panel px-3 text-sm font-medium text-ink transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent"
+                title={downloaded ? "已导出" : "导出 Markdown"}
+              >
+                <Download className="h-4 w-4" />
+                <span>{downloaded ? "已导出" : "导出 Markdown"}</span>
+              </button>
             </div>
           </div>
 
@@ -181,7 +205,18 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
         <div className="rounded-lg border border-line bg-panel p-5 shadow-soft dark:shadow-darksoft">
           <div className="mb-4 flex items-center justify-between gap-4">
             <h2 className="text-lg font-semibold text-ink">复盘报告草稿</h2>
-            <CopyButton value={report} label="复制" />
+            <div className="flex flex-wrap justify-end gap-2">
+              <CopyButton value={report} label="复制" />
+              <button
+                type="button"
+                onClick={downloadMarkdown}
+                className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-panel px-3 text-sm font-medium text-ink transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent"
+                title={downloaded ? "已导出" : "下载当前报告"}
+              >
+                <Download className="h-4 w-4" />
+                <span>{downloaded ? "已导出" : "下载"}</span>
+              </button>
+            </div>
           </div>
           <pre className="fine-scrollbar max-h-[520px] overflow-auto whitespace-pre-wrap rounded-md border border-line bg-surface p-4 text-sm leading-6 text-ink">
             {report}
@@ -239,4 +274,20 @@ function buildCodexPrompt(kit: ReviewKit, draft: Record<string, string>) {
     "## 输出结构",
     ...kit.outputSections.map((section) => `- ${section}`)
   ].join("\n");
+}
+
+function toFileName(value: string) {
+  return value
+    .trim()
+    .replace(/[\\/:*?"<>|]/g, "")
+    .replace(/\s+/g, "-")
+    .slice(0, 42) || "codex-review";
+}
+
+function todayKey() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = `${now.getMonth() + 1}`.padStart(2, "0");
+  const day = `${now.getDate()}`.padStart(2, "0");
+  return `${year}${month}${day}`;
 }

@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 15:57 CST
+2026-06-09 17:43 CST
 
 ## 当前目标
 
@@ -138,6 +138,7 @@
   - 新增 `data/reviews.json`，包含 5 套复盘模板。
   - 支持每日训练、Prompt 迭代、项目交付、Bug 修复、安全售前拜访复盘。
   - 支持动态输入、自动生成复盘报告、复制报告、复制给 Codex 的深度复盘 Prompt。
+  - 支持将当前复盘报告导出为本地 Markdown 文件。
   - 复盘草稿保存在本地浏览器 `codex-mastery:review-drafts`。
   - 已从桌面/移动导航和首页接入。
 - 已完成移动端导航优化：
@@ -206,6 +207,7 @@
 - 当前任务“视频中心纯 Bilibili 与失效链接修复”：已完成、提交、推送并上线。
 - 第七项任务“复盘中心”：已完成、提交、推送并由 Vercel 部署为 Ready。
 - 第八项任务“移动端导航优化”：已完成、提交、推送并由 Vercel 部署为 Ready。
+- 第九项任务“复盘中心导出 Markdown”：本地开发和验证已完成，等待提交、推送和 Vercel 部署。
 
 ## 当前风险
 
@@ -218,23 +220,24 @@
 - 系统级上下文压缩不可由模型关闭，当前已通过 `HANDOVER.md` 和状态文件保护关键上下文。
 - `localhost:3000` 依赖本机开发服务；服务停止后本地网址会打不开。
 - 外部视频链接可能随平台规则变化失效，需要后续定期巡检。
+- 复盘报告导出依赖浏览器下载能力；移动端保存位置由系统决定。
 - 旧状态文件曾记录过与当前项目无关的目标，已通过本轮状态更新纠偏。
 - 本地执行 `npm run build` 时不应与 `npm run dev` 混用同一个 `.next`；若首页 500，需要停止 dev server、删除 `.next` 并重启。
 - 合盖长时间运行 Codex 会增加发热和耗电风险，建议连接电源并保持散热。
 
 ## 待办事项
 
-1. 可选：为复盘中心增加导出 Markdown 文件能力。
+1. 提交并推送复盘中心导出 Markdown 文件能力。
 2. 可选：继续做移动端模块抽屉视觉细节优化。
 3. 后续新增视频前必须运行 `npm run audit:videos`。
 
 ## 下一步行动
 
-当前下一步为“为复盘中心增加导出 Markdown 文件能力或继续优化移动端模块抽屉”：
+当前下一步为“提交并推送复盘中心导出 Markdown 文件能力”：
 
-- 目标：继续提升平台真实使用体验。
+- 目标：让用户把复盘报告直接保存为本地 Markdown 文件。
 - 输入：当前代码、数据与状态文件。
-- 输出：后续小步改进和可追溯状态记录。
+- 输出：复盘中心导出按钮、验证记录、GitHub 推送和 Vercel 部署。
 - 验收标准：相关变更继续通过 `npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build`。
 
 ## 最近验证
@@ -366,3 +369,11 @@
   - `git push`：成功，`origin/main` 指向 `31f0558`。
   - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-lqwybjxvv-crh-s-projects.vercel.app`，状态 `Ready`。
   - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
+- 2026-06-09 17:43 CST：
+  - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 16 个 App Router 页面。
+  - Playwright 桌面验证：`/reviews` 显示“导出 Markdown”和“下载”两个入口。
+  - Playwright 下载验证：生成文件名 `每日-Codex-训练复盘-20260609.md`，内容为当前复盘报告 Markdown。
+  - Playwright 375×812 验证：无页面级横向溢出，下载入口数量为 2。
