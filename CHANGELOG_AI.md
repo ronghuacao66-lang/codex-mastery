@@ -42,6 +42,9 @@
 - `npm run lint`：通过。
 - `npm run build`：通过，生成 16 个 App Router 页面。
 - Browser 验证：`/reviews` 显示复盘中心、核心复盘模板、动态输入框、复制报告和复制给 Codex 按钮。
+- `git push`：成功，业务提交 `700c239` 已推送到 GitHub。
+- Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-axx00df6p-crh-s-projects.vercel.app`，状态 `Ready`。
+- 公网 Browser 与 `curl` 从本机网络访问 `/reviews` 超时；该问题与此前本机到 Vercel 边缘节点超时现象一致，未作为构建失败判据。
 
 ### 风险说明
 

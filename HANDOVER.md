@@ -54,7 +54,9 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 13:55 CST 视频中心纯 Bilibili 修复和学习进度中心已推送到 GitHub，提交 `5f14618 Fix Bilibili videos and add progress center`。Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-j3h0tbrmi-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。公网 `/videos` 和 `/progress` 已通过 Browser 验证。
 
-2026-06-09 14:15 CST 已新增 `/reviews` 复盘中心，包含 5 套复盘模板：每日 Codex 训练复盘、Prompt 迭代复盘、项目实战交付复盘、Bug 修复复盘、安全售前拜访复盘。当前本地开发、内容导出、typecheck、lint、build 和 Browser 验证均已完成，等待提交、推送和 Vercel 部署。
+2026-06-09 14:15 CST 已新增 `/reviews` 复盘中心，包含 5 套复盘模板：每日 Codex 训练复盘、Prompt 迭代复盘、项目实战交付复盘、Bug 修复复盘、安全售前拜访复盘。本地开发、内容导出、typecheck、lint、build 和 Browser 验证均已完成。
+
+2026-06-09 14:24 CST 复盘中心已推送到 GitHub，提交 `700c239 Add review center`。Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-axx00df6p-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。公网 Browser 与 `curl` 从本机网络访问 `/reviews` 超时，和此前本机到 Vercel 边缘节点超时现象一致。
 
 ## 已完成内容
 
@@ -95,7 +97,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - GitHub push 已完成，当前通过 SSH remote 同步。
 - 视频链接巡检、去除不可确认播放视频、视频巡检命令均已完成。
 - 本轮视频中心纯 Bilibili 修复和学习进度中心已提交、推送并上线。
-- 本轮复盘中心尚未提交和推送。
+- 本轮复盘中心已提交、推送并由 Vercel 部署为 Ready。
 
 ## 当前推理结果
 
@@ -120,9 +122,9 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 ## 下一步计划
 
-1. 提交并推送本轮复盘中心。
-2. 等待 Vercel 自动部署为 `Ready`，确认主域名 `/reviews` 可访问。
-3. 后续新增视频必须先运行 `npm run audit:videos`。
+1. 后续新增视频必须先运行 `npm run audit:videos`。
+2. 可选：继续做移动端交互细节复测。
+3. 可选：为复盘中心增加导出 Markdown 文件能力。
 
 ## 最近验证
 
@@ -216,3 +218,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - `npm run lint`：通过。
   - `npm run build`：通过，生成 16 个 App Router 页面。
   - Browser 验证：`/reviews` 显示复盘中心、核心复盘模板、动态输入框、复制报告和复制给 Codex 按钮。
+- 2026-06-09 14:24 CST：
+  - `git push`：成功，`origin/main` 指向 `700c239`。
+  - Vercel Production 部署：`Ready`。
+  - 主域名 alias：已绑定最新部署。
+  - 公网 Browser 与 `curl` 从本机网络访问 `/reviews` 超时；未作为构建失败判据。

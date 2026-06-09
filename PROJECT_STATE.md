@@ -199,7 +199,7 @@
 - 第五项任务“视频资源可用性治理”：已完成，当前只保留 10 条 Bilibili 视频并提供 `npm run audit:videos`。
 - 第六项任务“学习进度中心”：已完成、提交、推送并上线。
 - 当前任务“视频中心纯 Bilibili 与失效链接修复”：已完成、提交、推送并上线。
-- 第七项任务“复盘中心”：本地开发、内容导出和验证已完成，等待提交、推送和 Vercel 部署。
+- 第七项任务“复盘中心”：已完成、提交、推送并由 Vercel 部署为 Ready。
 
 ## 当前风险
 
@@ -218,17 +218,17 @@
 
 ## 待办事项
 
-1. 提交并推送本轮复盘中心。
-2. 等待 Vercel 自动部署为 `Ready`，确认主域名 `/reviews` 可访问。
-3. 后续新增视频前必须运行 `npm run audit:videos`。
+1. 后续新增视频前必须运行 `npm run audit:videos`。
+2. 可选：继续做移动端交互细节复测。
+3. 可选：为复盘中心增加导出 Markdown 文件能力。
 
 ## 下一步行动
 
-当前下一步为“提交并推送本轮复盘中心”：
+当前下一步为“继续做移动端交互细节复测或增强复盘中心导出能力”：
 
-- 目标：上线可用于学习闭环的复盘中心。
+- 目标：继续提升平台真实使用体验。
 - 输入：当前代码、数据与状态文件。
-- 输出：GitHub 和 Vercel 均包含 `/reviews` 页面、复盘模板和状态记录。
+- 输出：后续小步改进和可追溯状态记录。
 - 验收标准：相关变更继续通过 `npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build`。
 
 ## 最近验证
@@ -344,3 +344,8 @@
   - `npm run lint`：通过。
   - `npm run build`：通过，生成 16 个 App Router 页面。
   - Browser 验证：`/reviews` 显示复盘中心、核心复盘模板、动态输入框、复制报告和复制给 Codex 按钮。
+- 2026-06-09 14:24 CST：
+  - `git push`：成功，`origin/main` 指向 `700c239`。
+  - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-axx00df6p-crh-s-projects.vercel.app`，状态 `Ready`。
+  - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
+  - 公网 Browser 与 `curl` 从本机网络访问 `/reviews` 超时；该问题与此前本机到 Vercel 边缘节点超时现象一致，未作为构建失败判据。
