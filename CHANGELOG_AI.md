@@ -46,6 +46,9 @@
 - `rg OpenAI Academy|YouTube|抖音精选|network_or_timeout|likely_broken|manual_review|BV19r39z4EMy|BV1Nd3CzFEGD|BV15yd8YNEqF|BV1HPcLe5Eqe|BV1TQ3pztE9h|BV1df3PzKEHP app components data types content README.md scripts package.json`：无残留。
 - 本地生产服务：`/`、`/videos`、`/progress` 均返回 200。
 - Browser 验证：`/videos` 显示 10 个 Bilibili 链接，无 OpenAI Academy 和旧失效 BV；`/progress` 显示学习进度中心和复制进度报告按钮。
+- `git push`：成功，业务提交 `5f14618` 已推送到 GitHub。
+- Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-j3h0tbrmi-crh-s-projects.vercel.app`，状态 `Ready`。
+- 公网 Browser 验证：`https://ronghuacao66-lang-codex-mastery.vercel.app/videos` 显示 10 个 Bilibili 链接，无 OpenAI Academy 和旧失效 BV；`/progress` 显示学习进度中心和复制进度报告按钮。
 
 ### 风险说明
 

@@ -189,8 +189,8 @@
 - 第三项任务“移动端与交互体验检查”：已完成。
 - 第四项任务“GitHub + Vercel 上线准备”：已完成。
 - 第五项任务“视频资源可用性治理”：已完成，当前只保留 10 条 Bilibili 视频并提供 `npm run audit:videos`。
-- 第六项任务“学习进度中心”：代码与验证已完成，等待提交与推送。
-- 当前任务“视频中心纯 Bilibili 与失效链接修复”：数据、代码、内容导出、巡检和完整验证已完成，等待提交与推送。
+- 第六项任务“学习进度中心”：已完成、提交、推送并上线。
+- 当前任务“视频中心纯 Bilibili 与失效链接修复”：已完成、提交、推送并上线。
 
 ## 当前风险
 
@@ -209,18 +209,18 @@
 
 ## 待办事项
 
-1. 提交并推送本轮视频中心纯 Bilibili 修复和学习进度中心。
-2. 定期巡检外部视频链接，确保保留视频仍可打开播放。
-3. 部署完成后确认 Vercel 主域名 `/videos` 和 `/progress` 可访问。
+1. 定期巡检外部视频链接，确保保留视频仍可打开播放。
+2. 后续新增视频前必须运行 `npm run audit:videos`。
+3. 可选：继续做移动端交互细节复测。
 
 ## 下一步行动
 
-当前下一步为“提交并推送本轮视频中心纯 Bilibili 修复和学习进度中心”：
+当前下一步为“定期巡检 Bilibili 视频链接并继续做移动端交互细节复测”：
 
-- 目标：让视频中心只展示可验证存在的 Bilibili 视频，并上线学习进度中心。
+- 目标：保持视频中心链接可用，并继续提升移动端交互体验。
 - 输入：当前代码、数据与状态文件。
-- 输出：GitHub 远程仓库包含最新视频修复、进度中心和状态记录。
-- 验收标准：`npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build` 均通过。
+- 输出：后续小步改进和可追溯状态记录。
+- 验收标准：相关变更继续通过 `npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build`。
 
 ## 最近验证
 
@@ -323,3 +323,8 @@
   - `npm run build`：通过，生成 15 个 App Router 页面。
   - 本地生产服务：`/`、`/videos`、`/progress` 均返回 200。
   - Browser 验证：`/videos` 显示 10 个 Bilibili 链接，无 OpenAI Academy 和旧失效 BV；`/progress` 显示学习进度中心和复制进度报告按钮。
+- 2026-06-09 13:55 CST：
+  - `git push`：成功，`origin/main` 指向 `5f14618`。
+  - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-j3h0tbrmi-crh-s-projects.vercel.app`，状态 `Ready`。
+  - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
+  - 公网 Browser 验证：`/videos` 显示 10 个 Bilibili 链接，无 OpenAI Academy 和旧失效 BV；`/progress` 显示学习进度中心和复制进度报告按钮。

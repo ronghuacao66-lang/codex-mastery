@@ -69,7 +69,7 @@
 ## 当前进度
 
 - 当前任务：视频中心纯 Bilibili 与失效链接修复。
-- 任务状态：数据、代码、内容导出、巡检和完整验证已完成，等待提交、推送。
+- 任务状态：数据、代码、内容导出、巡检、完整验证、提交、推送和公网部署均已完成。
 
 ## 当前风险
 
@@ -93,7 +93,7 @@
 
 ## 下一步动作
 
-当前需要提交并推送视频中心纯 Bilibili 修复和学习进度中心。
+当前任务已完成。下一步为定期巡检 Bilibili 视频链接并继续做移动端交互细节复测。
 
 ## 最近验证
 
@@ -177,3 +177,7 @@
   - `npm run build`：通过，生成 15 个 App Router 页面。
   - 本地生产服务：`/`、`/videos`、`/progress` 均返回 200。
   - Browser 验证：`/videos` 显示 10 个 Bilibili 链接，无 OpenAI Academy 和旧失效 BV；`/progress` 显示学习进度中心和复制进度报告按钮。
+- 2026-06-09 13:55 CST：
+  - `git push`：成功，`origin/main` 指向 `5f14618`。
+  - Vercel Production 部署：`Ready`。
+  - 主域名公网验证：`/videos` 显示 10 个 Bilibili 链接，无 OpenAI Academy 和旧失效 BV；`/progress` 显示学习进度中心和复制进度报告按钮。
