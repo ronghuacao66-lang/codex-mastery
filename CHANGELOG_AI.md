@@ -36,6 +36,9 @@
 - Playwright 桌面验证：上传本站导出格式 Markdown 后，恢复 4 个输入字段并写入 `codex-mastery:review-drafts`。
 - Playwright 错误文件验证：上传非本站格式 Markdown 时显示错误提示，且不会覆盖已有草稿。
 - Playwright 375×812 验证：`/reviews` 无页面级横向溢出，导入入口可见。
+- `git push`：成功，业务提交 `dd2ce98` 已推送到 GitHub。
+- Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-eojwwd59f-crh-s-projects.vercel.app`，状态 `Ready`。
+- 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
 
 ### 风险说明
 

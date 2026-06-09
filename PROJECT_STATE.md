@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 22:57 CST
+2026-06-09 23:03 CST
 
 ## 当前目标
 
@@ -221,7 +221,7 @@
 - 第十项任务“移动端全部模块抽屉优化”：已完成、提交、推送并由 Vercel 部署为 Ready。
 - 第十一项任务“复盘中心历史列表”：已完成、提交、推送并由 Vercel 部署为 Ready。
 - 第十二项任务“项目实战中心交付检查清单”：已完成、提交、推送并由 Vercel 部署为 Ready。
-- 第十三项任务“复盘中心导入 Markdown”：已完成本地开发和验证，等待提交、推送和 Vercel 部署。
+- 第十三项任务“复盘中心导入 Markdown”：已完成、提交、推送并由 Vercel 部署为 Ready。
 
 ## 当前风险
 
@@ -247,17 +247,17 @@
 
 ## 待办事项
 
-1. 当前：提交、推送并等待 Vercel 部署“复盘中心导入 Markdown”。
-2. 可选：为项目实战中心增加详情页或项目执行记录导出。
+1. 可选：为项目实战中心增加详情页或项目执行记录导出。
+2. 可选：为复盘中心增加导入后的“另存为历史”自动提示。
 3. 后续新增视频前必须运行 `npm run audit:videos`。
 
 ## 下一步行动
 
-当前下一步为“提交、推送并部署复盘中心导入 Markdown”：
+当前下一步可选为“为项目实战中心增加详情页/执行记录导出，或为复盘中心增加导入后的另存提示”：
 
-- 目标：将本地验证通过的复盘 Markdown 导入能力同步到 GitHub 和 Vercel 公网。
+- 目标：继续提升平台真实使用体验。
 - 输入：当前代码、数据与状态文件。
-- 输出：GitHub commit、Vercel Ready 部署和可追溯状态记录。
+- 输出：后续小步改进和可追溯状态记录。
 - 验收标准：相关变更继续通过 `npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build`。
 
 ## 最近验证
@@ -443,3 +443,6 @@
   - Playwright 桌面验证：上传本站导出格式 Markdown 后，恢复 4 个输入字段并写入 `codex-mastery:review-drafts`。
   - Playwright 错误文件验证：上传非本站格式 Markdown 时显示错误提示，且不会覆盖已有草稿。
   - Playwright 375×812 验证：`/reviews` 无页面级横向溢出，`scrollWidth = clientWidth = 375`。
+  - `git push`：成功，`origin/main` 指向 `dd2ce98`。
+  - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-eojwwd59f-crh-s-projects.vercel.app`，状态 `Ready`。
+  - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
