@@ -33,6 +33,9 @@
 - Playwright 375×812 浅色模式验证：首页打开全部模块抽屉后无页面级横向溢出，背景滚动锁定为 `hidden`。
 - Playwright 375×812 浅色模式验证：抽屉显示“正在浏览”、学习路径、实战产出、业务工具，包含 13 个模块入口，Esc 可关闭。
 - Playwright 375×812 深色模式验证：`/reviews` 打开抽屉后无页面级横向溢出，当前模块显示为复盘，三个分组均可见。
+- `git push`：成功，业务提交 `886e9dd` 已推送到 GitHub。
+- Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-qkx9idfb6-crh-s-projects.vercel.app`，状态 `Ready`。
+- 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
 
 ### 风险说明
 

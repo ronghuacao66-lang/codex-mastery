@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 21:45 CST
+2026-06-09 22:00 CST
 
 ## 当前目标
 
@@ -209,7 +209,7 @@
 - 第七项任务“复盘中心”：已完成、提交、推送并由 Vercel 部署为 Ready。
 - 第八项任务“移动端导航优化”：已完成、提交、推送并由 Vercel 部署为 Ready。
 - 第九项任务“复盘中心导出 Markdown”：已完成、提交、推送并由 Vercel 部署为 Ready。
-- 第十项任务“移动端全部模块抽屉优化”：本地开发和验证已完成，等待提交、推送和 Vercel 部署。
+- 第十项任务“移动端全部模块抽屉优化”：已完成、提交、推送并由 Vercel 部署为 Ready。
 
 ## 当前风险
 
@@ -230,17 +230,17 @@
 
 ## 待办事项
 
-1. 提交并推送移动端全部模块抽屉优化。
-2. 可选：为复盘中心增加历史复盘列表或导入 Markdown 能力。
+1. 可选：为复盘中心增加历史复盘列表或导入 Markdown 能力。
+2. 可选：继续补充项目实战中心的交付检查清单。
 3. 后续新增视频前必须运行 `npm run audit:videos`。
 
 ## 下一步行动
 
-当前下一步为“提交并推送移动端全部模块抽屉优化”：
+当前下一步为“为复盘中心增加历史复盘列表，或补充项目实战中心交付检查清单”：
 
-- 目标：让手机用户更快理解并进入全站模块。
+- 目标：继续提升平台真实使用体验。
 - 输入：当前代码、数据与状态文件。
-- 输出：移动端分组抽屉、验证记录、GitHub 推送和 Vercel 部署。
+- 输出：后续小步改进和可追溯状态记录。
 - 验收标准：相关变更继续通过 `npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build`。
 
 ## 最近验证
@@ -391,3 +391,7 @@
   - `npm run build`：通过，生成 16 个 App Router 页面。
   - Playwright 375×812 浅色模式验证：首页抽屉无横向溢出，背景滚动锁定为 `hidden`，13 个模块入口可见，Esc 可关闭。
   - Playwright 375×812 深色模式验证：`/reviews` 抽屉无横向溢出，当前模块显示为复盘，三个分组均可见。
+- 2026-06-09 22:00 CST：
+  - `git push`：成功，`origin/main` 指向 `886e9dd`。
+  - Vercel Production 部署：`https://ronghuacao66-lang-codex-mastery-qkx9idfb6-crh-s-projects.vercel.app`，状态 `Ready`。
+  - 主域名 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。

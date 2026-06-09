@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 21:45 CST
+2026-06-09 22:00 CST
 
 ## 当前状态
 
@@ -68,6 +68,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 21:45 CST 已完成移动端全部模块抽屉优化开发和本地验证。抽屉从 2 列格子升级为按“学习路径、实战产出、业务工具”分组的列表，顶部显示当前浏览模块，并支持 Esc 关闭和背景滚动锁定。当前等待提交、推送和 Vercel 部署。
 
+2026-06-09 22:00 CST 移动端全部模块抽屉优化已推送到 GitHub，提交 `886e9dd Improve mobile module drawer`。Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-qkx9idfb6-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已绑定最新部署。
+
 ## 已完成内容
 
 - 项目状态文件已建立：
@@ -103,7 +105,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 已新增复盘中心 `/reviews`。
 - 已完成移动端导航优化：常用入口加全部模块抽屉。
 - 已为复盘中心新增导出 Markdown 文件能力，并已由 Vercel 部署为 Ready。
-- 已完成移动端全部模块抽屉优化开发和本地验证，当前等待提交和上线。
+- 已完成移动端全部模块抽屉优化，并已由 Vercel 部署为 Ready。
 
 ## 未完成内容
 
@@ -113,7 +115,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 本轮复盘中心已提交、推送并由 Vercel 部署为 Ready。
 - 本轮移动端导航优化已提交、推送并由 Vercel 部署为 Ready。
 - 本轮复盘中心导出 Markdown 能力已提交、推送并由 Vercel 部署为 Ready。
-- 本轮移动端全部模块抽屉优化尚未提交和推送。
+- 本轮移动端全部模块抽屉优化已提交、推送并由 Vercel 部署为 Ready。
 
 ## 当前推理结果
 
@@ -140,8 +142,8 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 ## 下一步计划
 
-1. 提交并推送移动端全部模块抽屉优化。
-2. 等待 Vercel 自动部署为 `Ready`。
+1. 可选：为复盘中心增加历史复盘列表或导入 Markdown 能力。
+2. 可选：继续补充项目实战中心的交付检查清单。
 3. 后续新增视频必须先运行 `npm run audit:videos`。
 
 ## 最近验证
@@ -270,3 +272,7 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - `npm run build`：通过，生成 16 个 App Router 页面。
   - Playwright 375×812 浅色模式验证：首页抽屉无横向溢出，背景滚动锁定为 `hidden`，13 个模块入口可见，Esc 可关闭。
   - Playwright 375×812 深色模式验证：`/reviews` 抽屉无横向溢出，当前模块显示为复盘，三个分组均可见。
+- 2026-06-09 22:00 CST：
+  - `git push`：成功，`origin/main` 指向 `886e9dd`。
+  - Vercel Production 部署：`Ready`。
+  - 主域名 alias：已绑定最新部署。
