@@ -94,6 +94,13 @@ export function DashboardClient({ dailyPlan, prompts, projects, videos, workflow
                 <WandSparkles className="h-4 w-4" />
               </Link>
               <Link
+                href="/progress"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-line bg-surface px-4 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:border-accent/50"
+              >
+                管理进度
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
                 href="/videos"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-line bg-surface px-4 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:border-accent/50"
               >
@@ -140,7 +147,7 @@ export function DashboardClient({ dailyPlan, prompts, projects, videos, workflow
         <StatCard label="AI Prompt" value={String(aiPromptCount)} hint="覆盖写作、售前、复盘、决策" />
         <StatCard label="实战项目" value="8" hint="从知识库到 Agent 助手" />
         <StatCard label="训练营" value="30天" hint="每天都有成果物" />
-        <StatCard label="精选视频" value={String(videos.length)} hint="Bilibili、OpenAI Academy" />
+        <StatCard label="精选视频" value={String(videos.length)} hint="仅保留 Bilibili" />
       </div>
 
       <div className="grid gap-4 xl:grid-cols-[1fr_1fr]">

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import {
+  BarChart3,
   BookOpen,
   Boxes,
   BriefcaseBusiness,
@@ -29,6 +30,7 @@ const navItems = [
   { href: "/prompts", label: "Prompt", icon: Command },
   { href: "/videos", label: "视频精选", icon: PlayCircle },
   { href: "/bootcamp", label: "30天", icon: CheckSquare },
+  { href: "/progress", label: "进度", icon: BarChart3 },
   { href: "/projects", label: "项目", icon: Boxes },
   { href: "/presales", label: "安全售前", icon: ShieldCheck },
   { href: "/workflows", label: "工作流", icon: Workflow },

@@ -6,7 +6,7 @@
 
 ## 当前目标
 
-按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查、GitHub + Vercel 上线准备、视频精选链接巡检与交互状态标记、去除不可确认正常播放视频；当前正在做全站当前文案一致性清理。
+按用户确认的项目执行负责人工作流推进 `Codex Mastery`。当前已完成项目状态治理、项目健康检查、移动端与交互体验检查、GitHub + Vercel 上线准备、视频精选链接巡检与交互状态标记、去除不可确认正常播放视频；当前正在做视频中心纯 Bilibili 与失效链接修复，并同步学习进度中心。
 
 ## 当前完成
 
@@ -62,18 +62,22 @@
 - 2026-06-09 07:37 CST “去除不可确认正常播放视频”更新已推送，Vercel Production 自动部署已 Ready。
 - 2026-06-09 07:45 CST 已新增 `npm run audit:videos`，当前 9 条视频巡检全部通过。
 - 2026-06-09 07:50 CST 已修复首页精选视频提示、视频中心默认推荐 id、视频平台和链接状态类型定义不一致。
+- 2026-06-09 13:38 CST 已按用户最新要求将视频中心改为只保留 Bilibili，删除 OpenAI Academy 和 6 条 Bilibili 接口返回 `-404` 的旧 BV 链接，当前保留 10 条 Bilibili `code=0` 视频。
+- 2026-06-09 13:38 CST 已将 `npm run audit:videos` 升级为 Bilibili 视频信息接口校验。
+- 2026-06-09 13:38 CST 已新增 `/progress` 学习进度中心，复用本地进度状态并支持复制进度报告。
 
 ## 当前进度
 
-- 当前任务：全站当前文案一致性清理。
-- 任务状态：代码、状态文件和本地验证已完成，等待提交、推送。
+- 当前任务：视频中心纯 Bilibili 与失效链接修复。
+- 任务状态：数据、代码、内容导出、巡检和完整验证已完成，等待提交、推送。
 
 ## 当前风险
 
 - GitHub 远程已经推送成功，当前通过 SSH remote 同步。
 - 本地访问依赖 `next dev -p 3000`；服务停止后 `localhost:3000` 不可用。
 - 不建议在 dev server 运行时直接混用 `npm run build` 产物。
-- 当前已不展示 YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频；如后续需要恢复这些平台，必须先确认对应 URL 能正常打开播放。
+- 当前视频中心只展示 Bilibili；不展示 OpenAI Academy、YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频。
+- Bilibili 普通页面 HTTP 200 不能证明视频存在，后续必须以 `npm run audit:videos` 的接口校验结果为准。
 - `release/` 是本地交付物目录，已加入 `.gitignore`，不会提交进仓库。
 - 合盖长时间运行 Codex 会增加发热和耗电风险，建议连接电源并保持散热。
 - Vercel 远端项目设置仍显示 `Framework Preset: Other`，后续必须保留仓库内 `vercel.json`。
@@ -89,7 +93,7 @@
 
 ## 下一步动作
 
-当前需要提交并推送全站当前文案一致性清理。
+当前需要提交并推送视频中心纯 Bilibili 修复和学习进度中心。
 
 ## 最近验证
 
@@ -163,3 +167,13 @@
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过。
+- 2026-06-09 13:38 CST：
+  - `npm run export:content`：通过。
+  - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - 站点运行内容残留检查：无 OpenAI Academy、YouTube、抖音精选、失效 BV、异常视频状态残留。
+- 2026-06-09 13:48 CST：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 15 个 App Router 页面。
+  - 本地生产服务：`/`、`/videos`、`/progress` 均返回 200。
+  - Browser 验证：`/videos` 显示 10 个 Bilibili 链接，无 OpenAI Academy 和旧失效 BV；`/progress` 显示学习进度中心和复制进度报告按钮。

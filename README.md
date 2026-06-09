@@ -10,8 +10,9 @@
 - Codex Academy：10 篇中文知识文章，覆盖 Codex 基础、工具对比、GCCD、任务拆解、AGENTS.md、项目管理、Debug、Agent 和效率提升。
 - Codex 任务生成器：把模糊需求整理成 Goal、Context、Constraint、Definition of Done 和 Verification。
 - Prompt Center：30 条 Codex Prompt 和 22 条通用 AI Prompt，支持搜索、筛选、收藏和复制。
-- 视频精选：Bilibili、OpenAI Academy 中当前确认可访问的教学视频清单。
+- 视频精选：只保留 Bilibili 中当前确认存在的教学视频清单。
 - 30 天训练营：Day 1-Day 30，每天包含学习目标、理论、实操任务、Prompt、成果物和复盘问题。
+- 学习进度中心：管理 30 天完成状态、周进度、下一步任务和可复制的学习进度报告。
 - 项目实战中心：8 个高价值项目，包括 AI 学习助手、AI 知识库、AI 售前助手、客户画像助手、竞品分析助手、会议纪要助手、方案生成助手、Agent 助手。
 - 安全售前专区：面向零信任、SASE、数据安全、XDR、MSS 的售前 Prompt 和模板。
 - 工作流中心：客户拜访、售前方案、竞品分析、项目复盘、会议纪要 5 套工作流。

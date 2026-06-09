@@ -1,5 +1,56 @@
 # CHANGELOG_AI
 
+## 2026-06-09 13:38 视频中心改为纯 Bilibili 并修复失效链接
+
+### 修改文件
+
+- `data/videos.json`
+- `content/videos.md`
+- `scripts/audit-videos.mjs`
+- `types/content.ts`
+- `components/VideoCenterClient.tsx`
+- `components/DashboardClient.tsx`
+- `components/AppShell.tsx`
+- `components/ProgressCenterClient.tsx`
+- `app/videos/page.tsx`
+- `app/progress/page.tsx`
+- `README.md`
+- `DECISIONS.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- 删除 OpenAI Academy 视频条目。
+- 删除 6 条 Bilibili 接口返回 `-404`、浏览器显示“视频不见了”的旧 BV 链接。
+- 替换为 10 条 Bilibili 视频信息接口返回 `code=0` 的视频。
+- 将 `VideoItem.platform` 收窄为 `Bilibili`。
+- 首页精选视频提示、视频页说明、README 均同步为“仅保留 Bilibili”。
+- 将 `npm run audit:videos` 从 HTTP 状态检查升级为 Bilibili 视频信息接口检查。
+- 重新导出 `content/videos.md`。
+- 新增 `/progress` 学习进度中心，复用本地浏览器进度状态，支持周进度、30 天网格、重置进度和复制进度报告。
+- 桌面/移动导航和首页新增学习进度中心入口。
+
+### 修改原因
+
+用户反馈当前视频页很多 Bilibili 链接无法打开，并要求只保留哔哩哔哩视频链接。旧巡检脚本只看 HTTP 状态，无法识别 B 站“视频不见了”的错误页，因此需要用 B 站接口校验视频真实存在状态。
+
+### 验证结果
+
+- `npm run export:content`：通过。
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 15 个 App Router 页面。
+- `rg OpenAI Academy|YouTube|抖音精选|network_or_timeout|likely_broken|manual_review|BV19r39z4EMy|BV1Nd3CzFEGD|BV15yd8YNEqF|BV1HPcLe5Eqe|BV1TQ3pztE9h|BV1df3PzKEHP app components data types content README.md scripts package.json`：无残留。
+- 本地生产服务：`/`、`/videos`、`/progress` 均返回 200。
+- Browser 验证：`/videos` 显示 10 个 Bilibili 链接，无 OpenAI Academy 和旧失效 BV；`/progress` 显示学习进度中心和复制进度报告按钮。
+
+### 风险说明
+
+- Bilibili 外部视频仍可能后续下架，后续新增或替换视频必须运行 `npm run audit:videos`。
+
 ## 2026-06-09 07:50 全站当前文案一致性清理
 
 ### 修改文件

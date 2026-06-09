@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 07:50 CST
+2026-06-09 13:38 CST
 
 ## 当前目标
 
@@ -120,6 +120,18 @@
   - 视频中心默认推荐从已删除的 YouTube id 改为当前存在的 Bilibili 入门视频。
   - `VideoItem` 平台类型收窄为当前实际平台：Bilibili、OpenAI Academy。
   - 视频链接状态类型收窄为当前对外保留的 `ok`。
+- 已按用户最新要求将视频中心改为只保留 Bilibili：
+  - 删除 OpenAI Academy 视频条目。
+  - 删除 6 条 Bilibili 接口返回 `-404`、浏览器显示“视频不见了”的旧 BV 链接。
+  - 当前 `data/videos.json` 保留 10 条 Bilibili 视频。
+  - `npm run audit:videos` 已升级为 Bilibili 视频信息接口校验，要求返回 `code=0`。
+  - `content/videos.md` 已重新导出。
+- 已新增学习进度中心：
+  - 新增 `/progress` 页面。
+  - 复用首页已有 `codex-mastery:completed-days` 本地进度状态。
+  - 支持总进度、下一步任务、最近完成、周进度、30 天完成网格。
+  - 支持标记完成、取消完成、重置进度、复制学习进度报告和复制单日摘要。
+  - 已从桌面/移动导航和首页接入。
 - 本次健康检查结论：
   - `npm run typecheck`：通过
   - `npm run lint`：通过
@@ -176,13 +188,15 @@
 - 第二项任务“项目健康检查”：已完成。
 - 第三项任务“移动端与交互体验检查”：已完成。
 - 第四项任务“GitHub + Vercel 上线准备”：已完成。
-- 第五项任务“视频资源可用性治理”：已完成，当前保留 9 条可访问视频并提供 `npm run audit:videos`。
-- 当前任务“全站当前文案一致性清理”：代码、状态文件和本地验证已完成，等待提交与推送。
+- 第五项任务“视频资源可用性治理”：已完成，当前只保留 10 条 Bilibili 视频并提供 `npm run audit:videos`。
+- 第六项任务“学习进度中心”：代码与验证已完成，等待提交与推送。
+- 当前任务“视频中心纯 Bilibili 与失效链接修复”：数据、代码、内容导出、巡检和完整验证已完成，等待提交与推送。
 
 ## 当前风险
 
 - GitHub 远程 `main` 已更新为本地整理后的正确项目结构，当前通过 SSH remote 推送。
-- 当前已不展示 YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频；如后续需要恢复这些平台，必须先确认对应 URL 能正常打开播放。
+- 当前视频中心只展示 Bilibili；不展示 OpenAI Academy、YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频。
+- Bilibili 普通页面 HTTP 200 不能证明视频存在，后续必须以 `npm run audit:videos` 的接口校验结果为准。
 - Vercel 项目远端设置仍显示 `Framework Preset: Other`，但仓库内 `vercel.json` 已显式覆盖 Next.js 部署配置；后续 GitHub 自动部署应保留该文件。
 - 本机 `curl` 访问 Vercel 域名仍出现超时，疑似本机网络到 Vercel 边缘节点不稳定；Vercel CLI inspect 与 Chrome 标签标题已验证部署可用。
 - 不应在聊天中索要或保存 Vercel 密码、验证码或长期 token；认证应由用户在 Vercel 官方页面完成。
@@ -195,17 +209,17 @@
 
 ## 待办事项
 
-1. 提交并推送本轮全站当前文案一致性清理。
+1. 提交并推送本轮视频中心纯 Bilibili 修复和学习进度中心。
 2. 定期巡检外部视频链接，确保保留视频仍可打开播放。
-3. 可选增强：设计完整学习进度中心。
+3. 部署完成后确认 Vercel 主域名 `/videos` 和 `/progress` 可访问。
 
 ## 下一步行动
 
-当前下一步为“提交并推送全站当前文案一致性清理”：
+当前下一步为“提交并推送本轮视频中心纯 Bilibili 修复和学习进度中心”：
 
-- 目标：让首页、视频中心、类型定义、README 和当前状态文件与真实数据一致。
+- 目标：让视频中心只展示可验证存在的 Bilibili 视频，并上线学习进度中心。
 - 输入：当前代码、数据与状态文件。
-- 输出：GitHub 远程仓库包含最新一致性修正。
+- 输出：GitHub 远程仓库包含最新视频修复、进度中心和状态记录。
 - 验收标准：`npm run audit:videos`、`npm run typecheck`、`npm run lint`、`npm run build` 均通过。
 
 ## 最近验证
@@ -299,3 +313,13 @@
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过。
+- 2026-06-09 13:38 CST：
+  - `npm run export:content`：通过。
+  - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - 站点运行内容残留检查：无 OpenAI Academy、YouTube、抖音精选、失效 BV、异常视频状态残留。
+- 2026-06-09 13:48 CST：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 15 个 App Router 页面。
+  - 本地生产服务：`/`、`/videos`、`/progress` 均返回 200。
+  - Browser 验证：`/videos` 显示 10 个 Bilibili 链接，无 OpenAI Academy 和旧失效 BV；`/progress` 显示学习进度中心和复制进度报告按钮。

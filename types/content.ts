@@ -116,7 +116,7 @@ export type ToolItem = {
 export type VideoItem = {
   id: string;
   title: string;
-  platform: "Bilibili" | "OpenAI Academy";
+  platform: "Bilibili";
   creator: string;
   url: string;
   duration: string;

@@ -13,8 +13,7 @@ import type { VideoItem } from "@/types/content";
 const WATCHED_KEY = "codex-mastery:watched-videos";
 
 const platformStyles: Record<VideoItem["platform"], string> = {
-  Bilibili: "from-sky-500/18 to-cyan-400/10",
-  "OpenAI Academy": "from-emerald-500/16 to-accent/10"
+  Bilibili: "from-sky-500/18 to-cyan-400/10"
 };
 
 const linkStatusStyles: Record<NonNullable<VideoItem["linkStatus"]>["status"], string> = {

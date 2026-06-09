@@ -2,7 +2,7 @@
 
 ## 更新时间
 
-2026-06-09 07:50 CST
+2026-06-09 13:38 CST
 
 ## 当前状态
 
@@ -48,6 +48,10 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 
 2026-06-09 07:50 CST 已执行全站当前文案一致性清理：修复首页精选视频平台提示、视频中心默认推荐 id、`VideoItem` 平台类型和链接状态类型，使其与当前只保留 Bilibili、OpenAI Academy、`ok` 视频的策略一致。
 
+2026-06-09 13:38 CST 按用户最新反馈，视频中心已改为只保留 Bilibili。已删除 OpenAI Academy 视频条目，删除 6 条 Bilibili 接口返回 `-404`、浏览器显示“视频不见了”的旧 BV 链接，当前 `data/videos.json` 保留 10 条 Bilibili 视频。`npm run audit:videos` 已升级为 Bilibili 视频信息接口校验，要求返回 `code=0`。
+
+2026-06-09 13:38 CST 已新增 `/progress` 学习进度中心，复用首页本地进度状态，支持总进度、周进度、下一步任务、30 天网格、重置进度和复制进度报告。当前该功能与视频修复一起已完成本地验证，等待提交、推送和 Vercel 部署。
+
 ## 已完成内容
 
 - 项目状态文件已建立：
@@ -78,12 +82,14 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - 已重新导出 `content/videos.md`。
 - 已去除当前无法确认正常播放的视频，当前视频中心只保留 9 条 `ok` 视频。
 - 已新增视频巡检命令 `npm run audit:videos`。
+- 已将视频中心改为只保留 Bilibili，当前 10 条视频均通过 Bilibili API `code=0` 校验。
+- 已新增学习进度中心 `/progress`。
 
 ## 未完成内容
 
 - GitHub push 已完成，当前通过 SSH remote 同步。
 - 视频链接巡检、去除不可确认播放视频、视频巡检命令均已完成。
-- 本轮全站当前文案一致性清理尚未提交和推送。
+- 本轮视频中心纯 Bilibili 修复和学习进度中心尚未提交和推送。
 
 ## 当前推理结果
 
@@ -102,14 +108,15 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
 - Vercel 远端项目设置仍显示 `Framework Preset: Other`，后续部署必须保留 `vercel.json`。
 - GitHub CLI OAuth 仍不可用，但 SSH remote 已可用。
 - 本地 `localhost:3000` 依赖 dev server；执行生产构建前可能需要停止 dev server 并清理 `.next`。
-- 当前已不展示 YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频。
+- 当前视频中心只展示 Bilibili；不展示 OpenAI Academy、YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频。
+- Bilibili 普通页面 HTTP 200 不能证明视频存在，后续必须以 `npm run audit:videos` 的接口校验结果为准。
 - 后续新增视频必须先确认能正常打开播放。
 
 ## 下一步计划
 
-1. 提交并推送本轮全站当前文案一致性清理。
-2. 后续定期巡检外部视频链接。
-3. 如新增视频，必须先确认能正常打开播放。
+1. 提交并推送本轮视频中心纯 Bilibili 修复和学习进度中心。
+2. 等待 Vercel 自动部署为 `Ready`，确认主域名 `/videos` 和 `/progress` 可访问。
+3. 后续新增视频必须先运行 `npm run audit:videos`。
 
 ## 最近验证
 
@@ -182,3 +189,13 @@ GitHub 远程可读取，远程 `main` 当前是网页上传产生的旧历史�
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
   - `npm run build`：通过。
+- 2026-06-09 13:38 CST：
+  - `npm run export:content`：通过。
+  - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - 站点运行内容残留检查：无 OpenAI Academy、YouTube、抖音精选、失效 BV、异常视频状态残留。
+- 2026-06-09 13:48 CST：
+  - `npm run typecheck`：通过。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 15 个 App Router 页面。
+  - 本地生产服务：`/`、`/videos`、`/progress` 均返回 200。
+  - Browser 验证：`/videos` 显示 10 个 Bilibili 链接，无 OpenAI Academy 和旧失效 BV；`/progress` 显示学习进度中心和复制进度报告按钮。
