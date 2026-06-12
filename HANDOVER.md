@@ -1,5 +1,43 @@
 # SESSION_HANDOFF
 
+## 2026-06-13 本地学习档案备份与恢复
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是完善 `/progress` 学习进度中心：增加本地学习档案备份与恢复，降低 localStorage 清理或换设备造成的数据丢失风险。
+
+### 已完成内容
+
+- 已恢复 PROJECT_CONTEXT、PROJECT_STATE、TASK_STATE、DECISIONS、CHANGELOG_AI 和当前 git 状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不能误提交。
+- 已新增 `components/LocalDataBackupPanel.tsx`：
+  - 导出本站白名单 localStorage 数据为 JSON。
+  - 导入本站备份 JSON，并只恢复白名单 key。
+  - 错误格式不会覆盖当前本地数据。
+- 已在 `app/progress/page.tsx` 接入备份面板。
+- 已更新 README、DECISIONS、PROJECT_STATE、TASK_STATE、CHANGELOG_AI。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright 桌面验证：可导出备份 JSON，清空本地状态后可导入恢复 7 类数据。
+- Playwright 移动端 375×812 验证：备份面板存在，页面无横向溢出。
+- 终端已校验备份 JSON 结构包含 `app = Codex Mastery`、`version = 1` 和白名单数据。
+
+### 未完成内容
+
+- 还需提交、推送，并确认 Vercel 自动部署。
+
+### 当前风险
+
+- 备份文件可能包含复盘历史和项目执行记录，用户应自行保管。
+- 导入备份会覆盖本地同名学习状态，导入后需要刷新页面。
+- 当前未跟踪 `outputs/` 目录不属于本轮网站能力，提交时必须排除。
+
+### 下一步计划
+
+提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+
 ## 2026-06-13 项目组合进度总览
 
 ### 当前状态

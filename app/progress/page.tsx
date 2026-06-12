@@ -1,3 +1,4 @@
+import { LocalDataBackupPanel } from "@/components/LocalDataBackupPanel";
 import { ProgressCenterClient } from "@/components/ProgressCenterClient";
 import { SectionHeader } from "@/components/SectionHeader";
 import { dailyPlan } from "@/lib/content";
@@ -11,6 +12,7 @@ export default function ProgressPage() {
         description="集中管理 30 天训练营进度，查看下一步任务、周完成情况、成果物和可复制的学习进度报告。"
       />
       <ProgressCenterClient items={dailyPlan} />
+      <LocalDataBackupPanel />
     </div>
   );
 }

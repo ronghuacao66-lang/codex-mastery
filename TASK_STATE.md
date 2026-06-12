@@ -1,5 +1,50 @@
 # TASK_STATE
 
+## 2026-06-13 本地学习档案备份与恢复
+
+### 当前目标
+
+为 `Codex Mastery` 的 `/progress` 学习进度中心增加本地学习档案备份与恢复能力。
+
+### 已完成工作
+
+- 已恢复项目状态文件和最近变更状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不纳入本轮网站代码提交。
+- 已新增 `components/LocalDataBackupPanel.tsx`：
+  - 支持导出白名单 localStorage 数据为 JSON。
+  - 支持导入本站备份 JSON。
+  - 仅恢复本站已知 key 和预期数据类型。
+  - 错误格式不会覆盖当前本地数据。
+- 已在 `app/progress/page.tsx` 接入备份面板。
+- 已更新 `README.md`、`DECISIONS.md`、`PROJECT_STATE.md`、`CHANGELOG_AI.md` 和 `HANDOVER.md`。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright 已验证桌面导出备份、导入恢复 7 类本地数据成功，移动端 375×812 无横向溢出。
+- 终端已校验备份 JSON 结构包含 `app = Codex Mastery`、`version = 1` 和白名单数据。
+
+### 当前进度
+
+开发与本地验证已完成，等待提交和推送。
+
+### 当前设计思路
+
+保持静态站点和本地隐私策略，不引入账号、数据库和云同步。备份采用白名单 JSON，只覆盖本站学习资产相关 key。
+
+### 当前问题
+
+- 导入备份会覆盖本地同名状态，需要用户明确选择文件。
+- 备份文件可能包含复盘历史和项目执行记录，应提醒用户自行保管。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮提交应继续排除。
+
+### 下一步动作
+
+提交并推送本轮网站能力变更；提交范围应排除 `outputs/` 目录和不属于本轮的交付物。
+
+### 重要上下文
+
+- 备份覆盖 key：`codex-mastery:completed-days`、`codex-mastery:favorites`、`codex-mastery:watched-videos`、`codex-mastery:review-drafts`、`codex-mastery:review-history`、`codex-mastery:project-checklist`、`codex-mastery:project-execution-records`、`codex-mastery:theme`。
+- 本轮关键文件：`components/LocalDataBackupPanel.tsx`、`app/progress/page.tsx`。
+
 ## 2026-06-13 项目组合进度总览
 
 ### 当前目标

@@ -1,5 +1,47 @@
 # CHANGELOG_AI
 
+## 2026-06-13 本地学习档案备份与恢复
+
+### 修改文件
+
+- `components/LocalDataBackupPanel.tsx`
+- `app/progress/page.tsx`
+- `README.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- `/progress` 学习进度中心新增“本地学习档案：备份与恢复”面板。
+- 支持导出白名单 localStorage 数据为 `codex-mastery-backup-YYYYMMDD.json`。
+- 支持导入本站备份 JSON，并只恢复本站白名单 key。
+- 备份范围覆盖训练进度、收藏、已看视频、复盘草稿、复盘历史、项目检查项、项目执行记录和主题设置。
+- 错误格式文件会显示提示，不覆盖当前本地数据。
+- README 同步学习进度中心支持本地学习档案备份与恢复。
+
+### 修改原因
+
+站点越来越多能力依赖浏览器 localStorage，用户清理浏览器或换设备会丢失学习进度、复盘历史和项目执行记录。本轮提供无需后端的本地备份方案，降低学习资产丢失风险。
+
+### 验证结果
+
+- `npm run typecheck`：通过。
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 24 个 App Router 页面。
+- Playwright 桌面验证：预置 7 类本地学习数据后，可导出 `codex-mastery-backup-20260613.json`。
+- Playwright 桌面验证：清空本地数据后导入该备份，可恢复训练进度、收藏、视频观看、复盘历史、项目检查、项目执行记录和主题设置。
+- Playwright 移动端 375×812 验证：备份面板存在，页面无横向溢出，`scrollWidth = clientWidth = 375`。
+- 终端校验：备份 JSON 包含 `app = Codex Mastery`、`version = 1` 和白名单数据。
+
+### 风险说明
+
+- 备份文件可能包含用户复盘和项目记录，应由用户自行保管。
+- 导入备份会覆盖本地同名学习状态，导入后建议刷新页面。
+
 ## 2026-06-13 02:07 再次取消合盖继续运行 Codex 的电源策略
 
 ### 修改文件
