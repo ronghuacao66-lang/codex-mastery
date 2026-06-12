@@ -1,7 +1,7 @@
 "use client";
 
-import { CheckCircle2, Download, Save } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { CheckCircle2, Download, Save, Upload } from "lucide-react";
+import { type ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import { CopyButton } from "@/components/CopyButton";
 import type { ProjectItem } from "@/types/content";
 
@@ -18,6 +18,15 @@ type ProjectExecutionRecord = {
   notes: string;
 };
 type ProjectExecutionRecords = Record<string, ProjectExecutionRecord>;
+type ImportStatus = {
+  tone: "success" | "error";
+  message: string;
+};
+type ParsedProjectRecord = {
+  record: ProjectExecutionRecord;
+  checkedIds: string[];
+  filledCount: number;
+};
 
 const emptyRecord: ProjectExecutionRecord = {
   stage: "",
@@ -33,6 +42,8 @@ export function ProjectExecutionClient({ project }: { project: ProjectItem }) {
   const [records, setRecords] = useState<ProjectExecutionRecords>({});
   const [saved, setSaved] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
+  const [importStatus, setImportStatus] = useState<ImportStatus | null>(null);
+  const importInputRef = useRef<HTMLInputElement>(null);
 
   const checkedIds = useMemo(() => checked[project.id] ?? [], [checked, project.id]);
   const record = records[project.id] ?? emptyRecord;
@@ -84,6 +95,7 @@ export function ProjectExecutionClient({ project }: { project: ProjectItem }) {
   }
 
   function updateRecord(key: keyof ProjectExecutionRecord, value: string) {
+    setImportStatus(null);
     setRecords((current) => ({
       ...current,
       [project.id]: {
@@ -96,6 +108,43 @@ export function ProjectExecutionClient({ project }: { project: ProjectItem }) {
   function markSaved() {
     setSaved(true);
     window.setTimeout(() => setSaved(false), 1400);
+  }
+
+  async function importMarkdown(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    setImportStatus(null);
+    if (!file) return;
+
+    const isMarkdown = file.name.toLowerCase().endsWith(".md") || file.type.includes("markdown") || file.type.includes("text");
+    if (!isMarkdown) {
+      setImportStatus({ tone: "error", message: "仅支持导入 Markdown 或纯文本执行记录。" });
+      return;
+    }
+
+    try {
+      const content = await file.text();
+      const parsed = parseExecutionMarkdown(content, project);
+      if (!parsed) {
+        setImportStatus({ tone: "error", message: "未识别到本站项目执行记录格式，请确认文件包含项目标题和执行记录章节。" });
+        return;
+      }
+
+      setRecords((current) => ({
+        ...current,
+        [project.id]: parsed.record
+      }));
+      setChecked((current) => ({
+        ...current,
+        [project.id]: parsed.checkedIds
+      }));
+      setImportStatus({
+        tone: "success",
+        message: `已导入执行记录，恢复 ${parsed.filledCount} 个字段和 ${parsed.checkedIds.length} 个已完成检查项。`
+      });
+    } catch {
+      setImportStatus({ tone: "error", message: "读取文件失败，请重新选择 Markdown 文件。" });
+    }
   }
 
   function downloadMarkdown() {
@@ -121,6 +170,22 @@ export function ProjectExecutionClient({ project }: { project: ProjectItem }) {
             <p className="mt-1 text-sm leading-6 text-muted">记录当前阶段、完成证据、风险和下一步，导出为项目交付 Markdown。</p>
           </div>
           <div className="flex flex-wrap gap-2">
+            <input
+              ref={importInputRef}
+              type="file"
+              accept=".md,.markdown,text/markdown,text/plain"
+              onChange={importMarkdown}
+              className="hidden"
+            />
+            <button
+              type="button"
+              onClick={() => importInputRef.current?.click()}
+              className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-panel px-3 text-sm font-medium text-ink transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent"
+              title="导入已导出的项目执行记录 Markdown"
+            >
+              <Upload className="h-4 w-4" />
+              导入 Markdown
+            </button>
             <button
               type="button"
               onClick={markSaved}
@@ -140,6 +205,17 @@ export function ProjectExecutionClient({ project }: { project: ProjectItem }) {
             </button>
           </div>
         </div>
+        {importStatus ? (
+          <div
+            className={`mt-4 rounded-md border px-3 py-2 text-sm leading-6 ${
+              importStatus.tone === "success"
+                ? "border-accent/35 bg-accent/10 text-ink"
+                : "border-red-400/35 bg-red-500/10 text-ink"
+            }`}
+          >
+            {importStatus.message}
+          </div>
+        ) : null}
 
         <div className="mt-5 grid gap-4 md:grid-cols-2">
           <RecordField label="当前阶段" value={record.stage} placeholder="例如：MVP 验证 / 页面开发 / 交付复盘" onChange={(value) => updateRecord("stage", value)} />
@@ -268,6 +344,68 @@ function buildExecutionRecord(project: ProjectItem, record: ProjectExecutionReco
     "## Codex 实现 Prompt",
     project.prompt
   ].join("\n");
+}
+
+function parseExecutionMarkdown(content: string, project: ProjectItem): ParsedProjectRecord | null {
+  const normalized = content.replace(/\r\n/g, "\n").trim();
+  if (normalized.length < 30) return null;
+
+  const title = normalized.match(/^#\s+(.+?)\s*$/m)?.[1]?.trim();
+  if (title && !title.includes(project.title)) return null;
+
+  const record: ProjectExecutionRecord = {
+    stage: normalizeImportedValue(extractInlineValue(normalized, "当前阶段")),
+    completed: normalizeImportedValue(extractMarkdownSection(normalized, "已完成内容")),
+    evidence: normalizeImportedValue(extractMarkdownSection(normalized, "验证证据")),
+    blockers: normalizeImportedValue(extractMarkdownSection(normalized, "风险 / 卡点")),
+    nextAction: normalizeImportedValue(extractMarkdownSection(normalized, "下一步行动")),
+    notes: normalizeImportedValue(extractMarkdownSection(normalized, "补充说明"))
+  };
+
+  const checkedIds = parseCompletedChecklist(normalized, project);
+  const filledCount = Object.values(record).filter((value) => value.trim().length > 0).length;
+  if (filledCount === 0 && checkedIds.length === 0) return null;
+  return { record, checkedIds, filledCount };
+}
+
+function parseCompletedChecklist(content: string, project: ProjectItem) {
+  const section = extractMarkdownSection(content, "已完成检查项");
+  if (!section) return [];
+
+  const completedLines = section
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith("- "))
+    .map((line) => line.replace(/^-\s+/, "").split(/[：:]/)[0]?.trim())
+    .filter(Boolean);
+
+  return project.deliveryChecklist
+    .filter((check) => completedLines.some((title) => title === check.title))
+    .map((check) => check.id);
+}
+
+function extractInlineValue(content: string, label: string) {
+  const match = content.match(new RegExp(`^${escapeRegExp(label)}[：:]\\s*(.+?)\\s*$`, "m"));
+  return match?.[1]?.trim() ?? "";
+}
+
+function extractMarkdownSection(content: string, title: string) {
+  const match = content.match(new RegExp(`^##\\s+${escapeRegExp(title)}\\s*$`, "m"));
+  if (!match || match.index === undefined) return "";
+
+  const start = match.index + match[0].length;
+  const rest = content.slice(start);
+  const nextHeading = rest.search(/^##\s+/m);
+  return (nextHeading >= 0 ? rest.slice(0, nextHeading) : rest).trim();
+}
+
+function normalizeImportedValue(value: string) {
+  const trimmed = value.trim();
+  return trimmed === "待补充" ? "" : trimmed;
+}
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function toFileName(value: string) {

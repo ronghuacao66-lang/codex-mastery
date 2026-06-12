@@ -1,5 +1,49 @@
 # TASK_STATE
 
+## 2026-06-13 项目执行记录导入 Markdown
+
+### 当前目标
+
+为 `Codex Mastery` 的项目详情页补齐执行记录 Markdown 导入能力。
+
+### 已完成工作
+
+- 已恢复项目状态文件和最近变更状态。
+- 已确认当前工作区仅有未跟踪 `outputs/` 交付物，不纳入本轮网站代码提交。
+- 已修改 `components/ProjectExecutionClient.tsx`：
+  - 新增“导入 Markdown”按钮和本地文件输入。
+  - 支持解析本站导出的项目执行记录 Markdown。
+  - 恢复执行记录 6 个字段。
+  - 根据“已完成检查项”标题恢复交付检查进度。
+  - 错误格式文件会显示提示且不会覆盖现有记录。
+- 已更新 `README.md`、`DECISIONS.md`、`PROJECT_STATE.md`、`CHANGELOG_AI.md` 和 `HANDOVER.md`。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright 已验证桌面导入执行记录和 2 个检查项成功，移动端 375×812 无横向溢出。
+
+### 当前进度
+
+开发与本地验证已完成，等待提交和推送。
+
+### 当前设计思路
+
+保持静态站点和本地隐私策略：导入文件只在浏览器本地读取，不上传服务器；导入格式优先兼容本站导出的执行记录，避免误覆盖任意 Markdown。
+
+### 当前问题
+
+- 检查项恢复依赖标题匹配，用户大幅改写检查项标题后可能无法完整恢复。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮提交应继续排除。
+
+### 下一步动作
+
+提交并推送本轮网站能力变更；提交范围应排除 `outputs/` 目录和不属于本轮的交付物。
+
+### 重要上下文
+
+- 项目执行记录 localStorage key：`codex-mastery:project-execution-records`。
+- 项目检查清单 localStorage key：`codex-mastery:project-checklist`。
+- 本轮关键文件：`components/ProjectExecutionClient.tsx`。
+
 ## 2026-06-13 复盘中心导入后另存历史
 
 ### 当前目标

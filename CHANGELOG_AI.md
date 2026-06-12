@@ -1,5 +1,45 @@
 # CHANGELOG_AI
 
+## 2026-06-13 项目执行记录导入 Markdown
+
+### 修改文件
+
+- `components/ProjectExecutionClient.tsx`
+- `README.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- 项目详情页执行记录区新增“导入 Markdown”按钮。
+- 支持读取本地 `.md`、`.markdown` 或纯文本执行记录。
+- 从本站导出的 Markdown 中恢复当前阶段、已完成内容、验证证据、风险 / 卡点、下一步行动和补充说明。
+- 从“已完成检查项”章节按标题恢复交付检查进度。
+- 导入失败会显示错误提示，且不会覆盖当前执行记录。
+- README 同步项目实战中心支持执行记录重新导入。
+
+### 修改原因
+
+项目详情页已支持填写、复制和导出执行记录，但本地 Markdown 文件无法回流到站内继续编辑。本轮补齐项目实战的导入闭环，让项目交付记录可长期归档并重新恢复。
+
+### 验证结果
+
+- `npm run typecheck`：通过。
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 24 个 App Router 页面，其中 8 个 `/projects/[id]` 静态详情页。
+- Playwright 桌面验证：导入本站格式项目执行记录后，恢复执行记录字段，`codex-mastery:project-execution-records` 写入当前项目记录。
+- Playwright 桌面验证：根据“已完成检查项”标题恢复 2 个交付检查项，写入 `codex-mastery:project-checklist`。
+- Playwright 移动端 375×812 验证：导入成功提示存在，页面无横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 风险说明
+
+- 检查项恢复依赖标题匹配；用户大幅改写检查项标题后可能无法完整恢复。
+- 导入文件只在浏览器本地处理，不上传服务器。
+
 ## 2026-06-13 01:38 重新开启合盖继续运行 Codex 的电源策略
 
 ### 修改文件

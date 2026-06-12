@@ -1,5 +1,43 @@
 # SESSION_HANDOFF
 
+## 2026-06-13 项目执行记录导入 Markdown
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是完善 `/projects/[id]` 项目详情页：支持把本站导出的项目执行记录 Markdown 重新导入，恢复执行记录表单和交付检查进度。
+
+### 已完成内容
+
+- 已恢复 PROJECT_CONTEXT、PROJECT_STATE、TASK_STATE、DECISIONS、CHANGELOG_AI 和当前 git 状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不能误提交。
+- 已修改 `components/ProjectExecutionClient.tsx`：
+  - 新增“导入 Markdown”按钮。
+  - 读取本地 Markdown / 文本文件。
+  - 解析当前阶段、已完成内容、验证证据、风险 / 卡点、下一步行动、补充说明。
+  - 按“已完成检查项”标题恢复 `codex-mastery:project-checklist`。
+  - 错误格式不会覆盖现有记录。
+- 已更新 README、DECISIONS、PROJECT_STATE、TASK_STATE、CHANGELOG_AI。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright 桌面验证：导入本站格式项目执行记录后，恢复执行记录字段和 2 个交付检查项。
+- Playwright 移动端 375×812 验证：导入成功提示存在，页面无横向溢出。
+
+### 未完成内容
+
+- 还需提交、推送，并确认 Vercel 自动部署。
+
+### 当前风险
+
+- 检查项恢复基于标题匹配，用户改写标题后可能无法完整恢复。
+- 项目执行记录和检查项仍只保存在当前浏览器 localStorage。
+- 当前未跟踪 `outputs/` 目录不属于本轮网站能力，提交时必须排除。
+
+### 下一步计划
+
+提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+
 ## 2026-06-13 复盘中心导入后另存历史
 
 ### 当前状态
