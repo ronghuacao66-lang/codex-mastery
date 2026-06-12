@@ -1,5 +1,181 @@
 # CHANGELOG_AI
 
+## 2026-06-13 01:38 重新开启合盖继续运行 Codex 的电源策略
+
+### 修改文件
+
+- `TASK_STATE.md`
+- `PROJECT_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 按用户要求重新设置本机 macOS 电源策略，使 MacBook 合盖后尽量不影响 Codex 继续运行任务。
+- 将当前状态从 2026-06-12 的“已取消”更新为 2026-06-13 的“已重新开启”。
+- 在决策记录中追加重新开启决策，保留此前取消记录。
+
+### 修改原因
+
+用户再次要求“MacBook 关闭盖子也不影响 Codex 继续跑任务”。该设置属于本机系统级配置，需要与用户最新意图保持一致。
+
+### 验证结果
+
+- `pmset -g custom` 显示 Battery Power 与 AC Power 下 `sleep`、`displaysleep`、`disksleep` 均为 `0`。
+- `/Library/Preferences/com.apple.PowerManagement.plist` 显示 Battery Power 与 AC Power 的 `System Sleep Timer`、`Display Sleep Timer`、`Disk Sleep Timer` 均为 `0`。
+- `/Library/Preferences/com.apple.PowerManagement.plist` 显示 `SleepDisabled = true`。
+
+### 风险说明
+
+- 合盖长时间运行可能导致发热和耗电增加，建议连接电源并保持散热。
+- 本轮只修改本机电源配置和项目状态记录，不涉及业务代码。
+
+## 2026-06-13 复盘中心导入后另存历史
+
+### 修改文件
+
+- `components/ReviewCenterClient.tsx`
+- `README.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- 导入 Markdown 成功后，在成功提示中显示“另存为历史”按钮。
+- 新增导入快照状态，避免 React 状态异步导致另存内容不确定。
+- 点击“另存为历史”后，将导入解析出的模板、输入字段、复盘报告和 Codex Prompt 保存到本地历史列表。
+- 在导入错误、清空、继续编辑或恢复历史时清理待另存状态。
+- README 同步说明复盘中心支持导入内容一键另存为历史。
+
+### 修改原因
+
+复盘中心已支持导出、导入和保存历史，但用户导入本地 Markdown 后缺少明确的历史沉淀入口。本轮补齐导入后的下一步动作，让复盘资产可以更顺畅地回流到站内历史列表。
+
+### 验证结果
+
+- `npm run typecheck`：通过。
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 24 个 App Router 页面。
+- Playwright 桌面验证：导入本站格式 Markdown 后显示“另存为历史”，点击后 `codex-mastery:review-history` 写入 1 条历史记录。
+- Playwright 移动端 375×812 验证：导入成功提示和“另存为历史”按钮存在，页面无横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 风险说明
+
+- “另存为历史”保存的是导入时解析出的快照；如果用户导入后继续编辑，应使用原有“保存历史”按钮保存新版本。
+- 历史记录仍只保存在当前浏览器 localStorage。
+
+## 2026-06-12 14:30 生成提效小工具使用教程 Word 文档
+
+### 修改文件
+
+- `outputs/efficiency-tools-guide/generate_efficiency_tools_guide.py`
+- `outputs/efficiency-tools-guide/提效小工具使用教程.docx`
+- `outputs/efficiency-tools-guide/提效小工具使用教程-word-export.pdf`
+- `outputs/efficiency-tools-guide/rendered/`
+- `TASK_STATE.md`
+- `PROJECT_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 生成《提效小工具使用教程》Word 文档。
+- 文档覆盖魔法梯子、GPT Plus 共享会员、WorkBuddy、Codex 的适用场景、入口链接、操作步骤、选择建议、常见流程、安全检查清单和 Prompt 模板。
+- 对第三方会员、共享账号和网络连接工具加入隐私、合规、服务稳定性、封号和敏感信息输入风险提示。
+- 使用 Microsoft Word 导出 PDF，并用 Poppler 渲染出 8 页 PNG 进行视觉检查。
+- 首轮检查发现第 9 页孤立尾页后，已调整末尾“30 分钟上手安排”为紧凑段落并重新生成。
+
+### 修改原因
+
+用户要求根据给出的提效小工具清单生成详细使用教程 Word 文档。
+
+### 验证结果
+
+- DOCX 生成：通过。
+- Microsoft Word 导出 PDF：通过，最终 8 页。
+- PDF 转 PNG：通过，生成 `page-1.png` 至 `page-8.png`。
+- 视觉检查：首页、中段 Codex 模板页和末页无明显文字截断、重叠、空白页或孤立尾页。
+- `render_docx.py` 标准路径未通过，原因是 bundled LibreOffice 运行时缺少 `liblcms2.2.dylib`；已采用 Word + Poppler 作为本轮视觉 QA 替代路径。
+
+### 风险说明
+
+- 文档中的第三方链接和价格来自用户提供信息，后续可能变化，应以实际页面为准。
+- 文档不构成对第三方工具安全性、稳定性、合规性或商业服务质量的背书。
+- `outputs/` 当前是本地交付物目录，是否提交到 Git 需按后续发布策略决定。
+
+## 2026-06-12 12:37 取消合盖继续运行 Codex 的电源策略
+
+### 修改文件
+
+- `TASK_STATE.md`
+- `PROJECT_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 按用户要求恢复本机 macOS 电源策略，取消 2026-06-08 “合盖不影响 Codex 继续跑任务”的系统级设置。
+- 将当前状态从“合盖长任务不中断”改为“合盖后可能睡眠，长任务可能暂停或中断”。
+- 在决策记录中追加撤销决策，保留历史记录但明确当前状态。
+
+### 修改原因
+
+用户明确要求“恢复原样，取消这个任务计划”。该设置属于本机系统级配置，需要与用户最新意图保持一致。
+
+### 验证结果
+
+- `/Library/Preferences/com.apple.PowerManagement.plist` 显示 Battery Power：`System Sleep Timer = 1`、`Display Sleep Timer = 20`、`Disk Sleep Timer = 10`。
+- `/Library/Preferences/com.apple.PowerManagement.plist` 显示 AC Power：`System Sleep Timer = 0`、`Display Sleep Timer = 0`、`Disk Sleep Timer = 10`。
+- `/Library/Preferences/com.apple.PowerManagement.plist` 显示 `SleepDisabled = false`。
+
+### 风险说明
+
+- 合盖后系统可能进入睡眠，Codex 长任务可能暂停或中断。
+- 本轮只修改本机电源配置和项目状态记录，不涉及业务代码。
+
+## 2026-06-10 17:25 星宇车灯终端接入与办公访问安全方案汇报
+
+### 修改文件
+
+- `outputs/019eb084-98e1-7940-a762-1ab3648f2298/presentations/xingyu-access-security/output/星宇车灯终端接入与办公访问安全管理解决方案汇报.pptx`
+- `outputs/019eb084-98e1-7940-a762-1ab3648f2298/presentations/xingyu-access-security/output/slide_outline.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 基于客户需求、零信任模板和准入模板生成 18 页客户汇报。
+- 直接呈现远程访问、内网准入和上网策略三类方案价值，不加入行业趋势和泛化背景。
+- 零信任章节覆盖业务隐身、最小权限、终端合规、审计追溯和替换 VPN 的落地方式。
+- 准入章节覆盖旁路部署、资产可视、有线无线认证、低风险上线、哑终端和外协管理。
+- 增加上网行为策略优化、分阶段实施路径和四类建设价值总结。
+- 每页保留客户可感知结论，整体沿用深信服零信任模板的蓝白视觉体系。
+
+### 修改原因
+
+为星宇车灯形成可直接用于客户汇报的终端接入与办公访问安全解决方案，突出深信服方案成熟、完整、低风险落地和持续运营能力。
+
+### 验证结果
+
+- 最终 PPTX：18 页，约 6.7 MB。
+- 18 页 Artifact Tool 渲染和缩略图视觉检查：通过。
+- PPTX 压缩包及全部 XML 文件校验：通过。
+- 禁用内容检查：未发现 XDLP、SASE、全球组网、商业秘密保护等无关内容。
+- 布局检查：未发现文本溢出或越界标记。
+- Microsoft PowerPoint 原生打开：通过，识别 18 页。
+- `slide_outline.md`：包含完整 18 页大纲。
+
+### 风险说明
+
+- 准入模板中的 EMF 图片未直接复用，准入章节改用零信任主模板重写表达。
+- PowerPoint 的 AppleScript PDF 自动导出发生超时，但不影响 PPTX 打开、编辑和放映。
+- 模板保真检查器因未重新导入 starter deck 报告流程证据缺失；最终稿实际继承原始模板页面并已完成视觉和原生打开验证。
+
 ## 2026-06-09 23:14 项目实战详情页与执行记录导出
 
 ### 修改文件

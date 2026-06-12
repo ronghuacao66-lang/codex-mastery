@@ -26,6 +26,9 @@ type ImportStatus = {
   tone: "success" | "error";
   message: string;
 };
+type PendingImport = ParsedReviewImport & {
+  importedAt: string;
+};
 type ParsedReviewImport = {
   kit: ReviewKit;
   draft: Record<string, string>;
@@ -39,6 +42,7 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
   const [downloaded, setDownloaded] = useState(false);
   const [savedHistory, setSavedHistory] = useState(false);
   const [importStatus, setImportStatus] = useState<ImportStatus | null>(null);
+  const [pendingImport, setPendingImport] = useState<PendingImport | null>(null);
   const importInputRef = useRef<HTMLInputElement>(null);
 
   const activeKit = kits.find((kit) => kit.id === activeId) ?? kits[0];
@@ -80,6 +84,7 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
   const canSaveHistory = activeKit.inputFields.some((field) => (activeDraft[field.key] ?? "").trim().length > 0);
 
   function updateField(key: string, value: string) {
+    setPendingImport(null);
     setDrafts((current) => ({
       ...current,
       [activeKit.id]: {
@@ -90,6 +95,7 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
   }
 
   function resetActiveDraft() {
+    setPendingImport(null);
     setDrafts((current) => {
       const next = { ...current };
       delete next[activeKit.id];
@@ -99,22 +105,41 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
 
   function saveCurrentReview() {
     if (!canSaveHistory) return;
-    const item: ReviewHistoryItem = {
+    saveReviewToHistory(createHistoryItem(activeKit, activeDraft));
+  }
+
+  function saveImportedReview() {
+    if (!pendingImport) return;
+    const item = createHistoryItem(pendingImport.kit, pendingImport.draft, pendingImport.importedAt);
+    saveReviewToHistory(item);
+    setPendingImport(null);
+    setImportStatus({
+      tone: "success",
+      message: `已将导入的「${pendingImport.kit.title}」另存为历史复盘。`
+    });
+  }
+
+  function createHistoryItem(kit: ReviewKit, draft: Record<string, string>, createdAt = new Date().toISOString()): ReviewHistoryItem {
+    return {
       id: `review-${Date.now()}`,
-      kitId: activeKit.id,
-      kitTitle: activeKit.title,
-      createdAt: new Date().toISOString(),
-      summary: buildHistorySummary(activeKit, activeDraft),
-      report,
-      codexPrompt,
-      draft: activeDraft
+      kitId: kit.id,
+      kitTitle: kit.title,
+      createdAt,
+      summary: buildHistorySummary(kit, draft),
+      report: buildReviewReport(kit, draft),
+      codexPrompt: buildCodexPrompt(kit, draft),
+      draft
     };
+  }
+
+  function saveReviewToHistory(item: ReviewHistoryItem) {
     setHistory((current) => [item, ...current].slice(0, MAX_HISTORY_ITEMS));
     setSavedHistory(true);
     window.setTimeout(() => setSavedHistory(false), 1400);
   }
 
   function restoreHistory(item: ReviewHistoryItem) {
+    setPendingImport(null);
     const nextKit = kits.some((kit) => kit.id === item.kitId) ? item.kitId : activeKit.id;
     setActiveId(nextKit);
     setDrafts((current) => ({
@@ -144,6 +169,7 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
   async function importMarkdown(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     event.target.value = "";
+    setPendingImport(null);
     if (!file) return;
 
     const isMarkdown = file.name.toLowerCase().endsWith(".md") || file.type.includes("markdown") || file.type.includes("text");
@@ -169,8 +195,10 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
         tone: "success",
         message: `已导入「${parsed.kit.title}」，恢复 ${parsed.filledCount} 个输入字段。`
       });
+      setPendingImport({ ...parsed, importedAt: new Date().toISOString() });
     } catch {
       setImportStatus({ tone: "error", message: "读取文件失败，请重新选择 Markdown 文件。" });
+      setPendingImport(null);
     }
   }
 
@@ -307,13 +335,24 @@ export function ReviewCenterClient({ kits }: { kits: ReviewKit[] }) {
           {importStatus ? (
             <div
               className={cn(
-                "mt-4 rounded-md border px-3 py-2 text-sm leading-6",
+                "mt-4 flex flex-col gap-3 rounded-md border px-3 py-2 text-sm leading-6 md:flex-row md:items-center md:justify-between",
                 importStatus.tone === "success"
                   ? "border-accent/35 bg-accent/10 text-ink"
                   : "border-red-400/35 bg-red-500/10 text-ink"
               )}
             >
-              {importStatus.message}
+              <span>{importStatus.message}</span>
+              {pendingImport && importStatus.tone === "success" ? (
+                <button
+                  type="button"
+                  onClick={saveImportedReview}
+                  className="inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-md border border-accent/35 bg-panel px-3 text-sm font-medium text-ink transition hover:-translate-y-0.5 hover:border-accent/60 hover:text-accent"
+                  title="将刚导入的复盘内容另存到历史列表"
+                >
+                  <Save className="h-4 w-4" />
+                  另存为历史
+                </button>
+              ) : null}
             </div>
           ) : null}
 

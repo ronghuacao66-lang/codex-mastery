@@ -1,5 +1,42 @@
 # SESSION_HANDOFF
 
+## 2026-06-13 复盘中心导入后另存历史
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是完善 `/reviews` 复盘中心：用户导入本站导出的 Markdown 复盘后，成功提示中出现“另存为历史”按钮，点击后把导入快照写入本地历史列表。
+
+### 已完成内容
+
+- 已恢复 `PROJECT_CONTEXT.md`、`TASK_STATE.md`、`DECISIONS.md`、`CHANGELOG_AI.md`、`PROJECT_STATE.md` 和最近代码状态。
+- 已确认当前工作区存在 2026-06-12 文档交付相关未提交变更和 `outputs/` 目录，不能回滚。
+- 已修改 `components/ReviewCenterClient.tsx`：
+  - 新增导入快照状态。
+  - 导入成功后显示“另存为历史”。
+  - 点击后保存到 `codex-mastery:review-history`。
+  - 导入错误、清空、编辑或恢复历史时清理待另存状态。
+- 已更新 README、DECISIONS、PROJECT_STATE、TASK_STATE、CHANGELOG_AI。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright 桌面验证：导入本站格式 Markdown 后点击“另存为历史”，`codex-mastery:review-history` 写入 1 条历史记录。
+- Playwright 移动端 375×812 验证：导入成功提示和“另存为历史”按钮存在，页面无横向溢出。
+
+### 未完成内容
+
+- 还需提交和推送本轮网站能力变更；提交时必须小心不要误提交 `outputs/`。
+
+### 当前风险
+
+- “另存为历史”保存的是导入时的快照，导入后继续编辑的内容需要用原有“保存历史”按钮保存。
+- 复盘历史仍只保存在当前浏览器 localStorage。
+- 当前工作区不是干净状态，提交范围必须人工确认。
+
+### 下一步计划
+
+提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+
 ## 更新时间
 
 2026-06-09 23:22 CST

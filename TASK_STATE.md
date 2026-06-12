@@ -1,5 +1,139 @@
 # TASK_STATE
 
+## 2026-06-13 复盘中心导入后另存历史
+
+### 当前目标
+
+为 `Codex Mastery` 的 `/reviews` 复盘中心补齐 Markdown 导入后的历史沉淀入口。
+
+### 已完成工作
+
+- 已恢复项目状态文件和最近变更状态。
+- 已确认当前工作区存在前序文档任务未提交变更，采取保护策略，不回滚、不覆盖。
+- 已修改 `components/ReviewCenterClient.tsx`：
+  - 导入成功后保留本次导入快照。
+  - 成功提示内显示“另存为历史”按钮。
+  - 点击按钮后写入 `codex-mastery:review-history`。
+  - 导入错误、清空、继续编辑或恢复历史时会清理待另存状态，减少误操作。
+- 已更新 `README.md`、`DECISIONS.md`、`PROJECT_STATE.md`、`CHANGELOG_AI.md` 和 `HANDOVER.md`。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright 已验证桌面导入后另存历史成功，移动端 375×812 无横向溢出。
+
+### 当前进度
+
+开发与本地验证已完成，等待提交和推送。
+
+### 当前设计思路
+
+导入 Markdown 仍只恢复草稿，不自动保存历史；另存历史必须由用户点击确认。这样既形成导入闭环，又避免自动制造重复或不想保留的历史记录。
+
+### 当前问题
+
+- 当前工作区不是干净状态，包含 2026-06-12 文档交付相关状态文件修改和 `outputs/` 目录。
+- 本轮如果提交，应谨慎选择提交范围，避免误提交不属于网站能力的交付物。
+
+### 下一步动作
+
+提交并推送本轮网站能力变更；提交范围应排除 `outputs/` 目录和不属于本轮的交付物。
+
+### 重要上下文
+
+- 复盘草稿 localStorage key：`codex-mastery:review-drafts`。
+- 复盘历史 localStorage key：`codex-mastery:review-history`。
+- 本轮关键文件：`components/ReviewCenterClient.tsx`。
+
+## 2026-06-12 提效小工具使用教程 Word 文档
+
+### 当前目标
+
+根据用户提供的“魔法梯子、GPT Plus 共享会员、WorkBuddy、Codex”工具清单，生成一份详细中文 Word 使用教程。
+
+### 已完成工作
+
+- 已按项目规则恢复 `PROJECT_CONTEXT.md`、`TASK_STATE.md`、`DECISIONS.md`、`CHANGELOG_AI.md` 和最近修改文件状态。
+- 已使用 Documents 技能工作流生成 Word 文档：`outputs/efficiency-tools-guide/提效小工具使用教程.docx`。
+- 文档包含工具入口、选择路线、魔法梯子使用流程、GPT Plus 共享会员使用边界、WorkBuddy 简单场景教程、Codex 复杂任务工作流、安全检查清单和 Prompt 模板。
+- 已在文档中保留用户提供的入口链接和价格信息，并明确第三方服务、共享账号、网络连接工具的隐私、合规、稳定性和服务条款风险。
+- 已用 Microsoft Word 导出 PDF：`outputs/efficiency-tools-guide/提效小工具使用教程-word-export.pdf`。
+- 已将 PDF 渲染为 8 页 PNG，并完成缩略总览与重点页视觉检查。
+- 已修复首轮渲染中第 9 页孤立尾页问题，最终文档为 8 页。
+
+### 当前进度
+
+本轮 Word 文档生成任务已完成，最终 DOCX 已可交付。
+
+### 当前设计思路
+
+- 文档采用中文内部教程/参考手册定位，使用克制、专业的浅蓝灰表格和提示框。
+- 对用户提供的第三方工具不做背书，采用“教程 + 风险提示 + 使用边界”的表达方式。
+- 复杂任务部分重点引导使用 Codex 的项目状态文件、阶段验证和交接机制，符合当前项目的永续开发模式。
+
+### 当前问题
+
+- Documents 技能自带 `render_docx.py` 调用 bundled LibreOffice 时失败，原因是当前本机 LibreOffice 运行时缺少 `/opt/homebrew/opt/little-cms2/lib/liblcms2.2.dylib`。
+- 已改用 Microsoft Word 导出 PDF，再使用 Poppler 将 PDF 转 PNG 完成视觉检查。
+- Homebrew 补装 `little-cms2` 因网络下载卡住，已中止，没有继续等待。
+
+### 下一步动作
+
+当前任务已完成。后续如继续维护文档，可直接修改 `outputs/efficiency-tools-guide/generate_efficiency_tools_guide.py` 后重新生成 DOCX。
+
+### 重要上下文
+
+- 生成脚本：`outputs/efficiency-tools-guide/generate_efficiency_tools_guide.py`
+- 最终 DOCX：`outputs/efficiency-tools-guide/提效小工具使用教程.docx`
+- QA PDF：`outputs/efficiency-tools-guide/提效小工具使用教程-word-export.pdf`
+- 页面渲染图：`outputs/efficiency-tools-guide/rendered/`
+
+## 2026-06-10 星宇车灯安全方案汇报 PPT
+
+### 当前目标
+
+基于 `客户需求.pdf`、`零信任模版.pptx` 和 `准入模版.pptx`，生成 18 页《星宇车灯终端接入与办公访问安全管理解决方案汇报.pptx》及 `slide_outline.md`。
+
+### 已完成工作
+
+- 已恢复并核对项目状态文件及最近修改记录。
+- 已提取 14 页客户需求 PDF 的全部文本并渲染逐页预览。
+- 已通过 Artifact Tool 完整审计 59 页零信任模板，提取页面预览、布局、字体和素材。
+- 已通过 PowerPoint 导出并审计 26 页准入模板；Artifact Tool 对其中 EMF 图片存在兼容问题。
+- 已确认客户范围与落地约束：秦岭路工厂和研发中心、准入一期约 5000 终端、旁路镜像部署、先识别后拦截、分部门分网段推广。
+- 已完成 18 页叙事、客户化文案、模板页映射和逐页核心结论。
+- 已生成最终 PPTX 与 `slide_outline.md`。
+- 已完成 18 页缩略图和重点页面全尺寸视觉检查，修复孤立标点及空白模板底框。
+- 已完成 PPTX 压缩包、XML、页数、禁用词、空占位符和布局溢出检查。
+- 已使用 Microsoft PowerPoint 原生打开最终文件，确认文件名正确且共 18 页。
+
+### 当前进度
+
+- 源材料提取与模板审计：100%。
+- 18 页叙事与模板页型映射：100%。
+- PPTX 生成、渲染质检与最终交付：100%。
+
+### 当前设计思路
+
+- 以零信任模板为主视觉和可编辑页面骨架。
+- 以准入模板的“可视、可控、安全、联动”表达组织准入章节。
+- 删除行业趋势、泛化挑战、XDLP、全球组网等无关内容。
+- 每页保留一句客户可感知结论，正文控制在 100 字以内。
+
+### 当前问题
+
+- 准入模板包含 Artifact Tool 不支持的 EMF 图片，不能直接作为最终可编辑模板导入。
+- Artifact Tool 重新导入裁剪后的 starter deck 时会因模板原有重复批注锚点报错，因此最终稿采用单次会话导入原始零信任模板、复制映射页并删除原页的方式生成。
+- PowerPoint 可正常打开并识别 18 页，但 AppleScript 自动导出 PDF 超时；最终 PPTX 本身不受影响。
+
+### 下一步动作
+
+当前任务已完成，交付最终 PPTX 与 `slide_outline.md`。
+
+### 重要上下文
+
+- 本次工作区：`outputs/019eb084-98e1-7940-a762-1ab3648f2298/presentations/xingyu-access-security/`。
+- 最终交付目录：`outputs/019eb084-98e1-7940-a762-1ab3648f2298/presentations/xingyu-access-security/output/`。
+- 最终文件：`星宇车灯终端接入与办公访问安全管理解决方案汇报.pptx`、`slide_outline.md`。
+
 ## 状态说明
 
 本文件为历史兼容状态文件。当前项目主状态请以 `PROJECT_STATE.md` 为准。
@@ -27,7 +161,8 @@
 - 已尝试 push，但因当前机器没有 GitHub 认证凭据失败。
 - 已尝试 SSH 方式访问 GitHub，但因没有可用 public key 失败。
 - 已尝试直接下载 GitHub CLI release，但 GitHub 443 连接超时。
-- 已按用户要求设置本机 macOS 电源策略，降低 Codex 长任务因合盖或空闲睡眠中断的风险。
+- 2026-06-12 12:37 CST 已按用户要求恢复本机 macOS 电源策略，取消“合盖不影响 Codex 继续跑任务”的系统级设置。
+- 2026-06-13 01:38 CST 已按用户要求重新设置本机 macOS 电源策略，开启“合盖不影响 Codex 继续跑任务”的系统级设置。
 - 已创建 `HANDOVER.md`，用于上下文压缩或会话中断后的项目接管。
 - 已修复 ESLint 忽略规则，避免 `release/**` 备用交付目录影响 lint。
 - 已完成 2026-06-09 部署前验证：`npm run typecheck`、`npm run lint`、`npm run build` 均通过。
@@ -90,7 +225,7 @@
 - 当前视频中心只展示 Bilibili；不展示 OpenAI Academy、YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频。
 - Bilibili 普通页面 HTTP 200 不能证明视频存在，后续必须以 `npm run audit:videos` 的接口校验结果为准。
 - `release/` 是本地交付物目录，已加入 `.gitignore`，不会提交进仓库。
-- 合盖长时间运行 Codex 会增加发热和耗电风险，建议连接电源并保持散热。
+- 本机已重新开启合盖长时间运行 Codex 的系统级设置；合盖运行会增加发热和耗电风险，建议接电源并保持散热。
 - Vercel 远端项目设置仍显示 `Framework Preset: Other`，后续必须保留仓库内 `vercel.json`。
 - 本机 `curl` 到 Vercel 域名仍超时，疑似本机网络问题；Vercel CLI inspect 和 Chrome 标题已验证生产部署可用。
 - 不应在聊天中索要或保存 Vercel 密码、验证码或长期 token。
@@ -101,6 +236,13 @@
 - 2026-06-08 19:35 CST：已执行 `pmset -a sleep 0 displaysleep 0 disksleep 0 disablesleep 1`。
 - 验证结果：`pmset -g custom` 显示 Battery Power 与 AC Power 下 `sleep`、`displaysleep`、`disksleep` 均为 `0`。
 - 恢复方式：如需恢复默认电源策略，可运行 `sudo pmset restoredefaults`。
+- 2026-06-12 12:37 CST：已取消上述设置，恢复为改动前记录的电源策略：
+  - Battery Power：`sleep 1`、`displaysleep 20`、`disksleep 10`
+  - AC Power：`sleep 0`、`displaysleep 0`、`disksleep 10`
+  - `SleepDisabled`：`false`
+- 2026-06-13 01:38 CST：已按用户要求重新执行 `pmset -a sleep 0 displaysleep 0 disksleep 0 disablesleep 1`。
+- 验证结果：`pmset -g custom` 显示 Battery Power 与 AC Power 下 `sleep`、`displaysleep`、`disksleep` 均为 `0`；`/Library/Preferences/com.apple.PowerManagement.plist` 显示 `SleepDisabled` 为 `true`。
+- 恢复方式：如需再次取消，可运行 `sudo pmset -b sleep 1 displaysleep 20 disksleep 10 disablesleep 0` 和 `sudo pmset -c sleep 0 displaysleep 0 disksleep 10 disablesleep 0`。
 
 ## 下一步动作
 

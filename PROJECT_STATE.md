@@ -1,8 +1,58 @@
 # PROJECT_STATE
 
+## 2026-06-13 复盘中心导入后另存历史
+
+### 当前目标
+
+继续完善 `Codex Mastery` 网站复盘中心闭环，让用户导入本地 Markdown 复盘后，可以直接把导入内容沉淀为历史记录。
+
+### 当前完成
+
+- 已在 `/reviews` 导入成功提示中新增“另存为历史”操作。
+- 导入成功后会保留本次导入快照；点击“另存为历史”会写入 `codex-mastery:review-history`。
+- 保留原有隐私策略：导入不会自动保存历史，必须用户手动确认。
+- 已更新 README、DECISIONS、TASK_STATE、CHANGELOG_AI 和 HANDOVER。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright 已验证桌面导入后另存历史成功，移动端 375×812 无横向溢出。
+
+### 当前风险
+
+- 导入后提示中的“另存为历史”保存的是导入时的快照；如果用户继续编辑，应使用页面原有“保存历史”按钮保存编辑后的版本。
+- 历史复盘仍保存在当前浏览器 localStorage，清理浏览器数据会丢失。
+- 当前工作区已有 2026-06-12 文档交付相关未提交变更和 `outputs/` 目录，本轮不会回滚或覆盖。
+
+### 下一步行动
+
+当前本轮开发与验证已完成。下一步可提交并推送本轮网站能力变更；提交时需排除不属于本轮网站能力的 `outputs/` 交付物。
+
+## 2026-06-12 提效小工具教程文档
+
+### 当前目标
+
+生成用户要求的《提效小工具使用教程》Word 文档，覆盖魔法梯子、GPT Plus 共享会员、WorkBuddy 和 Codex 的使用方法。
+
+### 当前完成
+
+- 已生成最终 Word 文档：`outputs/efficiency-tools-guide/提效小工具使用教程.docx`。
+- 已生成可追溯脚本：`outputs/efficiency-tools-guide/generate_efficiency_tools_guide.py`。
+- 已使用 Microsoft Word 导出 PDF 并通过 Poppler 渲染 8 页 PNG 完成视觉检查。
+- 已修复首轮第 9 页孤立尾页问题。
+- 已更新 `TASK_STATE.md`、`DECISIONS.md`、`CHANGELOG_AI.md` 和本文件。
+
+### 当前风险
+
+- 文档引用的外部链接、价格和服务规则未进行实时网页核验，后续可能变化。
+- 第三方 GPT Plus 共享会员与网络连接工具存在隐私、合规、稳定性、封号和售后风险，文档已明确提示。
+- Documents 标准 `render_docx.py` 因本机 LibreOffice 依赖缺失未能直接运行，本轮改用 Word 导出 PDF 后渲染检查。
+
+### 下一步行动
+
+当前文档交付任务已完成。若后续需要改版，优先修改生成脚本并重新生成 DOCX，再重复 PDF/PNG 视觉检查。
+
 ## 更新时间
 
-2026-06-09 23:22 CST
+2026-06-12 14:30 CST
 
 ## 当前目标
 
@@ -203,9 +253,10 @@
   - 已尝试直接下载 GitHub CLI release `v2.93.0`，但连接 GitHub 443 超时。
   - 已确认 `gh auth status` 当前仍未登录，原因是 OAuth token 交换超时。
   - 已生成并配置项目专用 SSH key，公钥已添加到 GitHub，SSH 认证通过。
-- 本机 macOS 电源策略已调整，降低 Codex 长任务因合盖或空闲睡眠中断的风险：
+- 本机 macOS 电源策略已于 2026-06-13 01:38 CST 按用户要求重新调整，已开启“合盖不影响 Codex 继续跑任务”的系统级设置：
   - Battery Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
   - AC Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
+  - `SleepDisabled`：`true`
 
 ## 当前进度
 
@@ -247,7 +298,7 @@
 - 项目卡片信息密度提升，后续继续增加项目字段时应考虑详情页或分层展示。
 - 旧状态文件曾记录过与当前项目无关的目标，已通过本轮状态更新纠偏。
 - 本地执行 `npm run build` 时不应与 `npm run dev` 混用同一个 `.next`；若首页 500，需要停止 dev server、删除 `.next` 并重启。
-- 合盖长时间运行 Codex 会增加发热和耗电风险，建议连接电源并保持散热。
+- 本机已重新开启合盖长时间运行 Codex 的系统级设置；合盖运行会增加发热和耗电风险，建议接电源并保持散热。
 
 ## 待办事项
 
@@ -272,7 +323,7 @@
 - 本轮状态文件自查：通过。
 - 本轮项目健康检查：通过，已修复本地 dev server 运行态污染问题。
 - 本轮移动端与交互体验检查：通过，已修复首页进度撤销和统计动态化问题。
-- 本轮本机电源策略检查：`pmset -g custom` 确认 Battery Power 与 AC Power 下 `sleep`、`displaysleep`、`disksleep` 均为 `0`。
+- 2026-06-13 本机电源策略检查：`pmset -g custom` 确认 Battery Power 与 AC Power 下 `sleep`、`displaysleep`、`disksleep` 均为 `0`；`/Library/Preferences/com.apple.PowerManagement.plist` 确认 `SleepDisabled` 为 `true`。
 - 2026-06-09 部署前验证：
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。
