@@ -1,5 +1,48 @@
 # TASK_STATE
 
+## 2026-06-13 项目组合进度总览
+
+### 当前目标
+
+为 `Codex Mastery` 的 `/projects` 项目实战中心增加跨项目进度总览和组合报告复制能力。
+
+### 已完成工作
+
+- 已恢复项目状态文件和最近变更状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不纳入本轮网站代码提交。
+- 已修改 `components/ProjectExplorer.tsx`：
+  - 新增项目组合进度总览区。
+  - 基于 `codex-mastery:project-checklist` 计算整体完成度。
+  - 展示检查项进度、完成项目数、建议优先推进项目。
+  - 展示进度最高的 3 个项目。
+  - 支持复制项目组合进度报告。
+- 已更新 `README.md`、`DECISIONS.md`、`PROJECT_STATE.md`、`CHANGELOG_AI.md` 和 `HANDOVER.md`。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright 已验证桌面项目组合总览数值正确、复制入口存在，移动端 375×812 无横向溢出。
+
+### 当前进度
+
+开发与本地验证已完成，等待提交和推送。
+
+### 当前设计思路
+
+项目组合总览继续使用浏览器本地状态，不引入账号、数据库或后端；先把跨项目视图放在 `/projects` 顶部，避免新增导航复杂度。
+
+### 当前问题
+
+- 总览只代表当前浏览器 localStorage 状态，换浏览器或清理数据会丢失。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮提交应继续排除。
+
+### 下一步动作
+
+提交并推送本轮网站能力变更；提交范围应排除 `outputs/` 目录和不属于本轮的交付物。
+
+### 重要上下文
+
+- 项目检查清单 localStorage key：`codex-mastery:project-checklist`。
+- 本轮关键文件：`components/ProjectExplorer.tsx`。
+
 ## 2026-06-13 项目执行记录导入 Markdown
 
 ### 当前目标
@@ -207,6 +250,7 @@
 - 已尝试直接下载 GitHub CLI release，但 GitHub 443 连接超时。
 - 2026-06-12 12:37 CST 已按用户要求恢复本机 macOS 电源策略，取消“合盖不影响 Codex 继续跑任务”的系统级设置。
 - 2026-06-13 01:38 CST 已按用户要求重新设置本机 macOS 电源策略，开启“合盖不影响 Codex 继续跑任务”的系统级设置。
+- 2026-06-13 02:07 CST 已按用户要求再次恢复本机 macOS 电源策略，取消“合盖不影响 Codex 继续跑任务”的系统级设置，避免影响电脑正常睡眠和散热。
 - 已创建 `HANDOVER.md`，用于上下文压缩或会话中断后的项目接管。
 - 已修复 ESLint 忽略规则，避免 `release/**` 备用交付目录影响 lint。
 - 已完成 2026-06-09 部署前验证：`npm run typecheck`、`npm run lint`、`npm run build` 均通过。
@@ -269,7 +313,7 @@
 - 当前视频中心只展示 Bilibili；不展示 OpenAI Academy、YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频。
 - Bilibili 普通页面 HTTP 200 不能证明视频存在，后续必须以 `npm run audit:videos` 的接口校验结果为准。
 - `release/` 是本地交付物目录，已加入 `.gitignore`，不会提交进仓库。
-- 本机已重新开启合盖长时间运行 Codex 的系统级设置；合盖运行会增加发热和耗电风险，建议接电源并保持散热。
+- 本机已取消合盖长时间运行 Codex 的系统级设置；合盖后 macOS 可按正常策略进入睡眠，降低放入包内持续发热风险。
 - Vercel 远端项目设置仍显示 `Framework Preset: Other`，后续必须保留仓库内 `vercel.json`。
 - 本机 `curl` 到 Vercel 域名仍超时，疑似本机网络问题；Vercel CLI inspect 和 Chrome 标题已验证生产部署可用。
 - 不应在聊天中索要或保存 Vercel 密码、验证码或长期 token。
@@ -287,6 +331,8 @@
 - 2026-06-13 01:38 CST：已按用户要求重新执行 `pmset -a sleep 0 displaysleep 0 disksleep 0 disablesleep 1`。
 - 验证结果：`pmset -g custom` 显示 Battery Power 与 AC Power 下 `sleep`、`displaysleep`、`disksleep` 均为 `0`；`/Library/Preferences/com.apple.PowerManagement.plist` 显示 `SleepDisabled` 为 `true`。
 - 恢复方式：如需再次取消，可运行 `sudo pmset -b sleep 1 displaysleep 20 disksleep 10 disablesleep 0` 和 `sudo pmset -c sleep 0 displaysleep 0 disksleep 10 disablesleep 0`。
+- 2026-06-13 02:07 CST：已按用户要求再次取消合盖继续运行设置，执行恢复命令并单独关闭 `disablesleep`。
+- 验证结果：`pmset -g custom` 显示 Battery Power 为 `sleep 1`、`displaysleep 20`、`disksleep 10`，AC Power 为 `sleep 0`、`displaysleep 0`、`disksleep 10`；`/Library/Preferences/com.apple.PowerManagement.plist` 显示 `SleepDisabled` 为 `false`。
 
 ## 下一步动作
 

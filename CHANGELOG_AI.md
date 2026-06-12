@@ -1,5 +1,73 @@
 # CHANGELOG_AI
 
+## 2026-06-13 02:07 再次取消合盖继续运行 Codex 的电源策略
+
+### 修改文件
+
+- `TASK_STATE.md`
+- `PROJECT_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 按用户要求恢复本机 macOS 正常睡眠策略，取消“合盖不影响 Codex 继续跑任务”的系统级设置。
+- 将当前状态从 2026-06-13 01:38 的“已重新开启”更新为 2026-06-13 02:07 的“已取消，优先正常睡眠和散热”。
+- 在决策记录中追加再次取消决策，保留此前开启和取消记录。
+
+### 修改原因
+
+用户明确要求“恢复原样，取消这个任务计划，不要影响我的电脑正常散热”。当前安全目标是避免 MacBook 放包后持续运行发热。
+
+### 验证结果
+
+- `pmset -g custom` 显示 Battery Power：`sleep 1`、`displaysleep 20`、`disksleep 10`。
+- `pmset -g custom` 显示 AC Power：`sleep 0`、`displaysleep 0`、`disksleep 10`。
+- `/Library/Preferences/com.apple.PowerManagement.plist` 显示 `SleepDisabled = false`。
+
+### 风险说明
+
+- 合盖后 Codex 长任务可能暂停或中断，这是为散热安全接受的结果。
+- 本轮只修改本机电源配置和项目状态记录，不涉及业务代码。
+
+## 2026-06-13 项目组合进度总览
+
+### 修改文件
+
+- `components/ProjectExplorer.tsx`
+- `README.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- `/projects` 顶部新增项目组合进度总览。
+- 基于 `codex-mastery:project-checklist` 汇总整体完成度、检查项进度、完成项目数和建议优先推进项目。
+- 新增进度最高的 3 个项目展示。
+- 新增“复制组合报告”操作，可复制 8 个项目的进度、已完成检查项和下一步建议。
+- README 同步项目实战中心支持项目组合进度总览。
+
+### 修改原因
+
+项目实战中心已有单项目执行能力，但缺少跨项目视角。新增组合总览可以帮助用户判断 30 天训练后项目实践推进到什么程度，并快速把进度交给 Codex 做复盘或计划。
+
+### 验证结果
+
+- `npm run typecheck`：通过。
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 24 个 App Router 页面。
+- Playwright 桌面验证：预置 8/40 检查项后，项目组合总览显示整体完成度 20%、检查项 8/40、完成项目 1/8。
+- Playwright 桌面验证：“复制组合报告”入口存在。
+- Playwright 移动端 375×812 验证：项目组合总览存在，页面无横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 风险说明
+
+- 组合总览只基于当前浏览器 localStorage，不跨设备同步。
+
 ## 2026-06-13 项目执行记录导入 Markdown
 
 ### 修改文件

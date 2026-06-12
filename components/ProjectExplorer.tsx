@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { ArrowRight, BarChart3, CheckCircle2, ClipboardList, Target } from "lucide-react";
+import { type ReactNode, useEffect, useMemo, useState } from "react";
 import { CopyButton } from "@/components/CopyButton";
 import { ContentCard } from "@/components/ContentCard";
 import { EmptyState } from "@/components/EmptyState";
@@ -59,9 +59,12 @@ export function ProjectExplorer({ items }: { items: ProjectItem[] }) {
       (tag === "全部" || item.tags.includes(tag))
     );
   });
+  const portfolioStats = useMemo(() => buildPortfolioStats(items, checked), [items, checked]);
+  const portfolioReport = useMemo(() => buildProjectPortfolioReport(items, checked), [items, checked]);
 
   return (
     <div className="space-y-6">
+      <ProjectPortfolioSummary stats={portfolioStats} report={portfolioReport} />
       <FilterBar
         query={query}
         onQueryChange={setQuery}
@@ -134,6 +137,101 @@ export function ProjectExplorer({ items }: { items: ProjectItem[] }) {
       ) : (
         <EmptyState />
       )}
+    </div>
+  );
+}
+
+type ProjectProgress = {
+  id: string;
+  title: string;
+  completed: number;
+  total: number;
+  progress: number;
+};
+
+type PortfolioStats = {
+  totalProjects: number;
+  completedProjects: number;
+  totalChecks: number;
+  completedChecks: number;
+  overallProgress: number;
+  nextProject: ProjectProgress | null;
+  topProjects: ProjectProgress[];
+};
+
+function ProjectPortfolioSummary({ stats, report }: { stats: PortfolioStats; report: string }) {
+  return (
+    <section className="rounded-lg border border-line bg-panel p-5 shadow-soft dark:shadow-darksoft">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+        <div>
+          <div className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-semibold text-muted">
+            <BarChart3 className="h-3.5 w-3.5 text-accent" />
+            项目组合进度
+          </div>
+          <h2 className="mt-3 text-xl font-semibold text-ink">8 个实战项目交付总览</h2>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-muted">
+            基于当前浏览器的交付检查状态，汇总整体进度、已完成项目和下一步建议，适合复制给 Codex 做周复盘或项目推进计划。
+          </p>
+        </div>
+        <CopyButton value={report} label="复制组合报告" />
+      </div>
+
+      <div className="mt-5 grid gap-3 md:grid-cols-4">
+        <SummaryMetric icon={<Target className="h-4 w-4" />} label="整体完成度" value={`${stats.overallProgress}%`} />
+        <SummaryMetric icon={<ClipboardList className="h-4 w-4" />} label="检查项" value={`${stats.completedChecks}/${stats.totalChecks}`} />
+        <SummaryMetric icon={<CheckCircle2 className="h-4 w-4" />} label="完成项目" value={`${stats.completedProjects}/${stats.totalProjects}`} />
+        <SummaryMetric
+          icon={<ArrowRight className="h-4 w-4" />}
+          label="建议推进"
+          value={stats.nextProject ? stats.nextProject.title : "全部完成"}
+          compact
+        />
+      </div>
+
+      <div className="mt-5 h-2 overflow-hidden rounded-full bg-line">
+        <div className="h-full rounded-full bg-accent transition-all" style={{ width: `${stats.overallProgress}%` }} />
+      </div>
+
+      <div className="mt-5 grid gap-3 lg:grid-cols-3">
+        {stats.topProjects.map((project) => (
+          <div key={project.id} className="rounded-md border border-line bg-surface p-3">
+            <div className="flex items-start justify-between gap-3">
+              <p className="min-w-0 text-sm font-semibold text-ink">{project.title}</p>
+              <span className="shrink-0 rounded-full border border-line bg-panel px-2 py-0.5 text-xs font-semibold text-muted">
+                {project.progress}%
+              </span>
+            </div>
+            <p className="mt-2 text-xs leading-5 text-muted">
+              {project.completed}/{project.total} 检查项完成
+            </p>
+            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-line">
+              <div className="h-full rounded-full bg-accent transition-all" style={{ width: `${project.progress}%` }} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function SummaryMetric({
+  icon,
+  label,
+  value,
+  compact = false
+}: {
+  icon: ReactNode;
+  label: string;
+  value: string;
+  compact?: boolean;
+}) {
+  return (
+    <div className="rounded-md border border-line bg-surface p-4">
+      <p className="flex items-center gap-2 text-xs font-semibold text-muted">
+        <span className="text-accent">{icon}</span>
+        {label}
+      </p>
+      <p className={`mt-2 font-semibold text-ink ${compact ? "line-clamp-2 text-sm leading-5" : "text-2xl"}`}>{value}</p>
     </div>
   );
 }
@@ -234,5 +332,67 @@ function buildDeliveryChecklistText(item: ProjectItem) {
     "",
     "## Codex 实现 Prompt",
     item.prompt
+  ].join("\n");
+}
+
+function buildPortfolioStats(items: ProjectItem[], checked: ProjectChecklistState): PortfolioStats {
+  const progress = items.map((item) => {
+    const checkedIds = checked[item.id] ?? [];
+    const completed = item.deliveryChecklist.filter((check) => checkedIds.includes(check.id)).length;
+    const total = item.deliveryChecklist.length;
+    return {
+      id: item.id,
+      title: item.title,
+      completed,
+      total,
+      progress: total ? Math.round((completed / total) * 100) : 0
+    };
+  });
+  const totalChecks = progress.reduce((sum, item) => sum + item.total, 0);
+  const completedChecks = progress.reduce((sum, item) => sum + item.completed, 0);
+  const nextProject = progress
+    .filter((item) => item.progress < 100)
+    .sort((a, b) => b.progress - a.progress || a.title.localeCompare(b.title, "zh-Hans-CN"))[0] ?? null;
+
+  return {
+    totalProjects: items.length,
+    completedProjects: progress.filter((item) => item.total > 0 && item.completed === item.total).length,
+    totalChecks,
+    completedChecks,
+    overallProgress: totalChecks ? Math.round((completedChecks / totalChecks) * 100) : 0,
+    nextProject,
+    topProjects: [...progress]
+      .sort((a, b) => b.progress - a.progress || a.title.localeCompare(b.title, "zh-Hans-CN"))
+      .slice(0, 3)
+  };
+}
+
+function buildProjectPortfolioReport(items: ProjectItem[], checked: ProjectChecklistState) {
+  const stats = buildPortfolioStats(items, checked);
+  const lines = items.map((item) => {
+    const checkedIds = checked[item.id] ?? [];
+    const completedChecks = item.deliveryChecklist.filter((check) => checkedIds.includes(check.id));
+    const pendingChecks = item.deliveryChecklist.filter((check) => !checkedIds.includes(check.id));
+    const progress = item.deliveryChecklist.length ? Math.round((completedChecks.length / item.deliveryChecklist.length) * 100) : 0;
+    return [
+      `## ${item.title}`,
+      `- 类别：${item.category}`,
+      `- 完成度：${progress}% (${completedChecks.length}/${item.deliveryChecklist.length})`,
+      `- 已完成：${completedChecks.length ? completedChecks.map((check) => check.title).join("、") : "暂无"}`,
+      `- 下一步：${pendingChecks[0]?.title ?? "进入复盘与优化"}`
+    ].join("\n");
+  });
+
+  return [
+    "# Codex Mastery 项目组合进度报告",
+    "",
+    `整体完成度：${stats.overallProgress}%`,
+    `完成项目：${stats.completedProjects}/${stats.totalProjects}`,
+    `检查项进度：${stats.completedChecks}/${stats.totalChecks}`,
+    `建议优先推进：${stats.nextProject?.title ?? "全部项目已完成，可进入复盘与案例包装"}`,
+    "",
+    "说明：本报告基于当前浏览器本地保存的项目交付检查状态生成。",
+    "",
+    ...lines
   ].join("\n");
 }

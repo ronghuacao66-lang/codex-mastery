@@ -1,5 +1,32 @@
 # PROJECT_STATE
 
+## 2026-06-13 项目组合进度总览
+
+### 当前目标
+
+继续完善 `Codex Mastery` 项目实战中心，让用户在 `/projects` 页面直接看到 8 个项目的组合交付进度，并能复制整体进度报告。
+
+### 当前完成
+
+- 已在 `/projects` 顶部新增项目组合进度总览。
+- 总览展示整体完成度、检查项完成数、完成项目数和建议优先推进项目。
+- 展示进度最高的 3 个项目，帮助用户快速判断当前推进状态。
+- 支持复制“Codex Mastery 项目组合进度报告”。
+- 报告基于当前浏览器的 `codex-mastery:project-checklist` 本地状态生成。
+- 已更新 README、DECISIONS、TASK_STATE、CHANGELOG_AI 和 HANDOVER。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright 已验证桌面项目组合总览数值正确、复制入口存在，移动端 375×812 无横向溢出。
+
+### 当前风险
+
+- 项目组合总览只代表当前浏览器 localStorage 状态，不跨设备同步。
+- 当前工作区仍保留未跟踪 `outputs/` 交付物，本轮不会提交。
+
+### 下一步行动
+
+当前本轮开发与验证已完成。下一步可提交并推送本轮网站能力变更；提交时需排除不属于本轮网站能力的 `outputs/` 交付物。
+
 ## 2026-06-13 项目执行记录导入 Markdown
 
 ### 当前目标
@@ -281,10 +308,10 @@
   - 已尝试直接下载 GitHub CLI release `v2.93.0`，但连接 GitHub 443 超时。
   - 已确认 `gh auth status` 当前仍未登录，原因是 OAuth token 交换超时。
   - 已生成并配置项目专用 SSH key，公钥已添加到 GitHub，SSH 认证通过。
-- 本机 macOS 电源策略已于 2026-06-13 01:38 CST 按用户要求重新调整，已开启“合盖不影响 Codex 继续跑任务”的系统级设置：
-  - Battery Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
-  - AC Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
-  - `SleepDisabled`：`true`
+- 本机 macOS 电源策略已于 2026-06-13 02:07 CST 按用户要求恢复，已取消“合盖不影响 Codex 继续跑任务”的系统级设置，以保证电脑可正常睡眠和散热：
+  - Battery Power：`sleep 1`、`displaysleep 20`、`disksleep 10`
+  - AC Power：`sleep 0`、`displaysleep 0`、`disksleep 10`
+  - `SleepDisabled`：`false`
 
 ## 当前进度
 
@@ -326,7 +353,7 @@
 - 项目卡片信息密度提升，后续继续增加项目字段时应考虑详情页或分层展示。
 - 旧状态文件曾记录过与当前项目无关的目标，已通过本轮状态更新纠偏。
 - 本地执行 `npm run build` 时不应与 `npm run dev` 混用同一个 `.next`；若首页 500，需要停止 dev server、删除 `.next` 并重启。
-- 本机已重新开启合盖长时间运行 Codex 的系统级设置；合盖运行会增加发热和耗电风险，建议接电源并保持散热。
+- 本机已取消合盖长时间运行 Codex 的系统级设置；合盖后 macOS 可按正常策略进入睡眠，降低放入包内持续发热风险。
 
 ## 待办事项
 
@@ -351,7 +378,7 @@
 - 本轮状态文件自查：通过。
 - 本轮项目健康检查：通过，已修复本地 dev server 运行态污染问题。
 - 本轮移动端与交互体验检查：通过，已修复首页进度撤销和统计动态化问题。
-- 2026-06-13 本机电源策略检查：`pmset -g custom` 确认 Battery Power 与 AC Power 下 `sleep`、`displaysleep`、`disksleep` 均为 `0`；`/Library/Preferences/com.apple.PowerManagement.plist` 确认 `SleepDisabled` 为 `true`。
+- 2026-06-13 02:07 本机电源策略恢复检查：`pmset -g custom` 确认 Battery Power 为 `sleep 1`、`displaysleep 20`、`disksleep 10`，AC Power 为 `sleep 0`、`displaysleep 0`、`disksleep 10`；`/Library/Preferences/com.apple.PowerManagement.plist` 确认 `SleepDisabled` 为 `false`。
 - 2026-06-09 部署前验证：
   - `npm run typecheck`：通过。
   - `npm run lint`：通过。

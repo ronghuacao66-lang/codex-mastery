@@ -1,5 +1,42 @@
 # SESSION_HANDOFF
 
+## 2026-06-13 项目组合进度总览
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是完善 `/projects` 项目实战中心：在页面顶部增加项目组合进度总览，并支持复制 8 个项目的组合进度报告。
+
+### 已完成内容
+
+- 已恢复 PROJECT_CONTEXT、PROJECT_STATE、TASK_STATE、DECISIONS、CHANGELOG_AI 和当前 git 状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不能误提交。
+- 已修改 `components/ProjectExplorer.tsx`：
+  - 新增项目组合进度总览组件。
+  - 基于 `codex-mastery:project-checklist` 计算整体完成度。
+  - 展示检查项进度、完成项目数、建议优先推进项目。
+  - 展示进度最高的 3 个项目。
+  - 支持复制项目组合进度报告。
+- 已更新 README、DECISIONS、PROJECT_STATE、TASK_STATE、CHANGELOG_AI。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright 桌面验证：预置 8/40 检查项后，总览显示整体完成度 20%、检查项 8/40、完成项目 1/8，复制入口存在。
+- Playwright 移动端 375×812 验证：项目组合总览存在，页面无横向溢出。
+
+### 未完成内容
+
+- 还需提交、推送，并确认 Vercel 自动部署。
+
+### 当前风险
+
+- 组合总览只代表当前浏览器 localStorage 状态。
+- 当前未跟踪 `outputs/` 目录不属于本轮网站能力，提交时必须排除。
+
+### 下一步计划
+
+提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+
 ## 2026-06-13 项目执行记录导入 Markdown
 
 ### 当前状态
