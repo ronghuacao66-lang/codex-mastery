@@ -34,6 +34,8 @@
 - Playwright CLI 桌面验证：取消勾选“深色模式设置”后，只恢复 30 天训练进度和收藏资源，主题设置仍保持 `light`。
 - Playwright CLI 桌面验证：页面无横向溢出，`scrollWidth = clientWidth = 1280`。
 - Playwright CLI 移动端 375×812 验证：上传备份后出现“选择恢复范围”，页面无横向溢出，`scrollWidth = clientWidth = 375`。
+- GitHub 推送：`8e8994d Add backup restore preview` 已推送到 `origin/main`。
+- Vercel Production：`https://ronghuacao66-lang-codex-mastery-bwjy2okax-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 alias 已绑定。
 
 ### 风险说明
 

@@ -13,6 +13,9 @@
 - 支持全选、清空、取消和单项勾选恢复范围。
 - 点击“确认恢复”后只恢复用户勾选的数据类，未勾选数据不会覆盖本地状态。
 - 已更新 README、DECISIONS、TASK_STATE、CHANGELOG_AI 和 HANDOVER。
+- 已创建并推送功能提交 `8e8994d Add backup restore preview`。
+- Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-bwjy2okax-crh-s-projects.vercel.app` 已为 `Ready`。
+- 主域名 alias 已绑定：`https://ronghuacao66-lang-codex-mastery.vercel.app`。
 - `npm run typecheck` 已通过。
 - `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
 - Playwright CLI 已验证桌面端上传备份后不提前覆盖 localStorage，确认后只恢复勾选的 2 类数据，未勾选主题保持原值。
@@ -26,7 +29,7 @@
 
 ### 下一步行动
 
-提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+本轮功能已完成。下一步继续推进新的独立能力时，仍需先恢复项目状态文件并确认工作区范围。
 
 ## 2026-06-13 本地学习档案备份与恢复
 
