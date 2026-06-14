@@ -36,6 +36,8 @@
 - Playwright CLI 桌面验证：预置 Day 1-7、Day 20-21 后，成就面板存在，“第一周闭环”“业务实战就绪”和“复制成就报告”可见。
 - Playwright CLI 桌面验证：页面无横向溢出，`scrollWidth = clientWidth = 1280`。
 - Playwright CLI 移动端 375×812 验证：成就面板存在，页面无横向溢出，`scrollWidth = clientWidth = 375`。
+- GitHub 推送：`f02a21b Add progress achievements panel` 已推送到 `origin/main`。
+- Vercel Production：`https://ronghuacao66-lang-codex-mastery-dqa0226ys-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 alias 已绑定。
 
 ### 风险说明
 

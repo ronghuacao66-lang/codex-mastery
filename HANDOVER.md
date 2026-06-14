@@ -19,6 +19,9 @@
 - 已修改 `components/ProgressCenterClient.tsx`，写入进度后广播 `codex-mastery:progress-updated` 事件。
 - 已在 `app/progress/page.tsx` 接入成就面板。
 - 已更新 README、DECISIONS、PROJECT_STATE、TASK_STATE、CHANGELOG_AI。
+- 已创建并推送功能提交 `f02a21b Add progress achievements panel`。
+- Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-dqa0226ys-crh-s-projects.vercel.app` 已为 `Ready`。
+- 主域名 alias 已绑定：`https://ronghuacao66-lang-codex-mastery.vercel.app`。
 - `npm run typecheck` 已通过。
 - `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
 - Playwright CLI 桌面验证：成就面板、关键成就文案和复制入口可见，页面无横向溢出。
@@ -26,17 +29,17 @@
 
 ### 未完成内容
 
-- 还需提交、推送，并确认 Vercel 自动部署。
+- 本轮功能已完成。后续继续推进新的独立能力即可。
 
 ### 当前风险
 
 - 成就只代表当前浏览器 localStorage 状态，不跨设备同步。
 - 连续训练按 Day 编号连续段计算，不是自然日签到。
-- 当前未跟踪 `outputs/` 目录不属于本轮网站能力，提交时必须排除。
+- 当前未跟踪 `outputs/` 目录不属于本轮网站能力，后续提交时仍必须排除。
 
 ### 下一步计划
 
-提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+继续推进下一项独立能力前，先恢复项目状态文件并确认工作区范围。
 
 ## 2026-06-14 备份导入预览与选择性恢复
 
