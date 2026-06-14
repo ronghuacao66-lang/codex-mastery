@@ -1,5 +1,60 @@
 # TASK_STATE
 
+## 2026-06-14 备份导入预览与选择性恢复
+
+### 当前目标
+
+优化 `Codex Mastery` 的 `/progress` 本地学习档案恢复体验，避免用户选择备份文件后立即覆盖本地学习状态。
+
+### 已完成工作
+
+- 已恢复项目状态文件和最近变更状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不纳入本轮网站代码提交。
+- 已修改 `components/LocalDataBackupPanel.tsx`：
+  - 选择备份 JSON 后只读取和预览，不立即写入 localStorage。
+  - 展示可恢复数据类、文件名和导出时间。
+  - 支持勾选恢复范围、全选、清空、取消。
+  - 点击“确认恢复”后只写入用户勾选的数据类。
+  - 未勾选的数据类不会被覆盖。
+- 已更新 `README.md`、`DECISIONS.md`、`PROJECT_STATE.md`、`CHANGELOG_AI.md` 和 `HANDOVER.md`。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos` 已通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint` 已通过。
+- `npm run build` 已通过，生成 24 个 App Router 页面。
+- Playwright CLI 已验证桌面端：
+  - 上传备份后出现“选择恢复范围”。
+  - 确认前 localStorage 仍保持旧值，没有提前覆盖。
+  - 取消勾选“深色模式设置”后，只恢复 30 天训练进度和收藏资源。
+  - 未勾选的主题设置仍保持原值。
+  - 桌面视口 `scrollWidth = clientWidth = 1280`。
+- Playwright CLI 已验证移动端 375×812：
+  - 上传备份后出现“选择恢复范围”。
+  - 页面无横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 当前进度
+
+开发与本地验证已完成，等待提交、推送和 Vercel 自动部署确认。
+
+### 当前设计思路
+
+保持静态站点和本地隐私策略，不引入账号、数据库或云同步。备份导入采用“读取预览 -> 用户选择 -> 确认恢复”三段式流程，把覆盖动作从文件选择事件中拆出来，降低误操作风险。
+
+### 当前问题
+
+- 备份文件仍可能包含复盘历史和项目执行记录，应提醒用户自行保管。
+- 恢复后仍需要刷新页面，让其他模块重新读取 localStorage 状态。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮提交应继续排除。
+
+### 下一步动作
+
+提交并推送本轮网站能力变更，然后检查 Vercel 自动部署状态。
+
+### 重要上下文
+
+- 本轮关键文件：`components/LocalDataBackupPanel.tsx`。
+- 导入确认前不会调用 `window.localStorage.setItem`。
+- 确认恢复只写入用户勾选的白名单 key。
+
 ## 2026-06-13 本地学习档案备份与恢复
 
 ### 当前目标

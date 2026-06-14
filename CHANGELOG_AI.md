@@ -1,5 +1,45 @@
 # CHANGELOG_AI
 
+## 2026-06-14 备份导入预览与选择性恢复
+
+### 修改文件
+
+- `components/LocalDataBackupPanel.tsx`
+- `README.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- `/progress` 本地学习档案导入改为先读取备份并展示预览。
+- 预览中显示可恢复数据类、文件名和导出时间。
+- 新增恢复范围勾选、全选、清空、取消和确认恢复操作。
+- 确认恢复只写入用户勾选的数据类，未勾选的数据不会覆盖本地状态。
+- README 同步学习进度中心支持本地学习档案备份、预览和选择性恢复。
+
+### 修改原因
+
+原导入流程在选择文件后立即恢复白名单数据，虽然可用但覆盖动作过快。随着项目执行记录、复盘历史和学习状态越来越多，恢复前预览和选择范围可以降低误覆盖风险，交互也更符合学习资产管理场景。
+
+### 验证结果
+
+- `npm run typecheck`：通过。
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 24 个 App Router 页面。
+- Playwright CLI 桌面验证：上传备份后出现“选择恢复范围”，确认前 localStorage 仍保持旧值。
+- Playwright CLI 桌面验证：取消勾选“深色模式设置”后，只恢复 30 天训练进度和收藏资源，主题设置仍保持 `light`。
+- Playwright CLI 桌面验证：页面无横向溢出，`scrollWidth = clientWidth = 1280`。
+- Playwright CLI 移动端 375×812 验证：上传备份后出现“选择恢复范围”，页面无横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 风险说明
+
+- 备份文件可能包含用户复盘和项目记录，应由用户自行保管。
+- 恢复完成后仍建议刷新页面，让各模块重新读取最新 localStorage 状态。
+
 ## 2026-06-13 本地学习档案备份与恢复
 
 ### 修改文件
