@@ -1,5 +1,44 @@
 # SESSION_HANDOFF
 
+## 2026-06-14 训练复盘启动器
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是完善 `/progress` 到 `/reviews` 的学习闭环：从学习进度直接生成每日训练复盘草稿，并让用户进入复盘中心继续补充和保存历史。
+
+### 已完成内容
+
+- 已恢复 PROJECT_CONTEXT、PROJECT_STATE、TASK_STATE、DECISIONS、CHANGELOG_AI 和当前 git 状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不能误提交。
+- 已新增 `components/TrainingReviewLauncher.tsx`：
+  - 读取 `codex-mastery:completed-days`。
+  - 生成每日训练复盘草稿。
+  - 支持复制复盘 Prompt。
+  - 支持写入 `codex-mastery:review-drafts.review-daily-codex-training`。
+  - 支持跳转 `/reviews`。
+- 已在 `app/progress/page.tsx` 接入训练复盘启动器。
+- 已更新 README、DECISIONS、PROJECT_STATE、TASK_STATE、CHANGELOG_AI。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright CLI 桌面验证：同步草稿成功，复盘中心可读取草稿，页面无横向溢出。
+- Playwright CLI 移动端 375×812 验证：训练复盘启动器存在，页面无横向溢出。
+
+### 未完成内容
+
+- 还需提交、推送，并确认 Vercel 自动部署。
+
+### 当前风险
+
+- 同步会覆盖每日训练复盘模板当前草稿。
+- 草稿只保存在当前浏览器 localStorage，不跨设备同步。
+- 当前未跟踪 `outputs/` 目录不属于本轮网站能力，提交时必须排除。
+
+### 下一步计划
+
+提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+
 ## 2026-06-14 学习成就与连续训练
 
 ### 当前状态

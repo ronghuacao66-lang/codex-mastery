@@ -2,6 +2,7 @@ import { LocalDataBackupPanel } from "@/components/LocalDataBackupPanel";
 import { ProgressAchievementsPanel } from "@/components/ProgressAchievementsPanel";
 import { ProgressCenterClient } from "@/components/ProgressCenterClient";
 import { SectionHeader } from "@/components/SectionHeader";
+import { TrainingReviewLauncher } from "@/components/TrainingReviewLauncher";
 import { dailyPlan } from "@/lib/content";
 
 export default function ProgressPage() {
@@ -14,6 +15,7 @@ export default function ProgressPage() {
       />
       <ProgressCenterClient items={dailyPlan} />
       <ProgressAchievementsPanel items={dailyPlan} />
+      <TrainingReviewLauncher items={dailyPlan} />
       <LocalDataBackupPanel />
     </div>
   );

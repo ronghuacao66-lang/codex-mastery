@@ -1,5 +1,38 @@
 # PROJECT_STATE
 
+## 2026-06-14 训练复盘启动器
+
+### 当前目标
+
+继续完善 `Codex Mastery` 的学习结果沉淀能力，让用户从 `/progress` 直接生成每日训练复盘草稿，并进入 `/reviews` 继续复盘。
+
+### 当前完成
+
+- 已新增 `components/TrainingReviewLauncher.tsx`。
+- 已在 `/progress` 接入“训练复盘启动器”。
+- 面板会基于当前完成状态生成：
+  - 今日目标
+  - 完成成果物
+  - 卡点
+  - 明日行动
+- 支持复制复盘 Prompt。
+- 支持同步到复盘中心草稿 `review-daily-codex-training`。
+- 支持一键进入 `/reviews`。
+- 已更新 README、DECISIONS、TASK_STATE、CHANGELOG_AI 和 HANDOVER。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright CLI 已验证桌面同步草稿成功，复盘中心可读取草稿，桌面和移动端 375×812 均无横向溢出。
+
+### 当前风险
+
+- 同步会覆盖每日训练复盘模板当前草稿。
+- 草稿只代表当前浏览器 localStorage 状态。
+- 当前工作区仍保留未跟踪 `outputs/` 交付物，本轮不会提交。
+
+### 下一步行动
+
+提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+
 ## 2026-06-14 学习成就与连续训练
 
 ### 当前目标

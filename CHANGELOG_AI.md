@@ -1,5 +1,48 @@
 # CHANGELOG_AI
 
+## 2026-06-14 训练复盘启动器
+
+### 修改文件
+
+- `components/TrainingReviewLauncher.tsx`
+- `app/progress/page.tsx`
+- `README.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- `/progress` 新增“训练复盘启动器”面板。
+- 根据最近完成 Day 和下一步 Day 生成每日 Codex 训练复盘草稿。
+- 支持复制复盘 Prompt。
+- 支持同步到复盘中心草稿 `review-daily-codex-training`。
+- 支持跳转到 `/reviews` 继续补充和保存历史。
+- README 同步学习进度中心支持训练复盘启动器。
+
+### 修改原因
+
+学习进度中心已经能记录进度、成就和备份，但完成训练后的复盘动作仍需要用户手工整理。本轮把训练成果自动转化为复盘输入，强化“学习 -> 复盘 -> 历史沉淀”的闭环。
+
+### 验证结果
+
+- `npm run typecheck`：通过。
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 24 个 App Router 页面。
+- Playwright CLI 桌面验证：预置 Day 1-3 后，训练复盘启动器存在，显示最近完成 Day 3 和下一步 Day 4。
+- Playwright CLI 桌面验证：点击“同步到复盘中心”后，`codex-mastery:review-drafts.review-daily-codex-training` 写入正确草稿。
+- Playwright CLI 桌面验证：`/reviews` 能读取并展示“复盘 Day 3”和“继续完成 Day 4”。
+- Playwright CLI 桌面验证：页面无横向溢出，`scrollWidth = clientWidth = 1280`。
+- Playwright CLI 移动端 375×812 验证：训练复盘启动器存在，页面无横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 风险说明
+
+- 同步到复盘中心会覆盖每日训练复盘模板当前草稿。
+- 草稿仍只保存在当前浏览器 localStorage。
+
 ## 2026-06-14 学习成就与连续训练
 
 ### 修改文件

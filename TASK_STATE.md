@@ -1,5 +1,62 @@
 # TASK_STATE
 
+## 2026-06-14 训练复盘启动器
+
+### 当前目标
+
+打通 `/progress` 学习进度中心到 `/reviews` 复盘中心的学习闭环，让用户完成每日训练后可以直接生成复盘草稿和 Codex 复盘 Prompt。
+
+### 已完成工作
+
+- 已恢复项目状态文件和最近变更状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不纳入本轮网站代码提交。
+- 已新增 `components/TrainingReviewLauncher.tsx`：
+  - 基于 `codex-mastery:completed-days` 读取最近完成 Day 和下一步 Day。
+  - 生成“每日 Codex 训练复盘”四个输入字段：今日目标、完成成果物、卡点、明日行动。
+  - 支持复制每日训练复盘 Prompt。
+  - 支持将生成内容同步到复盘中心草稿。
+  - 提供进入 `/reviews` 的“去复盘”入口。
+- 已在 `app/progress/page.tsx` 接入训练复盘启动器，位于学习成就之后、本地备份之前。
+- 已更新 `README.md`、`DECISIONS.md`、`PROJECT_STATE.md`、`CHANGELOG_AI.md` 和 `HANDOVER.md`。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos` 已通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint` 已通过。
+- `npm run build` 已通过，生成 24 个 App Router 页面。
+- Playwright CLI 已验证桌面端：
+  - 预置 Day 1-3 后，训练复盘启动器存在。
+  - 面板能显示最近完成 Day 3 和下一步 Day 4。
+  - 点击“同步到复盘中心”后，`codex-mastery:review-drafts.review-daily-codex-training` 写入正确草稿。
+  - `/reviews` 页面能读取并显示“复盘 Day 3”和“继续完成 Day 4”。
+  - 桌面视口 `scrollWidth = clientWidth = 1280`。
+- Playwright CLI 已验证移动端 375×812：
+  - 训练复盘启动器存在。
+  - 页面无横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 当前进度
+
+开发与本地验证已完成，等待提交、推送和 Vercel 自动部署确认。
+
+### 当前设计思路
+
+继续复用已有复盘中心数据模型，不新增新的复盘系统。训练复盘启动器只生成每日训练复盘模板的草稿，并写入既有 `codex-mastery:review-drafts`，因此本地备份能力会自动覆盖该草稿。
+
+### 当前问题
+
+- 同步到复盘中心会覆盖“每日 Codex 训练复盘”的当前草稿。
+- 草稿仍只保存在当前浏览器 localStorage，不跨设备同步。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮提交应继续排除。
+
+### 下一步动作
+
+提交并推送本轮网站能力变更，然后检查 Vercel 自动部署状态。
+
+### 重要上下文
+
+- 读取进度 key：`codex-mastery:completed-days`。
+- 写入草稿 key：`codex-mastery:review-drafts`。
+- 写入模板 id：`review-daily-codex-training`。
+- 本轮关键文件：`components/TrainingReviewLauncher.tsx`、`app/progress/page.tsx`。
+
 ## 2026-06-14 学习成就与连续训练
 
 ### 当前目标
