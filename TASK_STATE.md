@@ -1,5 +1,63 @@
 # TASK_STATE
 
+## 2026-06-14 学习成就与连续训练
+
+### 当前目标
+
+为 `/progress` 学习进度中心新增“学习成就与连续训练”能力，让用户在完成 30 天训练时获得更明确的阶段反馈、连续推进感和下一步建议。
+
+### 已完成工作
+
+- 已恢复项目状态文件和最近变更状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不纳入本轮网站代码提交。
+- 已新增 `components/ProgressAchievementsPanel.tsx`：
+  - 基于 `codex-mastery:completed-days` 推导成就解锁状态。
+  - 展示成就解锁数量、最长连续 Day、下一里程碑。
+  - 展示今日推进建议和每周下一项。
+  - 支持复制“Codex Mastery 学习成就报告”。
+  - 成就包含启动 Codex OS、第一周闭环、半程突破、业务实战就绪、连续推进者和毕业。
+- 已修改 `components/ProgressCenterClient.tsx`：
+  - 进度写入 localStorage 后广播 `codex-mastery:progress-updated` 事件。
+  - 成就面板可在同一页面内实时同步进度变化。
+- 已在 `app/progress/page.tsx` 接入成就面板。
+- 已更新 `README.md`、`DECISIONS.md`、`PROJECT_STATE.md`、`CHANGELOG_AI.md` 和 `HANDOVER.md`。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos` 已通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint` 已通过。
+- `npm run build` 已通过，生成 24 个 App Router 页面。
+- Playwright CLI 已验证桌面端：
+  - 预置 Day 1-7、Day 20-21 后，成就面板存在。
+  - “第一周闭环”和“业务实战就绪”文案可见。
+  - “复制成就报告”入口可见。
+  - 桌面视口 `scrollWidth = clientWidth = 1280`。
+- Playwright CLI 已验证移动端 375×812：
+  - 成就面板存在。
+  - 页面无横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 当前进度
+
+开发与本地验证已完成，等待提交、推送和 Vercel 自动部署确认。
+
+### 当前设计思路
+
+继续保持 GitHub + Vercel 静态部署和本地隐私策略。成就不新增存储结构，而是从已有 30 天完成状态中实时推导；这样能避免数据迁移，也能被本地备份能力自动覆盖。
+
+### 当前问题
+
+- 成就和连续 Day 只代表当前浏览器 localStorage 状态，不跨设备同步。
+- 连续训练按 Day 编号连续计算，不按自然日签到计算。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮提交应继续排除。
+
+### 下一步动作
+
+提交并推送本轮网站能力变更，然后检查 Vercel 自动部署状态。
+
+### 重要上下文
+
+- 成就面板读取 key：`codex-mastery:completed-days`。
+- 同页同步事件：`codex-mastery:progress-updated`。
+- 本轮关键文件：`components/ProgressAchievementsPanel.tsx`、`components/ProgressCenterClient.tsx`、`app/progress/page.tsx`。
+
 ## 2026-06-14 备份导入预览与选择性恢复
 
 ### 当前目标

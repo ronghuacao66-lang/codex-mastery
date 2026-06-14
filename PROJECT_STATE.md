@@ -1,5 +1,40 @@
 # PROJECT_STATE
 
+## 2026-06-14 学习成就与连续训练
+
+### 当前目标
+
+继续完善 `Codex Mastery` 的学习闭环，让 `/progress` 不只展示完成百分比，还能反馈学习成就、连续推进和下一里程碑。
+
+### 当前完成
+
+- 已新增 `components/ProgressAchievementsPanel.tsx`。
+- 已在 `/progress` 接入“学习成就与连续训练”面板。
+- 面板基于 `codex-mastery:completed-days` 推导 6 个成就：
+  - 启动 Codex OS
+  - 第一周闭环
+  - 半程突破
+  - 业务实战就绪
+  - 连续推进者
+  - Codex Mastery 毕业
+- 已显示成就解锁数量、最长连续 Day、下一里程碑、今日推进建议和每周下一项。
+- 已支持复制学习成就报告。
+- 已在 `ProgressCenterClient` 写入进度后广播本地事件，让成就面板同页实时更新。
+- 已更新 README、DECISIONS、TASK_STATE、CHANGELOG_AI 和 HANDOVER。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright CLI 已验证桌面和移动端 375×812 均无横向溢出。
+
+### 当前风险
+
+- 成就数据只代表当前浏览器 localStorage 状态。
+- 连续训练按 Day 编号连续段计算，不等同于自然日签到。
+- 当前工作区仍保留未跟踪 `outputs/` 交付物，本轮不会提交。
+
+### 下一步行动
+
+提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+
 ## 2026-06-14 备份导入预览与选择性恢复
 
 ### 当前目标

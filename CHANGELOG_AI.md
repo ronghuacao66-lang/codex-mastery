@@ -1,5 +1,47 @@
 # CHANGELOG_AI
 
+## 2026-06-14 学习成就与连续训练
+
+### 修改文件
+
+- `components/ProgressAchievementsPanel.tsx`
+- `components/ProgressCenterClient.tsx`
+- `app/progress/page.tsx`
+- `README.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- `/progress` 新增“学习成就与连续训练”面板。
+- 基于 `codex-mastery:completed-days` 推导成就解锁、最长连续 Day、下一里程碑和每周下一项。
+- 新增 6 个成就：启动 Codex OS、第一周闭环、半程突破、业务实战就绪、连续推进者、Codex Mastery 毕业。
+- 新增“复制成就报告”操作。
+- `ProgressCenterClient` 写入进度后广播本地事件，支持成就面板同页实时更新。
+- README 同步学习进度中心支持学习成就和连续训练。
+
+### 修改原因
+
+原学习进度中心偏管理视角，用户能看到百分比和周进度，但缺少阶段反馈、里程碑和持续推进动机。本轮通过本地推导的成就系统增强学习闭环，不引入后端和额外数据同步复杂度。
+
+### 验证结果
+
+- `npm run typecheck`：通过。
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 24 个 App Router 页面。
+- Playwright CLI 桌面验证：预置 Day 1-7、Day 20-21 后，成就面板存在，“第一周闭环”“业务实战就绪”和“复制成就报告”可见。
+- Playwright CLI 桌面验证：页面无横向溢出，`scrollWidth = clientWidth = 1280`。
+- Playwright CLI 移动端 375×812 验证：成就面板存在，页面无横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 风险说明
+
+- 成就只代表当前浏览器 localStorage 状态，不跨设备同步。
+- 连续训练按 Day 编号连续计算，不等同于自然日签到。
+
 ## 2026-06-14 备份导入预览与选择性恢复
 
 ### 修改文件

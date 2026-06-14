@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import type { DailyPlanItem } from "@/types/content";
 
 const PROGRESS_KEY = "codex-mastery:completed-days";
+const PROGRESS_EVENT = "codex-mastery:progress-updated";
 
 export function ProgressCenterClient({ items }: { items: DailyPlanItem[] }) {
   const [completed, setCompleted] = useState<number[]>([]);
@@ -26,6 +27,7 @@ export function ProgressCenterClient({ items }: { items: DailyPlanItem[] }) {
 
   useEffect(() => {
     window.localStorage.setItem(PROGRESS_KEY, JSON.stringify(completed));
+    window.dispatchEvent(new Event(PROGRESS_EVENT));
   }, [completed]);
 
   const completedSet = useMemo(() => new Set(completed), [completed]);

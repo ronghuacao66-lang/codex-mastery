@@ -1,5 +1,43 @@
 # SESSION_HANDOFF
 
+## 2026-06-14 学习成就与连续训练
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是完善 `/progress` 学习进度中心：增加学习成就、连续 Day、下一里程碑和成就报告复制，提升 30 天训练的持续反馈。
+
+### 已完成内容
+
+- 已恢复 PROJECT_CONTEXT、PROJECT_STATE、TASK_STATE、DECISIONS、CHANGELOG_AI 和当前 git 状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不能误提交。
+- 已新增 `components/ProgressAchievementsPanel.tsx`：
+  - 基于 `codex-mastery:completed-days` 推导成就。
+  - 展示成就解锁数量、最长连续 Day、下一里程碑、今日推进建议和每周下一项。
+  - 支持复制学习成就报告。
+- 已修改 `components/ProgressCenterClient.tsx`，写入进度后广播 `codex-mastery:progress-updated` 事件。
+- 已在 `app/progress/page.tsx` 接入成就面板。
+- 已更新 README、DECISIONS、PROJECT_STATE、TASK_STATE、CHANGELOG_AI。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright CLI 桌面验证：成就面板、关键成就文案和复制入口可见，页面无横向溢出。
+- Playwright CLI 移动端 375×812 验证：成就面板存在，页面无横向溢出。
+
+### 未完成内容
+
+- 还需提交、推送，并确认 Vercel 自动部署。
+
+### 当前风险
+
+- 成就只代表当前浏览器 localStorage 状态，不跨设备同步。
+- 连续训练按 Day 编号连续段计算，不是自然日签到。
+- 当前未跟踪 `outputs/` 目录不属于本轮网站能力，提交时必须排除。
+
+### 下一步计划
+
+提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+
 ## 2026-06-14 备份导入预览与选择性恢复
 
 ### 当前状态
