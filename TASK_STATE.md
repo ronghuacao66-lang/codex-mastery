@@ -18,6 +18,9 @@
   - 提供进入 `/reviews` 的“去复盘”入口。
 - 已在 `app/progress/page.tsx` 接入训练复盘启动器，位于学习成就之后、本地备份之前。
 - 已更新 `README.md`、`DECISIONS.md`、`PROJECT_STATE.md`、`CHANGELOG_AI.md` 和 `HANDOVER.md`。
+- 已创建并推送功能提交 `606ad5e Add training review launcher`。
+- Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-badr57vy7-crh-s-projects.vercel.app` 已为 `Ready`。
+- 主域名 alias 已绑定：`https://ronghuacao66-lang-codex-mastery.vercel.app`。
 - `npm run typecheck` 已通过。
 - `npm run audit:videos` 已通过，10 条 Bilibili 视频均返回 `code=0`。
 - `npm run lint` 已通过。
@@ -34,7 +37,7 @@
 
 ### 当前进度
 
-开发与本地验证已完成，等待提交、推送和 Vercel 自动部署确认。
+开发、本地验证、GitHub 推送和 Vercel 自动部署确认已完成。
 
 ### 当前设计思路
 
@@ -44,11 +47,11 @@
 
 - 同步到复盘中心会覆盖“每日 Codex 训练复盘”的当前草稿。
 - 草稿仍只保存在当前浏览器 localStorage，不跨设备同步。
-- 当前仍有未跟踪 `outputs/` 交付物，本轮提交应继续排除。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮提交继续排除。
 
 ### 下一步动作
 
-提交并推送本轮网站能力变更，然后检查 Vercel 自动部署状态。
+本轮功能已完成。下一步继续推进新的独立能力时，仍需先恢复项目状态文件并排除 `outputs/` 目录。
 
 ### 重要上下文
 

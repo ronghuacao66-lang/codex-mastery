@@ -20,6 +20,9 @@
   - 支持跳转 `/reviews`。
 - 已在 `app/progress/page.tsx` 接入训练复盘启动器。
 - 已更新 README、DECISIONS、PROJECT_STATE、TASK_STATE、CHANGELOG_AI。
+- 已创建并推送功能提交 `606ad5e Add training review launcher`。
+- Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-badr57vy7-crh-s-projects.vercel.app` 已为 `Ready`。
+- 主域名 alias 已绑定：`https://ronghuacao66-lang-codex-mastery.vercel.app`。
 - `npm run typecheck` 已通过。
 - `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
 - Playwright CLI 桌面验证：同步草稿成功，复盘中心可读取草稿，页面无横向溢出。
@@ -27,17 +30,17 @@
 
 ### 未完成内容
 
-- 还需提交、推送，并确认 Vercel 自动部署。
+- 本轮功能已完成。后续继续推进新的独立能力即可。
 
 ### 当前风险
 
 - 同步会覆盖每日训练复盘模板当前草稿。
 - 草稿只保存在当前浏览器 localStorage，不跨设备同步。
-- 当前未跟踪 `outputs/` 目录不属于本轮网站能力，提交时必须排除。
+- 当前未跟踪 `outputs/` 目录不属于本轮网站能力，后续提交时仍必须排除。
 
 ### 下一步计划
 
-提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+继续推进下一项独立能力前，先恢复项目状态文件并确认工作区范围。
 
 ## 2026-06-14 学习成就与连续训练
 

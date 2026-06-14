@@ -37,6 +37,8 @@
 - Playwright CLI 桌面验证：`/reviews` 能读取并展示“复盘 Day 3”和“继续完成 Day 4”。
 - Playwright CLI 桌面验证：页面无横向溢出，`scrollWidth = clientWidth = 1280`。
 - Playwright CLI 移动端 375×812 验证：训练复盘启动器存在，页面无横向溢出，`scrollWidth = clientWidth = 375`。
+- GitHub 推送：`606ad5e Add training review launcher` 已推送到 `origin/main`。
+- Vercel Production：`https://ronghuacao66-lang-codex-mastery-badr57vy7-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 alias 已绑定。
 
 ### 风险说明
 
