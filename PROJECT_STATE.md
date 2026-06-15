@@ -21,6 +21,9 @@
 - 新增下一步改进建议。
 - 新增复制评分报告。
 - 已更新 README、DECISIONS、TASK_STATE、CHANGELOG_AI 和 HANDOVER。
+- 已创建并推送功能提交 `4aecb29 Add prompt quality scoring`。
+- Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-qeemn6c2t-crh-s-projects.vercel.app` 已为 `Ready`。
+- 主域名 alias 已绑定：`https://ronghuacao66-lang-codex-mastery.vercel.app`。
 - `npm run typecheck` 已通过。
 - `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
 - Playwright CLI 已验证桌面默认预设、清空低分状态和移动端 375×812 均正常且无横向溢出。
@@ -33,7 +36,7 @@
 
 ### 下一步行动
 
-提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+本轮功能已完成。下一步继续推进新的独立能力时，仍需先恢复项目状态文件并确认工作区范围。
 
 ## 2026-06-14 训练复盘启动器
 

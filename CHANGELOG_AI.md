@@ -36,6 +36,8 @@
 - Playwright CLI 桌面验证：点击“清空”后显示“风险较高”、下一步改进和目标清晰度建议。
 - Playwright CLI 桌面验证：页面无横向溢出，`scrollWidth = clientWidth = 1280`。
 - Playwright CLI 移动端 375×812 验证：复制评分报告入口和验证计划维度可见，页面无横向溢出，`scrollWidth = clientWidth = 375`。
+- GitHub 推送：`4aecb29 Add prompt quality scoring` 已推送到 `origin/main`。
+- Vercel Production：`https://ronghuacao66-lang-codex-mastery-qeemn6c2t-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 alias 已绑定。
 
 ### 风险说明
 
