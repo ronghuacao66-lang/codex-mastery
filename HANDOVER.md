@@ -24,9 +24,9 @@
 - 已通过 `npm run lint`。
 - 已通过 `npm run build`，生成 24 个 App Router 页面。
 - 已在 `DECISIONS.md` 记录内容可信源策略：JSON 为主源，Markdown 为脚本导出的备份。
-- 已提交并推送 `e89bddc Record content integrity QA` 到 `origin/main`。
-- 已确认 Vercel Production 最新部署 `https://ronghuacao66-lang-codex-mastery-q5qu3o44v-crh-s-projects.vercel.app` 为 `Ready`。
-- 已确认 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 指向最新 Ready 部署。
+- 已完成 GitHub 推送，`origin/main` 已包含本轮 QA 与部署确认记录。
+- 已确认 Vercel Production 部署为 `Ready`。
+- 已确认 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 指向当前 Production Ready 部署。
 
 ### 未完成内容
 
