@@ -23,10 +23,13 @@
   - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
   - `npm run lint`：通过。
   - `npm run build`：通过，生成 24 个 App Router 页面。
+- 已提交并推送 `e89bddc Record content integrity QA` 到 `origin/main`。
+- 已用 Vercel CLI 确认最新 Production 部署 `https://ronghuacao66-lang-codex-mastery-q5qu3o44v-crh-s-projects.vercel.app` 为 `Ready`。
+- 已用 Vercel alias 列表确认主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 指向最新 Ready 部署。
 
 ### 当前进度
 
-内容完整性和部署验证已完成，正在记录状态并准备提交。
+内容完整性、部署验证、GitHub 推送和 Vercel Ready 确认已完成。
 
 ### 当前设计思路
 
@@ -36,11 +39,12 @@
 
 - 本轮未做新的浏览器视觉 QA，因为没有改动产品 UI。
 - 视频链接需要持续维护，新增或替换视频必须先审计再部署。
+- 当前终端直接请求 Vercel 页面内容超时，但 Vercel API 和 alias 状态正常；如用户浏览器仍异常，应检查本地网络、DNS 或缓存。
 - 当前仍有未跟踪 `outputs/` 交付物，本轮继续排除。
 
 ### 下一步动作
 
-提交 QA 记录并推送 `origin/main`，等待 Vercel 自动部署确认。
+本轮 QA 已闭环。下一步只处理用户反馈的具体缺陷或继续小范围增强。
 
 ### 重要上下文
 

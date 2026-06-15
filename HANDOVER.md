@@ -24,21 +24,24 @@
 - 已通过 `npm run lint`。
 - 已通过 `npm run build`，生成 24 个 App Router 页面。
 - 已在 `DECISIONS.md` 记录内容可信源策略：JSON 为主源，Markdown 为脚本导出的备份。
+- 已提交并推送 `e89bddc Record content integrity QA` 到 `origin/main`。
+- 已确认 Vercel Production 最新部署 `https://ronghuacao66-lang-codex-mastery-q5qu3o44v-crh-s-projects.vercel.app` 为 `Ready`。
+- 已确认 alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 指向最新 Ready 部署。
 
 ### 未完成内容
 
-- 仍需提交并推送本轮 QA 记录。
-- 仍需等待 Vercel Production 部署确认。
+- 本轮内容完整性 QA 和部署确认已完成。
 
 ### 当前风险
 
 - 本轮没有改动产品 UI，因此未重新做浏览器视觉 QA。
 - 视频链接随时间可能变化，后续新增或替换视频必须运行 `npm run audit:videos`。
+- 当前终端直接访问 Vercel 页面内容超时，但 Vercel API 与 alias 查询正常；如用户浏览器仍异常，优先检查本地网络、DNS 或缓存。
 - `outputs/` 仍是未跟踪目录，不属于本轮网站能力。
 
 ### 下一步计划
 
-提交 `Record content integrity QA`，推送 `origin/main`，确认 Vercel 最新 Production 部署为 Ready。
+后续只处理用户反馈的具体缺陷或继续小范围闭环优化，提交时继续排除 `outputs/`。
 
 ## 2026-06-15 六小时闭环版关键交互 QA
 
