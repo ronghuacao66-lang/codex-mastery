@@ -19,6 +19,8 @@
 - `npm run audit:videos` 已通过，10 条 Bilibili 视频均返回 `code=0`。
 - `npm run lint` 已通过。
 - `npm run build` 已通过，生成 24 个 App Router 页面。
+- GitHub 提交 `014ce28 Add learning evidence vault` 已推送到 `origin/main`。
+- Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-n70485dhc-crh-s-projects.vercel.app` 已为 `Ready`，主域名 alias 已绑定。
 
 ### 当前风险
 
@@ -28,7 +30,7 @@
 
 ### 下一步行动
 
-提交推送并确认 Vercel Production 部署状态。六小时交付版后续只处理闭环 QA 和明显缺陷，不再继续扩张新模块。
+本轮功能已完成。六小时交付版后续只处理闭环 QA 和明显缺陷，不再继续扩张新模块。
 
 ## 2026-06-15 学习路径智能推荐
 

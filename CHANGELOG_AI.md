@@ -35,6 +35,8 @@
 - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
 - `npm run lint`：通过。
 - `npm run build`：通过，生成 24 个 App Router 页面。
+- GitHub 推送：`014ce28 Add learning evidence vault` 已推送到 `origin/main`。
+- Vercel Production：`https://ronghuacao66-lang-codex-mastery-n70485dhc-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 alias 已绑定。
 
 ### 风险说明
 
