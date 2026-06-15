@@ -20,6 +20,9 @@
   - 不新增 localStorage key。
 - 已在 `app/progress/page.tsx` 接入学习路径推荐。
 - 已更新 README、DECISIONS、PROJECT_STATE、TASK_STATE、CHANGELOG_AI。
+- 已创建并推送功能提交 `8986d2a Add learning path advisor`。
+- Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-960om4q61-crh-s-projects.vercel.app` 已为 `Ready`。
+- 主域名 alias 已绑定：`https://ronghuacao66-lang-codex-mastery.vercel.app`。
 - `npm run typecheck` 已通过。
 - `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
 - Browser 桌面 1280×720 验证：学习路径推荐、推荐行动队列、复制下一步 Prompt 和进入项目可见，页面无横向溢出。
@@ -27,7 +30,7 @@
 
 ### 未完成内容
 
-- 需要提交、推送本轮改动，并等待 Vercel Production 自动部署。
+- 本轮功能已完成。后续继续推进新的独立能力即可。
 
 ### 当前风险
 
@@ -37,7 +40,7 @@
 
 ### 下一步计划
 
-提交并推送本轮改动，确认 Vercel 部署 Ready。后续可继续开发“任务完成证据库”或“项目作品集导出”。
+继续推进下一项独立能力前，先恢复项目状态文件并确认工作区范围。后续可继续开发“任务完成证据库”或“项目作品集导出”。
 
 ## 2026-06-15 Prompt 质量评分器
 

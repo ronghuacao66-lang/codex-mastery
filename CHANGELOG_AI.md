@@ -35,6 +35,8 @@
 - `npm run build`：通过，生成 24 个 App Router 页面。
 - Browser 桌面 1280×720 验证：“学习路径推荐”“推荐行动队列”“复制下一步 Prompt”和“进入项目”可见，页面无横向溢出。
 - Browser 移动端 375×812 验证：“学习路径推荐”“当前阶段”和“推荐行动队列”可见，页面无横向溢出。
+- GitHub 推送：`8986d2a Add learning path advisor` 已推送到 `origin/main`。
+- Vercel Production：`https://ronghuacao66-lang-codex-mastery-960om4q61-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 alias 已绑定。
 
 ### 风险说明
 

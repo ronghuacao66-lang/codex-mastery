@@ -23,6 +23,9 @@
   - 补充视频
 - 已支持复制“下一步 Prompt”，用于让 Codex 生成 90 分钟行动计划、最小成果物、任务 Prompt 和验证清单。
 - 已更新 README、DECISIONS、TASK_STATE、CHANGELOG_AI 和 HANDOVER。
+- 已创建并推送功能提交 `8986d2a Add learning path advisor`。
+- Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-960om4q61-crh-s-projects.vercel.app` 已为 `Ready`。
+- 主域名 alias 已绑定：`https://ronghuacao66-lang-codex-mastery.vercel.app`。
 - `npm run typecheck` 已通过。
 - `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
 - Browser 已验证桌面 1280×720 和移动端 375×812 均正常且无横向溢出。
@@ -35,7 +38,7 @@
 
 ### 下一步行动
 
-提交并推送本轮网站能力变更；随后等待 Vercel Production 自动部署并确认主域名状态。
+本轮功能已完成。下一步继续推进新的独立能力时，仍需先恢复项目状态文件并确认工作区范围。
 
 ## 2026-06-15 Prompt 质量评分器
 

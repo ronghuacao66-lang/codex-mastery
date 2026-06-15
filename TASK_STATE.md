@@ -31,7 +31,7 @@
 
 ### 当前进度
 
-开发、本地验证和状态文档更新已完成。下一步需要提交、推送并等待 Vercel 自动部署。
+开发、本地验证、GitHub 推送和 Vercel 自动部署确认已完成。
 
 ### 当前设计思路
 
@@ -45,12 +45,14 @@
 
 ### 下一步动作
 
-提交并推送本轮学习路径智能推荐能力，随后确认 Vercel Production 部署状态。
+本轮功能已完成。下一步继续推进新的独立能力时，仍需先恢复项目状态文件并排除 `outputs/` 目录。
 
 ### 重要上下文
 
 - 本轮关键文件：`components/LearningPathAdvisor.tsx`、`app/progress/page.tsx`。
 - 本轮没有新增数据文件和 localStorage key。
+- GitHub 提交：`8986d2a Add learning path advisor`。
+- Vercel Production：`https://ronghuacao66-lang-codex-mastery-960om4q61-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 alias 已绑定。
 
 ## 2026-06-15 Prompt 质量评分器
 
