@@ -1,5 +1,42 @@
 # SESSION_HANDOFF
 
+## 2026-06-15 Prompt 质量评分器
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是完善 `/task-builder`：让用户生成 Codex 任务的同时获得可解释的 Prompt 质量评分和改进建议。
+
+### 已完成内容
+
+- 已恢复 PROJECT_CONTEXT、PROJECT_STATE、TASK_STATE、DECISIONS、CHANGELOG_AI 和当前 git 状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不能误提交。
+- 已修改 `components/TaskBuilderClient.tsx`：
+  - 六维 Prompt 质量评分。
+  - 维度得分、进度条、证据说明、改进建议。
+  - 总体等级和下一步改进建议。
+  - 复制评分报告。
+- 已更新 README、DECISIONS、PROJECT_STATE、TASK_STATE、CHANGELOG_AI。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright CLI 桌面验证：默认预设和清空低分状态均正常，页面无横向溢出。
+- Playwright CLI 移动端 375×812 验证：评分报告入口和验证计划维度可见，页面无横向溢出。
+
+### 未完成内容
+
+- 还需提交、推送，并确认 Vercel 自动部署。
+
+### 当前风险
+
+- 评分是本地启发式训练反馈，不代表 Codex 一定成功执行。
+- 当前不保存评分历史。
+- 当前未跟踪 `outputs/` 目录不属于本轮网站能力，提交时必须排除。
+
+### 下一步计划
+
+提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+
 ## 2026-06-14 训练复盘启动器
 
 ### 当前状态

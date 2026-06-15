@@ -1,5 +1,47 @@
 # CHANGELOG_AI
 
+## 2026-06-15 Prompt 质量评分器
+
+### 修改文件
+
+- `components/TaskBuilderClient.tsx`
+- `README.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- `/task-builder` 原任务质量区升级为 Prompt 质量评分器。
+- 新增 6 个评分维度：目标清晰度、上下文密度、约束边界、完成标准、验证计划、输出格式。
+- 每个维度显示得分、进度条、证据说明和改进建议。
+- 总分显示等级：优秀、可执行、需补齐、风险较高。
+- 新增下一步改进建议列表。
+- 新增“复制评分报告”操作。
+- README 同步任务生成器支持 Prompt 质量评分和评分报告。
+
+### 修改原因
+
+用户需要真正掌握 Codex Prompt，而不是只拼接 Prompt 模板。评分器用可解释维度帮助用户发现任务描述中的薄弱点，把 Prompt 训练从“可复制”推进到“可评估、可改进”。
+
+### 验证结果
+
+- `npm run typecheck`：通过。
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 24 个 App Router 页面。
+- Playwright CLI 桌面验证：默认预设显示任务质量、可执行或优秀等级、目标清晰度和复制评分报告入口。
+- Playwright CLI 桌面验证：点击“清空”后显示“风险较高”、下一步改进和目标清晰度建议。
+- Playwright CLI 桌面验证：页面无横向溢出，`scrollWidth = clientWidth = 1280`。
+- Playwright CLI 移动端 375×812 验证：复制评分报告入口和验证计划维度可见，页面无横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 风险说明
+
+- 评分是本地启发式规则，不代表 Codex 输出质量保证。
+- 当前不保存评分历史。
+
 ## 2026-06-14 训练复盘启动器
 
 ### 修改文件

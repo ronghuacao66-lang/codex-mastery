@@ -1,5 +1,40 @@
 # PROJECT_STATE
 
+## 2026-06-15 Prompt 质量评分器
+
+### 当前目标
+
+继续完善 `Codex Mastery` 的 Prompt 训练能力，让 `/task-builder` 从“任务生成器”升级为“任务生成 + Prompt 质量评分”的训练工具。
+
+### 当前完成
+
+- 已增强 `components/TaskBuilderClient.tsx`。
+- `/task-builder` 现在按 6 个维度评估 Codex Prompt：
+  - 目标清晰度
+  - 上下文密度
+  - 约束边界
+  - 完成标准
+  - 验证计划
+  - 输出格式
+- 每个维度显示得分、状态、证据说明和改进建议。
+- 总分显示为优秀、可执行、需补齐或风险较高。
+- 新增下一步改进建议。
+- 新增复制评分报告。
+- 已更新 README、DECISIONS、TASK_STATE、CHANGELOG_AI 和 HANDOVER。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Playwright CLI 已验证桌面默认预设、清空低分状态和移动端 375×812 均正常且无横向溢出。
+
+### 当前风险
+
+- 评分是本地启发式训练反馈，不是模型执行成功率保证。
+- 当前不保存评分历史，避免增加新的本地状态和备份范围。
+- 当前工作区仍保留未跟踪 `outputs/` 交付物，本轮不会提交。
+
+### 下一步行动
+
+提交并推送本轮网站能力变更，然后确认 Vercel 自动部署状态。
+
 ## 2026-06-14 训练复盘启动器
 
 ### 当前目标

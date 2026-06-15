@@ -8,7 +8,7 @@
 
 - 首页：Codex 学习控制台，包含今日任务、今日最佳 Prompt、本周项目、学习进度、热门工作流和挑战任务。
 - Codex Academy：10 篇中文知识文章，覆盖 Codex 基础、工具对比、GCCD、任务拆解、AGENTS.md、项目管理、Debug、Agent 和效率提升。
-- Codex 任务生成器：把模糊需求整理成 Goal、Context、Constraint、Definition of Done 和 Verification。
+- Codex 任务生成器：把模糊需求整理成 Goal、Context、Constraint、Definition of Done 和 Verification，并提供 Prompt 质量评分、维度建议和可复制评分报告。
 - Prompt Center：30 条 Codex Prompt 和 22 条通用 AI Prompt，支持搜索、筛选、收藏和复制。
 - 视频精选：只保留 Bilibili 中当前确认存在的教学视频清单。
 - 30 天训练营：Day 1-Day 30，每天包含学习目标、理论、实操任务、Prompt、成果物和复盘问题。

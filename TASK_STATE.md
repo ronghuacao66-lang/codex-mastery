@@ -1,5 +1,59 @@
 # TASK_STATE
 
+## 2026-06-15 Prompt 质量评分器
+
+### 当前目标
+
+升级 `/task-builder` 的任务质量判断能力，让用户不仅能生成 Codex Prompt，还能按工程任务标准评估 Prompt 是否足够可执行。
+
+### 已完成工作
+
+- 已恢复项目状态文件和最近变更状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不纳入本轮网站代码提交。
+- 已修改 `components/TaskBuilderClient.tsx`：
+  - 将原来的字段完整度评分升级为六维 Prompt 质量评分。
+  - 评分维度包括目标清晰度、上下文密度、约束边界、完成标准、验证计划、输出格式。
+  - 每个维度显示得分、进度条、证据说明和改进建议。
+  - 总体显示等级：优秀、可执行、需补齐、风险较高。
+  - 新增“下一步改进”建议列表。
+  - 新增“复制评分报告”操作。
+- 已更新 `README.md`、`DECISIONS.md`、`PROJECT_STATE.md`、`CHANGELOG_AI.md` 和 `HANDOVER.md`。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos` 已通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint` 已通过。
+- `npm run build` 已通过，生成 24 个 App Router 页面。
+- Playwright CLI 已验证桌面端：
+  - `/task-builder` 默认预设显示任务质量、可执行或优秀等级、目标清晰度和复制评分报告入口。
+  - 点击“清空”后显示“风险较高”、下一步改进和目标清晰度建议。
+  - 桌面视口 `scrollWidth = clientWidth = 1280`。
+- Playwright CLI 已验证移动端 375×812：
+  - 复制评分报告入口可见。
+  - 验证计划维度可见。
+  - 页面无横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 当前进度
+
+开发与本地验证已完成，等待提交、推送和 Vercel 自动部署确认。
+
+### 当前设计思路
+
+评分器采用本地确定性规则，不调用外部模型，不保存用户输入。它用于训练用户补齐 Codex 任务关键信息，而不是预测模型输出质量。评分逻辑保留在 `TaskBuilderClient` 内，便于和任务表单状态同步。
+
+### 当前问题
+
+- 评分是启发式规则，不代表 Codex 一定成功执行。
+- 评分器不保存历史评分；当前先保持轻量，避免引入新的本地状态。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮提交应继续排除。
+
+### 下一步动作
+
+提交并推送本轮网站能力变更，然后检查 Vercel 自动部署状态。
+
+### 重要上下文
+
+- 本轮关键文件：`components/TaskBuilderClient.tsx`。
+- 评分报告不会写入 localStorage，只支持复制。
+
 ## 2026-06-14 训练复盘启动器
 
 ### 当前目标
