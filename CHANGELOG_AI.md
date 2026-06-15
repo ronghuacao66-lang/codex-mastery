@@ -1,5 +1,41 @@
 # CHANGELOG_AI
 
+## 2026-06-15 内容完整性与部署验证 QA
+
+### 修改文件
+
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- 记录内容完整性审计结果。
+- 记录 `data/*.json` 与 `content/*.md` 同步验证结果。
+- 记录视频审计、类型检查、Lint 和生产构建结果。
+- 记录 JSON 主源与 Markdown 导出备份的内容维护决策。
+
+### 修改原因
+
+用户要求项目可稳定部署到 GitHub + Vercel，并确保所有内容保存在 `data/*.json` 和 `content/*.md` 中避免丢失。本轮不新增功能，只补齐交付前内容资产和部署链路验证留痕。
+
+### 验证结果
+
+- 内容审计通过：30 条 Codex Prompt、22 条通用 AI Prompt、30 天训练营、8 个项目、5 套工作流、5 套模板、10 篇文章、10 条 Bilibili 视频、7 个工具、6 个安全售前场景、5 套复盘模板、4 套任务预设。
+- `npm run export:content`：通过，导出后 `content/*.md` 无未同步 diff。
+- `npm run typecheck`：通过。
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 24 个 App Router 页面。
+
+### 风险说明
+
+- 本轮未修改产品代码。
+- 视频链接仍需随时间持续巡检。
+- `outputs/` 仍为未跟踪目录，本轮继续排除提交。
+
 ## 2026-06-15 六小时闭环版关键交互 QA
 
 ### 修改文件

@@ -1,5 +1,43 @@
 # PROJECT_STATE
 
+## 2026-06-15 内容完整性与部署验证 QA
+
+### 当前目标
+
+确认 `Codex Mastery` 的内容资产没有丢失，`data/*.json` 与 `content/*.md` 保持同步，并再次验证 GitHub + Vercel 可部署链路。
+
+### 当前完成
+
+- 已重新运行 `npm run export:content`，`content/*.md` 与 `data/*.json` 无未同步差异。
+- 已完成内容数量和关键字段审计：
+  - Prompt：52 条，其中 30 条 Codex Prompt、22 条通用 AI Prompt。
+  - 30 天训练营：30 天完整内容。
+  - 项目实战：8 个项目。
+  - 工作流：5 套。
+  - 模板：5 套。
+  - Academy 文章：10 篇。
+  - 视频精选：10 条，全部为 Bilibili。
+  - AI 工具库：7 个工具。
+  - 安全售前：6 个场景。
+  - 复盘中心：5 套。
+  - 任务生成器预设：4 套。
+- 已确认 `data/*.json` 和 `content/*.md` 必要文件存在。
+- 已确认核心内容字段非空，字段口径以 `types/content.ts` 为准。
+- 已通过 `npm run typecheck`。
+- 已通过 `npm run audit:videos`，10 条 Bilibili 视频均返回 `code=0`。
+- 已通过 `npm run lint`。
+- 已通过 `npm run build`，生成 24 个 App Router 页面。
+
+### 当前风险
+
+- 本轮是内容资产和部署链路 QA，不新增产品功能。
+- 视频可访问性依赖 Bilibili 当前接口状态，后续新增或替换视频仍需运行 `npm run audit:videos`。
+- 当前工作区仍保留未跟踪 `outputs/` 交付物，本轮不会提交。
+
+### 下一步行动
+
+提交并推送本轮 QA 记录，等待 Vercel Production 自动部署确认。
+
 ## 2026-06-15 六小时闭环版关键交互 QA
 
 ### 当前目标

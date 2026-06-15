@@ -1,5 +1,53 @@
 # TASK_STATE
 
+## 2026-06-15 内容完整性与部署验证 QA
+
+### 当前目标
+
+在六小时闭环版功能和关键 QA 之后，确认站点内容资产完整、`data/*.json` 与 `content/*.md` 可同步、视频链接可访问，并再次通过生产构建验证，保证 GitHub 导入 Vercel 后能稳定部署。
+
+### 已完成工作
+
+- 已恢复 `PROJECT_CONTEXT.md`、`TASK_STATE.md`、`DECISIONS.md`、`CHANGELOG_AI.md` 和 Git 状态。
+- 已确认工作区只有未跟踪 `outputs/`，继续排除提交。
+- 已检查 `data/` 和 `content/` 文件清单。
+- 已读取 `scripts/export-content.mjs`，确认 Markdown 内容由 JSON 自动导出。
+- 已执行 `npm run export:content`，导出后 `content/*.md` 无未同步 diff。
+- 已完成内容完整性审计：
+  - 52 条 Prompt，其中 30 条 Codex Prompt、22 条通用 AI Prompt。
+  - 30 天训练营完整。
+  - 8 个项目、5 套工作流、5 套模板、10 篇文章、10 条 Bilibili 视频、7 个 AI 工具、6 个安全售前场景、5 套复盘模板、4 套任务预设。
+  - 核心字段按 `types/content.ts` 校验均非空。
+- 已完成验证：
+  - `npm run typecheck`：通过。
+  - `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - `npm run lint`：通过。
+  - `npm run build`：通过，生成 24 个 App Router 页面。
+
+### 当前进度
+
+内容完整性和部署验证已完成，正在记录状态并准备提交。
+
+### 当前设计思路
+
+继续保持静态站点和本地内容驱动架构。`data/*.json` 是页面渲染的唯一结构化来源，`content/*.md` 是通过脚本导出的可读备份，避免内容分叉和人工维护两份事实。
+
+### 当前问题
+
+- 本轮未做新的浏览器视觉 QA，因为没有改动产品 UI。
+- 视频链接需要持续维护，新增或替换视频必须先审计再部署。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮继续排除。
+
+### 下一步动作
+
+提交 QA 记录并推送 `origin/main`，等待 Vercel 自动部署确认。
+
+### 重要上下文
+
+- 本轮没有修改产品代码和内容数据。
+- 本轮重新导出 `content/*.md` 后无 diff，说明 Markdown 备份已同步。
+- 本轮校验字段口径以 `types/content.ts` 为准。
+
 ## 2026-06-15 六小时闭环交付与学习证据库
 
 ### 当前目标

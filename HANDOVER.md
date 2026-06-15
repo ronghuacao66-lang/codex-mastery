@@ -1,5 +1,45 @@
 # SESSION_HANDOFF
 
+## 2026-06-15 内容完整性与部署验证 QA
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是确认内容资产完整、Markdown 备份同步、视频链接可访问，并再次验证 Vercel 生产构建链路。
+
+### 已完成内容
+
+- 已恢复项目状态文件和 Git 状态。
+- 已确认当前工作区只有未跟踪 `outputs/`，不属于本轮提交范围。
+- 已检查 `data/` 和 `content/` 文件清单。
+- 已执行 `npm run export:content`，并确认 `content/*.md` 无未同步 diff。
+- 已完成内容完整性审计：
+  - 30 条 Codex Prompt 和 22 条通用 AI Prompt。
+  - 30 天训练营。
+  - 8 个项目、5 套工作流、5 套模板、10 篇 Academy 文章、10 条 Bilibili 视频、7 个 AI 工具、6 个安全售前场景、5 套复盘模板、4 套任务预设。
+  - 核心字段按 `types/content.ts` 校验均非空。
+- 已通过 `npm run typecheck`。
+- 已通过 `npm run audit:videos`，10 条 Bilibili 视频均返回 `code=0`。
+- 已通过 `npm run lint`。
+- 已通过 `npm run build`，生成 24 个 App Router 页面。
+- 已在 `DECISIONS.md` 记录内容可信源策略：JSON 为主源，Markdown 为脚本导出的备份。
+
+### 未完成内容
+
+- 仍需提交并推送本轮 QA 记录。
+- 仍需等待 Vercel Production 部署确认。
+
+### 当前风险
+
+- 本轮没有改动产品 UI，因此未重新做浏览器视觉 QA。
+- 视频链接随时间可能变化，后续新增或替换视频必须运行 `npm run audit:videos`。
+- `outputs/` 仍是未跟踪目录，不属于本轮网站能力。
+
+### 下一步计划
+
+提交 `Record content integrity QA`，推送 `origin/main`，确认 Vercel 最新 Production 部署为 Ready。
+
 ## 2026-06-15 六小时闭环版关键交互 QA
 
 ### 当前状态

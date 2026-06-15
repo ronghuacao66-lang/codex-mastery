@@ -1,5 +1,27 @@
 # DECISIONS
 
+## 2026-06-15 内容可信源继续采用 JSON 主源与 Markdown 导出备份
+
+### 决策内容
+
+继续以 `data/*.json` 作为页面渲染和内容维护的结构化主源，`content/*.md` 只作为 `npm run export:content` 自动生成的可读备份和审阅材料，不手工维护与 JSON 分叉的第二套内容。
+
+### 决策原因
+
+用户要求所有内容存储在 `data/*.json` 和 `content/*.md` 中，避免内容丢失。当前项目已经由组件直接消费 JSON 数据，同时 Markdown 可读性更好，适合 GitHub diff、人工审阅和交接。保持 JSON 主源、Markdown 导出备份，可以兼顾页面稳定性和内容可迁移性。
+
+### 被否决方案
+
+- 手工同时维护 JSON 和 Markdown：容易产生内容漂移，后续无法判断哪份为准。
+- 改为只维护 Markdown：会增加解析复杂度，并破坏当前类型化数据模型。
+- 引入 CMS 或数据库：超出当前 GitHub + Vercel 静态部署范围，会增加账号、权限和运维成本。
+
+### 后续影响
+
+- 新增或修改内容时必须优先修改 `data/*.json`。
+- 内容变更后必须运行 `npm run export:content` 同步 `content/*.md`。
+- 内容完整性审计字段口径以 `types/content.ts` 为准。
+
 ## 2026-06-15 六小时交付版收束为学习闭环
 
 ### 决策内容
