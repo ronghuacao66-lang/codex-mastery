@@ -1,5 +1,42 @@
 # PROJECT_STATE
 
+## 2026-06-15 学习路径智能推荐
+
+### 当前目标
+
+继续完善 `Codex Mastery` 的学习操作系统能力，让 `/progress` 能根据用户当前学习资产主动推荐下一步行动。
+
+### 当前完成
+
+- 已新增 `components/LearningPathAdvisor.tsx`。
+- 已在 `/progress` 接入“学习路径推荐”面板。
+- 面板只读聚合已有本地状态：
+  - `codex-mastery:completed-days`
+  - `codex-mastery:watched-videos`
+  - `codex-mastery:review-history`
+  - `codex-mastery:project-checklist`
+- 已展示当前阶段、训练完成、视频完成、项目检查和复盘沉淀。
+- 已生成推荐行动队列：
+  - 继续训练
+  - 推进项目
+  - 沉淀复盘
+  - 补充视频
+- 已支持复制“下一步 Prompt”，用于让 Codex 生成 90 分钟行动计划、最小成果物、任务 Prompt 和验证清单。
+- 已更新 README、DECISIONS、TASK_STATE、CHANGELOG_AI 和 HANDOVER。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Browser 已验证桌面 1280×720 和移动端 375×812 均正常且无横向溢出。
+
+### 当前风险
+
+- 推荐是本地启发式规则，不等同于 AI 个性化学习规划。
+- 推荐依赖当前浏览器 localStorage，跨设备仍需使用本地学习档案备份与恢复。
+- 当前工作区仍保留未跟踪 `outputs/` 交付物，本轮不会提交。
+
+### 下一步行动
+
+提交并推送本轮网站能力变更；随后等待 Vercel Production 自动部署并确认主域名状态。
+
 ## 2026-06-15 Prompt 质量评分器
 
 ### 当前目标

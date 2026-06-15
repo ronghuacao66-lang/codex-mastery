@@ -1,5 +1,44 @@
 # SESSION_HANDOFF
 
+## 2026-06-15 学习路径智能推荐
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是完善 `/progress`：让学习进度中心根据训练、视频、复盘和项目状态生成下一步行动建议。
+
+### 已完成内容
+
+- 已恢复 PROJECT_CONTEXT、PROJECT_STATE、TASK_STATE、DECISIONS、CHANGELOG_AI 和当前 git 状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不能误提交。
+- 已新增 `components/LearningPathAdvisor.tsx`：
+  - 读取 30 天完成状态、视频观看记录、复盘历史和项目交付检查。
+  - 计算当前阶段、训练进度、视频进度、项目检查进度和复盘数量。
+  - 生成继续训练、推进项目、沉淀复盘、补充视频的推荐行动队列。
+  - 支持复制下一步行动 Prompt。
+  - 不新增 localStorage key。
+- 已在 `app/progress/page.tsx` 接入学习路径推荐。
+- 已更新 README、DECISIONS、PROJECT_STATE、TASK_STATE、CHANGELOG_AI。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos`、`npm run lint`、`npm run build` 已通过。
+- Browser 桌面 1280×720 验证：学习路径推荐、推荐行动队列、复制下一步 Prompt 和进入项目可见，页面无横向溢出。
+- Browser 移动端 375×812 验证：学习路径推荐、当前阶段和推荐行动队列可见，页面无横向溢出。
+
+### 未完成内容
+
+- 需要提交、推送本轮改动，并等待 Vercel Production 自动部署。
+
+### 当前风险
+
+- 推荐是启发式规则，不是 AI 个性化规划。
+- 仍依赖当前浏览器 localStorage；跨设备需要备份导入。
+- 当前未跟踪 `outputs/` 目录不属于本轮网站能力，后续提交时仍必须排除。
+
+### 下一步计划
+
+提交并推送本轮改动，确认 Vercel 部署 Ready。后续可继续开发“任务完成证据库”或“项目作品集导出”。
+
 ## 2026-06-15 Prompt 质量评分器
 
 ### 当前状态

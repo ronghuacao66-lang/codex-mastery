@@ -1,5 +1,57 @@
 # TASK_STATE
 
+## 2026-06-15 学习路径智能推荐
+
+### 当前目标
+
+把 `/progress` 从进度记录中心升级为下一步行动中心，根据训练、视频、复盘和项目检查状态推荐用户当前最该做的事情。
+
+### 已完成工作
+
+- 已恢复项目状态文件和最近变更状态。
+- 已确认当前工作区仍有未跟踪 `outputs/` 交付物，不纳入本轮网站代码提交。
+- 已新增 `components/LearningPathAdvisor.tsx`：
+  - 读取 `codex-mastery:completed-days`、`codex-mastery:watched-videos`、`codex-mastery:review-history` 和 `codex-mastery:project-checklist`。
+  - 展示当前学习阶段、训练进度、视频进度、项目检查进度和复盘沉淀数量。
+  - 生成推荐行动队列：继续训练、推进项目、沉淀复盘、补充视频。
+  - 支持复制“下一步行动 Prompt”，让用户把当前状态交给 Codex 生成 90 分钟行动计划。
+  - 不新增新的 localStorage key，不写入用户学习状态。
+- 已在 `app/progress/page.tsx` 接入学习路径推荐，位置在 30 天进度之后、成就面板之前。
+- 已更新 `README.md`、`DECISIONS.md`、`PROJECT_STATE.md`、`CHANGELOG_AI.md` 和 `HANDOVER.md`。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos` 已通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint` 已通过。
+- `npm run build` 已通过，生成 24 个 App Router 页面。
+- Browser 验证桌面 1280×720：
+  - “学习路径推荐”“推荐行动队列”“复制下一步 Prompt”和“进入项目”可见。
+  - 页面无横向溢出，`scrollWidth = clientWidth = 1280`。
+- Browser 验证移动端 375×812：
+  - “学习路径推荐”“当前阶段”和“推荐行动队列”可见。
+  - 页面无横向溢出，`scrollWidth = clientWidth = 375`。
+
+### 当前进度
+
+开发、本地验证和状态文档更新已完成。下一步需要提交、推送并等待 Vercel 自动部署。
+
+### 当前设计思路
+
+学习路径推荐采用本地只读聚合，不新增后端、账号、数据库或新的持久化 key。推荐逻辑使用可解释规则，把现有学习资产转成下一步行动，而不是引入黑盒 AI 判断。
+
+### 当前问题
+
+- 推荐是启发式策略，不等同于模型个性化规划。
+- 跨设备状态仍依赖本地备份导入导出。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮提交继续排除。
+
+### 下一步动作
+
+提交并推送本轮学习路径智能推荐能力，随后确认 Vercel Production 部署状态。
+
+### 重要上下文
+
+- 本轮关键文件：`components/LearningPathAdvisor.tsx`、`app/progress/page.tsx`。
+- 本轮没有新增数据文件和 localStorage key。
+
 ## 2026-06-15 Prompt 质量评分器
 
 ### 当前目标
