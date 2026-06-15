@@ -1,5 +1,39 @@
 # SESSION_HANDOFF
 
+## 2026-06-15 六小时闭环版关键交互 QA
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是验证六小时闭环版的关键交互，不新增产品功能。
+
+### 已完成内容
+
+- 已恢复 PROJECT_CONTEXT、TASK_STATE、DECISIONS、CHANGELOG_AI 和 Git 状态。
+- 已确认当前工作区仍有未跟踪 `outputs/`，继续排除提交。
+- 已在本地生产服务下完成关键交互 QA。
+- 已验证：
+  - 首页深色模式切换。
+  - Prompt Center 搜索、收藏、复制反馈。
+  - 视频精选搜索、标记已看。
+  - 学习进度中心完成当前 Day 并保持学习证据库展示。
+- 交互过程中未发现页面控制台错误。
+
+### 未完成内容
+
+- 仍需提交并推送本轮 QA 记录。
+- 仍需等待 Vercel Production 部署确认。
+
+### 当前风险
+
+- 本轮是关键交互 QA，不是所有按钮和所有数据组合的全量回归。
+- `outputs/` 仍是未跟踪目录，不属于本轮网站代码。
+
+### 下一步计划
+
+提交 `Record key interaction QA`，推送 `origin/main`，确认 Vercel 最新 Production 部署为 Ready。
+
 ## 2026-06-15 六小时闭环版全站 QA
 
 ### 当前状态
