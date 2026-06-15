@@ -1,5 +1,36 @@
 # SESSION_HANDOFF
 
+## 2026-06-15 六小时闭环版全站 QA
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是完成六小时闭环版的全站冒烟 QA，不新增功能。
+
+### 已完成内容
+
+- 已恢复 PROJECT_CONTEXT、TASK_STATE、DECISIONS、CHANGELOG_AI 和 Git 状态。
+- 已确认当前工作区仍有未跟踪 `outputs/`，继续排除提交。
+- 已在本地生产服务下完成桌面 1280×720 QA：
+  - 首页、Academy、任务生成器、Prompt、视频、30 天、项目、项目详情、安全售前、工作流、模板、工具库、复盘、进度。
+- 已在本地生产服务下完成移动端 375×812 QA，覆盖同样 14 个核心路由。
+- 检查结果：核心文案可见，无 404，无横向溢出，无页面控制台错误。
+
+### 未完成内容
+
+- 仍需提交并推送本轮 QA 记录。
+- 仍需等待 Vercel Production 部署确认。
+
+### 当前风险
+
+- 本轮 QA 是核心路由冒烟检查，不覆盖所有按钮深度交互。
+- `outputs/` 仍是未跟踪目录，不属于本轮网站代码。
+
+### 下一步计划
+
+提交 `Record final route QA`，推送 `origin/main`，确认 Vercel 最新 Production 部署为 Ready。
+
 ## 2026-06-15 六小时闭环交付与学习证据库
 
 ### 当前状态

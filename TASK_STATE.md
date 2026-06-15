@@ -52,6 +52,58 @@
 - GitHub 提交：`014ce28 Add learning evidence vault` 已推送到 `origin/main`。
 - Vercel Production：`https://ronghuacao66-lang-codex-mastery-n70485dhc-crh-s-projects.vercel.app` 状态为 `Ready`，主域名 alias 已绑定。
 
+## 2026-06-15 六小时闭环版全站 QA
+
+### 当前目标
+
+在不新增功能的前提下，对 `Codex Mastery` 六小时闭环版做关键页面冒烟检查，确认桌面和移动端核心路由可访问、无 404、无横向溢出、关键标题可见。
+
+### 已完成工作
+
+- 已恢复项目状态文件和 Git 状态。
+- 已确认工作区只剩未跟踪 `outputs/`，继续排除提交。
+- 已启动本地生产服务 `npm run start -- --port 3001`。
+- 桌面端 1280×720 已检查 14 个核心路由：
+  - `/`
+  - `/academy`
+  - `/task-builder`
+  - `/prompts`
+  - `/videos`
+  - `/bootcamp`
+  - `/projects`
+  - `/projects/project-ai-learning-assistant`
+  - `/presales`
+  - `/workflows`
+  - `/templates`
+  - `/tools`
+  - `/reviews`
+  - `/progress`
+- 移动端 375×812 已检查同样 14 个核心路由。
+- 检查结果：核心文案存在、未发现 404、未发现横向溢出、未发现页面控制台错误。
+
+### 当前进度
+
+六小时闭环版全站冒烟 QA 已完成，正在记录状态并准备提交。
+
+### 当前设计思路
+
+本阶段只做交付稳定性检查，不继续新增模块。QA 关注用户最容易遇到的访问、布局和路由问题，保持交付节奏可控。
+
+### 当前问题
+
+- QA 是核心路由冒烟检查，不等同于逐按钮全量回归。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮继续排除。
+
+### 下一步动作
+
+提交 QA 记录并推送，等待 Vercel 自动部署确认。
+
+### 重要上下文
+
+- 桌面检查视口：1280×720。
+- 移动检查视口：375×812。
+- 本轮未修改产品代码。
+
 ## 2026-06-15 学习路径智能推荐
 
 ### 当前目标
