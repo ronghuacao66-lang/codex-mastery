@@ -1,4 +1,5 @@
 import { LocalDataBackupPanel } from "@/components/LocalDataBackupPanel";
+import { LearningEvidenceVault } from "@/components/LearningEvidenceVault";
 import { LearningPathAdvisor } from "@/components/LearningPathAdvisor";
 import { ProgressAchievementsPanel } from "@/components/ProgressAchievementsPanel";
 import { ProgressCenterClient } from "@/components/ProgressCenterClient";
@@ -16,6 +17,7 @@ export default function ProgressPage() {
       />
       <ProgressCenterClient items={dailyPlan} />
       <LearningPathAdvisor dailyPlan={dailyPlan} projects={projects} videos={videos} />
+      <LearningEvidenceVault dailyPlan={dailyPlan} projects={projects} videos={videos} />
       <ProgressAchievementsPanel items={dailyPlan} />
       <TrainingReviewLauncher items={dailyPlan} />
       <LocalDataBackupPanel />

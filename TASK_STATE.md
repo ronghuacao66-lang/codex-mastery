@@ -1,5 +1,55 @@
 # TASK_STATE
 
+## 2026-06-15 六小时闭环交付与学习证据库
+
+### 当前目标
+
+按用户最新要求，将开发目标收缩为“6 小时以内完成、尽可能完美可闭环”。本阶段不再继续扩张新模块，优先补齐学习平台的闭环证据能力：用户完成训练、项目、视频和复盘后，可以在 `/progress` 看到可复制的学习证据报告。
+
+### 已完成工作
+
+- 已明确六小时交付版范围：保持 GitHub + Vercel 静态部署，不新增账号、数据库、后端 API 或外部 AI 调用。
+- 已新增 `components/LearningEvidenceVault.tsx`。
+- 已在 `app/progress/page.tsx` 接入“学习证据库”，位置在学习路径推荐之后、学习成就之前。
+- 学习证据库只读聚合已有本地状态：
+  - `codex-mastery:completed-days`
+  - `codex-mastery:watched-videos`
+  - `codex-mastery:review-history`
+  - `codex-mastery:project-checklist`
+  - `codex-mastery:project-execution-records`
+- 已展示证据成熟度、训练成果、项目验收、复盘历史、视频学习和待补证据。
+- 已支持复制 Markdown 格式“Codex Mastery 学习证据报告”。
+- Browser 桌面 1280×720 验证：学习证据库、复制证据报告、待补证据和证据成熟度可见，无横向溢出。
+- Browser 移动端 375×812 验证：学习证据库、复制证据报告、待补证据和证据成熟度可见，无横向溢出。
+
+### 当前进度
+
+功能开发、浏览器验证和最终命令验证已完成，正在准备提交推送。
+
+### 当前设计思路
+
+六小时交付版的核心是闭环，而不是继续增加内容入口。学习证据库复用已有学习资产，形成“学习 -> 实战 -> 复盘 -> 证据报告 -> 继续行动”的闭环，不引入新的持久化状态，避免备份范围和部署复杂度继续扩大。
+
+### 当前问题
+
+- 证据成熟度是本地启发式评分，不等同于真实能力认证。
+- 学习证据仍依赖当前浏览器 localStorage，跨设备需要使用本地学习档案备份与恢复。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮提交继续排除。
+
+### 下一步动作
+
+提交并推送本轮变更，等待 Vercel 自动部署确认。
+
+### 重要上下文
+
+- 本轮关键文件：`components/LearningEvidenceVault.tsx`、`app/progress/page.tsx`。
+- 本轮没有新增 localStorage key。
+- 六小时内后续只做闭环 QA、部署确认和明显缺陷修复，不继续扩张大功能。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos` 已通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint` 已通过。
+- `npm run build` 已通过，生成 24 个 App Router 页面。
+
 ## 2026-06-15 学习路径智能推荐
 
 ### 当前目标

@@ -1,5 +1,47 @@
 # SESSION_HANDOFF
 
+## 2026-06-15 六小时闭环交付与学习证据库
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+用户最新要求是把开发目标调整为 6 小时以内完成，并尽可能做到完美可闭环。因此当前阶段不继续扩张大功能，优先完成最终闭环、验证、提交、推送和部署确认。
+
+### 已完成内容
+
+- 已新增 `components/LearningEvidenceVault.tsx`。
+- 已在 `app/progress/page.tsx` 接入“学习证据库”。
+- 学习证据库读取已有本地状态：
+  - `codex-mastery:completed-days`
+  - `codex-mastery:watched-videos`
+  - `codex-mastery:review-history`
+  - `codex-mastery:project-checklist`
+  - `codex-mastery:project-execution-records`
+- 已展示证据成熟度、训练成果、项目验收、复盘历史、视频学习和待补证据。
+- 已支持复制 Markdown 学习证据报告。
+- 已更新 PROJECT_STATE、TASK_STATE、DECISIONS 和 CHANGELOG_AI。
+- Browser 桌面 1280×720 验证通过，无横向溢出。
+- Browser 移动端 375×812 验证通过，无横向溢出。
+- `npm run typecheck` 已通过。
+- `npm run audit:videos` 已通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint` 已通过。
+- `npm run build` 已通过，生成 24 个 App Router 页面。
+
+### 未完成内容
+
+- 仍需提交、推送并等待 Vercel Production 部署确认。
+
+### 当前风险
+
+- 证据成熟度是本地启发式评分，不代表认证结果。
+- 跨设备学习资产仍依赖本地备份与恢复。
+- 当前未跟踪 `outputs/` 目录不属于本轮网站能力，提交时必须继续排除。
+
+### 下一步计划
+
+提交 `Add learning evidence vault`，推送 `origin/main`，确认 Vercel 最新部署为 Ready。
+
 ## 2026-06-15 学习路径智能推荐
 
 ### 当前状态
