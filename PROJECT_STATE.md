@@ -1,5 +1,34 @@
 # PROJECT_STATE
 
+## 2026-06-16 标准化总验收命令
+
+### 当前目标
+
+将部署前分散执行的内容导出、内容审计、类型检查、Lint、视频审计和生产构建收束为一个固定命令，减少交付前漏跑验证的风险。
+
+### 当前完成
+
+- 已在 `package.json` 新增 `npm run verify`。
+- `verify` 顺序为：`export:content -> audit:content -> typecheck -> lint -> audit:videos -> build`。
+- 已更新 `README.md`，将 `npm run verify` 作为优先构建验证命令。
+- 已更新 `DEPLOY.md`，将 GitHub + Vercel 部署前检查改为 `npm run verify`。
+- 已通过 `npm run verify`：
+  - `export:content`：通过。
+  - `audit:content`：通过，52 条 Prompt、30 天训练营、8 个项目、5 套工作流、5 套模板、10 篇文章、10 条 Bilibili 视频、12 个 Markdown 备份文件。
+  - `typecheck`：通过。
+  - `lint`：通过。
+  - `audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+  - `build`：通过，生成 24 个 App Router 页面。
+
+### 当前风险
+
+- `verify` 包含 `audit:videos`，会依赖 Bilibili 当前接口状态；这是为了确保视频清单不含失效链接。
+- 当前工作区仍保留未跟踪 `outputs/` 交付物，本轮不会提交。
+
+### 下一步行动
+
+提交并推送本轮标准化总验收命令，等待 Vercel Production 自动部署确认。
+
 ## 2026-06-16 内容审计脚本化
 
 ### 当前目标

@@ -1,5 +1,49 @@
 # TASK_STATE
 
+## 2026-06-16 标准化总验收命令
+
+### 当前目标
+
+继续提高项目交付效率，将部署前需要手动逐条执行的检查命令收束为 `npm run verify`，作为 GitHub 推送和 Vercel 部署前的统一验收入口。
+
+### 已完成工作
+
+- 已恢复项目状态文件和 Git 状态。
+- 已确认当前工作区仍有未跟踪 `outputs/`，继续排除提交。
+- 已在 `package.json` 新增 `verify` 脚本。
+- `verify` 会依次执行：
+  - `npm run export:content`
+  - `npm run audit:content`
+  - `npm run typecheck`
+  - `npm run lint`
+  - `npm run audit:videos`
+  - `npm run build`
+- 已更新 `README.md`，推荐提交前优先运行 `npm run verify`。
+- 已更新 `DEPLOY.md`，部署前本地检查改为 `npm run verify`。
+
+### 当前进度
+
+脚本、文档更新和本地总验收已完成，正在准备提交。
+
+### 当前设计思路
+
+`verify` 是总入口，不替代单项命令。日常开发可以按需运行单项检查，交付前统一运行 `verify`，降低漏跑内容审计或视频审计的概率。
+
+### 当前问题
+
+- `verify` 严格依赖 `audit:videos` 当前网络访问结果，偶发网络失败时需要区分视频失效和网络波动。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮继续排除。
+
+### 下一步动作
+
+提交、推送并确认 Vercel Production 部署状态。
+
+### 重要上下文
+
+- 本轮没有修改页面 UI 或业务组件。
+- 本轮只新增 npm 脚本和维护文档。
+- `npm run verify` 已通过，包含内容导出、内容审计、类型检查、Lint、视频审计和生产构建。
+
 ## 2026-06-16 内容审计脚本化
 
 ### 当前目标

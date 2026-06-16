@@ -8,6 +8,7 @@
     "audit:content": "node scripts/audit-content.mjs",
     "audit:videos": "node scripts/audit-videos.mjs",
     "export:content": "node scripts/export-content.mjs",
+    "verify": "npm run export:content && npm run audit:content && npm run typecheck && npm run lint && npm run audit:videos && npm run build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"

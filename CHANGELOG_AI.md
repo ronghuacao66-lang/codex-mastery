@@ -1,5 +1,44 @@
 # CHANGELOG_AI
 
+## 2026-06-16 标准化总验收命令
+
+### 修改文件
+
+- `package.json`
+- `README.md`
+- `DEPLOY.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- 新增 `npm run verify`。
+- README 将 `verify` 设为优先构建验证命令。
+- DEPLOY 将部署前本地检查改为 `npm run verify`。
+- 状态和决策文件记录总验收命令的范围和原因。
+
+### 修改原因
+
+项目验证项已经增多，分散命令容易漏跑。新增总验收命令可以降低交付前遗漏内容导出、内容审计、视频审计或生产构建的风险。
+
+### 验证结果
+
+- `npm run verify`：通过。
+- `export:content`：通过。
+- `audit:content`：通过，内容数量和 Markdown 备份检查正常。
+- `typecheck`：通过。
+- `lint`：通过。
+- `audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `build`：通过，生成 24 个 App Router 页面。
+
+### 风险说明
+
+- `verify` 包含 Bilibili 视频审计，可能受网络波动影响。
+- 本轮未修改产品 UI 或页面组件。
+
 ## 2026-06-16 内容审计脚本化
 
 ### 修改文件

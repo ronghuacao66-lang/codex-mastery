@@ -8,11 +8,7 @@
 
 ```bash
 npm install
-npm run export:content
-npm run typecheck
-npm run lint
-npm run audit:content
-npm run build
+npm run verify
 ```
 
 全部通过后再上传 GitHub。
@@ -113,10 +109,7 @@ git push
 npm run export:content
 
 # 3. 验证构建
-npm run typecheck
-npm run lint
-npm run audit:content
-npm run build
+npm run verify
 
 # 4. 提交并推送
 git add data content

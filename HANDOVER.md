@@ -1,5 +1,35 @@
 # SESSION_HANDOFF
 
+## 2026-06-16 标准化总验收命令
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是新增一个交付前总验收入口，减少后续部署前漏跑检查。
+
+### 已完成内容
+
+- 已新增 `npm run verify`。
+- `verify` 依次执行内容导出、内容审计、类型检查、Lint、视频审计和生产构建。
+- 已更新 `README.md` 和 `DEPLOY.md`。
+- 已记录状态、决策和变更日志。
+- 已通过 `npm run verify`。
+
+### 未完成内容
+
+- 仍需提交并推送本轮变更。
+- 仍需确认 Vercel Production 部署状态。
+
+### 当前风险
+
+- `verify` 包含视频网络审计，可能受 Bilibili 接口或网络波动影响。
+- `outputs/` 仍是未跟踪目录，不属于本轮提交范围。
+
+### 下一步计划
+
+提交 `Add verification script`，推送 `origin/main`，确认 Vercel Ready。
+
 ## 2026-06-16 内容审计脚本化
 
 ### 当前状态

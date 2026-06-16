@@ -44,6 +44,15 @@ http://localhost:3000
 ## 构建验证
 
 ```bash
+npm run verify
+```
+
+该命令会依次执行内容导出、内容审计、类型检查、Lint、视频可访问审计和生产构建。
+
+也可以拆开执行：
+
+```bash
+npm run export:content
 npm run typecheck
 npm run lint
 npm run audit:content
@@ -118,4 +127,4 @@ npm run audit:videos
 - 不写占位内容，内容必须可学习、可复制、可实践。
 - 新增内容优先写入 `data/*.json`，再同步导出 `content/*.md`。
 - 页面组件只负责渲染、搜索、筛选、收藏、复制等交互。
-- 提交 GitHub 前至少执行 `npm run typecheck`、`npm run lint`、`npm run audit:content`、`npm run build`。
+- 提交 GitHub 前优先执行 `npm run verify`。
