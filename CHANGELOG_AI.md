@@ -1,5 +1,43 @@
 # CHANGELOG_AI
 
+## 2026-06-16 最终交付验收矩阵
+
+### 修改文件
+
+- `FINAL_ACCEPTANCE.md`
+- `README.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- 新增最终交付验收矩阵。
+- README 顶部新增最终验收文档入口。
+- 状态和决策文件记录“用验收矩阵约束最终收口边界”的原因。
+- 明确剩余收口时间估算和不属于当前版本的能力范围。
+
+### 修改原因
+
+用户要求继续生成并询问还需要几个小时才能彻底结束。当前项目已进入最终收口阶段，需要把结束标准固化为项目文件，而不是只在对话中临时说明。
+
+### 验证结果
+
+- `npm run verify`：通过。
+- `export:content`：通过。
+- `audit:content`：通过，内容数量和 Markdown 备份检查正常。
+- `typecheck`：通过。
+- `lint`：通过。
+- `audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `build`：通过，生成 24 个 App Router 页面。
+
+### 风险说明
+
+- 本轮未修改产品 UI、业务组件或内容数据。
+- 如果继续新增大功能，当前剩余时间估算需要重新计算。
+
 ## 2026-06-16 仓库入口状态可观测性
 
 ### 修改文件

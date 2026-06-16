@@ -1,5 +1,36 @@
 # SESSION_HANDOFF
 
+## 2026-06-16 最终交付验收矩阵
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是把最终交付标准写成项目文件，并回答剩余收口时间。
+
+### 已完成内容
+
+- 已新增 `FINAL_ACCEPTANCE.md`。
+- 已在 README 顶部项目状态区加入最终验收文档入口。
+- 已明确当前版本已达到静态学习平台交付标准。
+- 已明确不属于当前交付边界的能力：账号、数据库、云同步、外部 AI API、付费系统、后台 CMS 等。
+- 已给出剩余收口估算：约 1.5 到 2.5 小时；只按工程部署标准收口约 1 小时。
+- 已更新 PROJECT_STATE、TASK_STATE、DECISIONS 和 CHANGELOG_AI。
+- 已通过本地 `npm run verify`。
+
+### 未完成内容
+
+- 仍需提交、推送并确认 GitHub Actions 与 Vercel 状态。
+
+### 当前风险
+
+- 继续新增大模块会导致最终收口时间失效。
+- `outputs/` 仍是未跟踪目录，不属于本轮提交范围。
+
+### 下一步计划
+
+提交、推送，并等待远端自动验收和 Vercel Production 部署完成。
+
 ## 2026-06-16 仓库入口状态可观测性
 
 ### 当前状态

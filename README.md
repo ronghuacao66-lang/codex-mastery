@@ -7,6 +7,7 @@
 - 公网访问：[https://ronghuacao66-lang-codex-mastery.vercel.app](https://ronghuacao66-lang-codex-mastery.vercel.app)
 - 远端验收：[GitHub Actions Verify](https://github.com/ronghuacao66-lang/codex-mastery/actions/workflows/verify.yml)
 - 部署平台：GitHub + Vercel，静态内容驱动，无数据库、无私有环境变量。
+- 最终验收：[FINAL_ACCEPTANCE.md](./FINAL_ACCEPTANCE.md)
 - 交付前总验收：
 
 ```bash
