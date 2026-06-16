@@ -1,5 +1,45 @@
 # TASK_STATE
 
+## 2026-06-16 会议纪要本地草稿
+
+### 当前目标
+
+继续增强会议纪要生成器，增加本地草稿自动保存与恢复，避免用户输入长篇会议记录后刷新页面丢失。
+
+### 已完成工作
+
+- 已按项目规则恢复 `PROJECT_CONTEXT.md`、`TASK_STATE.md`、`DECISIONS.md`、`CHANGELOG_AI.md` 和最近修改文件。
+- 已确认当前工作区从远端最新 `main` 开始，前一轮会议纪要生成器已发布成功。
+- 已在 `components/MeetingMinutesGenerator.tsx` 增加本地草稿能力。
+- 新增 localStorage key：`codex-mastery:meeting-minutes-draft`。
+- 页面加载时会尝试恢复本地草稿，草稿格式异常时会自动清理并使用示例内容。
+- 表单变更后自动保存到当前浏览器。
+- 空白状态会移除本地草稿。
+- 新增“恢复示例”和“清空草稿”按钮。
+- 已在页面显示草稿状态：使用示例、已恢复、已自动保存或已清空。
+
+### 当前进度
+
+功能编码、类型检查、Lint 和生产构建已完成。
+
+### 当前设计思路
+
+仍保持静态站点和本地优先，不新增账号、数据库、后端 API 或外部模型。会议原始记录可能包含敏感信息，因此草稿只保存到当前浏览器 localStorage，不上传、不同步。
+
+### 当前问题
+
+- 浏览器安全策略阻止当前会话继续访问 `http://localhost:3000`，因此本轮未完成真实浏览器交互复测。
+- 已通过静态检查和生产构建确认代码可编译、可构建。
+
+### 下一步动作
+
+如继续发布，提交并推送本轮改动，等待 GitHub Actions 和 Vercel 自动部署。
+
+### 重要上下文
+
+- 新增 localStorage key：`codex-mastery:meeting-minutes-draft`。
+- 已执行 `npm run typecheck`、`npm run lint`、`npm run build`，均通过。
+
 ## 2026-06-16 17:25 会议纪要生成器
 
 ### 当前目标

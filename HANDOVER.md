@@ -1,5 +1,33 @@
 # SESSION_HANDOFF
 
+## 2026-06-16 会议纪要本地草稿
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`。本轮在已发布的会议纪要生成器上继续开发本地草稿能力。
+
+### 已完成内容
+
+- 已在 `components/MeetingMinutesGenerator.tsx` 增加本地草稿自动保存与恢复。
+- 新增 localStorage key：`codex-mastery:meeting-minutes-draft`。
+- 已新增“恢复示例”和“清空草稿”按钮。
+- 已显示草稿状态。
+- 已通过 `npm run typecheck`、`npm run lint` 和 `npm run build`。
+
+### 未完成内容
+
+- 尚未提交、推送本轮本地草稿改动。
+- 浏览器交互复测未完成：当前浏览器安全策略阻止访问 `http://localhost:3000`。
+
+### 当前风险
+
+- 草稿只保存在当前浏览器，不跨设备同步。
+- 会议原始记录可能敏感，当前实现不上传、不同步、不写入数据文件。
+
+### 下一步计划
+
+如继续发布，提交并推送本轮改动，等待 GitHub Actions 和 Vercel 自动部署。
+
 ## 2026-06-16 会议纪要生成器
 
 ### 当前状态

@@ -2,7 +2,7 @@
 
 import { AlertCircle, CalendarDays, ClipboardList, FileText, RotateCcw, Sparkles, Users } from "lucide-react";
 import type { ReactNode } from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CopyButton } from "@/components/CopyButton";
 
 type MinutesState = {
@@ -20,6 +20,7 @@ type ActionItem = {
 };
 
 const fallbackText = "待确认";
+const storageKey = "codex-mastery:meeting-minutes-draft";
 
 const initialState: MinutesState = {
   topic: "客户周例会 - 项目上线准备",
@@ -31,29 +32,91 @@ const initialState: MinutesState = {
 
 export function MeetingMinutesGenerator() {
   const [state, setState] = useState<MinutesState>(initialState);
+  const [draftReady, setDraftReady] = useState(false);
+  const [draftStatus, setDraftStatus] = useState("本地草稿未加载");
   const minutes = useMemo(() => buildMinutes(state), [state]);
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem(storageKey);
+    if (!saved) {
+      setDraftStatus("当前使用示例内容");
+      setDraftReady(true);
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(saved) as Partial<MinutesState>;
+      if (isMinutesState(parsed)) {
+        setState(parsed);
+        setDraftStatus("已恢复本地草稿");
+      } else {
+        window.localStorage.removeItem(storageKey);
+        setDraftStatus("草稿格式异常，已使用示例内容");
+      }
+    } catch {
+      window.localStorage.removeItem(storageKey);
+      setDraftStatus("草稿读取失败，已使用示例内容");
+    }
+
+    setDraftReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!draftReady) return;
+
+    if (isBlankState(state)) {
+      window.localStorage.removeItem(storageKey);
+      setDraftStatus("本地草稿已清空");
+      return;
+    }
+
+    window.localStorage.setItem(storageKey, JSON.stringify(state));
+    setDraftStatus("已自动保存到当前浏览器");
+  }, [draftReady, state]);
 
   function updateField(key: keyof MinutesState, value: string) {
     setState((current) => ({ ...current, [key]: value }));
+  }
+
+  function clearDraft() {
+    window.localStorage.removeItem(storageKey);
+    setState({ topic: "", date: "", attendees: "", rawNotes: "" });
+    setDraftStatus("本地草稿已清空");
+  }
+
+  function restoreExample() {
+    setState(initialState);
+    setDraftStatus("已恢复示例内容");
   }
 
   return (
     <div className="grid gap-5 xl:grid-cols-[0.92fr_1.08fr]">
       <section className="space-y-5">
         <div className="rounded-lg border border-line bg-panel p-5 shadow-soft dark:shadow-darksoft">
-          <div className="mb-5 flex items-start justify-between gap-4">
+          <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
             <div>
               <p className="text-sm font-semibold text-ink">会议信息</p>
               <p className="mt-1 text-sm leading-6 text-muted">暂不接外部模型，所有内容由本地模板和关键词规则整理。</p>
+              <p className="mt-1 text-xs leading-5 text-muted">{draftStatus}</p>
             </div>
-            <button
-              type="button"
-              onClick={() => setState({ topic: "", date: "", attendees: "", rawNotes: "" })}
-              className="inline-flex h-9 shrink-0 items-center gap-2 rounded-md border border-line bg-surface px-3 text-sm font-medium text-muted transition hover:text-ink"
-            >
-              <RotateCcw className="h-4 w-4" />
-              清空
-            </button>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={restoreExample}
+                className="inline-flex h-9 shrink-0 items-center gap-2 rounded-md border border-line bg-surface px-3 text-sm font-medium text-muted transition hover:text-ink"
+              >
+                <RotateCcw className="h-4 w-4" />
+                恢复示例
+              </button>
+              <button
+                type="button"
+                onClick={clearDraft}
+                className="inline-flex h-9 shrink-0 items-center gap-2 rounded-md border border-line bg-surface px-3 text-sm font-medium text-muted transition hover:text-ink"
+              >
+                <RotateCcw className="h-4 w-4" />
+                清空草稿
+              </button>
+            </div>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
@@ -186,6 +249,14 @@ function buildMinutes(state: MinutesState) {
     openQuestions: finalQuestions,
     markdown
   };
+}
+
+function isMinutesState(value: Partial<MinutesState>): value is MinutesState {
+  return typeof value.topic === "string" && typeof value.date === "string" && typeof value.attendees === "string" && typeof value.rawNotes === "string";
+}
+
+function isBlankState(state: MinutesState) {
+  return !state.topic.trim() && !state.date.trim() && !state.attendees.trim() && !state.rawNotes.trim();
 }
 
 function buildBackground(topic: string, date: string, attendees: string, lines: string[]) {

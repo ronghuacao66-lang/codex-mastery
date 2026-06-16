@@ -1,5 +1,32 @@
 # PROJECT_STATE
 
+## 2026-06-16 会议纪要本地草稿
+
+### 当前目标
+
+继续增强会议纪要生成器的实际可用性，增加本地草稿自动保存与恢复，避免刷新页面导致输入丢失。
+
+### 当前完成
+
+- 已在 `components/MeetingMinutesGenerator.tsx` 增加 localStorage 草稿保存。
+- 新增 localStorage key：`codex-mastery:meeting-minutes-draft`。
+- 页面加载时会恢复有效草稿。
+- 草稿格式异常时自动清理。
+- 表单变更后自动保存到当前浏览器。
+- 空白状态会移除本地草稿。
+- 已新增“恢复示例”和“清空草稿”按钮。
+- 已通过 `npm run typecheck`、`npm run lint` 和 `npm run build`。
+
+### 当前风险
+
+- 草稿只保存在当前浏览器，不跨设备同步。
+- 会议原始记录可能敏感，当前实现不上传、不同步、不写入数据文件。
+- 当前浏览器安全策略阻止访问 `http://localhost:3000`，本轮未完成真实浏览器交互复测。
+
+### 下一步行动
+
+提交并推送本轮本地草稿改动，等待 GitHub Actions 和 Vercel 自动部署。
+
 ## 2026-06-16 会议纪要生成器
 
 ### 当前目标
