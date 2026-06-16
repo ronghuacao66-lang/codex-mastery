@@ -17,10 +17,15 @@
 - 已给出剩余收口估算：约 1.5 到 2.5 小时；只按工程部署标准收口约 1 小时。
 - 已更新 PROJECT_STATE、TASK_STATE、DECISIONS 和 CHANGELOG_AI。
 - 已通过本地 `npm run verify`。
+- 已提交并推送 `afd0ad0 Add final acceptance matrix`。
+- 已确认 GitHub Actions `Verify` 对提交 `afd0ad0` 成功。
+- 已确认 Vercel Production 最新部署 `fl8646cm6` 为 `Ready`。
+- 已确认主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 指向最新 Production Ready 部署。
 
 ### 未完成内容
 
-- 仍需提交、推送并确认 GitHub Actions 与 Vercel 状态。
+- 最终验收矩阵本轮已完成。
+- 后续仍需最终浏览器 QA 和可能的收口缺陷修复。
 
 ### 当前风险
 
@@ -29,7 +34,7 @@
 
 ### 下一步计划
 
-提交、推送，并等待远端自动验收和 Vercel Production 部署完成。
+进入最终浏览器 QA，优先检查桌面端和移动端核心页面是否仍可访问、无横向溢出、关键交互可用。
 
 ## 2026-06-16 仓库入口状态可观测性
 

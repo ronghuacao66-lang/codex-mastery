@@ -14,6 +14,10 @@
 - 已在 README 顶部项目状态区增加最终验收文档入口。
 - 验收矩阵覆盖功能、内容、技术、部署、未做范围、剩余收口估算和最终通过标准。
 - 已通过本地 `npm run verify`。
+- 已提交并推送 `afd0ad0 Add final acceptance matrix`。
+- GitHub Actions `Verify` 对提交 `afd0ad0` 已完成，结论为 `success`。
+- Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-fl8646cm6-crh-s-projects.vercel.app` 已确认 `Ready`。
+- 主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已确认指向最新 Production Ready 部署。
 
 ### 当前风险
 
@@ -22,7 +26,7 @@
 
 ### 下一步行动
 
-提交并推送本轮最终验收矩阵，随后确认 GitHub Actions 和 Vercel 状态。
+本轮最终交付验收矩阵已完成。后续进入最终浏览器 QA 和收口缺陷修复。
 
 ## 2026-06-16 仓库入口状态可观测性
 

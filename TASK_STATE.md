@@ -14,10 +14,14 @@
 - 已在 README 顶部加入最终验收文档链接。
 - 已给出剩余收口估算：约 1.5 到 2.5 小时；如果只做工程部署收口，约 1 小时。
 - 已通过本地 `npm run verify`。
+- 已提交并推送 `afd0ad0 Add final acceptance matrix`。
+- GitHub Actions `Verify` 对提交 `afd0ad0` 已成功。
+- Vercel Production 最新部署 `fl8646cm6` 已为 `Ready`。
+- 主域名 alias 已指向最新 Production Ready 部署。
 
 ### 当前进度
 
-最终交付验收矩阵和本地完整验证已完成，正在准备提交和推送。
+最终交付验收矩阵、本地完整验证、GitHub 推送、GitHub Actions 和 Vercel Production 确认已完成。
 
 ### 当前设计思路
 
@@ -30,13 +34,14 @@
 
 ### 下一步动作
 
-提交、推送，并确认远端状态。
+进入最终浏览器 QA 和收口缺陷修复。
 
 ### 重要上下文
 
 - 本轮不修改产品 UI、业务组件或内容数据。
 - 本轮新增最终验收文档，用于收口判断。
 - 本地 `npm run verify` 已通过，包含内容导出、内容审计、类型检查、Lint、视频审计和生产构建。
+- GitHub Actions 运行地址：`https://github.com/ronghuacao66-lang/codex-mastery/actions/runs/27591153183`。
 
 ## 2026-06-16 仓库入口状态可观测性
 
