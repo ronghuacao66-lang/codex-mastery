@@ -42,6 +42,9 @@
 - GitHub 提交 `dca06fe Add meeting minutes draft persistence` 已推送到 `origin/main`。
 - GitHub Actions `Verify` 对 `dca06fe` 已成功：`https://github.com/ronghuacao66-lang/codex-mastery/actions/runs/27609591080`。
 - Vercel Production 部署 `dpl_HWcXW9KQuHcERLBvEBayDHsYfCKZ` 已为 `Ready`，主域名 alias 指向最新部署。
+- 远端状态记录 `97f26fb Record meeting draft deployment` 已推送到 `origin/main`。
+- GitHub Actions `Verify` 对 `97f26fb` 已成功：`https://github.com/ronghuacao66-lang/codex-mastery/actions/runs/27609829169`。
+- 最新 Vercel Production 部署 `dpl_2Cc6nTJ63gy3BAKLSx7PQBvWvreh` 已为 `Ready`，主域名 alias 指向最新部署。
 
 ## 2026-06-16 17:25 会议纪要生成器
 
