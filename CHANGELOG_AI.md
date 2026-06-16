@@ -1,5 +1,53 @@
 # CHANGELOG_AI
 
+## 2026-06-16 17:25 会议纪要生成器
+
+### 修改文件
+
+- `app/meeting-minutes/page.tsx`
+- `components/MeetingMinutesGenerator.tsx`
+- `components/AppShell.tsx`
+- `components/CopyButton.tsx`
+- `README.md`
+- `FINAL_ACCEPTANCE.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- 新增中文会议纪要生成器页面。
+- 支持输入会议主题、日期、参会人和原始记录。
+- 用本地模板逻辑输出会议背景、关键结论、行动项表格、风险和待确认问题。
+- 行动项负责人或截止时间无法识别时标注“待确认”。
+- 新增“会议纪要”导航入口。
+- 为通用复制按钮增加剪贴板权限失败时的 textarea 兜底复制。
+- README 和最终验收矩阵加入会议纪要生成器。
+- 记录原工作区异常清空后的恢复过程：异常空目录已备份为 `/Users/caoronghua/Documents/ppt.empty-20260616-1714`，当前工作区已恢复到远端最新提交后重新应用本轮改动。
+
+### 修改原因
+
+用户要求实现办公自动化工具“会议纪要生成器”，且暂不接外部模型，先用模板逻辑组织输出，并支持复制 Markdown。
+
+### 验证结果
+
+- `npm install`：通过，安装 357 个包，审计 0 个漏洞。
+- `npm run typecheck`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过，生产构建包含 `/meeting-minutes`，生成 25 个 App Router 页面。
+- `npm run verify`：通过，内容导出、内容审计、类型检查、Lint、视频审计和生产构建均成功。
+- 浏览器 QA：`http://localhost:3000/meeting-minutes` 页面标题、表单、行动项表格、“待确认”标记和“周五前”截止时间渲染正常。
+- 浏览器复制 QA：点击“复制 Markdown”后按钮反馈“已复制”；在 `navigator.clipboard.writeText` 权限被拒绝时，textarea 兜底生效。
+- 移动端 375x812 QA：标题、表单、Markdown 表格和“待确认”可见，无横向溢出。
+
+### 风险说明
+
+- 当前为模板和关键词规则，不具备大模型级别的语义总结能力。
+- 复杂会议记录仍需用户人工复核关键结论、行动项和风险。
+- 浏览器安全策略阻止了移动端复制按钮的二次复测；桌面复制 Markdown 已验证。
+
 ## 2026-06-16 关键交互最终抽检
 
 ### 修改文件

@@ -1,5 +1,38 @@
 # SESSION_HANDOFF
 
+## 2026-06-16 会议纪要生成器
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`。原路径曾短暂变成只含 `.next` 的空目录，已备份为 `/Users/caoronghua/Documents/ppt.empty-20260616-1714`，并从本地 Git 仓库恢复到远端最新提交后继续开发。
+
+### 已完成内容
+
+- 已新增 `/meeting-minutes` 页面。
+- 已新增 `components/MeetingMinutesGenerator.tsx`。
+- 已更新 `components/AppShell.tsx`，加入“会议纪要”导航入口。
+- 已更新 `components/CopyButton.tsx`，增加剪贴板权限失败时的复制兜底。
+- 已更新 README 和 FINAL_ACCEPTANCE，将会议纪要生成器纳入功能模块和验收范围。
+- 已完成桌面端页面、Markdown 输出和复制按钮 QA。
+- 已完成移动端 375x812 布局 QA，确认无横向溢出。
+- 已执行 `npm install`、`npm run typecheck`、`npm run lint` 和 `npm run build`，均通过。
+- 已执行完整 `npm run verify`，通过。
+
+### 未完成内容
+
+- 尚未提交、推送本轮改动。
+- 尚未确认远端 GitHub Actions 和 Vercel 状态。
+- 如需更强语义总结，未来需要另行设计外部模型接入、隐私提示和失败降级。
+
+### 当前风险
+
+- 当前生成逻辑为模板与关键词规则，复杂会议需人工复核。
+- 浏览器安全策略阻止了移动端复制按钮的二次复测；桌面复制 Markdown 已验证。
+
+### 下一步计划
+
+本轮功能和验证已完成。下一步提交并推送，等待 GitHub Actions 和 Vercel 自动部署。
+
 ## 2026-06-16 关键交互最终抽检
 
 ### 当前状态

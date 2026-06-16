@@ -11,6 +11,7 @@ import {
   CheckSquare,
   ClipboardList,
   Command,
+  FileText,
   LayoutDashboard,
   Library,
   Menu,
@@ -39,6 +40,7 @@ const navItems = [
   { href: "/workflows", label: "工作流", icon: Workflow, group: "实战产出", description: "客户拜访、方案、竞品和纪要流程" },
   { href: "/templates", label: "模板", icon: Library, group: "实战产出", description: "客户分析、竞品、复盘和方案模板" },
   { href: "/presales", label: "安全售前", icon: ShieldCheck, group: "业务工具", description: "零信任、SASE、XDR、MSS 售前场景" },
+  { href: "/meeting-minutes", label: "会议纪要", icon: FileText, group: "业务工具", description: "用模板逻辑生成会议背景、结论、行动项和风险" },
   { href: "/tools", label: "工具库", icon: BriefcaseBusiness, group: "业务工具", description: "ChatGPT、Codex、Claude、Cursor 等对比" }
 ];
 

@@ -14,7 +14,17 @@ export function CopyButton({ value, label = "复制", className }: CopyButtonPro
   const [copied, setCopied] = useState(false);
 
   async function handleCopy() {
-    await navigator.clipboard.writeText(value);
+    let success = false;
+
+    try {
+      await navigator.clipboard.writeText(value);
+      success = true;
+    } catch {
+      success = fallbackCopy(value);
+    }
+
+    if (!success) return;
+
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1400);
   }
@@ -33,4 +43,22 @@ export function CopyButton({ value, label = "复制", className }: CopyButtonPro
       <span>{copied ? "已复制" : label}</span>
     </button>
   );
+}
+
+function fallbackCopy(value: string) {
+  const textarea = document.createElement("textarea");
+  textarea.value = value;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  textarea.style.top = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+  textarea.setSelectionRange(0, textarea.value.length);
+
+  try {
+    return document.execCommand("copy");
+  } finally {
+    document.body.removeChild(textarea);
+  }
 }

@@ -1,5 +1,51 @@
 # TASK_STATE
 
+## 2026-06-16 17:25 会议纪要生成器
+
+### 当前目标
+
+实现并收口中文办公自动化工具“会议纪要生成器”，让用户输入会议主题、日期、参会人和原始记录后，用本地模板逻辑生成会议背景、关键结论、行动项表格、风险和待确认问题，并支持复制 Markdown。
+
+### 已完成工作
+
+- 已发现 `/Users/caoronghua/Documents/ppt` 原路径异常变成只含 `.next` 的空目录。
+- 已将异常空目录备份为 `/Users/caoronghua/Documents/ppt.empty-20260616-1714`。
+- 已从本地 Git 仓库恢复 `/Users/caoronghua/Documents/ppt`，并重置到远端最新提交 `2855674 Record final interaction QA`。
+- 已新增页面 `app/meeting-minutes/page.tsx`。
+- 已新增客户端组件 `components/MeetingMinutesGenerator.tsx`。
+- 已更新 `components/AppShell.tsx`，在“业务工具”分组加入“会议纪要”导航入口。
+- 已增强 `components/CopyButton.tsx`，在浏览器剪贴板权限被拒绝时使用 textarea + `execCommand("copy")` 兜底。
+- 已实现本地模板逻辑：会议背景、关键结论、行动项表格、风险、待确认问题。
+- 已实现负责人和截止时间启发式识别；未识别时统一标注“待确认”。
+- 已更新 README、FINAL_ACCEPTANCE、PROJECT_STATE 和 HANDOVER，纳入会议纪要功能与 QA 记录。
+
+### 当前进度
+
+功能编码、文档收口、依赖恢复、静态验证、生产构建和完整 `npm run verify` 已完成。
+
+### 当前设计思路
+
+不接外部模型、不新增后端、数据库或账号。页面通过客户端状态管理表单输入，用关键词和正则规则从原始记录中提取结论、行动项、风险和待确认问题，再拼接成 Markdown。复制能力继续复用全站 `CopyButton`，并补充权限受限环境下的复制兜底。
+
+### 当前问题
+
+- 模板逻辑适合快速整理纪要，不等同于大模型语义理解；复杂会议仍需人工复核。
+- 浏览器安全策略阻止了移动端复制按钮的二次复测；桌面端复制 Markdown 已验证通过。
+- 异常空目录已备份，恢复后的项目工作区是重新克隆/重置后的干净 Git 工作区加本轮改动。
+
+### 下一步动作
+
+本轮任务已完成。下一步提交并推送本轮改动，等待 GitHub Actions 和 Vercel 自动部署。
+
+### 重要上下文
+
+- 新增页面：`/meeting-minutes`。
+- 复制 Markdown 已在浏览器中验证按钮反馈“已复制”。
+- 移动端 375x812 已验证标题、表单、Markdown 表格和“待确认”可见，无横向溢出。
+- `npm install` 已恢复依赖，报告 0 个漏洞。
+- `npm run typecheck`、`npm run lint`、`npm run build` 已通过，生产构建生成 25 个 App Router 页面。
+- `npm run verify` 已通过，包含内容导出、内容审计、类型检查、Lint、10 条 Bilibili 视频审计和生产构建。
+
 ## 2026-06-16 关键交互最终抽检
 
 ### 当前目标
