@@ -1,5 +1,35 @@
 # SESSION_HANDOFF
 
+## 2026-06-16 GitHub Actions 自动验收
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是把 `npm run verify` 接入 GitHub Actions，形成远端自动验收。
+
+### 已完成内容
+
+- 已新增 `.github/workflows/verify.yml`。
+- 已配置 push 到 `main` 和 PR 到 `main` 时运行。
+- 已配置 Node.js 20、`npm ci` 和 `npm run verify`。
+- 已更新 README、DEPLOY、PROJECT_STATE、TASK_STATE、DECISIONS 和 CHANGELOG_AI。
+- 已通过本地 `npm run verify`。
+
+### 未完成内容
+
+- 仍需提交并推送本轮变更。
+- 仍需确认 GitHub Actions 和 Vercel Production 状态。
+
+### 当前风险
+
+- GitHub Actions 的视频审计可能受远端网络波动影响。
+- `outputs/` 仍是未跟踪目录，不属于本轮提交范围。
+
+### 下一步计划
+
+提交 `Add GitHub verification workflow`，推送 `origin/main`，确认 GitHub Actions 和 Vercel Ready。
+
 ## 2026-06-16 标准化总验收命令
 
 ### 当前状态

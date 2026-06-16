@@ -13,6 +13,8 @@ npm run verify
 
 全部通过后再上传 GitHub。
 
+仓库已配置 GitHub Actions：push 到 `main` 或提交 PR 时会自动执行 `npm ci` 和 `npm run verify`。如果 Actions 失败，应先修复失败项，再等待 Vercel 生产部署。
+
 如果本地正在运行 `npm run dev`，建议先停止开发服务，再执行生产构建检查。`next dev` 和 `next build` 都会读写 `.next`，混用时可能导致 `localhost:3000` 短暂 500。恢复方式：
 
 ```bash

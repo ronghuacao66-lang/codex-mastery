@@ -121,6 +121,17 @@ npm run audit:videos
 
 详细部署步骤见 [DEPLOY.md](./DEPLOY.md)。
 
+## GitHub Actions
+
+仓库包含 `.github/workflows/verify.yml`。每次 push 到 `main` 或提交 PR 时，GitHub Actions 会使用 Node.js 20 执行：
+
+```bash
+npm ci
+npm run verify
+```
+
+如果检查失败，需要先修复内容、视频链接、类型、Lint 或构建错误，再继续部署。
+
 ## 维护原则
 
 - 中文主体，面向中国用户。

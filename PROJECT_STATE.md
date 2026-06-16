@@ -1,5 +1,36 @@
 # PROJECT_STATE
 
+## 2026-06-16 GitHub Actions 自动验收
+
+### 当前目标
+
+将本地 `npm run verify` 验收流程接入 GitHub Actions，确保 push 到 `main` 或提交 PR 时自动执行完整检查，降低只在本机验证的风险。
+
+### 当前完成
+
+- 已新增 `.github/workflows/verify.yml`。
+- 工作流触发条件：
+  - push 到 `main`。
+  - pull request 指向 `main`。
+- 工作流步骤：
+  - Checkout 仓库。
+  - 使用 Node.js 20。
+  - 使用 npm cache。
+  - 执行 `npm ci`。
+  - 执行 `npm run verify`。
+- 已设置 concurrency，同一 ref 的新任务会取消旧任务。
+- 已更新 `README.md` 和 `DEPLOY.md`，说明 GitHub Actions 验收流程。
+- 已通过本地 `npm run verify`。
+
+### 当前风险
+
+- CI 中的 `audit:videos` 会访问 Bilibili 接口，可能受到网络波动影响。
+- 当前工作区仍保留未跟踪 `outputs/` 交付物，本轮不会提交。
+
+### 下一步行动
+
+提交并推送本轮 GitHub Actions 自动验收能力，等待 GitHub Actions 和 Vercel Production 结果。
+
 ## 2026-06-16 标准化总验收命令
 
 ### 当前目标

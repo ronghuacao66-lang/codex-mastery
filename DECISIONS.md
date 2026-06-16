@@ -1,5 +1,27 @@
 # DECISIONS
 
+## 2026-06-16 GitHub Actions 使用 npm run verify 作为远端验收
+
+### 决策内容
+
+新增 GitHub Actions 工作流 `.github/workflows/verify.yml`，在 push 到 `main` 和 pull request 指向 `main` 时使用 Node.js 20 执行 `npm ci` 与 `npm run verify`。
+
+### 决策原因
+
+项目已经有本地总验收命令，但只依赖本机执行仍可能出现漏跑。把同一条命令接入 GitHub Actions，可以在代码进入远端仓库时自动复查内容、视频、类型、Lint 和生产构建，保证 GitHub + Vercel 部署链路更稳定。
+
+### 被否决方案
+
+- 只依赖 Vercel 构建：Vercel 只执行生产构建，不能覆盖内容审计和视频审计。
+- 在 Actions 中拆成多条不同命令：会与本地验收口径分叉，维护成本更高。
+- 跳过视频审计：会降低稳定性，但不符合当前视频链接必须可访问的要求。
+
+### 后续影响
+
+- GitHub Actions 失败时，应先修复失败项，再继续部署。
+- 后续新增验证项时，优先加入 `npm run verify`，Actions 会自动继承。
+- `audit:videos` 可能受远端网络波动影响，需要结合日志判断是真失效还是临时网络问题。
+
 ## 2026-06-16 重新开启合盖继续运行 Codex 的系统级电源策略
 
 ### 决策内容

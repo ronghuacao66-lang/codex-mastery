@@ -1,5 +1,39 @@
 # CHANGELOG_AI
 
+## 2026-06-16 GitHub Actions 自动验收
+
+### 修改文件
+
+- `.github/workflows/verify.yml`
+- `README.md`
+- `DEPLOY.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- 新增 GitHub Actions 工作流。
+- push 到 `main` 和 PR 到 `main` 时自动执行 `npm ci` 与 `npm run verify`。
+- README 和 DEPLOY 增加 Actions 验收说明。
+- 状态和决策文件记录远端验收策略。
+
+### 修改原因
+
+`npm run verify` 已经成为本地总验收入口，但仍需要远端自动执行来避免漏跑。GitHub Actions 可以在代码进入仓库时复查内容审计、视频审计、类型、Lint 和构建。
+
+### 验证结果
+
+- 本地 `npm run verify`：通过。
+- 待推送后确认 GitHub Actions 结果。
+
+### 风险说明
+
+- Actions 中的视频审计依赖 GitHub runner 到 Bilibili API 的网络状态。
+- 本轮未修改产品 UI 或页面组件。
+
 ## 2026-06-16 10:24 重新开启合盖继续运行 Codex 的电源策略
 
 ### 修改文件

@@ -1,5 +1,45 @@
 # TASK_STATE
 
+## 2026-06-16 GitHub Actions 自动验收
+
+### 当前目标
+
+继续强化部署闭环，将 `npm run verify` 接入 GitHub Actions，使 GitHub 推送和 PR 自动执行完整验收。
+
+### 已完成工作
+
+- 已恢复项目状态文件和 Git 状态。
+- 已确认当前工作区只剩未跟踪 `outputs/`，继续排除提交。
+- 已将此前未提交的电源策略状态记录单独提交为 `ee6eed7 Record power policy update`。
+- 已新增 `.github/workflows/verify.yml`。
+- 工作流使用 Node.js 20、`npm ci` 和 `npm run verify`。
+- 已配置 push 到 `main` 和 PR 到 `main` 时触发。
+- 已配置同一 ref 的并发取消。
+- 已更新 `README.md` 和 `DEPLOY.md`，说明 GitHub Actions 验收流程。
+
+### 当前进度
+
+CI 配置、文档更新和本地 `npm run verify` 已完成，等待提交、推送和远端检查。
+
+### 当前设计思路
+
+本地 `verify` 是交付前人工入口，GitHub Actions 是远端自动兜底。两者使用同一条命令，避免本地和远端验收口径分叉。
+
+### 当前问题
+
+- GitHub Actions 运行 `audit:videos` 时依赖 GitHub runner 到 Bilibili API 的网络状态。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮继续排除。
+
+### 下一步动作
+
+提交并推送，等待 GitHub Actions 与 Vercel Production 状态。
+
+### 重要上下文
+
+- 本轮不修改页面 UI 或业务组件。
+- 新增 CI 不需要环境变量。
+- 本地 `npm run verify` 已通过。
+
 ## 2026-06-16 标准化总验收命令
 
 ### 当前目标
