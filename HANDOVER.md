@@ -21,11 +21,13 @@
   - `npm run audit:videos`
   - `npm run lint`
   - `npm run build`
+- 已推送 `39750a7 Add content audit script` 到 `origin/main`。
+- 已确认 Vercel Production 部署为 `Ready`。
+- 已确认主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 指向当前 Production Ready 部署。
 
 ### 未完成内容
 
-- 仍需提交并推送本轮变更。
-- 仍需等待 Vercel Production 部署确认。
+- 本轮内容审计脚本化已完成。
 
 ### 当前风险
 
@@ -35,7 +37,7 @@
 
 ### 下一步计划
 
-提交 `Add content audit script`，推送 `origin/main`，确认 Vercel Production 最新部署为 Ready。
+后续继续开发时，先恢复项目状态文件；如修改内容，按 `export:content -> audit:content -> audit:videos -> build` 验证。
 
 ## 2026-06-15 内容完整性与部署验证 QA
 

@@ -24,6 +24,9 @@
 - 已通过 `npm run audit:videos`，10 条 Bilibili 视频均返回 `code=0`。
 - 已通过 `npm run lint`。
 - 已通过 `npm run build`，生成 24 个 App Router 页面。
+- 已提交并推送 `39750a7 Add content audit script` 到 `origin/main`。
+- 已确认 Vercel Production 部署为 `Ready`。
+- 已确认主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 指向当前 Production Ready 部署。
 
 ### 当前风险
 
@@ -33,7 +36,7 @@
 
 ### 下一步行动
 
-提交并推送内容审计脚本化能力，等待 Vercel Production 自动部署确认。
+本轮内容审计脚本化已完成。后续内容更新时按 `export:content -> audit:content -> audit:videos -> build` 流程验证。
 
 ## 2026-06-15 内容完整性与部署验证 QA
 
