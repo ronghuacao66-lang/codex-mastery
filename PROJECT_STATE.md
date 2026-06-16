@@ -19,6 +19,9 @@
 - 已将会议纪要生成器加入 `FINAL_ACCEPTANCE.md` 功能验收和 QA 记录。
 - 已完成移动端 375x812 布局检查：标题、表单、Markdown 表格和“待确认”可见，无横向溢出。
 - 已通过完整 `npm run verify`，包含内容导出、内容审计、类型检查、Lint、视频审计和生产构建。
+- 已提交并推送 `eadaf39 Add meeting minutes generator`。
+- 已确认 GitHub Actions `Verify` 对 `eadaf39` 成功。
+- 已确认 Vercel Production 部署 `dpl_4Z1LtuvWCx8wK1Kdtf39JoDsDbHd` 为 `Ready`。
 
 ### 当前风险
 
@@ -28,7 +31,7 @@
 
 ### 下一步行动
 
-本轮功能和验证已完成。下一步提交并推送本轮改动，等待 GitHub Actions 和 Vercel 自动部署。
+本轮功能、验证、推送和远端部署确认已完成。下一步只需提交本条状态记录。
 
 ## 2026-06-16 关键交互最终抽检
 

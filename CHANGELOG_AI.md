@@ -38,6 +38,9 @@
 - `npm run lint`：通过。
 - `npm run build`：通过，生产构建包含 `/meeting-minutes`，生成 25 个 App Router 页面。
 - `npm run verify`：通过，内容导出、内容审计、类型检查、Lint、视频审计和生产构建均成功。
+- GitHub 推送：`eadaf39 Add meeting minutes generator` 已推送到 `origin/main`。
+- GitHub Actions `Verify`：通过，运行地址 `https://github.com/ronghuacao66-lang/codex-mastery/actions/runs/27608812390`。
+- Vercel Production：部署 `dpl_4Z1LtuvWCx8wK1Kdtf39JoDsDbHd` 已确认 `Ready`。
 - 浏览器 QA：`http://localhost:3000/meeting-minutes` 页面标题、表单、行动项表格、“待确认”标记和“周五前”截止时间渲染正常。
 - 浏览器复制 QA：点击“复制 Markdown”后按钮反馈“已复制”；在 `navigator.clipboard.writeText` 权限被拒绝时，textarea 兜底生效。
 - 移动端 375x812 QA：标题、表单、Markdown 表格和“待确认”可见，无横向溢出。
