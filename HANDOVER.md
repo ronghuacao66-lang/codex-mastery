@@ -15,11 +15,13 @@
 - 已配置 Node.js 20、`npm ci` 和 `npm run verify`。
 - 已更新 README、DEPLOY、PROJECT_STATE、TASK_STATE、DECISIONS 和 CHANGELOG_AI。
 - 已通过本地 `npm run verify`。
+- 已推送 `ad6eb90 Add GitHub verification workflow`。
+- 已确认 GitHub Actions `Verify` 成功。
+- 已确认 Vercel Production `Ready`，主域名 alias 已指向当前 Production Ready 部署。
 
 ### 未完成内容
 
-- 仍需提交并推送本轮变更。
-- 仍需确认 GitHub Actions 和 Vercel Production 状态。
+- 本轮 GitHub Actions 自动验收已完成。
 
 ### 当前风险
 
@@ -28,7 +30,7 @@
 
 ### 下一步计划
 
-提交 `Add GitHub verification workflow`，推送 `origin/main`，确认 GitHub Actions 和 Vercel Ready。
+后续继续开发时，推送到 `main` 或 PR 到 `main` 会自动触发 `npm run verify`。
 
 ## 2026-06-16 标准化总验收命令
 

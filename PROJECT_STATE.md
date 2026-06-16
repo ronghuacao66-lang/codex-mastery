@@ -21,6 +21,10 @@
 - 已设置 concurrency，同一 ref 的新任务会取消旧任务。
 - 已更新 `README.md` 和 `DEPLOY.md`，说明 GitHub Actions 验收流程。
 - 已通过本地 `npm run verify`。
+- 已提交并推送 `ad6eb90 Add GitHub verification workflow`。
+- GitHub Actions `Verify` 已完成，结论为 `success`。
+- Vercel Production 已确认 `Ready`。
+- 主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已指向当前 Production Ready 部署。
 
 ### 当前风险
 
@@ -29,7 +33,7 @@
 
 ### 下一步行动
 
-提交并推送本轮 GitHub Actions 自动验收能力，等待 GitHub Actions 和 Vercel Production 结果。
+本轮 GitHub Actions 自动验收能力已完成。后续推送到 `main` 或 PR 到 `main` 会自动执行 `npm run verify`。
 
 ## 2026-06-16 标准化总验收命令
 

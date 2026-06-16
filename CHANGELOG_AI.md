@@ -27,7 +27,8 @@
 ### 验证结果
 
 - 本地 `npm run verify`：通过。
-- 待推送后确认 GitHub Actions 结果。
+- GitHub Actions `Verify`：通过，提交 `ad6eb90` 的运行结论为 `success`。
+- Vercel Production：已确认 `Ready`，主域名 alias 已指向当前 Production Ready 部署。
 
 ### 风险说明
 
