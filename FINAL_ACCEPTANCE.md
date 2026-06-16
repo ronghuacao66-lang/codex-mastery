@@ -110,19 +110,53 @@
 
 ## 7. 剩余收口估算
 
-如果不再扩张需求，距离“彻底结束”还需要约 1.5 到 2.5 小时：
+当前已完成最终验收矩阵、本地 `npm run verify`、GitHub Actions、Vercel Production 和桌面/移动端核心路由 QA。
+
+如果不再扩张需求，距离“彻底结束”还需要约 0.5 到 1 小时：
 
 | 收口项 | 预计耗时 |
 | --- | ---: |
-| 最终验收矩阵与文档状态同步 | 20-30 分钟 |
-| 再跑一次 `npm run verify` 并提交推送 | 15-25 分钟 |
-| 桌面端关键页面最终浏览器 QA | 25-40 分钟 |
-| 移动端关键页面最终浏览器 QA | 25-40 分钟 |
-| Vercel / GitHub Actions 最终确认 | 10-20 分钟 |
+| 关键交互最终抽检 | 20-35 分钟 |
+| 状态文件最终清理与确认 | 10-15 分钟 |
+| 最后一次提交、远端验证和 Vercel 确认 | 15-25 分钟 |
 
-如果只按工程部署标准收口，不做额外视觉抽检，约 1 小时可以结束。若要按更严格的产品验收标准，建议预留 2 小时。
+工程部署标准已经满足。后续只做最终交互抽检和状态清理。
 
-## 8. 最终通过标准
+## 8. 最终浏览器 QA
+
+已在本地生产服务 `http://localhost:3001` 完成最终核心路由冒烟：
+
+| 视口 | 覆盖页面 | 检查结果 |
+| --- | ---: | --- |
+| Desktop 1280x720 | 14 个核心路由 | 通过 |
+| Mobile 375x812 | 14 个核心路由 | 通过 |
+
+覆盖路由：
+
+- `/`
+- `/academy`
+- `/task-builder`
+- `/prompts`
+- `/videos`
+- `/bootcamp`
+- `/projects`
+- `/projects/project-ai-learning-assistant`
+- `/presales`
+- `/workflows`
+- `/templates`
+- `/tools`
+- `/reviews`
+- `/progress`
+
+检查项：
+
+- 核心标题可见。
+- 期望关键文案可见。
+- 页面无 404 / NOT_FOUND。
+- 无横向溢出。
+- 无页面控制台错误。
+
+## 9. 最终通过标准
 
 项目可以标记为最终交付，需同时满足：
 
@@ -133,4 +167,3 @@
 - `data/*.json` 与 `content/*.md` 同步。
 - `outputs/` 不被提交到网站仓库。
 - README、DEPLOY、FINAL_ACCEPTANCE、PROJECT_STATE、TASK_STATE、DECISIONS、CHANGELOG_AI、HANDOVER 均记录当前状态。
-
