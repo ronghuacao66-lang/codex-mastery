@@ -28,6 +28,9 @@
 - `npm run typecheck`：通过。
 - `npm run lint`：通过。
 - `npm run build`：通过，`/meeting-minutes` 生产构建成功。
+- GitHub 推送：`dca06fe Add meeting minutes draft persistence` 已推送到 `origin/main`。
+- GitHub Actions `Verify`：通过，运行地址 `https://github.com/ronghuacao66-lang/codex-mastery/actions/runs/27609591080`。
+- Vercel Production：部署 `dpl_HWcXW9KQuHcERLBvEBayDHsYfCKZ` 已确认 `Ready`。
 - 浏览器交互复测：未完成，当前浏览器安全策略阻止访问 `http://localhost:3000`。
 
 ### 风险说明

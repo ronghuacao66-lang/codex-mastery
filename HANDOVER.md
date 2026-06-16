@@ -13,10 +13,13 @@
 - 已新增“恢复示例”和“清空草稿”按钮。
 - 已显示草稿状态。
 - 已通过 `npm run typecheck`、`npm run lint` 和 `npm run build`。
+- 已提交并推送 `dca06fe Add meeting minutes draft persistence`。
+- 已确认 GitHub Actions `Verify` 成功：`https://github.com/ronghuacao66-lang/codex-mastery/actions/runs/27609591080`。
+- 已确认 Vercel Production 部署 `dpl_HWcXW9KQuHcERLBvEBayDHsYfCKZ` 为 `Ready`。
 
 ### 未完成内容
 
-- 尚未提交、推送本轮本地草稿改动。
+- 尚未提交本条远端状态记录。
 - 浏览器交互复测未完成：当前浏览器安全策略阻止访问 `http://localhost:3000`。
 
 ### 当前风险
@@ -26,7 +29,7 @@
 
 ### 下一步计划
 
-如继续发布，提交并推送本轮改动，等待 GitHub Actions 和 Vercel 自动部署。
+本轮功能、验证、推送和远端部署确认已完成。下一步只需提交本条状态记录。
 
 ## 2026-06-16 会议纪要生成器
 

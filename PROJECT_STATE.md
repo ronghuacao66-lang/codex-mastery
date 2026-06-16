@@ -16,6 +16,9 @@
 - 空白状态会移除本地草稿。
 - 已新增“恢复示例”和“清空草稿”按钮。
 - 已通过 `npm run typecheck`、`npm run lint` 和 `npm run build`。
+- 已提交并推送 `dca06fe Add meeting minutes draft persistence`。
+- 已确认 GitHub Actions `Verify` 对 `dca06fe` 成功。
+- 已确认 Vercel Production 部署 `dpl_HWcXW9KQuHcERLBvEBayDHsYfCKZ` 为 `Ready`。
 
 ### 当前风险
 
@@ -25,7 +28,7 @@
 
 ### 下一步行动
 
-提交并推送本轮本地草稿改动，等待 GitHub Actions 和 Vercel 自动部署。
+本轮功能、验证、推送和远端部署确认已完成。下一步只需提交本条状态记录。
 
 ## 2026-06-16 会议纪要生成器
 
