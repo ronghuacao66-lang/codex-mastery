@@ -1,5 +1,18 @@
 # Codex Mastery
 
+[![Verify](https://github.com/ronghuacao66-lang/codex-mastery/actions/workflows/verify.yml/badge.svg)](https://github.com/ronghuacao66-lang/codex-mastery/actions/workflows/verify.yml)
+
+## 项目状态
+
+- 公网访问：[https://ronghuacao66-lang-codex-mastery.vercel.app](https://ronghuacao66-lang-codex-mastery.vercel.app)
+- 远端验收：[GitHub Actions Verify](https://github.com/ronghuacao66-lang/codex-mastery/actions/workflows/verify.yml)
+- 部署平台：GitHub + Vercel，静态内容驱动，无数据库、无私有环境变量。
+- 交付前总验收：
+
+```bash
+npm run verify
+```
+
 `Codex Mastery` 是一个面向中国用户的中文 Codex 学习与实战平台。它不是 AI 导航站、AI 资讯站、AI 百科站、工具收录站或普通课程页，而是一个以 `Learn Codex By Building` 为核心的 30 天实战控制台。
 
 用户可以通过本项目学习 Codex 任务拆解、Prompt 设计、项目开发、Agent 原型、工作流自动化和安全售前场景落地。

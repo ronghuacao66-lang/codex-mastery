@@ -1,5 +1,26 @@
 # DECISIONS
 
+## 2026-06-16 README 作为部署健康入口
+
+### 决策内容
+
+在 `README.md` 顶部增加 GitHub Actions Verify 徽章和“项目状态”区，直接展示公网访问地址、远端验收入口、GitHub + Vercel 部署口径和 `npm run verify`。
+
+### 决策原因
+
+项目已经具备本地总验收、GitHub Actions 和 Vercel 生产部署。继续把这些信息分散在 README 中后段、DEPLOY 或状态文件里，会增加用户和新 AI 判断当前项目是否健康的成本。README 顶部应作为最短确认路径。
+
+### 被否决方案
+
+- 只保留 DEPLOY 文档说明：适合详细部署，不适合快速判断健康状态。
+- 新增单独状态页面：会增加维护入口，当前 GitHub README 足够。
+- 只写公网 URL 不放 CI 徽章：无法快速看到远端验收状态。
+
+### 后续影响
+
+- 后续若公网域名或 Actions 工作流文件名变化，需要同步更新 README 顶部状态区。
+- 接管项目时优先从 README 顶部判断访问地址和验收入口。
+
 ## 2026-06-16 GitHub Actions 使用 npm run verify 作为远端验收
 
 ### 决策内容

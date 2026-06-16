@@ -1,5 +1,34 @@
 # SESSION_HANDOFF
 
+## 2026-06-16 仓库入口状态可观测性
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是让 README 成为快速判断项目健康状态的入口。
+
+### 已完成内容
+
+- 已在 README 顶部增加 GitHub Actions Verify 徽章。
+- 已在 README 顶部新增“项目状态”区。
+- 已展示公网访问地址、远端验收入口、部署口径和 `npm run verify`。
+- 已更新 PROJECT_STATE、TASK_STATE、DECISIONS 和 CHANGELOG_AI。
+- 已通过本地 `npm run verify`。
+
+### 未完成内容
+
+- 仍需提交、推送并确认远端状态。
+
+### 当前风险
+
+- GitHub Actions 徽章依赖远端工作流状态和网络访问。
+- `outputs/` 仍是未跟踪目录，不属于本轮提交范围。
+
+### 下一步计划
+
+提交、推送并检查 GitHub Actions 与 Vercel Production 状态。
+
 ## 2026-06-16 GitHub Actions 自动验收
 
 ### 当前状态

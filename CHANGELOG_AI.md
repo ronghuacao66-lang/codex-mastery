@@ -1,5 +1,42 @@
 # CHANGELOG_AI
 
+## 2026-06-16 仓库入口状态可观测性
+
+### 修改文件
+
+- `README.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- README 顶部新增 GitHub Actions Verify 徽章。
+- README 顶部新增“项目状态”区。
+- 展示公网访问地址、远端验收入口、GitHub + Vercel 部署口径和 `npm run verify`。
+- 状态、决策、变更日志和交接文档记录本轮文档可观测性增强。
+
+### 修改原因
+
+用户持续要求项目可稳定部署和闭环交付。将部署健康信息前置到 README，可以让用户、新 AI 或 Vercel/GitHub 接管者快速确认当前项目的访问地址和验收入口。
+
+### 验证结果
+
+- `npm run verify`：通过。
+- `export:content`：通过。
+- `audit:content`：通过，内容数量和 Markdown 备份检查正常。
+- `typecheck`：通过。
+- `lint`：通过。
+- `audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `build`：通过，生成 24 个 App Router 页面。
+
+### 风险说明
+
+- README 徽章依赖 GitHub Actions 页面可访问性。
+- 本轮未修改产品 UI 或业务组件。
+
 ## 2026-06-16 GitHub Actions 自动验收
 
 ### 修改文件

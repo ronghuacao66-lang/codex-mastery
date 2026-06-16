@@ -1,5 +1,31 @@
 # PROJECT_STATE
 
+## 2026-06-16 仓库入口状态可观测性
+
+### 当前目标
+
+让 GitHub 仓库首页直接展示公网访问地址、GitHub Actions 验收状态和部署前总验收命令，降低用户或新 AI 接管时确认项目健康状态的成本。
+
+### 当前完成
+
+- 已在 `README.md` 顶部增加 GitHub Actions `Verify` 状态徽章。
+- 已在 `README.md` 顶部新增“项目状态”区。
+- 已明确展示：
+  - 公网访问地址 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+  - GitHub Actions Verify 工作流入口。
+  - GitHub + Vercel 静态部署口径。
+  - 交付前总验收命令 `npm run verify`。
+- 已通过本地 `npm run verify`。
+
+### 当前风险
+
+- README 徽章状态依赖 GitHub Actions 页面和网络访问。
+- 当前工作区仍保留未跟踪 `outputs/` 交付物，本轮不会提交。
+
+### 下一步行动
+
+提交并推送本轮文档可观测性增强，随后确认 GitHub Actions 和 Vercel 状态。
+
 ## 2026-06-16 GitHub Actions 自动验收
 
 ### 当前目标
