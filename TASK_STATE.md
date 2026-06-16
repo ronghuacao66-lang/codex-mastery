@@ -14,10 +14,14 @@
 - 已在 `README.md` 顶部新增“项目状态”区。
 - 已放入公网访问地址、远端验收入口、部署口径和 `npm run verify`。
 - 已通过本地 `npm run verify`。
+- 已提交并推送 `dd564fe Add repository status entry`。
+- GitHub Actions `Verify` 对提交 `dd564fe` 已成功。
+- Vercel Production 最新部署 `bmi8ak5nf` 已为 `Ready`。
+- 主域名 alias 已指向最新 Production Ready 部署。
 
 ### 当前进度
 
-文档入口增强和本地完整验证已完成，正在准备提交和推送。
+文档入口增强、本地完整验证、GitHub 推送、GitHub Actions 和 Vercel Production 确认已完成。
 
 ### 当前设计思路
 
@@ -30,13 +34,14 @@ README 是 GitHub/Vercel 接管时的第一入口，应直接呈现“能访问�
 
 ### 下一步动作
 
-提交、推送，并确认 GitHub Actions 与 Vercel 状态。
+本轮任务已完成。后续继续小范围闭环优化或处理用户反馈缺陷。
 
 ### 重要上下文
 
 - 本轮不修改页面 UI、业务组件或内容数据。
 - 本轮只修改 README 和项目状态文档。
 - 本地 `npm run verify` 已通过，包含内容导出、内容审计、类型检查、Lint、视频审计和生产构建。
+- GitHub Actions 运行地址：`https://github.com/ronghuacao66-lang/codex-mastery/actions/runs/27590752801`。
 
 ## 2026-06-16 GitHub Actions 自动验收
 

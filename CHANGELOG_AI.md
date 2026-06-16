@@ -31,6 +31,10 @@
 - `lint`：通过。
 - `audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
 - `build`：通过，生成 24 个 App Router 页面。
+- GitHub 推送：`dd564fe Add repository status entry` 已推送到 `origin/main`。
+- GitHub Actions `Verify`：通过，提交 `dd564fe` 的运行结论为 `success`。
+- Vercel Production：最新部署 `bmi8ak5nf` 已确认 `Ready`。
+- Vercel alias：`https://ronghuacao66-lang-codex-mastery.vercel.app` 已确认指向最新 Production Ready 部署。
 
 ### 风险说明
 

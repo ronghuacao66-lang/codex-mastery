@@ -16,6 +16,10 @@
   - GitHub + Vercel 静态部署口径。
   - 交付前总验收命令 `npm run verify`。
 - 已通过本地 `npm run verify`。
+- 已提交并推送 `dd564fe Add repository status entry`。
+- GitHub Actions `Verify` 对提交 `dd564fe` 已完成，结论为 `success`。
+- Vercel Production 部署 `https://ronghuacao66-lang-codex-mastery-bmi8ak5nf-crh-s-projects.vercel.app` 已确认 `Ready`。
+- 主域名 `https://ronghuacao66-lang-codex-mastery.vercel.app` 已确认指向最新 Production Ready 部署。
 
 ### 当前风险
 
@@ -24,7 +28,7 @@
 
 ### 下一步行动
 
-提交并推送本轮文档可观测性增强，随后确认 GitHub Actions 和 Vercel 状态。
+本轮仓库入口状态可观测性增强已完成。后续继续小范围闭环优化或处理用户反馈缺陷。
 
 ## 2026-06-16 GitHub Actions 自动验收
 
