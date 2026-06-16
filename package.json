@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "audit:content": "node scripts/audit-content.mjs",
     "audit:videos": "node scripts/audit-videos.mjs",
     "export:content": "node scripts/export-content.mjs",
     "start": "next start",

@@ -46,6 +46,7 @@ http://localhost:3000
 ```bash
 npm run typecheck
 npm run lint
+npm run audit:content
 npm run audit:videos
 npm run build
 ```
@@ -82,6 +83,14 @@ npm run export:content
 
 该命令会从 `data/*.json` 重新生成 `content/*.md`，便于 GitHub diff、人工审阅和内容备份。
 
+内容资产检查：
+
+```bash
+npm run audit:content
+```
+
+该命令会检查内容数量、关键字段、Bilibili 视频口径和 `content/*.md` 备份文件是否存在并带有正确条目数量。
+
 视频资源要求当前可访问。新增或替换视频后运行：
 
 ```bash
@@ -109,4 +118,4 @@ npm run audit:videos
 - 不写占位内容，内容必须可学习、可复制、可实践。
 - 新增内容优先写入 `data/*.json`，再同步导出 `content/*.md`。
 - 页面组件只负责渲染、搜索、筛选、收藏、复制等交互。
-- 提交 GitHub 前至少执行 `npm run typecheck`、`npm run lint`、`npm run build`。
+- 提交 GitHub 前至少执行 `npm run typecheck`、`npm run lint`、`npm run audit:content`、`npm run build`。

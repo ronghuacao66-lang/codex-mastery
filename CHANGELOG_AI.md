@@ -1,5 +1,45 @@
 # CHANGELOG_AI
 
+## 2026-06-16 内容审计脚本化
+
+### 修改文件
+
+- `scripts/audit-content.mjs`
+- `package.json`
+- `README.md`
+- `DEPLOY.md`
+- `PROJECT_STATE.md`
+- `TASK_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+- `HANDOVER.md`
+
+### 修改内容
+
+- 新增 `npm run audit:content`。
+- 新增内容完整性审计脚本，检查 JSON 文件、内容数量、关键字段、Bilibili 视频口径和 Markdown 备份文件。
+- README 和 DEPLOY 文档加入 `audit:content` 验证步骤。
+- 状态文件记录本轮脚本化审计能力和验证结果。
+
+### 修改原因
+
+上一轮内容完整性 QA 依赖临时命令，不适合长期维护。本轮把审计能力固化为项目命令，使后续内容更新和 Vercel 部署前都能稳定复查内容是否丢失或字段缺失。
+
+### 验证结果
+
+- `npm run audit:content`：通过。
+- `npm run export:content`：通过，未产生 `content/*.md` 差异。
+- `npm run typecheck`：通过。
+- `npm run audit:videos`：通过，10 条 Bilibili 视频均返回 `code=0`。
+- `npm run lint`：通过。
+- `npm run build`：通过，生成 24 个 App Router 页面。
+
+### 风险说明
+
+- 本轮未修改产品 UI 或页面组件。
+- `audit:content` 是结构和数量审计，不替代人工内容质量评审。
+- `outputs/` 仍为未跟踪目录，本轮继续排除提交。
+
 ## 2026-06-15 内容完整性与部署验证 QA
 
 ### 修改文件

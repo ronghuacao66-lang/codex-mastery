@@ -1,5 +1,40 @@
 # PROJECT_STATE
 
+## 2026-06-16 内容审计脚本化
+
+### 当前目标
+
+把上一轮手工内容完整性 QA 固化为可重复执行的项目命令，避免后续新增内容、更新视频或部署前只能依赖临时脚本检查。
+
+### 当前完成
+
+- 已新增 `scripts/audit-content.mjs`。
+- 已新增 `npm run audit:content`。
+- 审计范围包括：
+  - `data/*.json` 必要文件存在并可解析。
+  - Prompt、30 天训练营、项目、工作流、模板、文章、视频、工具等数量满足交付要求。
+  - 核心字段按 `types/content.ts` 口径检查非空。
+  - 项目交付检查项、模板章节、任务生成器预设等嵌套结构检查非空。
+  - 视频数据只允许 Bilibili，且链接为 BV 视频 URL，`linkStatus.status` 为 `ok`。
+  - `content/*.md` 备份文件存在、包含自动生成标记和正确条目数量。
+- 已更新 `README.md` 和 `DEPLOY.md`，把 `npm run audit:content` 纳入构建验证和部署前检查流程。
+- 已通过 `npm run audit:content`。
+- 已通过 `npm run export:content`，未产生 `content/*.md` 差异。
+- 已通过 `npm run typecheck`。
+- 已通过 `npm run audit:videos`，10 条 Bilibili 视频均返回 `code=0`。
+- 已通过 `npm run lint`。
+- 已通过 `npm run build`，生成 24 个 App Router 页面。
+
+### 当前风险
+
+- `audit:content` 是结构化内容审计，不替代人工判断内容质量。
+- 视频实时可访问性仍由 `npm run audit:videos` 单独检查。
+- 当前工作区仍保留未跟踪 `outputs/` 交付物，本轮不会提交。
+
+### 下一步行动
+
+提交并推送内容审计脚本化能力，等待 Vercel Production 自动部署确认。
+
 ## 2026-06-15 内容完整性与部署验证 QA
 
 ### 当前目标

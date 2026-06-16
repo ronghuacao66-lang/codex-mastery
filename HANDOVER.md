@@ -1,5 +1,42 @@
 # SESSION_HANDOFF
 
+## 2026-06-16 内容审计脚本化
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是把内容完整性审计固化成项目命令，提升后续内容维护和部署前验收效率。
+
+### 已完成内容
+
+- 已新增 `scripts/audit-content.mjs`。
+- 已新增 `npm run audit:content`。
+- 已更新 `README.md` 和 `DEPLOY.md`。
+- 审计范围包括 JSON 文件、内容数量、关键字段、嵌套字段、Bilibili 视频口径和 Markdown 备份文件。
+- 已通过：
+  - `npm run audit:content`
+  - `npm run export:content`
+  - `npm run typecheck`
+  - `npm run audit:videos`
+  - `npm run lint`
+  - `npm run build`
+
+### 未完成内容
+
+- 仍需提交并推送本轮变更。
+- 仍需等待 Vercel Production 部署确认。
+
+### 当前风险
+
+- 本轮未修改产品 UI。
+- 新增脚本不替代人工内容质量审查。
+- `outputs/` 仍是未跟踪目录，不属于本轮提交范围。
+
+### 下一步计划
+
+提交 `Add content audit script`，推送 `origin/main`，确认 Vercel Production 最新部署为 Ready。
+
 ## 2026-06-15 内容完整性与部署验证 QA
 
 ### 当前状态

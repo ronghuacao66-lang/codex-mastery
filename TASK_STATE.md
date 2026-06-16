@@ -1,5 +1,49 @@
 # TASK_STATE
 
+## 2026-06-16 内容审计脚本化
+
+### 当前目标
+
+继续增强项目交付闭环，将内容完整性检查从一次性临时命令升级为固定 npm 脚本，方便后续每次内容更新和 Vercel 部署前自动验收。
+
+### 已完成工作
+
+- 已恢复项目状态文件和 Git 状态。
+- 已确认当前工作区仍有未跟踪 `outputs/`，继续排除提交。
+- 已新增 `scripts/audit-content.mjs`。
+- 已在 `package.json` 新增 `audit:content` 脚本。
+- 已更新 `README.md` 和 `DEPLOY.md`，将 `npm run audit:content` 加入本地构建验证和部署前检查流程。
+- 新脚本检查：
+  - 内容文件存在性和 JSON 可解析性。
+  - 30 条 Codex Prompt、至少 20 条 AI Prompt、30 天训练营、8 个项目、5 套工作流、5 套模板、10 篇文章、10 条视频、7 个工具等数量底线。
+  - 核心字段和嵌套字段非空。
+  - 视频数据只保留 Bilibili BV 链接，且 `linkStatus.status` 为 `ok`。
+  - `content/*.md` 存在自动生成标记和对应条目数量。
+
+### 当前进度
+
+脚本开发、文档更新和本地验证已完成，正在准备提交。
+
+### 当前设计思路
+
+`export:content` 负责生成 Markdown 备份，`audit:content` 负责只读检查内容资产。这样维护流程是：先改 JSON，再导出 Markdown，最后审计内容，避免审计脚本悄悄改文件。
+
+### 当前问题
+
+- 当前脚本检查结构和数量，不评价内容是否“足够精彩”。
+- 如果未来新增数据集合，需要同步扩展 `scripts/audit-content.mjs`。
+- 当前仍有未跟踪 `outputs/` 交付物，本轮继续排除。
+
+### 下一步动作
+
+提交本轮变更并推送 `origin/main`，等待 Vercel Production 部署确认。
+
+### 重要上下文
+
+- 本轮没有修改页面 UI 或业务组件。
+- `npm run export:content` 后没有产生 `content/*.md` diff。
+- 验证已通过：`audit:content`、`export:content`、`typecheck`、`audit:videos`、`lint`、`build`。
+
 ## 2026-06-15 内容完整性与部署验证 QA
 
 ### 当前目标
