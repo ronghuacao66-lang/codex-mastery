@@ -1,5 +1,36 @@
 # DECISIONS
 
+## 2026-06-16 重新开启合盖继续运行 Codex 的系统级电源策略
+
+### 决策内容
+
+按用户最新要求，重新设置 MacBook 合盖后不影响 Codex 继续运行任务：
+
+```bash
+pmset -a sleep 0 displaysleep 0 disksleep 0 disablesleep 1
+```
+
+执行后当前配置为：
+
+- Battery Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
+- AC Power：`sleep 0`、`displaysleep 0`、`disksleep 0`
+- `SleepDisabled`：`true`
+
+### 决策原因
+
+用户再次明确要求设置 MacBook 关闭盖子也不影响 Codex 继续跑任务。Codex 进程自身持有空闲睡眠断言，但合盖场景需要系统级电源策略配合，因此重新开启 `disablesleep` 并关闭系统、显示器和磁盘睡眠计时。
+
+### 被否决方案
+
+- 只依赖 Codex 的 `NoIdleSleepAssertion`：不能充分覆盖合盖睡眠场景。
+- 只运行临时 `caffeinate`：更适合短任务，无法持久表达当前用户要求。
+- 忽略此前为散热安全取消的记录：会破坏状态可追溯性；本次保留历史并追加最新决策。
+
+### 后续影响
+
+- 合盖运行会增加发热和耗电风险，不应直接放入包内长时间运行。
+- 如需再次取消并恢复正常睡眠，可按 2026-06-13 记录恢复为 `SleepDisabled=false` 和改动前电源计时。
+
 ## 2026-06-16 部署前验收统一为 npm run verify
 
 ### 决策内容

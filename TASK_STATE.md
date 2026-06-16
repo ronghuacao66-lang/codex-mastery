@@ -875,6 +875,7 @@
 - 2026-06-12 12:37 CST 已按用户要求恢复本机 macOS 电源策略，取消“合盖不影响 Codex 继续跑任务”的系统级设置。
 - 2026-06-13 01:38 CST 已按用户要求重新设置本机 macOS 电源策略，开启“合盖不影响 Codex 继续跑任务”的系统级设置。
 - 2026-06-13 02:07 CST 已按用户要求再次恢复本机 macOS 电源策略，取消“合盖不影响 Codex 继续跑任务”的系统级设置，避免影响电脑正常睡眠和散热。
+- 2026-06-16 10:24 CST 已按用户要求重新设置本机 macOS 电源策略，开启“合盖不影响 Codex 继续跑任务”的系统级设置。
 - 已创建 `HANDOVER.md`，用于上下文压缩或会话中断后的项目接管。
 - 已修复 ESLint 忽略规则，避免 `release/**` 备用交付目录影响 lint。
 - 已完成 2026-06-09 部署前验证：`npm run typecheck`、`npm run lint`、`npm run build` 均通过。
@@ -937,7 +938,7 @@
 - 当前视频中心只展示 Bilibili；不展示 OpenAI Academy、YouTube、抖音精选或任何 `network_or_timeout` / `likely_broken` 视频。
 - Bilibili 普通页面 HTTP 200 不能证明视频存在，后续必须以 `npm run audit:videos` 的接口校验结果为准。
 - `release/` 是本地交付物目录，已加入 `.gitignore`，不会提交进仓库。
-- 本机已取消合盖长时间运行 Codex 的系统级设置；合盖后 macOS 可按正常策略进入睡眠，降低放入包内持续发热风险。
+- 本机已重新开启合盖长时间运行 Codex 的系统级设置；合盖运行会增加发热和耗电风险，不应直接放入包内长时间运行。
 - Vercel 远端项目设置仍显示 `Framework Preset: Other`，后续必须保留仓库内 `vercel.json`。
 - 本机 `curl` 到 Vercel 域名仍超时，疑似本机网络问题；Vercel CLI inspect 和 Chrome 标题已验证生产部署可用。
 - 不应在聊天中索要或保存 Vercel 密码、验证码或长期 token。
@@ -957,6 +958,9 @@
 - 恢复方式：如需再次取消，可运行 `sudo pmset -b sleep 1 displaysleep 20 disksleep 10 disablesleep 0` 和 `sudo pmset -c sleep 0 displaysleep 0 disksleep 10 disablesleep 0`。
 - 2026-06-13 02:07 CST：已按用户要求再次取消合盖继续运行设置，执行恢复命令并单独关闭 `disablesleep`。
 - 验证结果：`pmset -g custom` 显示 Battery Power 为 `sleep 1`、`displaysleep 20`、`disksleep 10`，AC Power 为 `sleep 0`、`displaysleep 0`、`disksleep 10`；`/Library/Preferences/com.apple.PowerManagement.plist` 显示 `SleepDisabled` 为 `false`。
+- 2026-06-16 10:24 CST：已按用户要求重新执行 `pmset -a sleep 0 displaysleep 0 disksleep 0 disablesleep 1`。
+- 验证结果：`pmset -g custom` 显示 Battery Power 与 AC Power 下 `sleep`、`displaysleep`、`disksleep` 均为 `0`；`/Library/Preferences/com.apple.PowerManagement.plist` 显示 `SleepDisabled` 为 `true`。
+- 恢复方式：如需再次取消并恢复正常睡眠，可运行 `sudo pmset -b sleep 1 displaysleep 20 disksleep 10 disablesleep 0`、`sudo pmset -c sleep 0 displaysleep 0 disksleep 10 disablesleep 0` 和 `sudo pmset -a disablesleep 0`。
 
 ## 下一步动作
 

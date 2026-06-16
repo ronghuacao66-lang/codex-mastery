@@ -1,5 +1,35 @@
 # CHANGELOG_AI
 
+## 2026-06-16 10:24 重新开启合盖继续运行 Codex 的电源策略
+
+### 修改文件
+
+- `TASK_STATE.md`
+- `PROJECT_STATE.md`
+- `DECISIONS.md`
+- `CHANGELOG_AI.md`
+
+### 修改内容
+
+- 按用户要求重新设置本机 macOS 电源策略，使 MacBook 合盖后尽量不影响 Codex 继续运行任务。
+- 将当前状态从 2026-06-13 02:07 的“已取消，优先正常睡眠和散热”更新为 2026-06-16 10:24 的“已重新开启”。
+- 在决策记录中追加重新开启决策，保留此前开启和取消记录。
+
+### 修改原因
+
+用户再次要求“MacBook 关闭盖子也不影响 Codex 继续跑任务”。该设置属于本机系统级配置，需要与用户最新意图保持一致。
+
+### 验证结果
+
+- `pmset -g custom` 显示 Battery Power 与 AC Power 下 `sleep`、`displaysleep`、`disksleep` 均为 `0`。
+- `/Library/Preferences/com.apple.PowerManagement.plist` 显示 Battery Power 与 AC Power 的 `System Sleep Timer`、`Display Sleep Timer`、`Disk Sleep Timer` 均为 `0`。
+- `/Library/Preferences/com.apple.PowerManagement.plist` 显示 `SleepDisabled = true`。
+
+### 风险说明
+
+- 合盖长时间运行可能导致发热和耗电增加，不应直接放入包内长时间运行。
+- 本轮只修改本机电源配置和项目状态记录，不涉及业务代码。
+
 ## 2026-06-16 标准化总验收命令
 
 ### 修改文件
