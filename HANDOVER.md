@@ -1,5 +1,36 @@
 # SESSION_HANDOFF
 
+## 2026-06-16 关键交互最终抽检
+
+### 当前状态
+
+当前继续维护 `Codex Mastery` 网站。工作区位于 `/Users/caoronghua/Documents/ppt`，远程仓库为 `git@github.com:ronghuacao66-lang/codex-mastery.git`，公网地址为 `https://ronghuacao66-lang-codex-mastery.vercel.app`。
+
+本轮目标是完成最终关键交互抽检。
+
+### 已完成内容
+
+- 已在本地生产服务 `http://localhost:3001` 完成关键交互抽检。
+- 已验证主题切换、Prompt 搜索、Prompt 收藏、Prompt 复制、视频搜索、视频标记已看、进度页学习证据库、本地学习档案备份、复盘/导出入口。
+- QA 结果：15 项检查，失败 0。
+- 已更新 `FINAL_ACCEPTANCE.md` 的关键交互 QA 章节。
+- 已将剩余收口估算更新为约 15 到 30 分钟。
+
+### 未完成内容
+
+- 仍需提交、推送最终交互 QA 记录。
+- 仍需等待 GitHub Actions 和 Vercel 最终状态。
+- 仍需停止本地生产服务。
+
+### 当前风险
+
+- 本轮是关键路径抽检，不覆盖所有按钮和所有数据组合。
+- `outputs/` 仍是未跟踪目录，不属于本轮提交范围。
+
+### 下一步计划
+
+提交、推送 QA 记录，等待远端成功后停止本地生产服务并做最终工作区检查。
+
 ## 2026-06-16 最终浏览器 QA
 
 ### 当前状态
